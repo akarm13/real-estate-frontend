@@ -3,7 +3,6 @@ import { Faq } from "../../components/Faq";
 import { Feature } from "../../components/Feature";
 import { Listing } from "../../components/Listing";
 
-
 export const Home = () => {
   return (
     <div className=" py-7">
