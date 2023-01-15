@@ -22,23 +22,23 @@ export const Navigation = () => {
                 strokeLinejoin="round"
               />
             </svg>
-          </span>{" "}
+          </span>
           <span className="text-primary-500 text-xl text-bold font-bold">
             Hêlane
           </span>
         </Link>
       </div>
       <ul className="flex justify-around items-center w-1/3 ">
-        <li className="bg-primary-background  text-primary-500 px-4 py-1 rounded-sm">
+        <li className="bg-primary-background  text-primary-500 px-5 py-1.5 rounded-md">
           <Link to="/">Home</Link>
         </li>
-        <li className="bg-primary-background  text-primary-500 px-4 py-1 rounded-sm">
+        <li className="bg-primary-background  text-primary-500 px-5 py-1.5 rounded-md">
           <Link to="/">Search</Link>
         </li>
-        <li className="bg-primary-background text-primary-500 px-4 py-1 rounded-sm">
+        <li className="bg-primary-background text-primary-500 px-5 py-1.5 rounded-md">
           <Link to="/">Listings</Link>
         </li>
-        <li className="bg-primary-background text-primary-500 px-4 py-1 rounded-sm">
+        <li className="bg-primary-background text-primary-500 px-5 py-1.5 rounded-md">
           <Link to="/">Agents</Link>
         </li>
       </ul>

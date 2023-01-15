@@ -11,3 +11,10 @@ export type Property = {
   area: number;
   status: PropertyStatus;
 };
+
+export type Question = {
+  id: number;
+  question: String;
+  description: String;
+  isShown: boolean;
+};
