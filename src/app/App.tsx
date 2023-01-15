@@ -1,6 +1,6 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
-import "./App.css";
+
 import { Route, Routes } from "react-router-dom";
 import { Home } from "../routes/home/Home";
 import { Navigation } from "../components/Navigation";
@@ -8,7 +8,7 @@ import { ScrollToTop } from "../components/ScrollToTop";
 
 function App() {
   return (
-    <main>
+    <main className="bg-[#FEFEFF]">
       <Navigation />
       <ScrollToTop />
       <Routes>
