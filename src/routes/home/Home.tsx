@@ -1,11 +1,12 @@
 import { Content } from "../../components/Content";
 import { Faq } from "../../components/Faq";
 import { Feature } from "../../components/Feature";
+import { Footer } from "../../components/Footer";
 import { Listing } from "../../components/Listing";
 
 export const Home = () => {
   return (
-    <div className=" py-7">
+    <div className=" pt-7 ">
       <Content />
 
       <Feature />
@@ -18,6 +19,10 @@ export const Home = () => {
             <p className="text-primary-500">Find your next home</p>
           </div>
         </div>
+      </div>
+      <div className="pt-28">
+
+        <Footer />
       </div>
     </div>
   );
