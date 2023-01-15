@@ -14,7 +14,7 @@ type Question = {
 
 export const Faq = () => {
 
-    
+
 
     const [faq, setFaq] = useState<Question[]>(
         [
@@ -74,7 +74,7 @@ export const Faq = () => {
         <div className="">
             <div className="max-w-7xl mx-auto pt-14">
                 <h1 className="font-semibold text-2xl text-[#120F33]">Frequently asked questions</h1>
-                <h4 className="text-[#4D5461] text-sm">Everything you need to know about us</h4>
+                <h4 className="text-secondaryText text-sm">Everything you need to know about us</h4>
 
                 <div className="flex flex-col gap-y-10 pt-10">
 

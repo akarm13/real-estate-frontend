@@ -8,7 +8,7 @@ export const Feature = () => {
     return (
         <div className="max-w-7xl mx-auto pt-7">
             <h1 className="font-semibold text-2xl text-[#120F33]">Why Choose Us</h1>
-            <h4 className="text-[#4D5461] text-sm">Simple, convenient, and value-driven real estate</h4>
+            <h4 className="text-secondaryText text-sm">Simple, convenient, and value-driven real estate</h4>
 
             <div className="flex gap-x-8 pt-10">
                 <VisionCard title="Powerful Search" desc="Find the perfect property with our advanced search filters." />
