@@ -8,7 +8,7 @@ import { ScrollToTop } from "../components/ScrollToTop";
 
 function App() {
   return (
-    <main className="bg-[#FEFEFF]">
+    <main className="bg-[#FEFEFF] font-sans">
       <Navigation />
       <ScrollToTop />
       <Routes>
