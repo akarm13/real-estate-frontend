@@ -4,7 +4,7 @@ import { Button } from "./Button"
 export const Content = () => {
 
     return (
-        <div className="container max-w-7xl flex justify-between items-center  mx-auto">
+        <div className=" max-w-7xl flex justify-between items-center  mx-auto">
             <div className="flex flex-col gap-y-8">
                 <div className="">
                     <h1 className="font-semibold text-6xl text-[#120F33]">Finding your next <br /> home has never <br /> been easier</h1>

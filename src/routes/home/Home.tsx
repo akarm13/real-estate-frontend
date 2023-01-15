@@ -6,7 +6,7 @@ import { Listing } from "../../components/Listing";
 
 export const Home = () => {
   return (
-    <div className="container py-7">
+    <div className=" py-7">
       <Content />
 
       <Feature />
