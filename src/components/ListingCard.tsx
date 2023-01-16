@@ -3,6 +3,12 @@ import house from "../assets/house/1.jpg";
 import { AiOutlineStar } from "react-icons/ai";
 import { PropertyStatus, PropertyType } from "../types/property";
 
+import { ReactComponent as LocationIcon } from "../assets/icons/listing/location.svg";
+import { ReactComponent as BedroomIcon } from "../assets/icons/listing/bedroom.svg";
+import { ReactComponent as BathroomIcon } from "../assets/icons/listing/bathroom.svg";
+import { ReactComponent as AreaIcon } from "../assets/icons/listing/area.svg";
+import { ReactComponent as FeaturedStarIcon } from "../assets/icons/listing/featured-star.svg";
+
 type Props = {
   price: number;
   title: string;
@@ -26,88 +32,54 @@ export const ListingCard = ({
   return (
     <div className="w-[385px]  ">
       <img src={house} alt="house" className="h-[200px] w-full rounded-md" />
-      <div className="flex flex-col gap-y-4 px-4 items-baseline bg-white border border-gray-300 py-6 rounded-md relative ">
-        <span className="text-primary-500 font-semibold">${price}</span>
-        <h3 className="text-[#120F33] font-semibold">{title}</h3>
-        <p className="flex gap-x-2 p-0 m-0 items-center ">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 17"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8 0.50003C7.03551 0.497527 6.08018 0.68705 5.18969 1.05755C4.29921 1.42805 3.49139 1.97212 2.81333 2.65803C1.43635 4.04854 0.666227 5.92788 0.671474 7.88481C0.676722 9.84174 1.45691 11.7169 2.84133 13.1L5.33333 15.406C6.04136 16.1035 6.99425 16.4962 7.98812 16.5001C8.98199 16.5039 9.9379 16.1187 10.6513 15.4267L13.1893 13.0694C14.562 11.6846 15.3321 9.81379 15.3321 7.86403C15.3321 5.91427 14.562 4.04343 13.1893 2.6587C12.511 1.97234 11.7028 1.42797 10.8118 1.05734C9.92084 0.686716 8.96498 0.497259 8 0.50003ZM11.8 11.6334L9.26666 13.984C8.92183 14.3136 8.46212 14.4958 7.98514 14.4919C7.50816 14.4881 7.05146 14.2985 6.712 13.9634L4.23066 11.6574C3.23007 10.6482 2.66865 9.28453 2.66865 7.86336C2.66865 6.4422 3.23007 5.07857 4.23066 4.06936C4.72436 3.57206 5.31159 3.17736 5.95851 2.90802C6.60542 2.63867 7.29925 2.50001 8 2.50001C8.70075 2.50001 9.39457 2.63867 10.0415 2.90802C10.6884 3.17736 11.2756 3.57206 11.7693 4.06936C12.7684 5.07266 13.3318 6.42922 13.3375 7.84507C13.3433 9.26092 12.7909 10.622 11.8 11.6334ZM11.3333 7.25203V9.83336C11.3333 10.0102 11.2631 10.1797 11.1381 10.3048C11.013 10.4298 10.8435 10.5 10.6667 10.5H10C9.82319 10.5 9.65362 10.4298 9.52859 10.3048C9.40357 10.1797 9.33333 10.0102 9.33333 9.83336V8.50003C9.33333 8.32322 9.26309 8.15365 9.13807 8.02863C9.01304 7.9036 8.84348 7.83336 8.66666 7.83336H7.33333C7.15652 7.83336 6.98695 7.9036 6.86193 8.02863C6.7369 8.15365 6.66666 8.32322 6.66666 8.50003V9.83336C6.66666 10.0102 6.59643 10.1797 6.4714 10.3048C6.34638 10.4298 6.17681 10.5 6 10.5H5.33333C5.15652 10.5 4.98695 10.4298 4.86193 10.3048C4.7369 10.1797 4.66666 10.0102 4.66666 9.83336V7.25203C4.6667 7.03673 4.71886 6.82464 4.81871 6.6339C4.91855 6.44315 5.0631 6.27942 5.24 6.1567L7.24 4.7687C7.46319 4.61386 7.72835 4.53089 8 4.53089C8.27164 4.53089 8.5368 4.61386 8.76 4.7687L10.76 6.1567C10.9369 6.27942 11.0814 6.44315 11.1813 6.6339C11.2811 6.82464 11.3333 7.03673 11.3333 7.25203Z"
-              fill="#5B4DFF"
-            />
-          </svg>
+      <div className="flex flex-col gap-y-2 px-5 items-baseline bg-white border border-primary-background py-6 rounded-md relative ">
+        <span className="text-primary-500 font-bold text-lg">${price}</span>
+        <h3 className="text-primary-900 font-semibold text-xl">{title}</h3>
+        <p className="flex gap-x-2 p-0 m-0 items-center mt-2">
+          <LocationIcon />
 
-          <span className="text-secondaryText text-sm">{address}</span>
+          <span className="text-secondaryText">{address}</span>
         </p>
-        <span className="bg-primary-background text-primary-500 px-4 py-2 rounded-md capitalize">
+        <span className="bg-primary-background text-primary-500 px-4 py-2 rounded-md capitalize my-2">
           {type}
         </span>
-
-        <hr className="w-4/5 mx-auto" />
-        <div className="flex justify-between  w-full">
-          <p className="flex gap-x-1 items-center text-[#7F7D8C]  text-sm">
-            <span className="bg-primary-background text-primary-500 p-2 rounded-md">
-              <svg
-                width="16"
-                height="14"
-                viewBox="0 0 16 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.6667 0.333313H3.33333C1.49533 0.333313 0 1.82865 0 3.66665V13C0 13.3686 0.298667 13.6666 0.666667 13.6666C1.03467 13.6666 1.33333 13.3686 1.33333 13V11.6666H14.6667V13C14.6667 13.3686 14.9647 13.6666 15.3333 13.6666C15.702 13.6666 16 13.3686 16 13V3.66665C16 1.82865 14.5047 0.333313 12.6667 0.333313ZM3.33333 1.66665H12.6667C13.7693 1.66665 14.6667 2.56398 14.6667 3.66665V7.66665H13.3333C13.3333 6.19598 12.1373 4.99998 10.6667 4.99998H10C9.204 4.99998 8.48933 5.35065 8 5.90465C7.51067 5.34998 6.796 4.99998 6 4.99998H5.33333C3.86267 4.99998 2.66667 6.19598 2.66667 7.66665H1.33333V3.66665C1.33333 2.56398 2.23067 1.66665 3.33333 1.66665ZM8.66667 7.66665C8.66667 6.93131 9.26467 6.33331 10 6.33331H10.6667C11.402 6.33331 12 6.93131 12 7.66665H8.66667ZM4 7.66665C4 6.93131 4.598 6.33331 5.33333 6.33331H6C6.73533 6.33331 7.33333 6.93131 7.33333 7.66665H4ZM1.33333 10.3333V8.99998H14.6667V10.3333H1.33333Z"
-                  fill="#5B4DFF"
-                />
-              </svg>
-            </span>
-            {bedrooms} bd.
-          </p>
-          <p className="flex gap-x-1 items-center text-[#7F7D8C] text-sm">
-            <span className="bg-primary-background text-primary-500 p-2 rounded-md">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M14 8H8.014L6.64467 6.04333C6.04134 5.18133 5.05267 4.66667 4.00067 4.66667H3.66734C2.38067 4.66667 1.334 5.71333 1.334 7V8.12267C0.560005 8.39867 0.000671387 9.132 0.000671387 10V12.6667C0.000671387 14.5047 1.496 16 3.334 16H12.6673C14.5053 16 16.0007 14.5047 16.0007 12.6667V10C16.0007 8.89733 15.1033 8 14.0007 8H14ZM6 9.33333V14.6667H4.66667V9.33333H6ZM7.33334 9.33333H8.66667V14.6667H7.33334V9.33333ZM10 9.33333H11.3333V14.6667H10V9.33333ZM3.66667 6H4C4.61734 6 5.19734 6.302 5.552 6.808L6.38667 8H2.66667V7C2.66667 6.44867 3.11534 6 3.66667 6ZM1.33334 12.6667V10C1.33334 9.63267 1.63267 9.33333 2 9.33333H3.33334V14.6667C2.23067 14.6667 1.33334 13.7693 1.33334 12.6667ZM14.6667 12.6667C14.6667 13.7693 13.7693 14.6667 12.6667 14.6667V9.33333H14C14.3673 9.33333 14.6667 9.63267 14.6667 10V12.6667ZM2 1.66667C2 0.746 2.746 0 3.66667 0C4.58734 0 5.33334 0.746 5.33334 1.66667C5.33334 2.58733 4.58734 3.33333 3.66667 3.33333C2.746 3.33333 2 2.58733 2 1.66667ZM12.6667 0.781333V0.668667C12.6653 0.300667 12.9627 0.00133333 13.3313 0H13.3333C13.7007 0 13.9993 0.297333 14 0.664667V0.779333C14 1.20467 14.172 1.62 14.472 1.91933C15.0273 2.47467 15.334 3.21333 15.334 4C15.334 4.368 15.0353 4.66667 14.6673 4.66667C14.2993 4.66667 14.0007 4.368 14.0007 4C14.0007 3.57 13.8333 3.166 13.5293 2.862C12.9733 2.306 12.6673 1.56733 12.6673 0.780667L12.6667 0.781333ZM10.862 3.324C10.306 2.768 10 2.02933 10 1.24267V0.666667C10 0.298667 10.2987 0 10.6667 0C11.0347 0 11.3333 0.298667 11.3333 0.666667V1.24267C11.3333 1.666 11.5053 2.08133 11.8047 2.38067C12.36 2.936 12.6667 3.67467 12.6667 4.46133V4.66667C12.6667 5.03467 12.368 5.33333 12 5.33333C11.632 5.33333 11.3333 5.03467 11.3333 4.66667V4.46133C11.3333 4.03133 11.166 3.62733 10.862 3.32333V3.324Z"
-                  fill="#5B4DFF"
-                />
-              </svg>
-            </span>
-            {bathrooms} bth.
-          </p>
-          <p className="flex gap-x-1 items-center text-[#7F7D8C] text-sm">
-            <span className="bg-primary-background text-primary-500 p-2  rounded-md">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M13.3333 9.33333H6.66667V2.66667C6.66667 1.196 5.47067 0 4 0H2.66667C1.196 0 0 1.196 0 2.66667V12.6667C0 14.5047 1.49533 16 3.33333 16H13.3333C14.804 16 16 14.804 16 13.3333V12C16 10.5293 14.804 9.33333 13.3333 9.33333ZM14.6667 13.3333C14.6667 14.0687 14.0687 14.6667 13.3333 14.6667H3.33333C2.23067 14.6667 1.33333 13.7693 1.33333 12.6667V2.66667C1.33333 1.93133 1.93133 1.33333 2.66667 1.33333H4C4.73533 1.33333 5.33333 1.93133 5.33333 2.66667V4H4C3.632 4 3.33333 4.298 3.33333 4.66667C3.33333 5.03533 3.632 5.33333 4 5.33333H5.33333V6.66667H4C3.632 6.66667 3.33333 6.96467 3.33333 7.33333C3.33333 7.702 3.632 8 4 8H5.33333V9.33333H4C3.632 9.33333 3.33333 9.63133 3.33333 10C3.33333 10.3687 3.632 10.6667 4 10.6667H5.33333V12C5.33333 12.3687 5.632 12.6667 6 12.6667C6.368 12.6667 6.66667 12.3687 6.66667 12V10.6667H8V12C8 12.3687 8.29867 12.6667 8.66667 12.6667C9.03467 12.6667 9.33333 12.3687 9.33333 12V10.6667H10.6667V12C10.6667 12.3687 10.9647 12.6667 11.3333 12.6667C11.702 12.6667 12 12.3687 12 12V10.6667H13.3333C14.0687 10.6667 14.6667 11.2647 14.6667 12V13.3333Z"
-                  fill="#5B4DFF"
-                />
-              </svg>
-            </span>
-            {area} m<span className="text-xs align-super">2</span>
-          </p>
+        <hr className="w-full mx-auto my-2 bg-primary-background" />
+        <div className="flex justify-between w-full mt-2">
+          <PropertyDetail
+            icon={<BedroomIcon />}
+            value={bedrooms}
+            text={"bd."}
+          />
+          <PropertyDetail
+            icon={<BathroomIcon />}
+            value={bathrooms}
+            text={"bth."}
+          />
+          <PropertyDetail icon={<AreaIcon />} value={area} text={"m²"} />
         </div>
         <div className="absolute bg-primary-500 flex -top-7 -left-1 items-center gap-x-2 py-2 px-4 rounded-md">
-          <AiOutlineStar color="white" fill="white" />
-          <span className="text-white capitalize">{status}</span>
+          <FeaturedStarIcon width={16} height={16} />
+          <span className="text-white uppercase text-sm font-semibold">
+            {status}
+          </span>
         </div>
       </div>
+    </div>
+  );
+};
+
+type PropertyDetailProps = {
+  icon: React.ReactNode;
+  value: number;
+  text: string | React.ReactNode;
+};
+export const PropertyDetail = ({ icon, value, text }: PropertyDetailProps) => {
+  return (
+    <div className="flex gap-x-1 items-center text-gray-600">
+      <span className="bg-primary-background text-primary-500 p-2 rounded-md">
+        {icon}
+      </span>
+      {value} {text}
     </div>
   );
 };
