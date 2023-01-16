@@ -1,6 +1,6 @@
 import { Button } from "./Button";
 
-export const Content = () => {
+export const Hero = () => {
   return (
     <div className=" max-w-7xl flex justify-between items-center  mx-auto">
       <div className="flex flex-col gap-y-8">
