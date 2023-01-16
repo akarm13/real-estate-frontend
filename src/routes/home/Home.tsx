@@ -1,4 +1,4 @@
-import { Hero } from "../../components/Hero";
+import { HeroSection } from "./HeroSection";
 import { FaqSection } from "./FaqSection";
 import { BenefitsSection } from "./BenefitsSection";
 import { Footer } from "../../components/Footer";
@@ -7,7 +7,7 @@ import { ListingsSection } from "./ListingsSection";
 export const Home = () => {
   return (
     <div className="pt-7 ">
-      <Hero />
+      <HeroSection />
       <BenefitsSection />
       <ListingsSection />
       <FaqSection />
