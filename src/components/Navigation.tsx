@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Button } from "./Button";
 
 export const Navigation = () => {
+  const activeClasses =
+    "bg-primary-background text-primary-500 px-5 py-3 rounded-md";
+  const inactiveClasses = "bg-white text-secondaryText px-5 py-3 rounded-md";
+
   return (
-    <nav className=" flex justify-between items-center  max-w-7xl m-auto py-3 ">
+    <nav className="flex justify-between items-center max-w-7xl m-auto py-4">
       <div className="">
-        <Link to="/" className="flex items-center gap-x-1">
+        <NavLink to="/" className="flex items-center gap-x-1">
           <span>
             <svg
               width="26"
@@ -26,25 +30,53 @@ export const Navigation = () => {
           <span className="text-primary-500 text-xl text-bold font-bold">
             Hêlane
           </span>
-        </Link>
+        </NavLink>
       </div>
       <ul className="flex justify-around items-center w-1/3 ">
-        <li className="bg-primary-background  text-primary-500 px-5 py-1.5 rounded-md">
-          <Link to="/">Home</Link>
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) => {
+              return isActive ? activeClasses : inactiveClasses;
+            }}
+          >
+            Home
+          </NavLink>
         </li>
-        <li className="bg-primary-background  text-primary-500 px-5 py-1.5 rounded-md">
-          <Link to="/">Search</Link>
+        <li>
+          <NavLink
+            to="/search"
+            className={({ isActive }) => {
+              return isActive ? activeClasses : inactiveClasses;
+            }}
+          >
+            Search
+          </NavLink>
         </li>
-        <li className="bg-primary-background text-primary-500 px-5 py-1.5 rounded-md">
-          <Link to="/">Listings</Link>
+        <li>
+          <NavLink
+            to="/listings"
+            className={({ isActive }) => {
+              return isActive ? activeClasses : inactiveClasses;
+            }}
+          >
+            Listings
+          </NavLink>
         </li>
-        <li className="bg-primary-background text-primary-500 px-5 py-1.5 rounded-md">
-          <Link to="/">Agents</Link>
+        <li>
+          <NavLink
+            to="/agents"
+            className={({ isActive }) => {
+              return isActive ? activeClasses : inactiveClasses;
+            }}
+          >
+            Agents
+          </NavLink>
         </li>
       </ul>
       <div className="flex gap-x-6">
         <Button onClick={() => console.log("login")} variant="primary">
-          login
+          Login
         </Button>
         <Button onClick={() => console.log("sign up")} variant="secondary">
           Sign up
