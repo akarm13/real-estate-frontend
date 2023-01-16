@@ -1,5 +1,5 @@
-import { Property } from "../types/property";
-import { ListingCard } from "./ListingCard";
+import { Property } from "../../types/property";
+import { ListingCard } from "../../components/ListingCard";
 
 export const featuredProperties: Property[] = [
   {
@@ -34,7 +34,7 @@ export const featuredProperties: Property[] = [
   },
 ];
 
-export const Listing = () => {
+export const ListingsSection = () => {
   return (
     <div className="max-w-7xl mx-auto pt-14">
       <h1 className="font-semibold text-2xl text-[#120F33]">
