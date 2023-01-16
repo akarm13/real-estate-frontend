@@ -3,6 +3,7 @@ import { FaqSection } from "./FaqSection";
 import { BenefitsSection } from "./BenefitsSection";
 import { Footer } from "../../components/Footer";
 import { ListingsSection } from "./ListingsSection";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
@@ -16,9 +17,12 @@ export const Home = () => {
           <p className="text-white font-semibold text-xl">
             Looking to find your next home?
           </p>
-          <div className="rounded-3xl px-7 py-3 bg-white">
-            <p className="text-primary-500">Find your next home</p>
-          </div>
+          <Link
+            className="rounded-3xl px-7 py-3 bg-white hover:bg-gray-100"
+            to="/listings"
+          >
+            <span className="text-primary-500">Find your next home</span>
+          </Link>
         </div>
       </div>
       <div className="pt-28">

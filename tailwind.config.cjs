@@ -3,6 +3,9 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      boxShadow: {
+        footer: "0px -2px 64px 22px rgba(0, 0, 0, 0.02)",
+      },
       colors: {
         primary: {
           100: "#DEDBFF",

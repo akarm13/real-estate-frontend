@@ -32,6 +32,36 @@ export const featuredProperties: Property[] = [
     title: "Beautiful Home",
     type: "sale",
   },
+  {
+    address: "1234 Main Street",
+    area: 1000,
+    bathrooms: 2,
+    bedrooms: 3,
+    price: 1000000,
+    status: "featured",
+    title: "Beautiful Home",
+    type: "sale",
+  },
+  {
+    address: "1234 Main Street",
+    area: 1000,
+    bathrooms: 2,
+    bedrooms: 3,
+    price: 1000000,
+    status: "featured",
+    title: "Beautiful Home",
+    type: "sale",
+  },
+  {
+    address: "1234 Main Street",
+    area: 1000,
+    bathrooms: 2,
+    bedrooms: 3,
+    price: 1000000,
+    status: "featured",
+    title: "Beautiful Home",
+    type: "sale",
+  },
 ];
 
 export const ListingsSection = () => {

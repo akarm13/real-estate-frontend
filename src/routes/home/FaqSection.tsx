@@ -35,7 +35,7 @@ export const FaqSection = () => {
       isShown: false,
     },
   ]);
-  const showDesc = (id: number) => {
+  const showDescription = (id: number) => {
     const data = faq.map((obj) => {
       if (obj.id === id) {
         if (obj.isShown) {
@@ -66,13 +66,9 @@ export const FaqSection = () => {
               <>
                 <button
                   className="flex items-center gap-x-4"
-                  onClick={() => showDesc(el.id)}
+                  onClick={() => showDescription(el.id)}
                 >
-                  {el.isShown ? (
-                    <MinusIcon />
-                  ) : (
-                    <PlusIcon />
-                  )}
+                  {el.isShown ? <MinusIcon /> : <PlusIcon />}
 
                   <h2 className="text-primary-900 font-semibold text-xl">
                     {el.question}
