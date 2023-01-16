@@ -7,7 +7,7 @@ export const Navigation = () => {
   const inactiveClasses = "bg-white text-secondaryText px-5 py-3 rounded-md";
 
   return (
-    <nav className="flex justify-between items-center max-w-7xl m-auto py-4">
+    <nav className="flex justify-between items-center max-w-7xl m-auto py-6">
       <div className="">
         <NavLink to="/" className="flex items-center gap-x-1">
           <span>
