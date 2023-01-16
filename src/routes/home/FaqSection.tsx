@@ -50,11 +50,11 @@ export const FaqSection = () => {
 
   return (
     <div className="">
-      <div className="max-w-7xl mx-auto pt-14">
-        <h1 className="font-semibold text-2xl text-[#120F33]">
+      <div className="max-w-7xl mx-auto mt-24">
+        <h1 className="font-semibold text-3xl text-primary-900">
           Frequently asked questions
         </h1>
-        <h4 className="text-secondaryText text-sm">
+        <h4 className="text-secondaryText text-xl font-semibold mt-2">
           Everything you need to know about us
         </h4>
 
