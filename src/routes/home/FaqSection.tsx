@@ -52,11 +52,11 @@ export const FaqSection = () => {
 
   return (
     <div className="">
-      <div className="max-w-7xl mx-auto mt-24">
-        <h1 className="font-semibold text-3xl text-primary-900">
+      <div className="w-5/6 md:max-w-7xl mx-auto mt-24">
+        <h1 className="font-semibold text-2xl md:text-3xl text-primary-900">
           Frequently asked questions
         </h1>
-        <h4 className="text-secondaryText text-xl font-semibold mt-2">
+        <h4 className="text-secondaryText text-base md:text-xl font-semibold mt-2">
           Everything you need to know about us
         </h4>
 
@@ -65,17 +65,17 @@ export const FaqSection = () => {
             {faq.map((el) => (
               <>
                 <button
-                  className="flex items-center gap-x-4"
+                  className="flex items-center gap-x-2 "
                   onClick={() => showDescription(el.id)}
                 >
                   {el.isShown ? <MinusIcon /> : <PlusIcon />}
 
-                  <h2 className="text-primary-900 font-semibold text-xl">
+                  <h2 className="text-primary-900  font-semibold text-sm  md:text-xl " >
                     {el.question}
                   </h2>
                 </button>
                 {el.isShown && (
-                  <p className="w-1/2 pl-9 text-secondaryText text-base">
+                  <p className=" md:w-1/2 md:pl-9 text-secondaryText text-xs">
                     {el.description}
                   </p>
                 )}

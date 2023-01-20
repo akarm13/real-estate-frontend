@@ -7,7 +7,9 @@ import { ReactComponent as LogoIcon } from "../assets/icons/listing/logo.svg";
 export const Footer = () => {
   return (
     <footer className="  w-full     ">
-      <div className="flex justify-around flex-wrap ">
+
+
+      <div className="flex justify-around flex-wrap  w-5/6 mx-auto md:w-full">
         <div className="">
           <div className="flex space-x-3 w-30">
             <span>
@@ -19,7 +21,7 @@ export const Footer = () => {
 
           </div>
 
-          <p className="text-secondaryText text-base  pt-2 max-w-sm ">
+          <p className="text-secondaryText text-sm md:text-base  pt-2 max-w-sm ">
             Hêlane is a modern and easy-to-use platform for buying, selling, and
             renting properties. With a wide range of listings and verified
             agents, we make it simple to find your next home or investment.
@@ -32,7 +34,7 @@ export const Footer = () => {
               </div>
               <div>
                 <h5 className="text-secondaryText font-sans text-base mx-2">Tel</h5>
-                <h3 className="text-primary-500 font-bold mx-2 ">
+                <h3 className="text-primary-500 text-sm md:text-base font-bold mx-2 ">
                   0750-317-4475
                 </h3>
               </div>
@@ -44,7 +46,7 @@ export const Footer = () => {
               </div>
               <div>
                 <h5 className="text-secondaryText font-sans text-base mx-2">Email</h5>
-                <h3 className="text-primary-500 font-bold mx-2 ">
+                <h3 className="text-primary-500  text-sm md:text-base font-bold mx-2 ">
                   support@withhelane.com
                 </h3>
               </div>
@@ -56,7 +58,7 @@ export const Footer = () => {
               </div>
               <div>
                 <h5 className="text-secondaryText font-sans text-base mx-2">Address</h5>
-                <h3 className="text-primary-500 font-bold mx-2 ">
+                <h3 className="text-primary-500 text-sm md:text-base font-bold mx-2 ">
                   Aqary Street, Opposite of City Star, Sulaymaniyah
                 </h3>
               </div>

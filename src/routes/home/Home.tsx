@@ -12,8 +12,8 @@ export const Home = () => {
       <BenefitsSection />
       <ListingsSection />
       <FaqSection />
-      <div className="max-w-7xl bg-primary-500 px-6 py-5 mx-auto mt-40 rounded-md ">
-        <div className="w-full flex justify-between items-center">
+      <div className="w-5/6  md:max-w-7xl bg-primary-500 px-6 py-5 mx-auto mt-40 rounded-md ">
+        <div className="w-full flex justify-center md:justify-between items-center flex-wrap gap-y-6 ">
           <p className="text-white font-semibold text-xl">
             Looking to find your next home?
           </p>

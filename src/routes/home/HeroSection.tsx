@@ -3,13 +3,13 @@ import { Button } from "../../components/Button";
 import { ReactComponent as HouseIllustration } from "../../assets/illustrations/house-illustration.svg";
 export const HeroSection = () => {
   return (
-    <div className="max-w-7xl flex justify-between items-center mx-auto">
-      <div className="flex flex-col gap-y-8">
+    <div className="flex-col-reverse  items-center max-w-7xl flex md:flex-row md:justify-between md:items-center mx-auto">
+      <div className="flex flex-col gap-y-8 w-5/6">
         <div className="">
-          <h1 className="font-semibold text-6xl text-[#120F33] leading-tight">
+          <h1 className="text-3xl w-2/3 font-semibold md:text-6xl text-[#120F33] leading-tight">
             Finding your next home has never been easier
           </h1>
-          <p className=" text-[#120F33] text-3xl mt-4">
+          <p className=" text-[#120F33] text-xl md:text-3xl mt-4 ">
             No commissions, no hassle.
           </p>
         </div>
@@ -22,8 +22,8 @@ export const HeroSection = () => {
           </Button>
         </div>
       </div>
-      <div className="">
-        <HouseIllustration />
+      <div className=" w-5/6">
+        <HouseIllustration className="w-full h-full" />
       </div>
     </div>
   );
