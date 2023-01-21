@@ -27,8 +27,8 @@ export const Register = () => {
 
                     </div>
                 </div>
-                <div className="flex-1 bg-blue-400 justify-center items-center">
-
+                <div className="flex-1  justify-center items-center">
+                    {/* login and sign up section */}
                 </div>
             </div>
 
