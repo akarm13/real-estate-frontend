@@ -1,7 +1,13 @@
 import { Button } from "../../components/Button";
 
 import { ReactComponent as HouseIllustration } from "../../assets/illustrations/house-illustration.svg";
+import { queries } from "../../devices";
+
+import { useMediaQuery } from "react-responsive";
 export const HeroSection = () => {
+  const isSmall = useMediaQuery({
+    query: queries.sm,
+  });
   return (
     <div className="flex-col-reverse  items-center max-w-7xl flex md:flex-row md:justify-between md:items-center mx-auto">
       <div className="flex flex-col gap-y-8 w-5/6">
@@ -15,10 +21,10 @@ export const HeroSection = () => {
         </div>
         <div className="flex gap-x-6">
           <Button onClick={() => console.log("login")} variant="primary">
-            Listings
+            {isSmall ? "Browse Listings" : "Listings"}
           </Button>
           <Button onClick={() => console.log("sign up")} variant="secondary">
-            Agents
+            {isSmall ? "Browse Agents" : "Agents"}
           </Button>
         </div>
       </div>
