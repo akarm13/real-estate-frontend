@@ -1,12 +1,20 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button } from "./Button";
 import { ReactComponent as LogoIcon } from "../assets/icons/listing/logo.svg";
 
 export const Navigation = () => {
+  const navigate = useNavigate()
   const activeClasses =
     "bg-primary-background text-primary-500 px-5 py-3 rounded-md";
   const inactiveClasses = "bg-white text-secondaryText px-5 py-3 rounded-md";
+  const routeHandler = (change: String) => {
+    if (change === "primary") {
 
+      navigate('/register/sign-in')
+    } else if (change === 'secondary') {
+      navigate('/register/sign-up')
+    }
+  }
   return (
     <nav className="flex justify-between items-center max-w-7xl m-auto py-6">
       <NavLink to="/" className="flex items-center gap-x-1">
@@ -60,10 +68,14 @@ export const Navigation = () => {
         </li>
       </ul>
       <div className="flex gap-x-6">
-        <Button onClick={() => console.log("login")} variant="primary">
+
+
+        <Button onClick={() => routeHandler('primary')
+        } variant="primary">
           Login
         </Button>
-        <Button onClick={() => console.log("sign up")} variant="secondary">
+
+        <Button onClick={() => routeHandler('secondary')} variant="secondary">
           Sign up
         </Button>
       </div>

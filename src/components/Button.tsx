@@ -4,6 +4,9 @@ type Props = {
   onClick: () => void;
 };
 export const Button = ({ onClick, children, variant }: Props) => {
+
+
+
   if (variant === "primary") {
     return (
       <button
