@@ -74,7 +74,7 @@ export const ListingsSection = () => {
         Discover the best properties
       </h4>
 
-      <div className="flex gap-x-14 flex-wrap gap-y-10 pt-10">
+      <div className="flex gap-x-4 flex-wrap gap-y-10 pt-10">
         {featuredProperties.map((property) => (
           <ListingCard {...property} />
         ))}
