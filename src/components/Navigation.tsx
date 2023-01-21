@@ -13,9 +13,9 @@ export const Navigation = () => {
   const inactiveClasses = "bg-white text-secondaryText px-5 py-3 rounded-md";
   const routeHandler = (change: String) => {
     if (change === "primary") {
-      navigate("/register/sign-in");
+      navigate("/login");
     } else if (change === "secondary") {
-      navigate("/register/sign-up");
+      navigate("/register");
     }
   };
 
@@ -78,9 +78,8 @@ export const Navigation = () => {
 
       {/* Slide out navigation menu on mobile */}
       <div
-        className={`flex flex-col gap-y-4 border-1 px-4 ${
-          isMenuOpen ? "flex" : "hidden"
-        }`}
+        className={`flex flex-col gap-y-4 border-1 px-4 ${isMenuOpen ? "flex" : "hidden"
+          }`}
       >
         <div className="flex justify-between items-center">
           <NavLink to="/" className="flex items-center gap-x-1">
