@@ -5,7 +5,8 @@ import { Route, Routes, useLocation, useNavigation } from "react-router-dom";
 import { Home } from "../routes/home/Home";
 import { Navigation } from "../components/Navigation";
 import { ScrollToTop } from "../components/ScrollToTop";
-import { Register } from "../routes/register/Register";
+import { Register } from "../routes/auth/Register";
+import { Login } from "../routes/auth/Login";
 
 function App() {
   const location = useLocation()
@@ -14,14 +15,14 @@ function App() {
   return (
     <main className="bg-[#FEFEFF] font-sans">
       {
-        location.pathname === "/register/sign-in" || location.pathname === "/register/sign-up" ? '' : <Navigation />
+        location.pathname === "/register" || location.pathname === "/login" ? '' : <Navigation />
       }
 
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register/sign-in" element={<Register />} />
-        <Route path="/register/sign-up" element={<Register />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </main>
   );
