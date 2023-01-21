@@ -78,7 +78,7 @@ export const Navigation = () => {
 
       {/* Slide out navigation menu on mobile */}
       <div
-        className={`flex-col gap-y-4 border-1 px-4 ${
+        className={`flex flex-col gap-y-4 border-1 px-4 ${
           isMenuOpen ? "flex" : "hidden"
         }`}
       >
