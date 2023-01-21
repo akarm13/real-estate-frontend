@@ -5,7 +5,7 @@ import { ReactComponent as LogoIcon } from "../../assets/icons/listing/logo.svg"
 import { ReactComponent as LoginIllustration } from "../../assets/illustrations/login-illustration.svg";
 import { ReactComponent as SignIllustration } from "../../assets/illustrations/signup-illustration.svg";
 
-export const Register = () => {
+export const Login = () => {
   const location = useLocation();
   return (
     <div className="h-screen">
@@ -21,11 +21,9 @@ export const Register = () => {
           </NavLink>
 
           <div className="flex justify-center items-center w-3/5 mx-auto pt-10">
-            {location.pathname === "/register/sign-in" ? (
-              <LoginIllustration className="w-full" />
-            ) : (
-              <SignIllustration className="w-full" />
-            )}
+
+            <LoginIllustration className="w-full" />
+
           </div>
         </div>
         <div className="flex-1  justify-center items-center">

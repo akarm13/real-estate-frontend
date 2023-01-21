@@ -21,11 +21,9 @@ export const Register = () => {
           </NavLink>
 
           <div className="flex justify-center items-center w-3/5 mx-auto pt-10">
-            {location.pathname === "/register/sign-in" ? (
-              <LoginIllustration className="w-full" />
-            ) : (
-              <SignIllustration className="w-full" />
-            )}
+
+            <SignIllustration className="w-full" />
+
           </div>
         </div>
         <div className="flex-1  justify-center items-center">
