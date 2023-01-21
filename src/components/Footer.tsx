@@ -29,7 +29,7 @@ export const Footer = () => {
 
           <div className="my-7 flex flex-col  ">
             <div className="flex">
-              <div className="bg-primary-background p-4 flex items-center justify-center rounded-2xl">
+              <div className="bg-primary-background p-4 self-start flex items-center justify-center rounded-2xl">
                 <TelephoneIcon />
               </div>
               <div>
@@ -41,7 +41,7 @@ export const Footer = () => {
             </div>
 
             <div className="flex mt-3">
-              <div className="bg-primary-background p-4 flex items-center justify-center rounded-2xl">
+              <div className="bg-primary-background p-4 self-start flex items-center justify-center rounded-2xl">
                 <EmailIcon />
               </div>
               <div>
@@ -53,7 +53,7 @@ export const Footer = () => {
             </div>
 
             <div className="flex mt-3 ">
-              <div className="bg-primary-background p-4 flex items-center justify-center rounded-2xl ">
+              <div className="bg-primary-background p-4 self-start flex items-center justify-center rounded-2xl ">
                 <LocationIcon />
               </div>
               <div>
@@ -79,7 +79,7 @@ export const Footer = () => {
             <h5 className="text-secondaryText text-base m-1">List your property</h5>
           </div>
 
-          <div className="flex flex-col mx-2 w-full lg:w-auto">
+          <div className="flex flex-col  w-full lg:w-auto">
             <h3 className="font-bold font-sans text-lg m-1 text-primary-900">Support</h3>
             <h5 className="text-secondaryText text-base m-1">Contact us</h5>
             <h5 className="text-secondaryText text-base m-1">FAQ</h5>
@@ -89,7 +89,7 @@ export const Footer = () => {
         </div>
       </div>
 
-      <h5 className="text-secondaryText text-base m-3 text-center">
+      <h5 className="text-secondaryText text-base mx-3 my-4 text-center">
         © 2022, All Rights Reserved
       </h5>
     </footer>
