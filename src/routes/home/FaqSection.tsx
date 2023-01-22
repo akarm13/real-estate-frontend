@@ -5,7 +5,7 @@ import { Question } from "../../types/property";
 import { ReactComponent as PlusIcon } from "../../assets/icons/listing/plus.svg";
 import { ReactComponent as MinusIcon } from "../../assets/icons/listing/minus.svg";
 export const FaqSection = () => {
-  const [faq, setFaq] = useState<Question[]>([
+  const [questionList, setQuestionList] = useState<Question[]>([
     {
       id: 1,
       question: "What types of properties do you list on your website?",
@@ -36,18 +36,18 @@ export const FaqSection = () => {
     },
   ]);
   const showDescription = (id: number) => {
-    const data = faq.map((obj) => {
-      if (obj.id === id) {
-        if (obj.isShown) {
-          return { ...obj, isShown: false };
+    const filteredFaq = questionList.map((question) => {
+      if (question.id === id) {
+        if (question.isShown) {
+          return { ...question, isShown: false };
         } else {
-          return { ...obj, isShown: true };
+          return { ...question, isShown: true };
         }
       }
-      return obj;
+      return question;
     });
 
-    setFaq(data);
+    setQuestionList(filteredFaq);
   };
 
   return (
@@ -60,26 +60,26 @@ export const FaqSection = () => {
           Everything you need to know about us
         </h4>
 
-        <div className="flex flex-col gap-y-10 pt-10">
+        <div className="flex flex-col gap-y-10 mt-16">
           <div className="flex flex-col gap-y-8">
-            {faq.map((el) => (
-              <>
+            {questionList.map((question) => (
+              <div key={question.id} className="flex flex-col">
                 <button
-                  className="flex items-center gap-x-2 "
-                  onClick={() => showDescription(el.id)}
+                  className="flex items-center gap-x-2"
+                  onClick={() => showDescription(question.id)}
                 >
-                  {el.isShown ? <MinusIcon /> : <PlusIcon />}
+                  {question.isShown ? <MinusIcon /> : <PlusIcon />}
 
-                  <h2 className="text-primary-900  font-semibold text-sm  md:text-xl " >
-                    {el.question}
+                  <h2 className="text-primary-900 font-semibold md:text-xl text-left">
+                    {question.question}
                   </h2>
                 </button>
-                {el.isShown && (
-                  <p className=" md:w-1/2 md:pl-9 text-secondaryText text-xs">
-                    {el.description}
+                {question.isShown && (
+                  <p className="text-sm pl-8 md:text-base w-full md:w-4/5 lg:1/2 md:pl-9 text-secondaryText mt-4">
+                    {question.description}
                   </p>
                 )}
-              </>
+              </div>
             ))}
           </div>
         </div>
