@@ -30,8 +30,12 @@ export const ListingCard = ({
   type,
 }: Props) => {
   return (
-    <div className="max-w-[370px]   ">
-      <img src={house} alt="house" className="h-[200px] w-full rounded-md" />
+    <div className="flex flex-col">
+      <img
+        src={house}
+        alt="house"
+        className="h-[170px] w-full rounded-md object-cover"
+      />
       <div className="flex flex-col gap-y-2 px-5 items-baseline bg-white border border-primary-background py-6 rounded-md relative ">
         <span className="text-primary-500 font-bold text-lg">${price}</span>
         <h3 className="text-primary-900 font-semibold text-xl">{title}</h3>
@@ -75,11 +79,11 @@ type PropertyDetailProps = {
 };
 export const PropertyDetail = ({ icon, value, text }: PropertyDetailProps) => {
   return (
-    <div className="flex gap-x-1 items-center text-gray-600">
+    <div className="flex gap-x-2 items-center text-gray-600">
       <span className="bg-primary-background text-primary-500 p-2 rounded-md">
         {icon}
       </span>
-      {value} <span className="hidden md:block">{text}</span>
+      <span>{value}</span>
     </div>
   );
 };
