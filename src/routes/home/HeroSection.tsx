@@ -1,15 +1,14 @@
 import { Button } from "../../components/Button";
 
 import { ReactComponent as HouseIllustration } from "../../assets/illustrations/house-illustration.svg";
-import { queries } from "../../devices";
-
 import { useMediaQuery } from "react-responsive";
+import { queries } from "../../devices";
 export const HeroSection = () => {
   const isSmall = useMediaQuery({
     query: queries.sm,
   });
   return (
-    <div className="flex-col-reverse  items-center max-w-7xl flex md:flex-row md:justify-between md:items-center mx-auto">
+    <div className="flex-col-reverse  items-center max-w-7xl flex md:flex-row md:justify-center md:items-center mx-auto">
       <div className="flex flex-col gap-y-8 w-5/6">
         <div className="">
           <h1 className="text-3xl  font-semibold md:text-6xl text-[#120F33] leading-tight">
@@ -28,7 +27,7 @@ export const HeroSection = () => {
           </Button>
         </div>
       </div>
-      <div className=" w-5/6">
+      <div className=" w-5/6 md:hidden lg:block">
         <HouseIllustration className="w-full h-full" />
       </div>
     </div>
