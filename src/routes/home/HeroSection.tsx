@@ -10,7 +10,7 @@ export const HeroSection = () => {
   return (
     <div className="flex-col-reverse  items-center max-w-7xl flex md:flex-row md:justify-center md:items-center mx-auto">
       <div className="flex flex-col gap-y-8 w-5/6">
-        <div className="">
+        <div className="flex flex-col">
           <h1 className="text-3xl  font-semibold md:text-6xl text-[#120F33] leading-tight">
             Finding your next home has never been easier
           </h1>
