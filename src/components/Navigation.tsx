@@ -9,8 +9,8 @@ import { useState } from "react";
 export const Navigation = () => {
   const navigate = useNavigate();
   const activeClasses =
-    "bg-primary-background text-primary-500 px-5 py-3 rounded-md";
-  const inactiveClasses = "bg-white text-secondaryText px-5 py-3 rounded-md";
+    "md:bg-primary-background  md:text-primary-500 md:px-5 md:py-3 md:my-0 md:mx-0      md:rounded-md";
+  const inactiveClasses = "md:bg-white text-secondaryText md:px-5 md:py-3 md:my-0 md:mx-0   rounded-md";
   const routeHandler = (change: String) => {
     if (change === "primary") {
       navigate("/login");
@@ -24,7 +24,7 @@ export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="flex justify-between items-center max-w-7xl m-auto py-6">
+    <nav className="md:flex justify-between items-center max-w-7xl m-auto py-6">
       <NavLink to="/" className="flex items-center gap-x-1">
         <span>
           <LogoIcon />
@@ -33,8 +33,8 @@ export const Navigation = () => {
           Hêlane
         </span>
       </NavLink>
-      <ul className="md:flex justify-around items-center w-1/3 hidden">
-        <li>
+      <ul className={`md:flex justify-around absolute left-0 w-full transition-all duration-200 ease-in md:static items-center md:w-1/3 h-96 md:h-0 bg-white leading-[60px] p-2 pl-3 ${isMenuOpen ? 'left-screen  ':'-left-full' }`}>
+        <li className="">
           <NavLink
             to="/"
             className={({ isActive }) => {
@@ -76,8 +76,8 @@ export const Navigation = () => {
         </li>
       </ul>
 
-      {/* Slide out navigation menu on mobile */}
-      <div
+     
+      {/* <div
         className={`flex flex-col gap-y-4 border-1 px-4 ${isMenuOpen ? "flex" : "hidden"
           }`}
       >
@@ -125,11 +125,12 @@ export const Navigation = () => {
             Agents
           </NavLink>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex gap-x-6">
-        {isMedium ? (
+        
           <>
+          <div className={`absolute left-1 top-80 md:static ml-2 transition-all duration-200 ease-in ${isMenuOpen ? 'left-1':'-left-96'} `} >
             <Button onClick={() => routeHandler("primary")} variant="primary">
               Login
             </Button>
@@ -140,15 +141,17 @@ export const Navigation = () => {
             >
               Sign up
             </Button>
+            </div>
           </>
-        ) : (
+       <div className="md:hidden absolute top-4 right-0  ">
           <Button
-            variant="secondary"
+            variant="none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            
           >
-            <HamburgerIcon />
+            <HamburgerIcon  />
           </Button>
-        )}
+          </div>
       </div>
     </nav>
   );
