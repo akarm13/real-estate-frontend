@@ -2,6 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button } from "./Button";
 import { ReactComponent as LogoIcon } from "../assets/icons/listing/logo.svg";
 import { ReactComponent as HamburgerIcon } from "../assets/icons/hamburger-icon.svg";
+import { ReactComponent as CloseIcon } from "../assets/icons/close.svg";
 import { useMediaQuery } from "react-responsive";
 import { queries } from "../devices";
 import { useState } from "react";
@@ -24,113 +25,62 @@ export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="md:flex justify-between items-center max-w-7xl m-auto py-6">
-      <NavLink to="/" className="flex items-center gap-x-1">
-        <span>
-          <LogoIcon />
-        </span>
-        <span className="text-primary-500 text-xl text-bold font-bold">
-          Hêlane
-        </span>
-      </NavLink>
-      <ul className={`md:flex justify-around absolute left-0 w-full transition-all duration-200 ease-in md:static items-center md:w-1/3 h-96 md:h-0 bg-white leading-[60px] p-2 pl-3 ${isMenuOpen ? 'left-screen  ':'-left-full' }`}>
-        <li className="">
-          <NavLink
-            to="/"
-            className={({ isActive }) => {
-              return isActive ? activeClasses : inactiveClasses;
-            }}
-          >
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/search"
-            className={({ isActive }) => {
-              return isActive ? activeClasses : inactiveClasses;
-            }}
-          >
-            Search
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/listings"
-            className={({ isActive }) => {
-              return isActive ? activeClasses : inactiveClasses;
-            }}
-          >
-            Listings
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/agents"
-            className={({ isActive }) => {
-              return isActive ? activeClasses : inactiveClasses;
-            }}
-          >
-            Agents
-          </NavLink>
-        </li>
-      </ul>
+    <nav className=" max-w-7xl m-auto py-6">
+      {/* for laptop and tablet */}
+      <div className="px-4 md:px-0 flex justify-between items-center  md:flex md:justify-between md:items-center">
+        <NavLink to="/" className="flex items-center gap-x-1">
+          <span>
+            <LogoIcon />
+          </span>
+          <span className="text-primary-500 text-xl text-bold font-bold">
+            Hêlane
+          </span>
+        </NavLink>
+        <ul className="hidden md:flex md:justify-between">
+          <li className="">
+            <NavLink
+              to="/"
+              className={({ isActive }) => {
+                return isActive ? activeClasses : inactiveClasses;
+              }}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/search"
+              className={({ isActive }) => {
+                return isActive ? activeClasses : inactiveClasses;
+              }}
+            >
+              Search
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/listings"
+              className={({ isActive }) => {
+                return isActive ? activeClasses : inactiveClasses;
+              }}
+            >
+              Listings
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/agents"
+              className={({ isActive }) => {
+                return isActive ? activeClasses : inactiveClasses;
+              }}
+            >
+              Agents
+            </NavLink>
+          </li>
+        </ul>
 
-     
-      {/* <div
-        className={`flex flex-col gap-y-4 border-1 px-4 ${isMenuOpen ? "flex" : "hidden"
-          }`}
-      >
-        <div className="flex justify-between items-center">
-          <NavLink to="/" className="flex items-center gap-x-1">
-            <span>
-              <LogoIcon />
-            </span>
-            <span className="text-primary-500 text-xl text-bold font-bold">
-              Hêlane
-            </span>
-          </NavLink>
-        </div>
-        <div className="flex flex-col gap-y-4">
-          <NavLink
-            to="/"
-            className={({ isActive }) => {
-              return isActive ? activeClasses : inactiveClasses;
-            }}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/search"
-            className={({ isActive }) => {
-              return isActive ? activeClasses : inactiveClasses;
-            }}
-          >
-            Search
-          </NavLink>
-          <NavLink
-            to="/listings"
-            className={({ isActive }) => {
-              return isActive ? activeClasses : inactiveClasses;
-            }}
-          >
-            Listings
-          </NavLink>
-          <NavLink
-            to="/agents"
-            className={({ isActive }) => {
-              return isActive ? activeClasses : inactiveClasses;
-            }}
-          >
-            Agents
-          </NavLink>
-        </div>
-      </div> */}
-
-      <div className="flex gap-x-6">
-        
-          <>
-          <div className={`absolute left-1 top-80 md:static ml-2 transition-all duration-200 ease-in ${isMenuOpen ? 'left-1':'-left-96'} `} >
+        <div className="hidden md:flex md:gap-x-6">
+          <div className="flex gap-x-2" >
             <Button onClick={() => routeHandler("primary")} variant="primary">
               Login
             </Button>
@@ -141,18 +91,77 @@ export const Navigation = () => {
             >
               Sign up
             </Button>
-            </div>
-          </>
-       <div className="md:hidden absolute top-4 right-0  ">
-          <Button
-            variant="none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            
-          >
-            <HamburgerIcon  />
-          </Button>
           </div>
+
+
+        </div>
+        <div className="md:hidden block">
+          <HamburgerIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
+        </div>
+
       </div>
+      {/* for mobile */}
+      <div className={`min-h-screen fixed top-0 md:hidden z-[10000] overflow-y-hidden bg-white w-full flex justify-between py-[30px] items-baseline px-4 duration-300  ease-in  ${isMenuOpen ? 'left-0' : '-left-full'}`}>
+
+        <ul className=" flex flex-col gap-y-16 items-start justify-start ">
+          <li className="">
+            <NavLink
+              to="/"
+              className={({ isActive }) => {
+                return isActive ? activeClasses : inactiveClasses;
+              }}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/search"
+              className={({ isActive }) => {
+                return isActive ? activeClasses : inactiveClasses;
+              }}
+            >
+              Search
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/listings"
+              className={({ isActive }) => {
+                return isActive ? activeClasses : inactiveClasses;
+              }}
+            >
+              Listings
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/agents"
+              className={({ isActive }) => {
+                return isActive ? activeClasses : inactiveClasses;
+              }}
+            >
+              Agents
+            </NavLink>
+          </li>
+          <Button onClick={() => routeHandler("primary")} variant="primary">
+            Login
+          </Button>
+
+          <Button
+            onClick={() => routeHandler("secondary")}
+            variant="secondary"
+          >
+            Sign up
+          </Button>
+        </ul>
+
+        <CloseIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
+      </div>
+
+
+
+
     </nav>
   );
 };
