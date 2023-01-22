@@ -1,4 +1,3 @@
-
 import { ReactComponent as SearchIcon } from "../../assets/icons/listing/search.svg";
 
 type Props = {
@@ -8,7 +7,7 @@ type Props = {
 
 export const BenefitCard = ({ title, description }: Props) => {
   return (
-    <div className="bg-white border border-primary-background w-[300px] h-[300px] text-center  flex flex-col items-center gap-y-6 py-[40px] rounded-2xl ">
+    <div className="bg-white border border-primary-background text-center  flex flex-col items-center gap-y-6 py-[40px] rounded-2xl ">
       <div className="bg-primary-background p-4 flex items-center justify-center rounded-2xl">
         <SearchIcon />
       </div>
