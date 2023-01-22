@@ -3,12 +3,14 @@ import { BenefitCard } from "./BenefitCard";
 export const BenefitsSection = () => {
   return (
     <div className="w-5/6 md:max-w-7xl mx-auto pt-7">
-      <h1 className="text-2xl font-semibold md:text-3xl primary-900">Why Choose Us</h1>
+      <h1 className="text-2xl font-semibold md:text-3xl primary-900">
+        Why Choose Us
+      </h1>
       <h4 className="text-secondaryText text-base md:text-xl font-semibold mt-2">
         Simple, convenient, and value-driven real estate
       </h4>
 
-      <div className="flex  pt-16 flex-wrap   mx-auto  items-center gap-y-4  md:justify-around ">
+      <div className="grid grid-cols-benefits mt-16 items-center gap-y-4 gap-x-4">
         <BenefitCard
           title="Powerful Search"
           description="Find the perfect property with our advanced search filters."
