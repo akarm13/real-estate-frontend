@@ -11,7 +11,8 @@ export const Navigation = () => {
   const navigate = useNavigate();
   const activeClasses =
     "md:bg-primary-background  md:text-primary-500 md:px-5 md:py-3 md:my-0 md:mx-0      md:rounded-md";
-  const inactiveClasses = "md:bg-white text-secondaryText md:px-5 md:py-3 md:my-0 md:mx-0   rounded-md";
+  const inactiveClasses =
+    "md:bg-white text-secondaryText md:px-5 md:py-3 md:my-0 md:mx-0   rounded-md";
   const routeHandler = (change: String) => {
     if (change === "primary") {
       navigate("/login");
@@ -25,7 +26,7 @@ export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className=" max-w-7xl m-auto py-6">
+    <nav className="w-5/6 md:max-w-7xl mx-auto">
       {/* for laptop and tablet */}
       <div className="px-4 md:px-0 flex justify-between items-center  md:flex md:justify-between md:items-center">
         <NavLink to="/" className="flex items-center gap-x-1">
@@ -80,7 +81,7 @@ export const Navigation = () => {
         </ul>
 
         <div className="hidden md:flex md:gap-x-6">
-          <div className="flex gap-x-2" >
+          <div className="flex gap-x-2">
             <Button onClick={() => routeHandler("primary")} variant="primary">
               Login
             </Button>
@@ -92,17 +93,17 @@ export const Navigation = () => {
               Sign up
             </Button>
           </div>
-
-
         </div>
         <div className="md:hidden block">
           <HamburgerIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </div>
-
       </div>
       {/* for mobile */}
-      <div className={`min-h-screen fixed top-0 md:hidden z-[10000] overflow-y-hidden bg-white w-full flex justify-between py-[30px] items-baseline px-4 duration-300  ease-in  ${isMenuOpen ? 'left-0' : '-left-full'}`}>
-
+      <div
+        className={`min-h-screen fixed top-0 md:hidden z-[10000] overflow-y-hidden bg-white w-full flex justify-between py-[30px] items-baseline px-4 duration-300  ease-in  ${
+          isMenuOpen ? "left-0" : "-left-full"
+        }`}
+      >
         <ul className=" flex flex-col gap-y-16 items-start justify-start ">
           <li className="">
             <NavLink
@@ -148,20 +149,13 @@ export const Navigation = () => {
             Login
           </Button>
 
-          <Button
-            onClick={() => routeHandler("secondary")}
-            variant="secondary"
-          >
+          <Button onClick={() => routeHandler("secondary")} variant="secondary">
             Sign up
           </Button>
         </ul>
 
         <CloseIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
       </div>
-
-
-
-
     </nav>
   );
 };
