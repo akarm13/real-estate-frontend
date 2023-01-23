@@ -44,7 +44,7 @@ export const ListingCard = ({
 
           <span className="text-secondaryText">{address}</span>
         </p>
-        <span className="bg-primary-background text-primary-500 px-4 py-2 rounded-md capitalize my-2">
+        <span className="bg-gray-50 text-gray-800 px-4 py-2 rounded-md capitalize my-2">
           {type}
         </span>
         <hr className="w-full mx-auto my-2 bg-primary-background" />
@@ -80,9 +80,7 @@ type PropertyDetailProps = {
 export const PropertyDetail = ({ icon, value, text }: PropertyDetailProps) => {
   return (
     <div className="flex gap-x-2 items-center text-gray-600">
-      <span className="bg-primary-background text-primary-500 p-2 rounded-md">
-        {icon}
-      </span>
+      <span className="bg-white text-primary-500 p-2 rounded-md">{icon}</span>
       <span>{value}</span>
     </div>
   );
