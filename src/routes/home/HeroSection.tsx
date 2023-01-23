@@ -8,9 +8,9 @@ export const HeroSection = () => {
     query: queries.sm,
   });
   return (
-    <div className="flex-col-reverse  items-center max-w-7xl flex md:flex-row md:justify-center md:items-center mx-auto">
-      <div className="flex flex-col gap-y-8 w-5/6">
-        <div className="flex flex-col">
+    <div className="grid w-5/6 mx-auto grid-cols-1 space-y-8 lg:grid-cols-2 items-center lg:max-w-7xl">
+      <div className="flex flex-col gap-y-8 order-1 lg:order-first">
+        <div className="flex flex-col mt-24">
           <h1 className="text-3xl  font-semibold md:text-6xl text-[#120F33] leading-tight">
             Finding your next home has never been easier
           </h1>
@@ -27,8 +27,8 @@ export const HeroSection = () => {
           </Button>
         </div>
       </div>
-      <div className=" w-5/6 md:hidden lg:block">
-        <HouseIllustration className="w-full h-full" />
+      <div className="hidden md:flex">
+        <HouseIllustration className="w-full h-full" height={500} />
       </div>
     </div>
   );
