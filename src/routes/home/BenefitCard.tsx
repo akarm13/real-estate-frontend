@@ -7,7 +7,7 @@ type Props = {
 
 export const BenefitCard = ({ title, description }: Props) => {
   return (
-    <div className="bg-white border border-primary-background text-center  flex flex-col items-center gap-y-6 py-[40px] rounded-2xl ">
+    <div className="bg-white border border-primary-background text-center  flex flex-col items-center gap-y-6 py-[40px] rounded-2xl h-80">
       <div className="bg-primary-background p-4 flex items-center justify-center rounded-2xl">
         <SearchIcon />
       </div>
