@@ -7,6 +7,7 @@ import { Navigation } from "../components/Navigation";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { Register } from "../routes/auth/Register";
 import { Login } from "../routes/auth/Login";
+import { Search } from "../routes/search/Search";
 
 function App() {
   const location = useLocation()
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </main>
   );
