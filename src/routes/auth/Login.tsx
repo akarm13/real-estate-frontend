@@ -3,14 +3,13 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ReactComponent as LogoIcon } from "../../assets/icons/listing/logo.svg";
 
 import { ReactComponent as LoginIllustration } from "../../assets/illustrations/login-illustration.svg";
-import { ReactComponent as SignIllustration } from "../../assets/illustrations/signup-illustration.svg";
 
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup'
+import { LoginUser } from "../../types/property";
 
-
-export const Login = ({ user }: any) => {
+export const Login = () => {
   const location = useLocation();
   const navigate = useNavigate()
 
@@ -20,16 +19,15 @@ export const Login = ({ user }: any) => {
   })
 
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginUser>({
     resolver: yupResolver(schema)
   });
 
 
-  const onsubmit = (data: any) => {
-    if (user.email === data.email && user.password === data.password) {
-      alert("login successful")
-      navigate('/')
-
+  const onsubmit = (data: LoginUser) => {
+    if (data.email && data.password) {
+      console.log(data.email);
+      console.log(data.password);
     }
 
   }

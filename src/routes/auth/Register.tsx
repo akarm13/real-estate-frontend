@@ -8,8 +8,9 @@ import { ReactComponent as SignIllustration } from "../../assets/illustrations/s
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup'
+import { SignUser } from "../../types/property";
 
-export const Register = ({ setUser }: any) => {
+export const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -22,17 +23,18 @@ export const Register = ({ setUser }: any) => {
   })
 
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm<SignUser>({
     resolver: yupResolver(schema)
   });
 
 
-  const onsubmit = (data: any) => {
+  const onsubmit = (data: SignUser) => {
 
 
-    setUser(data);
+    console.log(data);
 
-    navigate('/login')
+
+
 
 
   }
