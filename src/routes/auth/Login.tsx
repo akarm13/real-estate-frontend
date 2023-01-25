@@ -1,38 +1,38 @@
-import { NavLink, useLocation,useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { ReactComponent as LogoIcon } from "../../assets/icons/listing/logo.svg";
 
 import { ReactComponent as LoginIllustration } from "../../assets/illustrations/login-illustration.svg";
 import { ReactComponent as SignIllustration } from "../../assets/illustrations/signup-illustration.svg";
 
-import {useForm} from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import {yupResolver} from '@hookform/resolvers/yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 
-export const Login = ({user} : any) => {
+export const Login = ({ user }: any) => {
   const location = useLocation();
-  const navigate =useNavigate()
+  const navigate = useNavigate()
 
   const schema = yup.object().shape({
-    email:yup.string().email().required(),
-    password:yup.string().min(5).max(20).required()
-    })
+    email: yup.string().email().required(),
+    password: yup.string().min(5).max(20).required()
+  })
 
-    
-   const {register,handleSubmit, formState: {errors} } =useForm({
-    resolver:yupResolver(schema)
+
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema)
   });
 
-  
-const onsubmit = (data: any) => {
-if(user.email===data.email && user.password===data.password){
-  alert("login successful")
-  navigate('/')
 
-}
+  const onsubmit = (data: any) => {
+    if (user.email === data.email && user.password === data.password) {
+      alert("login successful")
+      navigate('/')
 
-}
+    }
+
+  }
 
 
 
@@ -61,60 +61,60 @@ if(user.email===data.email && user.password===data.password){
           {/* login and sign up section */}
 
           <div className="flex flex-col   gap-1 my-16 md:my-20 md:mx-12  mx-5">
-         
-         <p className="md:text-2xl text-xl font-medium text-primary-900">Welcome to Hêlane</p>
-         <h3 className="md:text-4xl text-2xl font-bold text-primary-900">Login to your account</h3>
-      
-       <form className="my-5 flex flex-col gap-4" onSubmit={handleSubmit(onsubmit)}>
-        
 
-         <div className="flex flex-col max-w-[550px] md:w-[592px] gap-2">
-          
-           <label htmlFor="email" className="font-bold text-base" >Email address</label>
-           <input {...register("email")} className="bg-white border px-3  py-[10px] focus:outline-primary-400 font-bold  text-secondaryText  rounded-lg" type="email" name="email" id="email" />
-        <p className="text-sm text-red-700">{errors.email?.message?.toString()}</p>
-         </div>
+            <p className="md:text-2xl text-xl font-medium text-primary-900">Welcome to Hêlane</p>
+            <h3 className="md:text-4xl text-2xl font-bold text-primary-900">Login to your account</h3>
 
-         <div className="flex flex-col max-w-[550px] md:max-w-[592px] gap-2">
-          
-           <label htmlFor="password" className="font-bold text-base" >Password</label>
-           <input {...register("password")} className="bg-white border  px-3   py-[10px] focus:outline-primary-400 font-bold  text-secondaryText  rounded-lg" type="password" name="password" id="password" />
-           <p className="text-sm text-red-700">{errors.password?.message?.toString()}</p>
-         </div>
+            <form className="my-5 flex flex-col gap-4" onSubmit={handleSubmit(onsubmit)}>
 
-         
-         <div className="flex flex-col max-w-[550px] md:max-w-[592px] my-5 ">
-          
-          <button type="submit"  className="bg-primary-500 text-white py-2 rounded-lg">Login</button>
-           
-         </div>
-         
-         
-       
-       
-         </form>
 
-       <p className="text-secondaryText text-xs md:text-base ">
-       Don’t have a Hêlane account yet? 
+              <div className="flex flex-col max-w-[550px] md:w-[592px] gap-2">
 
-        <NavLink to="/register" className="text-primary-600">
-         
-         Sing up
-        
-        </NavLink>
-        </p>
+                <label htmlFor="email" className="font-bold text-base" >Email address</label>
+                <input {...register("email")} className="bg-white border px-3  py-[10px] focus:outline-primary-400 font-bold  text-secondaryText  rounded-lg" type="email" name="email" id="email" />
+                <p className="text-sm text-red-700">{errors.email?.message?.toString()}</p>
+              </div>
+
+              <div className="flex flex-col max-w-[550px] md:w-[592px] gap-2">
+
+                <label htmlFor="password" className="font-bold text-base" >Password</label>
+                <input {...register("password")} className="bg-white border  px-3   py-[10px] focus:outline-primary-400 font-bold  text-secondaryText  rounded-lg" type="password" name="password" id="password" />
+                <p className="text-sm text-red-700">{errors.password?.message?.toString()}</p>
+              </div>
+
+
+              <div className="flex flex-col max-w-[550px] md:w-[592px] my-5 ">
+
+                <button type="submit" className="bg-primary-500 text-white py-2 rounded-lg">Login</button>
+
+              </div>
 
 
 
 
-         </div>
-       </div>
-     </div>
+            </form>
+
+            <p className="text-secondaryText text-xs md:text-base ">
+              Don’t have a Hêlane account yet?
+
+              <NavLink to="/register" className="text-primary-600">
+
+                Sing up
+
+              </NavLink>
+            </p>
 
 
 
+
+          </div>
         </div>
-      
-  
+      </div>
+
+
+
+    </div>
+
+
   );
 };
