@@ -19,3 +19,17 @@ export type Question = {
   description: String;
   isShown: boolean;
 };
+
+
+export type LoginUser = {
+  email: string,
+  password: string
+}
+
+export type SignUser = {
+  fullname: string,
+  email: string,
+  agent: string,
+  password: string
+
+}
