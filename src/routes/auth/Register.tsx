@@ -87,7 +87,17 @@ export const Register = () => {
               <div className="flex flex-col max-w-[550px] md:max-w-[592px] gap-2">
 
                 <label htmlFor="agent" className="font-bold text-base" >Are you an agent?</label>
-                <input {...register("agent")} className="bg-white border  px-3   py-[10px] focus:outline-primary-400  text-secondaryText font-bold  rounded-lg" type="text" name="agent" id="agent" />
+
+              <select  {...register("agent")} className="bg-white border  px-3   py-[10px] focus:outline-primary-400  text-secondaryText font-bold  rounded-lg"  name="agent" id="agent" >
+
+                <option className="capitalize">YES</option>
+                <option className="capitalize">NO</option>
+
+
+
+              </select>
+
+
                 <p className="text-sm text-red-700">{errors.agent?.message?.toString()}</p>
               </div>
 
