@@ -1,3 +1,4 @@
+import { useMediaQuery } from "react-responsive";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer"
 import { ListingCard } from "../../components/ListingCard"
@@ -8,6 +9,7 @@ import { InputSearch } from "./InputSearch"
 import { NumOfRoom } from "./NumOfRoom";
 import { RangePrice } from "./RangePrice";
 import { Type } from "./Type";
+import { queries } from "../../devices";
 
 
 
@@ -80,34 +82,55 @@ export const featuredProperties: Property[] = [
     },
 ];
 export const Search = () => {
-
+    const isMedium = useMediaQuery({ query: queries.md });
 
     return (
 
         <div className=" mt-11">
             <div className=" ">
-                <div className="flex lg:w-11/12 lg:gap-x-2 md:flex-wrap md:gap-y-6  flex-wrap">
-                    <div className="lg:w-1/5  py-8 px-5  border-primary-background border-2 flex flex-col gap-y-8 rounded-lg lg:ml-8">
+                <div className="flex lg:w-11/12 lg:gap-x-2 md:flex-wrap md:gap-y-6 justify-center lg:justify-start md:justify-start  flex-wrap">
+                    {
+                        isMedium ? <div className="lg:w-1/5  py-8 px-5  border-primary-background border-2 flex flex-col gap-y-8 rounded-lg lg:ml-8">
 
-                        <Category />
+                            <Category />
 
-                        <Type />
-                        <hr />
-                        <RangePrice />
-                        <hr />
-                        <NumOfRoom />
-                        <hr />
-                        <HomeSize />
-                        <hr />
-                        <Button onClick={() => console.log("login")} variant="primary">
-                            APPLY FILTERS
-                        </Button>
-                    </div>
-                    <div className=" lg:flex-1 md:mx-auto w-11/12 ">
+                            <Type />
+                            <hr />
+                            <RangePrice />
+                            <hr />
+                            <NumOfRoom />
+                            <hr />
+                            <HomeSize />
+                            <hr />
+                            <Button onClick={() => console.log("login")} variant="primary">
+                                APPLY FILTERS
+                            </Button>
+                        </div> : <InputSearch />
+                    }
+
+                    <div className=" lg:flex-1 md:flex-1 md:mx-auto w-11/12 ">
                         {/* top */}
-                        <InputSearch />
+                        {
+                            isMedium ? <InputSearch /> :
+                                <div className="flex flex-wrap gap-y-3 justify-between mt-5">
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ">
+                                    <Category />
+
+                                    <Type />
+
+
+
+                                    <NumOfRoom />
+
+                                    <HomeSize />
+
+
+                                </div>
+
+                        }
+
+
+                        <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ">
                             {featuredProperties.map((property) => (
                                 <ListingCard  {...property} key={property.id} />
                             ))}
