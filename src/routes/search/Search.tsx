@@ -1,8 +1,12 @@
+import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer"
 import { ListingCard } from "../../components/ListingCard"
 import { Property } from "../../types/property";
 import { Category } from "./Category";
+import { HomeSize } from "./HomeSize";
 import { InputSearch } from "./InputSearch"
+import { NumOfRoom } from "./NumOfRoom";
+import { RangePrice } from "./RangePrice";
 import { Type } from "./Type";
 
 
@@ -83,12 +87,21 @@ export const Search = () => {
         <div className=" mt-11">
             <div className=" ">
                 <div className="flex lg:w-11/12 lg:gap-x-2 md:flex-wrap md:gap-y-6  flex-wrap">
-                    <div className="lg:w-1/5  p-8 border-primary-background border-2 flex flex-col gap-y-8 rounded-lg lg:ml-8">
+                    <div className="lg:w-1/5  py-8 px-5  border-primary-background border-2 flex flex-col gap-y-8 rounded-lg lg:ml-8">
 
                         <Category />
 
                         <Type />
-
+                        <hr />
+                        <RangePrice />
+                        <hr />
+                        <NumOfRoom />
+                        <hr />
+                        <HomeSize />
+                        <hr />
+                        <Button onClick={() => console.log("login")} variant="primary">
+                            APPLY FILTERS
+                        </Button>
                     </div>
                     <div className=" lg:flex-1 md:mx-auto w-11/12 ">
                         {/* top */}
