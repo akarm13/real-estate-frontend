@@ -12,7 +12,7 @@ import { Search } from "../routes/search/Search";
 function App() {
   const location = useLocation()
 
-  const [user,setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
   console.log(user)
 
@@ -22,13 +22,13 @@ function App() {
         location.pathname === "/register" || location.pathname === "/login" ? '' : <Navigation />
       }
 
-      
+
 
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register setUser={setUser} ></Register>} />
-        <Route path="/login" element={<Login user={user} />} />
+        <Route path="/register" element={<Register  ></Register>} />
+        <Route path="/login" element={<Login />} />
         <Route path="/search" element={<Search />} />
       </Routes>
     </main>
