@@ -12,11 +12,11 @@ export const InputSearch = () => {
         <div className="flex justify-between items-center">
 
             <div className="bg-searchBackground p-2 px-4 lg:w-[700px] rounded-lg flex justify-between">
-                <select className="bg-white px-4 py-2 flex gap-x-3 w-24 rounded-lg outline-none" >
+                <select className="bg-white text-black px-4 py-1 flex gap-x-4 w-32 text-lg border-none rounded-lg outline-none focus:ring-0 focus:ring-offset-0" >
                     <option className="capitalize" value="rent">Rent</option>
                     <option className="capitalize" value="sale">Sale</option>
                 </select>
-                <input type="text" placeholder="City or address" className="text-center bg-transparent outline-none" />
+                <input type="text" placeholder="City or address" className="text-center bg-transparent border-none focus:ring-0 focus:ring-offset-0" />
                 <SearchIcon className="self-center" />
             </div>
             {
