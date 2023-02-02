@@ -10,24 +10,24 @@ import { Login } from "../routes/auth/Login";
 import { Search } from "../routes/search/Search";
 
 function App() {
-  const location = useLocation()
+  const location = useLocation();
 
   const [user, setUser] = useState(null);
 
-  console.log(user)
+  console.log(user);
 
   return (
     <main className="bg-[#FEFEFF] font-sans">
-      {
-        location.pathname === "/register" || location.pathname === "/login" ? '' : <Navigation />
-      }
-
-
+      {location.pathname === "/register" || location.pathname === "/login" ? (
+        ""
+      ) : (
+        <Navigation />
+      )}
 
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register  ></Register>} />
+        <Route path="/register" element={<Register></Register>} />
         <Route path="/login" element={<Login />} />
         <Route path="/search" element={<Search />} />
       </Routes>
