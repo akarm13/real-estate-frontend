@@ -3,13 +3,10 @@ import { ReactComponent as EmailIcon } from "../assets/icons/listing/email.svg";
 import { ReactComponent as TelephoneIcon } from "../assets/icons/listing/telephone.svg";
 import { ReactComponent as LogoIcon } from "../assets/icons/listing/logo.svg";
 
-
 export const Footer = () => {
   return (
-    <footer className="  w-full     ">
-
-
-      <div className="flex justify-around flex-wrap  w-5/6 mx-auto md:w-full">
+    <footer className="container">
+      <div className="flex flex-wrap justify-between mx-auto md:w-full">
         <div className="">
           <div className="flex space-x-3 w-30">
             <span>
@@ -18,7 +15,6 @@ export const Footer = () => {
             <span className="text-primary-500 text-xl text-bold font-bold">
               Hêlane
             </span>
-
           </div>
 
           <p className="text-secondaryText text-sm md:text-base  pt-2 max-w-sm ">
@@ -33,7 +29,9 @@ export const Footer = () => {
                 <TelephoneIcon />
               </div>
               <div>
-                <h5 className="text-secondaryText font-sans text-base mx-2">Tel</h5>
+                <h5 className="text-secondaryText font-sans text-base mx-2">
+                  Tel
+                </h5>
                 <h3 className="text-primary-500 text-sm md:text-base font-bold mx-2 ">
                   0750-317-4475
                 </h3>
@@ -45,7 +43,9 @@ export const Footer = () => {
                 <EmailIcon />
               </div>
               <div>
-                <h5 className="text-secondaryText font-sans text-base mx-2">Email</h5>
+                <h5 className="text-secondaryText font-sans text-base mx-2">
+                  Email
+                </h5>
                 <h3 className="text-primary-500  text-sm md:text-base font-bold mx-2 ">
                   support@withhelane.com
                 </h3>
@@ -57,7 +57,9 @@ export const Footer = () => {
                 <LocationIcon />
               </div>
               <div>
-                <h5 className="text-secondaryText font-sans text-base mx-2">Address</h5>
+                <h5 className="text-secondaryText font-sans text-base mx-2">
+                  Address
+                </h5>
                 <h3 className="text-primary-500 text-sm md:text-base font-bold mx-2 ">
                   Aqary Street, Opposite of City Star, Sulaymaniyah
                 </h3>
@@ -68,19 +70,27 @@ export const Footer = () => {
 
         <div className="flex justify-between items-baseline  gap-10 flex-wrap ">
           <div className="flex flex-col w-full lg:w-auto">
-            <h3 className="font-bold font-sans text-lg m-1 text-primary-900">Explore</h3>
+            <h3 className="font-bold font-sans text-lg m-1 text-primary-900">
+              Explore
+            </h3>
             <h5 className="text-secondaryText text-base m-1">Home</h5>
             <h5 className="text-secondaryText text-base m-1">Search</h5>
             <h5 className="text-secondaryText text-base m-1">Agents</h5>
           </div>
 
           <div className="flex flex-col  w-full lg:w-auto ">
-            <h3 className="font-bold font-sans text-lg m-1 text-primary-900">Listings</h3>
-            <h5 className="text-secondaryText text-base m-1">List your property</h5>
+            <h3 className="font-bold font-sans text-lg m-1 text-primary-900">
+              Listings
+            </h3>
+            <h5 className="text-secondaryText text-base m-1">
+              List your property
+            </h5>
           </div>
 
           <div className="flex flex-col  w-full lg:w-auto">
-            <h3 className="font-bold font-sans text-lg m-1 text-primary-900">Support</h3>
+            <h3 className="font-bold font-sans text-lg m-1 text-primary-900">
+              Support
+            </h3>
             <h5 className="text-secondaryText text-base m-1">Contact us</h5>
             <h5 className="text-secondaryText text-base m-1">FAQ</h5>
             <h5 className="text-secondaryText text-base m-1">Privacy Policy</h5>

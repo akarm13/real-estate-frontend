@@ -26,9 +26,9 @@ export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="w-5/6 md:max-w-7xl mx-auto pt-8">
+    <nav className="container md: mx-auto pt-8">
       {/* for laptop and tablet */}
-      <div className="px-4 md:px-0 flex justify-between items-center  md:flex md:justify-between md:items-center">
+      <div className="px-4 md:px-0 flex justify-between items-center md:flex md:justify-between md:items-center">
         <NavLink to="/" className="flex items-center gap-x-1">
           <span>
             <LogoIcon />

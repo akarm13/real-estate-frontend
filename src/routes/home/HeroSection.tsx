@@ -8,7 +8,7 @@ export const HeroSection = () => {
     query: queries.sm,
   });
   return (
-    <div className="grid w-5/6 mx-auto grid-cols-1 space-y-8 lg:grid-cols-2 items-center lg:max-w-7xl">
+    <div className="grid w-5/6 mx-auto grid-cols-1 space-y-8 lg:grid-cols-2 items-center lg:">
       <div className="flex flex-col gap-y-8 order-1 lg:order-first">
         <div className="flex flex-col mt-24">
           <h1 className="text-3xl  font-semibold md:text-6xl text-[#120F33] leading-tight">

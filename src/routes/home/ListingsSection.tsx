@@ -72,7 +72,7 @@ export const featuredProperties: Property[] = [
 
 export const ListingsSection = () => {
   return (
-    <div className="w-5/6 md:max-w-7xl mx-auto mt-24">
+    <div className="w-5/6 md: mx-auto mt-24">
       <h1 className="font-semibold text-2xl md:text-3xl text-primary-900">
         Featured Listings
       </h1>

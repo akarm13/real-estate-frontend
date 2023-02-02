@@ -3,9 +3,16 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "1rem",
+        },
+      },
       gridTemplateColumns: {
         listing: "repeat(auto-fit, minmax(270px, 1fr))",
         benefits: "repeat(auto-fit, minmax(280px, 1fr))",
+        search: "1fr 4fr",
       },
       boxShadow: {
         footer: "0px -2px 64px 22px rgba(0, 0, 0, 0.02)",
