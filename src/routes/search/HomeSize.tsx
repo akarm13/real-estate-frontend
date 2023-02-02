@@ -8,8 +8,11 @@ export const HomeSize = () => {
     <div className="">
       {isMedium ? (
         <>
-          <h1 className="mb-4 capitalize text-lg text-primaryText font-semibold brealw">
-            Home Size<span className="text-base ">(metres squared)</span>
+          <h1 className="mb-4 text-lg font-semibold break-words text-primary">
+            Home Size{" "}
+            <span className="text-base font-normal text-secondary">
+              (m<sup>2</sup>)
+            </span>
           </h1>
           <div className="flex flex-col gap-y-8">
             <div className="flex flex-col gap-y-4">
@@ -20,11 +23,11 @@ export const HomeSize = () => {
                   id=""
                 >
                   <option value="">Min</option>
-                  <option value="">1</option>
-                  <option value="">2</option>
-                  <option value="">3</option>
-                  <option value="">4</option>
-                  <option value="">5</option>
+                  <option value="">100m</option>
+                  <option value="">200m</option>
+                  <option value="">300m</option>
+                  <option value="">400m</option>
+                  <option value="">500m</option>
                 </select>
                 <span>-</span>
                 <select
@@ -33,11 +36,11 @@ export const HomeSize = () => {
                   id=""
                 >
                   <option value="">Max</option>
-                  <option value="">6</option>
-                  <option value="">7</option>
-                  <option value="">8</option>
-                  <option value="">9</option>
-                  <option value="">10</option>
+                  <option value="">100m</option>
+                  <option value="">200m</option>
+                  <option value="">300m</option>
+                  <option value="">400m</option>
+                  <option value="">500m</option>
                 </select>
               </div>
             </div>
