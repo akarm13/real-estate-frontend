@@ -85,7 +85,7 @@ export const Search = () => {
   return (
     <div className="mt-11 container">
       <div>
-        <div className="grid grid-cols-search gap-x-8">
+        <div className="grid grid-cols-1 md:grid-cols-search gap-x-8">
           {isMedium ? (
             <div className="py-8 px-5 border-primary-background border-2 flex flex-col gap-y-8 rounded-lg">
               <Category />
@@ -125,9 +125,6 @@ export const Search = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="pt-11">
-        <Footer />
       </div>
     </div>
   );

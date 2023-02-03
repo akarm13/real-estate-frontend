@@ -8,6 +8,7 @@ import { ScrollToTop } from "../components/ScrollToTop";
 import { Register } from "../routes/auth/Register";
 import { Login } from "../routes/auth/Login";
 import { Search } from "../routes/search/Search";
+import { Footer } from "../components/Footer";
 
 function App() {
   const location = useLocation();
@@ -16,13 +17,13 @@ function App() {
 
   console.log(user);
 
+  // If the current page is the login or register page
+  const isAuthPage =
+    location.pathname === "/register" || location.pathname === "/login";
+
   return (
     <main className="bg-[#FEFEFF] font-sans">
-      {location.pathname === "/register" || location.pathname === "/login" ? (
-        ""
-      ) : (
-        <Navigation />
-      )}
+      {!isAuthPage && <Navigation />}
 
       <ScrollToTop />
       <Routes>
@@ -31,6 +32,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/search" element={<Search />} />
       </Routes>
+      {!isAuthPage && <Footer />}
     </main>
   );
 }

@@ -25,9 +25,6 @@ export const Home = () => {
           </Link>
         </div>
       </div>
-      <div className="pt-28">
-        <Footer />
-      </div>
     </div>
   );
 };
