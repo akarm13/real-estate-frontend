@@ -9,7 +9,7 @@ export const InputSearch = () => {
   });
   return (
     <div className="flex justify-between items-center w-full">
-      <div className="bg-searchBackground p-2 px-4 w-11/12 mx-auto md:mx-0 lg:w-[700px] rounded-lg flex justify-between">
+      <div className="bg-searchBackground p-2 px-4 w-full mx-auto md:mx-0 lg:w-[700px] rounded-lg flex justify-between">
         {isSmall ? (
           <>
             <select className="bg-white text-black px-4 py-1 flex gap-x-4 w-32 text-lg border-none rounded-lg outline-none focus:ring-0 focus:ring-offset-0">
