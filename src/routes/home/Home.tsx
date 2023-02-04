@@ -19,7 +19,7 @@ export const Home = () => {
           </p>
           <Link
             className="rounded-3xl px-7 py-3 bg-white hover:bg-gray-100"
-            to="/listings"
+            to="/search"
           >
             <span className="text-primary-500">Find your next home</span>
           </Link>

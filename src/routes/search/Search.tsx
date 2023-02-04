@@ -84,45 +84,43 @@ export const Search = () => {
 
   return (
     <div className="mt-11 container">
-      <div>
-        <div className="grid grid-cols-1 md:grid-cols-search gap-x-8">
+      <div className="grid grid-cols-1 md:grid-cols-search gap-x-8">
+        {isMedium ? (
+          <div className="py-8 px-5 border-primary-background border-2 flex flex-col gap-y-8 rounded-lg">
+            <Category />
+            <Type />
+            <hr />
+            <RangePrice />
+            <hr />
+            <NumOfRoom />
+            <hr />
+            <HomeSize />
+            <hr />
+            <Button onClick={() => console.log("login")} variant="primary">
+              APPLY FILTERS
+            </Button>
+          </div>
+        ) : (
+          <InputSearch />
+        )}
+
+        <div className="">
+          {/* top */}
           {isMedium ? (
-            <div className="py-8 px-5 border-primary-background border-2 flex flex-col gap-y-8 rounded-lg">
+            <InputSearch />
+          ) : (
+            <div className="flex flex-wrap gap-y-3 justify-between mt-5">
               <Category />
               <Type />
-              <hr />
-              <RangePrice />
-              <hr />
               <NumOfRoom />
-              <hr />
               <HomeSize />
-              <hr />
-              <Button onClick={() => console.log("login")} variant="primary">
-                APPLY FILTERS
-              </Button>
             </div>
-          ) : (
-            <InputSearch />
           )}
 
-          <div className="">
-            {/* top */}
-            {isMedium ? (
-              <InputSearch />
-            ) : (
-              <div className="flex flex-wrap gap-y-3 justify-between mt-5">
-                <Category />
-                <Type />
-                <NumOfRoom />
-                <HomeSize />
-              </div>
-            )}
-
-            <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ">
-              {featuredProperties.map((property) => (
-                <ListingCard {...property} key={property.id} />
-              ))}
-            </div>
+          <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ">
+            {featuredProperties.map((property) => (
+              <ListingCard {...property} key={property.id} />
+            ))}
           </div>
         </div>
       </div>
