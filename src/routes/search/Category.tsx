@@ -17,11 +17,11 @@ export const Category = () => {
                   id="house-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-5 h-5 text-blue-600 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
                 />
                 <label
                   htmlFor="house-checkbox"
-                  className="w-full  ml-2 text-base  text-primary-900 font-normal"
+                  className="w-full ml-2 text-base  text-primary-900 font-normal"
                 >
                   Houses
                 </label>
@@ -34,11 +34,11 @@ export const Category = () => {
                   id="apar-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-5 h-5 text-blue-600 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
                 />
                 <label
                   htmlFor="apar-checkbox"
-                  className="w-full  ml-2 text-base  text-primary-900 font-normal"
+                  className="w-full ml-2 text-base  text-primary-900 font-normal"
                 >
                   Apartments
                 </label>
@@ -51,7 +51,7 @@ export const Category = () => {
                   id="villa-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-5 h-5 text-blue-600 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
                 />
                 <label
                   htmlFor="villa-checkbox"
@@ -68,7 +68,7 @@ export const Category = () => {
                   id="land-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-5 h-5 text-blue-600 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
                 />
                 <label
                   htmlFor="land-checkbox"
