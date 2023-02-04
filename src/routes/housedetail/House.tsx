@@ -85,7 +85,7 @@ const House = () => {
 
 
         </div>
-        <Footer/>
+        
 
 
 

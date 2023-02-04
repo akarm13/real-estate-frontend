@@ -17,7 +17,7 @@ export const Type = () => {
                   id="rent-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-5 h-5 text-blue-600 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
                 />
                 <label
                   htmlFor="rent-checkbox"
@@ -34,7 +34,7 @@ export const Type = () => {
                   id="sale-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-5 h-5 text-blue-600 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
                 />
                 <label
                   htmlFor="sale-checkbox"

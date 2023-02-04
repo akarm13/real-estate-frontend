@@ -26,7 +26,7 @@ export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className=" md: mx-auto pt-4 border-b-primary-background border pb-4">
+    <nav className="mx-auto pt-4 border-b-primary-background border pb-4">
       {/* for laptop and tablet */}
       <div className="px-4 md:px-0 flex justify-between items-center md:flex md:justify-between md:items-center container">
         <NavLink to="/" className="flex items-center gap-x-1">
@@ -58,16 +58,7 @@ export const Navigation = () => {
               Search
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/listings"
-              className={({ isActive }) => {
-                return isActive ? activeClasses : inactiveClasses;
-              }}
-            >
-              Listings
-            </NavLink>
-          </li>
+
           <li>
             <NavLink
               to="/agents"
@@ -125,16 +116,7 @@ export const Navigation = () => {
               Search
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/listings"
-              className={({ isActive }) => {
-                return isActive ? activeClasses : inactiveClasses;
-              }}
-            >
-              Listings
-            </NavLink>
-          </li>
+
           <li>
             <NavLink
               to="/agents"
