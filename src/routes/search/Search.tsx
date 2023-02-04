@@ -11,6 +11,9 @@ import { NumOfRoom } from "./NumOfRoom";
 import { RangePrice } from "./RangePrice";
 import { Type } from "./Type";
 
+
+import {Link} from 'react-router-dom'
+
 export const featuredProperties: Property[] = [
   {
     id: "1",
@@ -120,7 +123,9 @@ export const Search = () => {
 
             <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ">
               {featuredProperties.map((property) => (
+                  <Link to={`/houses/${property.id}`}> 
                 <ListingCard {...property} key={property.id} />
+                </Link>
               ))}
             </div>
           </div>

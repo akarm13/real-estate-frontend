@@ -5,7 +5,7 @@ import { ReactComponent as LogoIcon } from "../assets/icons/listing/logo.svg";
 
 export const Footer = () => {
   return (
-    <footer className="mt-28 border border-t-primary-background pt-16">
+    <footer className="mt-16 border border-t-primary-background pt-16">
       <div className="flex flex-wrap justify-between mx-auto md:w-full container">
         <div className="">
           <div className="flex space-x-3 w-30">
