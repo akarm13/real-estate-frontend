@@ -8,11 +8,8 @@ import { ScrollToTop } from "../components/ScrollToTop";
 import { Register } from "../routes/auth/Register";
 import { Login } from "../routes/auth/Login";
 import { Search } from "../routes/search/Search";
-// <<<<<<< HEAD
 import House from "../routes/housedetail/House";
-// =======
 import { Footer } from "../components/Footer";
-// >>>>>>> db782115eb3de6ac963258e652dd888c8b3fd4df
 
 function App() {
   const location = useLocation();
@@ -35,7 +32,7 @@ function App() {
         <Route path="/register" element={<Register></Register>} />
         <Route path="/login" element={<Login />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/houses/:houseId" element={<House/>}/>
+        <Route path="/listings/:houseId" element={<House />} />
       </Routes>
       {!isAuthPage && <Footer />}
     </main>
