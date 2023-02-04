@@ -1,11 +1,10 @@
-import React from "react";
 import { featuredProperties } from "../search/Search";
 import { ListingCard } from "../../components/ListingCard";
 import { Link } from "react-router-dom";
 
 const similarListings = featuredProperties.slice(1, 4);
 
-const SimilarListings = () => {
+export const SimilarListingsSection = () => {
   return (
     <div className="flex flex-col gap-4 mt-14 ">
       <h2 className="text-2xl font-semibold">Similar Listings</h2>
@@ -22,5 +21,3 @@ const SimilarListings = () => {
     </div>
   );
 };
-
-export default SimilarListings;

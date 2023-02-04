@@ -1,9 +1,8 @@
-import React from "react";
-import Image2 from "../../assets/house/2.jpg";
 import Image1 from "../../assets/house/1.jpg";
-import { ReactComponent as Picture } from "../../assets/housedetail/images.svg";
+import Image2 from "../../assets/house/2.jpg";
+import { ReactComponent as GalleryIcon } from "../../assets/housedetail/gallery-icon.svg";
 
-const ImageHouse = () => {
+export const HouseGallery = () => {
   return (
     <div className="mt-7 w-full flex  ">
       <div className="relative">
@@ -32,11 +31,9 @@ const ImageHouse = () => {
         />
 
         <button className="absolute bottom-2 right-14 border-primary-500  font-semibold text-sm bg-white flex items-center px-6 py-2 rounded-lg  ">
-          <Picture /> <span className="ml-2">View all 21 photos </span>{" "}
+          <GalleryIcon /> <span className="ml-2">View all 21 photos </span>{" "}
         </button>
       </div>
     </div>
   );
 };
-
-export default ImageHouse;

@@ -8,7 +8,7 @@ import { ScrollToTop } from "../components/ScrollToTop";
 import { Register } from "../routes/auth/Register";
 import { Login } from "../routes/auth/Login";
 import { Search } from "../routes/search/Search";
-import House from "../routes/housedetail/House";
+import { Details } from "../routes/listings/Details";
 import { Footer } from "../components/Footer";
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
         <Route path="/register" element={<Register></Register>} />
         <Route path="/login" element={<Login />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/listings/:houseId" element={<House />} />
+        <Route path="/listings/:houseId" element={<Details />} />
       </Routes>
       {!isAuthPage && <Footer />}
     </main>

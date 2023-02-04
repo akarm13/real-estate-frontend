@@ -1,17 +1,15 @@
-import React from "react";
-import { useParams, Link } from "react-router-dom";
-import { ReactComponent as LocationIcon } from "../../assets/icons/search/location.svg";
-import { ReactComponent as FeaturedStarIcon } from "../../assets/icons/listing/star.svg";
+import { Link, useParams } from "react-router-dom";
 import { ReactComponent as BackIcon } from "../../assets/housedetail/back.svg";
+import { ReactComponent as FeaturedStarIcon } from "../../assets/icons/listing/star.svg";
+import { ReactComponent as LocationIcon } from "../../assets/icons/search/location.svg";
 import { featuredProperties } from "../search/Search";
-import ImageHouse from "./ImageHouse";
-import Info from "./info";
-import Amenities from "./amenities";
-import Location from "./Location";
-import SimilarListings from "./SimilarListings";
-import { Footer } from "../../components/Footer";
+import { AmenitiesSection } from "./AmenitiesSection";
+import { HouseGallery } from "./HouseGallery";
+import { SummarySection } from "./SummarySection";
+import { MapSection } from "./MapSection";
+import { SimilarListingsSection } from "./SimilarListingsSection";
 
-const House = () => {
+export const Details = () => {
   const { houseId } = useParams();
 
   const houses = featuredProperties.find((house) => house.id === houseId);
@@ -52,18 +50,12 @@ const House = () => {
           </p>
         </div>
 
-        <ImageHouse />
-
-        <Info />
-
-        <Amenities />
-
-        <Location />
-
-        <SimilarListings />
+        <HouseGallery />
+        <SummarySection />
+        <AmenitiesSection />
+        <MapSection />
+        <SimilarListingsSection />
       </div>
     </div>
   );
 };
-
-export default House;

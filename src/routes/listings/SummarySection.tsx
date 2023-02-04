@@ -1,4 +1,3 @@
-import React from "react";
 import { ReactComponent as BedroomIcon } from "../../assets/icons/listing/bedroom.svg";
 import { ReactComponent as BathroomIcon } from "../../assets/icons/listing/bathroom.svg";
 import { ReactComponent as MeterIcon } from "../../assets/housedetail/meters.svg";
@@ -9,7 +8,7 @@ import { Button } from "../../components/Button";
 import { featuredProperties } from "../search/Search";
 import { useParams, Link } from "react-router-dom";
 
-const Info = () => {
+export const SummarySection = () => {
   const { houseId } = useParams();
 
   const houses = featuredProperties.find((house) => house.id === houseId);
@@ -17,7 +16,7 @@ const Info = () => {
   return (
     <div className="flex w-full ">
       <div className="flex flex-col gap-6">
-        <div className="my-8 flex items-center justify-around max-w-[720px] h-28  bg-white border-[1px] border rounded-md p-5">
+        <div className="my-8 flex items-center justify-around max-w-[720px] h-28  bg-white border rounded-md p-5">
           <div>
             <p className="font-semibold text-lg">Bedrooms</p>
 
@@ -109,5 +108,3 @@ const Info = () => {
     </div>
   );
 };
-
-export default Info;
