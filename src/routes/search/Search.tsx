@@ -123,7 +123,7 @@ export const Search = () => {
 
             <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ">
               {featuredProperties.map((property) => (
-                  <Link key={property.id}  to={`/houses/${property.id}`}> 
+                  <Link key={property.id}  to={`/listings/${property.id}`}> 
                 <ListingCard {...property}  />
                 </Link>
               ))}

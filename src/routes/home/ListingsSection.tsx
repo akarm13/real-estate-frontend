@@ -84,7 +84,7 @@ export const ListingsSection = () => {
       <div className="grid grid-cols-listing gap-x-4 flex-wrap gap-y-10 mt-16">
         {featuredProperties.map((property) => (
 // <<<<<<< HEAD
-         <Link key={property.id} to={`/houses/${property.id}`}> 
+         <Link key={property.id} to={`/listings/${property.id}`}> 
          <ListingCard {...property}  />
          </Link>
 // =======
