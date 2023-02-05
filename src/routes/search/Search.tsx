@@ -107,18 +107,7 @@ export const Search = () => {
           <InputSearch />
         )}
 
-        <div className="">
-          {/* top */}
-          {isMedium ? (
-            <InputSearch />
-          ) : (
-            <div className="flex flex-wrap gap-y-3 justify-between mt-5">
-              <Category />
-              <Type />
-              <NumOfRoom />
-              <HomeSize />
-            </div>
-          )}
+       
 
 {/* <<<<<<< HEAD */}
           <div className="">
@@ -136,21 +125,17 @@ export const Search = () => {
 
             <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ">
               {featuredProperties.map((property) => (
-                  <Link to={`/houses/${property.id}`}> 
-                <ListingCard {...property} key={property.id} />
+                  <Link key={property.id}  to={`/houses/${property.id}`}> 
+                <ListingCard {...property}  />
                 </Link>
               ))}
             </div>
 {/* ======= */}
-          <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ">
-            {featuredProperties.map((property) => (
-              <ListingCard {...property} key={property.id} />
-            ))}
-{/* >>>>>>> db782115eb3de6ac963258e652dd888c8b3fd4df */}
-          </div>
+         
         </div>
-      </div>
+      
     </div>
     </div>
+    
   );
 };

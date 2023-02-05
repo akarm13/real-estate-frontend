@@ -6,7 +6,7 @@ const Amenities = () => {
     
     <h2 className='text-2xl font-semibold'>Amenities</h2>
 
-    <div className='flex gap-4 w-[730px] flex-wrap'>
+    <div className='flex gap-4 max-w-[700px] flex-wrap'>
 
     <h3 className='text-primary-500 bg-slate-200 px-4 py-2 rounded-lg'>Parking</h3>
 

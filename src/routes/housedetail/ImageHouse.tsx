@@ -1,18 +1,30 @@
 import React from 'react'
 import   Image2  from "../../assets/house/2.jpg";
 import   Image1  from "../../assets/house/1.jpg";
+import {featuredProperties} from '../search/Search'
+import { useParams,Link } from 'react-router-dom'
+
 import { ReactComponent as Picture } from "../../assets/housedetail/images.svg";
 
 
 
 
 const ImageHouse = () => {
+
+
+  const {houseId} = useParams();
+
+  const houses  = featuredProperties.find((house) => house.id === 
+  houseId
+  )
+
+
   return (
     <div className='mt-7 w-full flex  '>
      <div className='relative' >
      <img src={Image2} alt='house' className='w-[728px] h-[400px] object-cover rounded-2xl ' />
 
-     <p className='absolute top-2 left-4 bg-black text-white font-medium  px-12 py-2 rounded-lg'>For sale</p>
+     <p className='absolute top-2 left-4 bg-black text-white font-medium  px-12 py-2 rounded-lg'>For {houses?.type}</p>
         
         </div>   
 

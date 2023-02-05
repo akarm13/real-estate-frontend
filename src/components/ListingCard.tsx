@@ -31,8 +31,8 @@ export const ListingCard = ({
   type,
 }: Props) => {
   return (
-    <Link to="/listings/93103109">
-      <div className="flex flex-col transition">
+   
+      <div className="flex flex-col transition hover:scale-105 duration-200">
         <img
           src={house}
           alt="house"
@@ -72,7 +72,7 @@ export const ListingCard = ({
           </div>
         </div>
       </div>
-    </Link>
+    
   );
 };
 
