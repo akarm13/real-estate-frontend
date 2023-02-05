@@ -1,6 +1,6 @@
 import { Property } from "../../types/property";
 import { ListingCard } from "../../components/ListingCard";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export const featuredProperties: Property[] = [
   {
@@ -83,9 +83,11 @@ export const ListingsSection = () => {
 
       <div className="grid grid-cols-listing gap-x-4 flex-wrap gap-y-10 mt-16">
         {featuredProperties.map((property) => (
+// <<<<<<< HEAD
          <Link key={property.id} to={`/houses/${property.id}`}> 
          <ListingCard {...property}  />
          </Link>
+// =======
         ))}
       </div>
     </div>

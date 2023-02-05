@@ -11,8 +11,7 @@ import { NumOfRoom } from "./NumOfRoom";
 import { RangePrice } from "./RangePrice";
 import { Type } from "./Type";
 
-
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 export const featuredProperties: Property[] = [
   {
@@ -109,7 +108,6 @@ export const Search = () => {
 
        
 
-{/* <<<<<<< HEAD */}
           <div className="">
             {/* top */}
             {isMedium ? (
@@ -132,10 +130,14 @@ export const Search = () => {
             </div>
 {/* ======= */}
          
+=======
+          
+{/* >>>>>>> 083adc8279328a16b07f067162efb772b728c9dd */}
         </div>
       
     </div>
+{/* <<<<<<< HEAD */}
     </div>
+  
     
-  );
-};
+  )}
