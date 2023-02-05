@@ -1,8 +1,16 @@
 import Image1 from "../../assets/house/1.jpg";
 import Image2 from "../../assets/house/2.jpg";
 import { ReactComponent as GalleryIcon } from "../../assets/housedetail/gallery-icon.svg";
+import { featuredProperties } from "../search/Search";
+import { Link, useParams } from "react-router-dom";
+
+
 
 export const HouseGallery = () => {
+  const { houseId } = useParams();
+
+  const houses = featuredProperties.find((house) => house.id === houseId);
+
   return (
     <div className="mt-7 w-full flex  ">
       <div className="relative">
@@ -13,7 +21,7 @@ export const HouseGallery = () => {
         />
 
         <p className="absolute top-2 left-4 bg-black text-white font-medium  px-12 py-2 rounded-lg">
-          For sale
+          For {houses?.type}
         </p>
       </div>
 

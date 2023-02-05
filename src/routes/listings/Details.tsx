@@ -39,7 +39,7 @@ export const Details = () => {
 
             <div className="flex items-center justify-between border-primary-background  px-5 py-3  border-2 rounded-lg">
               <FeaturedStarIcon />
-              <span className="font-semibold text-base mx-2">Share</span>
+              <span className="font-semibold text-base mx-2">Favorite</span>
             </div>
           </div>
         </div>
