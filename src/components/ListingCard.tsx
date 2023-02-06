@@ -50,12 +50,14 @@ export const ListingCard = ({
       </span>
       <div className="flex flex-col gap-y-2 px-5 items-baseline bg-white border border-primary-background py-6 rounded-md relative ">
         <span className="text-primary-500 font-bold text-lg">${price}</span>
-        <h3 className="text-primary-900 font-semibold text-lg h-[60px]">
+        <h3 className="text-primary-900 font-semibold text-md lg:text-lg h-[60px]">
           {title}
         </h3>
         <p className="flex gap-x-2 p-0 m-0 items-center">
           <LocationIcon />
-          <span className="text-secondaryText">{address}</span>
+          <span className="text-secondaryText text-sm lg:text-md">
+            {address}
+          </span>
         </p>
 
         <hr className="w-full mx-auto my-2 bg-primary-background" />
@@ -91,8 +93,11 @@ type PropertyDetailProps = {
 export const PropertyDetail = ({ icon, value, text }: PropertyDetailProps) => {
   return (
     <div className="flex gap-x-2 items-center text-gray-600">
-      <span className="bg-white text-primary-500 p-2 rounded-md">{icon}</span>
-      <span>{value}</span>
+      <span className="text-primary-500 rounded-md">{icon}</span>
+      <div className="flex items-center gap-x-1">
+        <span className="text-sm md:text-base">{value} </span>
+        <span className="text-sm md:text-base">{text}</span>
+      </div>
     </div>
   );
 };
