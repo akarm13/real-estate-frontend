@@ -50,9 +50,13 @@ export const ListingCard = ({
       </span>
       <div className="flex flex-col gap-y-2 px-5 items-baseline bg-white border border-primary-background py-6 rounded-md relative ">
         <span className="text-primary-500 font-bold text-lg">${price}</span>
-        <h3 className="text-primary-900 font-semibold text-lg h-[64px]">
+        <h3 className="text-primary-900 font-semibold text-lg h-[60px]">
           {title}
         </h3>
+        <p className="flex gap-x-2 p-0 m-0 items-center">
+          <LocationIcon />
+          <span className="text-secondaryText">{address}</span>
+        </p>
 
         <hr className="w-full mx-auto my-2 bg-primary-background" />
         <div className="flex justify-between w-full mt-2">

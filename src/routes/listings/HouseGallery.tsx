@@ -16,7 +16,7 @@ export const HouseGallery = () => {
         <img
           src={Image2}
           alt="house"
-          className="w-[728px] h-[400px] object-cover rounded-2xl "
+          className="w-[828px] h-[400px] object-cover rounded-2xl "
         />
 
         <p className="absolute top-2 left-4 bg-black text-white font-medium  px-12 py-2 rounded-lg">
