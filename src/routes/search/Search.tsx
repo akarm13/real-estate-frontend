@@ -56,7 +56,7 @@ export const Search = () => {
             <div className="flex items-center">
               <Select>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder={sortOptions[0].label} />
+                  <SelectValue placeholder={"All"} />
                 </SelectTrigger>
                 <SelectContent position="item-aligned">
                   {sortOptions.map((option) => (
