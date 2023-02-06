@@ -5,8 +5,8 @@ import { ReactComponent as CorrectIcon } from "../../assets/housedetail/correct.
 import { ReactComponent as Person } from "../../assets/housedetail/person.svg";
 import { Button } from "../../components/Button";
 
-import { featuredProperties } from "../search/Search";
 import { useParams, Link } from "react-router-dom";
+import { featuredProperties } from "../../dummyData";
 
 export const SummarySection = () => {
   const { houseId } = useParams();

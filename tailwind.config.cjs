@@ -32,7 +32,7 @@ module.exports = {
         },
         primaryText: "#000929",
         secondaryText: "#4D5461",
-        searchBackground: "#F1F0F6",
+        searchBackground: "rgb(245, 246, 247)",
         gray: {
           100: "#ECEBEF",
           200: "#D8D8DF",

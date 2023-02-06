@@ -1,10 +1,9 @@
 import Image1 from "../../assets/house/1.jpg";
 import Image2 from "../../assets/house/2.jpg";
 import { ReactComponent as GalleryIcon } from "../../assets/housedetail/gallery-icon.svg";
-import { featuredProperties } from "../search/Search";
+
 import { Link, useParams } from "react-router-dom";
-
-
+import { featuredProperties } from "../../dummyData";
 
 export const HouseGallery = () => {
   const { houseId } = useParams();

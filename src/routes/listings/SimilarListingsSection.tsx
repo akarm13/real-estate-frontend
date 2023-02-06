@@ -1,6 +1,6 @@
-import { featuredProperties } from "../search/Search";
 import { ListingCard } from "../../components/ListingCard";
 import { Link } from "react-router-dom";
+import { featuredProperties } from "../../dummyData";
 
 const similarListings = featuredProperties.slice(1, 4);
 

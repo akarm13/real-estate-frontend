@@ -9,8 +9,8 @@ export const HomeSize = () => {
       {isMedium ? (
         <>
           <h1 className="mb-4 text-lg font-semibold break-words text-primary">
-            Home Size{" "}
-            <span className="text-base font-normal text-secondary">
+            <span>Home Size</span>
+            <span className="text-base font-normal text-secondary ml-1">
               (m<sup>2</sup>)
             </span>
           </h1>
