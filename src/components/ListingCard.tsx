@@ -35,7 +35,7 @@ export const ListingCard = ({
       : "bg-primary-100 text-primary-800";
 
   return (
-    <div className="flex flex-col transition hover:scale-105 duration-200 relative">
+    <div className="flex flex-col transition hover:scale-105 duration-200 relative z-0">
       <img
         src={house}
         alt="house"
