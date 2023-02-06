@@ -34,6 +34,23 @@ export const Search = () => {
         </div>
 
         <div className="flex flex-col">
+          <div className="flex justify-between items-center mt-4">
+            <Button variant="secondary" onClick={() => console.log("hello")}>
+              <div className="flex justify-center items-center">
+                <FilterIcon
+                  className="mr-2 text-gray-500"
+                  width={16}
+                  height={16}
+                  fill="currentColor"
+                />
+                <span>Filters</span>
+              </div>
+            </Button>
+            <Button variant="secondary" onClick={() => console.log("hello")}>
+              Clear all
+            </Button>
+          </div>
+
           <div className="flex justify-between items-center mt-8 mb-4">
             <h1 className="text-xl font-bold">Results</h1>
             <div className="flex items-center">
@@ -50,22 +67,6 @@ export const Search = () => {
                 </SelectContent>
               </Select>
             </div>
-          </div>
-          <div className="flex justify-between items-center mb-4">
-            <Button variant="secondary" onClick={() => console.log("hello")}>
-              <div className="flex justify-center items-center">
-                <FilterIcon
-                  className="mr-2 text-gray-500"
-                  width={16}
-                  height={16}
-                  fill="currentColor"
-                />
-                <span>Filters</span>
-              </div>
-            </Button>
-            <Button variant="secondary" onClick={() => console.log("hello")}>
-              Clear all
-            </Button>
           </div>
 
           <div className="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ">
