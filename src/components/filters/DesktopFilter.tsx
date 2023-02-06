@@ -1,1 +1,3 @@
-export const DesktopFilter = () => {};
+export const DesktopFilter = () => {
+  return <div></div>;
+};

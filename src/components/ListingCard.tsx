@@ -1,14 +1,12 @@
 import house from "../assets/house/1.jpg";
 
-import { AiOutlineStar } from "react-icons/ai";
 import { PropertyStatus, PropertyType } from "../types/property";
 
-import { ReactComponent as LocationIcon } from "../assets/icons/listing/location.svg";
-import { ReactComponent as BedroomIcon } from "../assets/icons/listing/bedroom.svg";
-import { ReactComponent as BathroomIcon } from "../assets/icons/listing/bathroom.svg";
 import { ReactComponent as AreaIcon } from "../assets/icons/listing/area.svg";
+import { ReactComponent as BathroomIcon } from "../assets/icons/listing/bathroom.svg";
+import { ReactComponent as BedroomIcon } from "../assets/icons/listing/bedroom.svg";
 import { ReactComponent as FeaturedStarIcon } from "../assets/icons/listing/featured-star.svg";
-import { Link } from "react-router-dom";
+import { ReactComponent as LocationIcon } from "../assets/icons/listing/location.svg";
 
 type Props = {
   price: number;
@@ -33,7 +31,7 @@ export const ListingCard = ({
   // If type is sale then "bg-primary-800 text-white" else "bg-primary-200 text-primary-800"
   const typeColor =
     type === "sale"
-      ? "bg-primary-800 text-white"
+      ? "bg-primary-800 text-primary-100"
       : "bg-primary-100 text-primary-800";
 
   return (
