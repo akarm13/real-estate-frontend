@@ -18,7 +18,7 @@ export const Home = () => {
             Looking to find your next home?
           </p>
           <Link
-            className="rounded-3xl px-7 py-3 bg-white hover:bg-gray-100"
+            className="rounded-3xl px-7 py-3 bg-white hover:bg-gray-100 transition"
             to="/search"
           >
             <span className="text-primary-500">Find your next home</span>

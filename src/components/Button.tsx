@@ -8,7 +8,7 @@ export const Button = ({ onClick, children, variant }: Props) => {
     return (
       <button
         onClick={onClick}
-        className="bg-primary-500 hover:bg-primary-600 text-white md:font-bold md:py-2 py-2 px-4 md:px-4 rounded"
+        className="bg-primary-500 hover:bg-primary-600 text-white md:font-bold md:py-2 py-2 px-4 md:px-4 rounded transition"
       >
         {children}
       </button>
