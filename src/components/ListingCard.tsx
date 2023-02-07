@@ -35,8 +35,8 @@ export const ListingCard = ({
       : "bg-primary-100 text-primary-800";
 
   return (
-    <div className="flex flex-col transition duration-200 relative z-0 listing-card">
-      <div className="overflow-hidden">
+    <div className="flex flex-col transition duration-200 relative z-0 listing-card rounded-md">
+      <div className="overflow-hidden rounded-md">
         <img
           src={house}
           alt="house"
