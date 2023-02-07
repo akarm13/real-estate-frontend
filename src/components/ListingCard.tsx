@@ -35,12 +35,14 @@ export const ListingCard = ({
       : "bg-primary-100 text-primary-800";
 
   return (
-    <div className="flex flex-col transition hover:scale-105 duration-200 relative z-0">
-      <img
-        src={house}
-        alt="house"
-        className="h-[170px] w-full rounded-md object-cover"
-      />
+    <div className="flex flex-col transition duration-200 relative z-0 listing-card">
+      <div className="overflow-hidden">
+        <img
+          src={house}
+          alt="house"
+          className="h-[170px] w-full rounded-md object-cover"
+        />
+      </div>
       <span
         className={`absolute left-2 px-4 py-2 rounded-md uppercase my-2 font-medium ${typeColor} text-sm`}
       >
