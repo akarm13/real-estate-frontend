@@ -14,12 +14,12 @@ const sortOptions = [
   { value: "price", label: "Price" },
 ];
 
-import { BottomSheet } from "react-spring-bottom-sheet";
-import { useState } from "react";
+import { BottomSheet, BottomSheetRef } from "react-spring-bottom-sheet";
+import { useRef, useState } from "react";
 
 export const MobileFilter = () => {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-
+  const sheetRef = useRef<BottomSheetRef>();
   return (
     <div className="flex flex-col">
       <div className="relative">
@@ -36,7 +36,12 @@ export const MobileFilter = () => {
       </div>
 
       <div className="flex justify-between items-center mt-4">
-        <Button variant="secondary" onClick={() => setIsFiltersOpen(true)}>
+        <Button
+          variant="secondary"
+          onClick={() => {
+            setIsFiltersOpen(true);
+          }}
+        >
           <div className="flex justify-center items-center">
             <FilterIcon
               className="mr-2 text-gray-500"
@@ -74,27 +79,23 @@ export const MobileFilter = () => {
         onDismiss={() => setIsFiltersOpen(false)}
       >
         <div className="p-4">
-          <h1 className="text-xl font-bold">Filters</h1>
+          <h1 className="text-md font-bold">Price</h1>
         </div>
 
         <div className="p-4">
-          <h1 className="text-lg font-bold">Price</h1>
+          <h1 className="text-md font-bold">Bedrooms</h1>
         </div>
 
         <div className="p-4">
-          <h1 className="text-lg font-bold">Bedrooms</h1>
+          <h1 className="text-md font-bold">Bathrooms</h1>
         </div>
 
         <div className="p-4">
-          <h1 className="text-lg font-bold">Bathrooms</h1>
+          <h1 className="text-md font-bold">Property Type</h1>
         </div>
 
         <div className="p-4">
-          <h1 className="text-lg font-bold">Property Type</h1>
-        </div>
-
-        <div className="p-4">
-          <h1 className="text-lg font-bold">More Filters</h1>
+          <h1 className="text-md font-bold">More Filters</h1>
         </div>
       </BottomSheet>
     </div>
