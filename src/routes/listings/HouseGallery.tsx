@@ -4,10 +4,13 @@ import { ReactComponent as GalleryIcon } from "../../assets/housedetail/gallery-
 
 import { Link, useParams } from "react-router-dom";
 import { featuredProperties } from "../../dummyData";
+import { useState } from "react";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 export const HouseGallery = () => {
   const { houseId } = useParams();
-
+  const [open, setOpen] = useState(false);
   const houses = featuredProperties.find((house) => house.id === houseId);
 
   return (
@@ -37,10 +40,19 @@ export const HouseGallery = () => {
           className="w-[400px] h-[193px] border-2 border-primary-500 mx-12 mt-4 rounded-2xl object-cover"
         />
 
-        <button className="absolute bottom-2 right-14 border-primary-500  font-semibold text-sm bg-white flex items-center px-6 py-2 rounded-lg  ">
-          <GalleryIcon /> <span className="ml-2">View all 21 photos </span>{" "}
+        <button type="button" onClick={() => setOpen(true)} className="absolute bottom-2 right-14 border-primary-500  font-semibold text-sm bg-white flex items-center px-6 py-2 rounded-lg  ">
+          <GalleryIcon /> <span className="ml-2">View all 21 photos </span>
         </button>
       </div>
+      <Lightbox
+        open={open}
+        close={() => setOpen(false)}
+        slides={[
+          { src: Image1 },
+          { src: Image2 },
+
+        ]}
+      />
     </div>
   );
 };
