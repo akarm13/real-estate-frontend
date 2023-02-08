@@ -13,7 +13,7 @@ export const SelectButton = ({
   ...props
 }: Props) => {
   const selectedClass = isSelected
-    ? "bg-primary-500 text-white"
+    ? "bg-primary-background text-primary-500"
     : "bg-white text-primaryText";
   return (
     <button

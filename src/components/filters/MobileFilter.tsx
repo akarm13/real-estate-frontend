@@ -22,7 +22,6 @@ type ListingType = "sale" | "rent";
 type ListingCategory = "houses" | "apartments" | "villa" | "land" | "all";
 
 const categories = [
-  { value: "all", label: "All" },
   { value: "houses", label: "Houses" },
   { value: "apartments", label: "Apartments" },
   { value: "villa", label: "Villa" },
@@ -36,9 +35,12 @@ const types = [
 
 export const MobileFilter = () => {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-  const [selectedType, setSelectedType] = useState<ListingType>("sale");
-  const [selectedCategory, setSelectedCategory] =
-    useState<ListingCategory>("all");
+  const [selectedTypes, setSelectedTypes] = useState<ListingType[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<
+    ListingCategory[]
+  >([]);
+
+  useState<ListingCategory>("all");
   const sheetRef = useRef<BottomSheetRef>();
 
   const onDismiss = () => {
@@ -47,6 +49,29 @@ export const MobileFilter = () => {
       sheetRef.current.snapTo(0);
     }
   };
+
+  const handleCategoryClick = (category: ListingCategory) => {
+    // Push or remove from array
+    if (selectedCategories.includes(category)) {
+      setSelectedCategories((prevSelectedCategories) =>
+        prevSelectedCategories.filter((t) => t !== category)
+      );
+    } else {
+      setSelectedCategories([...selectedCategories, category]);
+    }
+  };
+
+  const handleTypeClick = (type: ListingType) => {
+    // Push or remove from array
+    if (selectedTypes.includes(type)) {
+      setSelectedTypes((prevSelectedTypes) =>
+        prevSelectedTypes.filter((t) => t !== type)
+      );
+    } else {
+      setSelectedTypes([...selectedTypes, type]);
+    }
+  };
+
   return (
     <div className="flex flex-col">
       <div className="relative">
@@ -118,14 +143,19 @@ export const MobileFilter = () => {
         }
       >
         <div className="p-4">
-          <h1 className="text-base font-semibold text-primaryText">
-            Property Type
-          </h1>
+          <div className="flex items-center">
+            <h1 className="text-base font-semibold text-primaryText">
+              Property type
+            </h1>
+            <span className="text-gray-500 font-normal ml-2">
+              (select as many as you want)
+            </span>
+          </div>
           <div className="grid grid-cols-2 gap-x-2 gap-y-3 items-center mt-4">
             {types.map((type) => (
               <SelectButton
-                isSelected={selectedType === type.value}
-                onClick={() => setSelectedType(type.value)}
+                isSelected={selectedTypes.includes(type.value)}
+                onClick={() => handleTypeClick(type.value)}
               >
                 {type.label}
               </SelectButton>
@@ -134,14 +164,19 @@ export const MobileFilter = () => {
         </div>
 
         <div className="p-4">
-          <h1 className="text-base font-semibold text-primaryText">
-            Property Category
-          </h1>
+          <div className="flex items-center">
+            <h1 className="text-base font-semibold text-primaryText">
+              Property Category
+            </h1>
+            <span className="text-gray-500 font-normal ml-2">
+              (select as many as you want)
+            </span>
+          </div>
           <div className="grid items-center mt-4 grid-cols-2 grid-rows-3 gap-x-2 flex-wrap gap-y-3">
             {categories.map((category) => (
               <SelectButton
-                isSelected={selectedCategory === category.value}
-                onClick={() => setSelectedCategory(category.value)}
+                isSelected={selectedCategories.includes(category.value)}
+                onClick={() => handleCategoryClick(category.value)}
               >
                 {category.label}
               </SelectButton>
