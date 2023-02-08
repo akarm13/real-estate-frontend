@@ -1,7 +1,7 @@
 import { ReactComponent as BedroomIcon } from "../../assets/icons/listing/bedroom.svg";
 import { ReactComponent as BathroomIcon } from "../../assets/icons/listing/bathroom.svg";
 import { ReactComponent as MeterIcon } from "../../assets/housedetail/meters.svg";
-import { ReactComponent as CorrectIcon } from "../../assets/housedetail/correct.svg";
+import { ReactComponent as CheckMarkIcon } from "../../assets/housedetail/checkmark.svg";
 import { ReactComponent as Person } from "../../assets/housedetail/person.svg";
 import { Button } from "../../components/Button";
 
@@ -45,7 +45,7 @@ export const SummarySection = () => {
           <div>
             <p className="font-semibold text-lg">Status</p>
             <div className="flex items-center  mt-4">
-              <CorrectIcon />
+              <CheckMarkIcon />
 
               <span className="mx-4">Active</span>
             </div>

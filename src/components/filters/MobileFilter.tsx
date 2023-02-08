@@ -16,10 +16,37 @@ const sortOptions = [
 
 import { BottomSheet, BottomSheetRef } from "react-spring-bottom-sheet";
 import { useRef, useState } from "react";
+import { SelectButton } from "./SelectButton";
+
+type ListingType = "sale" | "rent";
+type ListingCategory = "houses" | "apartments" | "villa" | "land" | "all";
+
+const categories = [
+  { value: "all", label: "All" },
+  { value: "houses", label: "Houses" },
+  { value: "apartments", label: "Apartments" },
+  { value: "villa", label: "Villa" },
+  { value: "land", label: "Land" },
+] as const;
+
+const types = [
+  { value: "sale", label: "Sale" },
+  { value: "rent", label: "Rent" },
+] as const;
 
 export const MobileFilter = () => {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const [selectedType, setSelectedType] = useState<ListingType>("sale");
+  const [selectedCategory, setSelectedCategory] =
+    useState<ListingCategory>("all");
   const sheetRef = useRef<BottomSheetRef>();
+
+  const onDismiss = () => {
+    setIsFiltersOpen(false);
+    if (sheetRef.current) {
+      sheetRef.current.snapTo(0);
+    }
+  };
   return (
     <div className="flex flex-col">
       <div className="relative">
@@ -40,6 +67,9 @@ export const MobileFilter = () => {
           variant="secondary"
           onClick={() => {
             setIsFiltersOpen(true);
+            if (sheetRef.current) {
+              sheetRef.current.snapTo(({ maxHeight }) => maxHeight);
+            }
           }}
         >
           <div className="flex justify-center items-center">
@@ -77,25 +107,46 @@ export const MobileFilter = () => {
       <BottomSheet
         open={isFiltersOpen}
         onDismiss={() => setIsFiltersOpen(false)}
+        footer={
+          <Button
+            onClick={onDismiss}
+            variant="primary"
+            className="w-full h-12 rounded-md"
+          >
+            Search 891 results
+          </Button>
+        }
       >
         <div className="p-4">
-          <h1 className="text-md font-bold">Price</h1>
+          <h1 className="text-base font-semibold text-primaryText">
+            Property Type
+          </h1>
+          <div className="grid grid-cols-2 gap-x-2 gap-y-3 items-center mt-4">
+            {types.map((type) => (
+              <SelectButton
+                isSelected={selectedType === type.value}
+                onClick={() => setSelectedType(type.value)}
+              >
+                {type.label}
+              </SelectButton>
+            ))}
+          </div>
         </div>
 
         <div className="p-4">
-          <h1 className="text-md font-bold">Bedrooms</h1>
-        </div>
-
-        <div className="p-4">
-          <h1 className="text-md font-bold">Bathrooms</h1>
-        </div>
-
-        <div className="p-4">
-          <h1 className="text-md font-bold">Property Type</h1>
-        </div>
-
-        <div className="p-4">
-          <h1 className="text-md font-bold">More Filters</h1>
+          <h1 className="text-base font-semibold text-primaryText">
+            Property Category
+          </h1>
+          <div className="grid items-center mt-4 grid-cols-2 grid-rows-3 gap-x-2 flex-wrap gap-y-3">
+            {categories.map((category) => (
+              <SelectButton
+                isSelected={selectedCategory === category.value}
+                onClick={() => setSelectedCategory(category.value)}
+              >
+                {category.label}
+              </SelectButton>
+            ))}
+          </div>
         </div>
       </BottomSheet>
     </div>
