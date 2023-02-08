@@ -10,9 +10,9 @@ import { useState } from "react";
 export const Navigation = () => {
   const navigate = useNavigate();
   const activeClasses =
-    "md:bg-primary-background  md:text-primary-500 md:px-5 md:py-3 md:my-0 md:mx-0      md:rounded-md";
+    "md:bg-primary-background  md:text-primary-500 md:px-5 md:py-3 md:my-0 md:mx-0      md:rounded-lg";
   const inactiveClasses =
-    "md:bg-white text-secondaryText md:px-5 md:py-3 md:my-0 md:mx-0   rounded-md";
+    "md:bg-white text-secondaryText md:px-5 md:py-3 md:my-0 md:mx-0   rounded-lg";
   const routeHandler = (change: String) => {
     if (change === "primary") {
       navigate("/login");

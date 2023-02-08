@@ -16,7 +16,7 @@ export const SummarySection = () => {
   return (
     <div className="flex w-full ">
       <div className="flex flex-col gap-6">
-        <div className="my-8 flex items-center justify-around max-w-[720px] h-28  bg-white border rounded-md p-5">
+        <div className="my-8 flex items-center justify-around max-w-[720px] h-28  bg-white border rounded-lg p-5">
           <div>
             <p className="font-semibold text-lg">Bedrooms</p>
 

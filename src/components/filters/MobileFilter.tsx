@@ -87,7 +87,7 @@ export const MobileFilter = () => {
         <input
           type="text"
           placeholder="Search"
-          className="flex h-10 w-full rounded-md border border-primary-100 bg-transparent py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 "
+          className="flex h-10 w-full rounded-lg border border-primary-100 bg-transparent py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 "
         />
         <SearchIcon
           className="absolute top-3 right-3 text-gray-500"
@@ -145,7 +145,7 @@ export const MobileFilter = () => {
           <Button
             onClick={onDismiss}
             variant="primary"
-            className="w-full h-12 rounded-md"
+            className="w-full h-12 rounded-lg"
           >
             Search 891 results
           </Button>
@@ -204,7 +204,7 @@ export const MobileFilter = () => {
             <div className="flex gap-x-2 gap-y-3 items-center">
               <select
                 id="minimumPrice"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-white border border-primary-background text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
               >
                 {prices.map((price) => (
                   <option value={price.value}>{price.label}</option>
@@ -213,7 +213,7 @@ export const MobileFilter = () => {
               <span>-</span>
               <select
                 id="countries"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-white border border-primary-background text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
               >
                 {prices.map((price) => (
                   <option value={price.value}>{price.label}</option>
