@@ -144,11 +144,9 @@ export const MobileFilter = () => {
       >
         <div className="p-4">
           <div className="flex items-center">
-            <h1 className="text-base font-semibold text-primaryText">
-              Property type
-            </h1>
+            <h1 className="text-base font-semibold text-primaryText">Type</h1>
             <span className="text-gray-500 font-normal ml-2">
-              (select as many as you want)
+              (multiple selection)
             </span>
           </div>
           <div className="grid grid-cols-2 gap-x-2 gap-y-3 items-center mt-4">
@@ -166,10 +164,10 @@ export const MobileFilter = () => {
         <div className="p-4">
           <div className="flex items-center">
             <h1 className="text-base font-semibold text-primaryText">
-              Property Category
+              Category
             </h1>
             <span className="text-gray-500 font-normal ml-2">
-              (select as many as you want)
+              (multiple selection)
             </span>
           </div>
           <div className="grid items-center mt-4 grid-cols-2 grid-rows-3 gap-x-2 flex-wrap gap-y-3">
