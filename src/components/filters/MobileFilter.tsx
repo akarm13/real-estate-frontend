@@ -33,6 +33,15 @@ const types = [
   { value: "rent", label: "Rent" },
 ] as const;
 
+// Create a price array with 50 items from 1k to 1M
+const prices = new Array(50)
+  .fill(0)
+  .map((_, i) => ({
+    value: i * 1000,
+    label: `${i}k`,
+  }))
+  .reverse();
+
 export const MobileFilter = () => {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState<ListingType[]>([]);
@@ -170,7 +179,7 @@ export const MobileFilter = () => {
               (multiple selection)
             </span>
           </div>
-          <div className="grid items-center mt-4 grid-cols-2 grid-rows-3 gap-x-2 flex-wrap gap-y-3">
+          <div className="grid items-center mt-4 grid-cols-2 gap-x-2 flex-wrap gap-y-3">
             {categories.map((category) => (
               <SelectButton
                 isSelected={selectedCategories.includes(category.value)}
@@ -179,6 +188,38 @@ export const MobileFilter = () => {
                 {category.label}
               </SelectButton>
             ))}
+          </div>
+        </div>
+
+        <div className="p-4">
+          <div className="flex items-center">
+            <label
+              className="text-base font-semibold text-primaryText"
+              htmlFor="minimumPrice"
+            >
+              Price
+            </label>
+          </div>
+          <div className="grid items-center mt-4 grid-cols-1 grid-y-2">
+            <div className="flex gap-x-2 gap-y-3 items-center">
+              <select
+                id="minimumPrice"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                {prices.map((price) => (
+                  <option value={price.value}>{price.label}</option>
+                ))}
+              </select>
+              <span>-</span>
+              <select
+                id="countries"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                {prices.map((price) => (
+                  <option value={price.value}>{price.label}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
       </BottomSheet>

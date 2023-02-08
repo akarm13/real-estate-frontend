@@ -25,6 +25,7 @@
     "react-router-dom": "^6.6.2",
     "react-spring-bottom-sheet": "^3.5.0-alpha.0",
     "vite-plugin-svgr": "^2.4.0",
+    "yet-another-react-lightbox": "^2.3.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
