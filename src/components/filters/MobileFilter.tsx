@@ -88,7 +88,7 @@ export const MobileFilter = () => {
         <input
           type="text"
           placeholder="Search"
-          className="flex h-10 w-full rounded-lg border border-primary-100 bg-transparent py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 "
+          className="flex h-10 w-full rounded-lg border border-primary-100 bg-transparent py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 focus:border-primary-500 transition"
         />
         <SearchIcon
           className="absolute top-3 right-3 text-gray-500"
@@ -125,18 +125,16 @@ export const MobileFilter = () => {
       <div className="flex justify-between items-center mt-8 mb-4">
         <h1 className="text-xl font-bold">Results</h1>
         <div className="flex items-center">
-          <Select>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder={"All"} />
-            </SelectTrigger>
-            <SelectContent position="item-aligned">
-              {sortOptions.map((option) => (
-                <SelectItem key={option.value} value={option.value}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <select
+            id="sort"
+            className="border border-primary-100 rounded-lg focus:border-primary-400 transition text-sm"
+          >
+            {sortOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
       <BottomSheet
