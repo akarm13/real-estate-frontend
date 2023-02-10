@@ -45,15 +45,12 @@ const bathrooms = [
   { value: 100, label: "5+" },
 ];
 
-// Create a price array with 50 items from 1k to 1M
-const prices = new Array(50)
-  .fill(0)
-  .map((_, i) => ({
-    value: i * 1000,
-    label: `${i}k`,
-  }))
-  .reverse();
-
+const homeSizes = [
+  { value: 100, label: "100m" },
+  { value: 200, label: "200m" },
+  { value: 300, label: "300m" },
+  { value: 10_000, label: "300m+" },
+];
 export const MobileFilter = () => {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState<ListingType[]>([]);
@@ -63,7 +60,7 @@ export const MobileFilter = () => {
 
   const [selectedBedrooms, setSelectedBedrooms] = useState<number[]>([]);
   const [selectedBathrooms, setSelectedBathrooms] = useState<number[]>([]);
-
+  const [selectedHomeSizes, setSelectedHomeSizes] = useState<number[]>([]);
   useState<ListingCategory>("all");
   const sheetRef = useRef<BottomSheetRef>();
 
@@ -111,6 +108,14 @@ export const MobileFilter = () => {
       setSelectedBathrooms([]);
     } else {
       setSelectedBathrooms([bedroom]);
+    }
+  };
+
+  const handleHomeSizeClick = (homeSize: number) => {
+    if (selectedHomeSizes.includes(homeSize)) {
+      setSelectedHomeSizes([]);
+    } else {
+      setSelectedHomeSizes([homeSize]);
     }
   };
 
@@ -248,7 +253,7 @@ export const MobileFilter = () => {
               Bedrooms
             </h1>
           </div>
-          <div className="grid items-center mt-4 grid-cols-6 gap-x-1flex-wrap gap-y-3">
+          <div className="grid items-center mt-4 grid-cols-6 flex-wrap gap-y-3">
             {bedrooms.map((bedroom, i) => (
               <SelectButton
                 isSelected={selectedBedrooms.includes(bedroom.value)}
@@ -268,7 +273,7 @@ export const MobileFilter = () => {
               Bathrooms
             </h1>
           </div>
-          <div className="grid items-center mt-4 grid-cols-6 gap-x-1flex-wrap gap-y-3">
+          <div className="grid items-center mt-4 grid-cols-6 flex-wrap gap-y-3">
             {bathrooms.map((bathroom, i) => (
               <SelectButton
                 isSelected={selectedBathrooms.includes(bathroom.value)}
@@ -277,6 +282,29 @@ export const MobileFilter = () => {
                 className={getJoinedButtonClassName(i, bathrooms.length)}
               >
                 {bathroom.label}
+              </SelectButton>
+            ))}
+          </div>
+        </div>
+
+        <div className="p-4">
+          <div className="flex items-center">
+            <h1 className="text-base font-semibold text-primaryText">
+              <span>Home Size</span>
+              <span className="text-base font-normal text-secondary ml-1">
+                (m<sup>2</sup>)
+              </span>
+            </h1>
+          </div>
+          <div className="grid items-center mt-4 grid-cols-4 flex-wrap gap-y-3">
+            {homeSizes.map((homeSize, i) => (
+              <SelectButton
+                isSelected={selectedHomeSizes.includes(homeSize.value)}
+                onClick={() => handleHomeSizeClick(homeSize.value)}
+                key={homeSize.value}
+                className={getJoinedButtonClassName(i, homeSizes.length)}
+              >
+                {homeSize.label}
               </SelectButton>
             ))}
           </div>
