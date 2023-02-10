@@ -40,7 +40,7 @@ export const HouseGallery = () => {
           className="lg:w-[400px] lg:h-[193px] md:w-[300px] md:h-[143px] w-full h-[250px] border-2 border-primary-500 md:mx-6 lg:mx-12 mt-4 rounded-2xl object-cover"
         />
 
-        <button type="button" onClick={() => setOpen(true)} className="absolute bottom-3 right-3 lg:bottom-2 md:bottom-2 lg:right-14 md:right-10 border-primary-500  font-semibold lg:text-sm text-xs bg-white flex items-center px-1 py-1 lg:px-6 lg:py-2 rounded-lg  ">
+        <button type="button" onClick={() => setOpen(true)} className="absolute bottom-3 right-3 lg:bottom-2 md:bottom-2 lg:right-14 md:-right-2 border-primary-500  font-semibold lg:text-sm text-xs bg-white flex items-center px-1 py-1 lg:px-6 lg:py-2 rounded-lg  ">
           <GalleryIcon  /> <span  className="ml-2 ">View all 21 photos </span>
         </button>
       </div>
