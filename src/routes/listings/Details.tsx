@@ -16,36 +16,36 @@ export const Details = () => {
 
   return (
     <div className="w-full">
-      <div className="flex flex-col w-full mx-auto px-36 py-12">
+      <div className="flex flex-col w-full mx-auto px-5 lg:px-36 py-12">
         <div>
           <Link className="flex  items-center	" to="/search">
-            <BackIcon />
-            <p className="text-sm font-semibold text-primary-400 font-sans ml-2">
+            <BackIcon  />
+            <p className="lg:text-sm text-xs font-semibold text-primary-400 font-sans ml-2">
               Back to map
             </p>
           </Link>
         </div>
 
-        <div className="w-full flex justify-between items-center  pt-10">
-          <h3 className="font-semibold text-3xl font-sans">
+        <div className=" flex lg:w-full   justify-between items-center  pt-10">
+          <h3 className="font-semibold  text-sm md:text-lg lg:text-3xl font-sans">
             A nice house for sale in Aqary
           </h3>
 
-          <div className="flex mr-14">
-            <div className="flex items-center justify-between border-primary-background mr-4 px-5 py-3 border-2 rounded-lg">
-              <LocationIcon />
-              <span className="font-semibold text-base mx-2">Share</span>
+          <div className="flex  lg:mr-14">
+            <div className="flex items-center justify-between border-primary-background mr-1 lg:mr-4 px-1 py-1 lg:px-5 lg:py-3 border-2 rounded-lg">
+              <LocationIcon width={17} />
+              <span className="font-semibold text-xs lg:text-base mx-1 md:mx-2">Share</span>
             </div>
 
-            <div className="flex items-center justify-between border-primary-background  px-5 py-3  border-2 rounded-lg">
-              <FeaturedStarIcon />
-              <span className="font-semibold text-base mx-2">Favorite</span>
+            <div className="flex items-center justify-between border-primary-background px-1 py-1  lg:px-5 lg:py-3  border-2 rounded-lg">
+              <FeaturedStarIcon width={17} />
+              <span className="font-semibold text-xs lg:text-base mx-1 md:mx-2">Favorite</span>
             </div>
           </div>
         </div>
 
         <div className="mt-4">
-          <p className="text-secondaryText text-xl font-medium font-sans">
+          <p className="text-secondaryText md:text-base text-sm lg:text-xl font-medium font-sans">
             {houses?.address}
           </p>
         </div>
