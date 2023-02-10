@@ -17,6 +17,7 @@ const sortOptions = [
 import { BottomSheet, BottomSheetRef } from "react-spring-bottom-sheet";
 import { useRef, useState } from "react";
 import { SelectButton } from "./SelectButton";
+import { PriceInput } from "./PriceInput";
 
 type ListingType = "sale" | "rent";
 type ListingCategory = "houses" | "apartments" | "villa" | "land" | "all";
@@ -163,6 +164,7 @@ export const MobileFilter = () => {
               <SelectButton
                 isSelected={selectedTypes.includes(type.value)}
                 onClick={() => handleTypeClick(type.value)}
+                key={type.value}
               >
                 {type.label}
               </SelectButton>
@@ -184,6 +186,7 @@ export const MobileFilter = () => {
               <SelectButton
                 isSelected={selectedCategories.includes(category.value)}
                 onClick={() => handleCategoryClick(category.value)}
+                key={category.value}
               >
                 {category.label}
               </SelectButton>
@@ -200,27 +203,11 @@ export const MobileFilter = () => {
               Price
             </label>
           </div>
-          <div className="grid items-center mt-4 grid-cols-1 grid-y-2">
-            <div className="flex gap-x-2 gap-y-3 items-center">
-              <select
-                id="minimumPrice"
-                className="bg-white border border-primary-background text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
-              >
-                {prices.map((price) => (
-                  <option value={price.value}>{price.label}</option>
-                ))}
-              </select>
-              <span>-</span>
-              <select
-                id="countries"
-                className="bg-white border border-primary-background text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
-              >
-                {prices.map((price) => (
-                  <option value={price.value}>{price.label}</option>
-                ))}
-              </select>
-            </div>
-          </div>
+          <PriceInput
+            containerClassName="mt-4"
+            firstInputPlaceholder="Min Price."
+            secondInputPlaceholder="Max Price."
+          />
         </div>
       </BottomSheet>
     </div>
