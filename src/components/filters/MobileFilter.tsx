@@ -1,12 +1,6 @@
 import { ReactComponent as SearchIcon } from "../../assets/icons/listing/search.svg";
 import { ReactComponent as FilterIcon } from "../../assets/icons/search/filters.svg";
 import { Button } from "../../components/Button";
-const sortOptions = [
-  { value: "newest", label: "Newest" },
-  { value: "oldest", label: "Oldest" },
-  { value: "price", label: "Price" },
-];
-
 import { useRef, useState } from "react";
 import { BottomSheet, BottomSheetRef } from "react-spring-bottom-sheet";
 import { PriceInput } from "./PriceInput";
@@ -27,6 +21,30 @@ const types = [
   { value: "rent", label: "Rent" },
 ] as const;
 
+const sortOptions = [
+  { value: "newest", label: "Newest" },
+  { value: "oldest", label: "Oldest" },
+  { value: "price", label: "Price" },
+];
+
+const bedrooms = [
+  { value: 1, label: "1" },
+  { value: 2, label: "2" },
+  { value: 3, label: "3" },
+  { value: 4, label: "4" },
+  { value: 5, label: "5" },
+  { value: 100, label: "5+" },
+];
+
+const bathrooms = [
+  { value: 1, label: "1" },
+  { value: 2, label: "2" },
+  { value: 3, label: "3" },
+  { value: 4, label: "4" },
+  { value: 5, label: "5" },
+  { value: 100, label: "5+" },
+];
+
 // Create a price array with 50 items from 1k to 1M
 const prices = new Array(50)
   .fill(0)
@@ -42,6 +60,9 @@ export const MobileFilter = () => {
   const [selectedCategories, setSelectedCategories] = useState<
     ListingCategory[]
   >([]);
+
+  const [selectedBedrooms, setSelectedBedrooms] = useState<number[]>([]);
+  const [selectedBathrooms, setSelectedBathrooms] = useState<number[]>([]);
 
   useState<ListingCategory>("all");
   const sheetRef = useRef<BottomSheetRef>();
@@ -72,6 +93,24 @@ export const MobileFilter = () => {
       );
     } else {
       setSelectedTypes([...selectedTypes, type]);
+    }
+  };
+
+  const handleBedroomClick = (bedroom: number) => {
+    // Make it so that it selects only one bedroom
+    if (selectedBedrooms.includes(bedroom)) {
+      setSelectedBedrooms([]);
+    } else {
+      setSelectedBedrooms([bedroom]);
+    }
+  };
+
+  const handleBathroomClick = (bedroom: number) => {
+    // Make it so that it selects only one bedroom
+    if (selectedBathrooms.includes(bedroom)) {
+      setSelectedBathrooms([]);
+    } else {
+      setSelectedBathrooms([bedroom]);
     }
   };
 
@@ -202,7 +241,60 @@ export const MobileFilter = () => {
             onSecondInputChange={(value) => console.log(value)}
           />
         </div>
+
+        <div className="p-4">
+          <div className="flex items-center">
+            <h1 className="text-base font-semibold text-primaryText">
+              Bedrooms
+            </h1>
+          </div>
+          <div className="grid items-center mt-4 grid-cols-6 gap-x-1flex-wrap gap-y-3">
+            {bedrooms.map((bedroom, i) => (
+              <SelectButton
+                isSelected={selectedBedrooms.includes(bedroom.value)}
+                onClick={() => handleBedroomClick(bedroom.value)}
+                key={bedroom.value}
+                className={getJoinedButtonClassName(i, bedrooms.length)}
+              >
+                {bedroom.label}
+              </SelectButton>
+            ))}
+          </div>
+        </div>
+
+        <div className="p-4">
+          <div className="flex items-center">
+            <h1 className="text-base font-semibold text-primaryText">
+              Bathrooms
+            </h1>
+          </div>
+          <div className="grid items-center mt-4 grid-cols-6 gap-x-1flex-wrap gap-y-3">
+            {bathrooms.map((bathroom, i) => (
+              <SelectButton
+                isSelected={selectedBathrooms.includes(bathroom.value)}
+                onClick={() => handleBathroomClick(bathroom.value)}
+                key={bathroom.value}
+                className={getJoinedButtonClassName(i, bathrooms.length)}
+              >
+                {bathroom.label}
+              </SelectButton>
+            ))}
+          </div>
+        </div>
       </BottomSheet>
     </div>
   );
+};
+
+const getJoinedButtonClassName = (index: number, length: number) => {
+  if (index === 0) {
+    return "rounded-l-lg rounded-r-none";
+  }
+  if (index === length - 2) {
+    return "rounded-r-none rounded-l-none";
+  }
+  if (index === length - 1) {
+    return "rounded-r-lg border-l-0 rounded-l-none";
+  }
+  return "rounded-none border-l-0 focus:border-l";
 };
