@@ -1,23 +1,16 @@
 import { ReactComponent as SearchIcon } from "../../assets/icons/listing/search.svg";
 import { ReactComponent as FilterIcon } from "../../assets/icons/search/filters.svg";
 import { Button } from "../../components/Button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../components/Select";
 const sortOptions = [
   { value: "newest", label: "Newest" },
   { value: "oldest", label: "Oldest" },
   { value: "price", label: "Price" },
 ];
 
-import { BottomSheet, BottomSheetRef } from "react-spring-bottom-sheet";
 import { useRef, useState } from "react";
-import { SelectButton } from "./SelectButton";
+import { BottomSheet, BottomSheetRef } from "react-spring-bottom-sheet";
 import { PriceInput } from "./PriceInput";
+import { SelectButton } from "./SelectButton";
 
 type ListingType = "sale" | "rent";
 type ListingCategory = "houses" | "apartments" | "villa" | "land" | "all";
@@ -203,8 +196,10 @@ export const MobileFilter = () => {
           </div>
           <PriceInput
             containerClassName="mt-4"
-            firstInputPlaceholder="Min Price."
-            secondInputPlaceholder="Max Price."
+            firstInputPlaceholder="Min Price"
+            secondInputPlaceholder="Max Price"
+            onFirstInputChange={(value) => console.log(value)}
+            onSecondInputChange={(value) => console.log(value)}
           />
         </div>
       </BottomSheet>
