@@ -35,7 +35,7 @@ export const ListingCard = ({
       : "bg-primary-100 text-primary-800";
 
   return (
-    <div className="flex flex-col transition duration-200 relative z-0 listing-card rounded-lg">
+    <div className="flex flex-col transition duration-200 relative z-0 listing-card rounded-lg snap-center my-4 lg:my-0">
       <div className="overflow-hidden rounded-lg">
         <img
           src={house}
@@ -61,7 +61,7 @@ export const ListingCard = ({
         </p>
 
         <hr className="w-full mx-auto my-2 bg-primary-background" />
-        <div className="flex justify-between w-full mt-2">
+        <div className="flex justify-between w-full mt-2 gap-x-4 lg:gap-0">
           <PropertyDetail
             icon={<BedroomIcon />}
             value={bedrooms}

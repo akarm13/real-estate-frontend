@@ -9,7 +9,7 @@ export const SimilarListingsSection = () => {
     <div className="flex flex-col gap-4 mt-14 ">
       <h2 className="text-2xl font-semibold">Similar Listings</h2>
 
-      <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-3 pt-4 ">
+      <div className="lg:grid  lg:grid-cols-4 lg:gap-x-7  pt-4 flex gap-x-4   snap-x overflow-x-auto snap-proximity lg:snap-none ">
         {similarListings.map((listing) => {
           return (
             <Link to={`/listings/${listing.id}`} key={listing.id}>

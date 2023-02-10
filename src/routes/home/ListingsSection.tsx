@@ -12,7 +12,7 @@ export const ListingsSection = () => {
         Discover the best properties
       </h4>
 
-      <div className="grid grid-cols-listing gap-x-4 flex-wrap gap-y-10 mt-16">
+      <div className="lg:grid lg:grid-cols-listing lg:gap-x-4 lg:flex-wrap lg:gap-y-10 mt-16 flex gap-x-4   snap-x overflow-x-auto snap-proximity lg:snap-none">
         {featuredProperties.map((property) => (
           <Link key={property.id} to={`/listings/${property.id}`}>
             <ListingCard {...property} />
