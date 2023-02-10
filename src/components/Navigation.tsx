@@ -10,9 +10,9 @@ import { useState } from "react";
 export const Navigation = () => {
   const navigate = useNavigate();
   const activeClasses =
-    "md:bg-primary-background  md:text-primary-500 md:px-5 md:py-3 md:my-0 md:mx-0      md:rounded-lg";
+    "md:bg-primary-background  md:text-primary-500 md:px-5 md:py-3 md:my-0 md:mx-0  text-lg     md:rounded-lg";
   const inactiveClasses =
-    "md:bg-white text-secondaryText md:px-5 md:py-3 md:my-0 md:mx-0   rounded-lg";
+    "md:bg-white text-secondaryText md:px-5 md:py-3 md:my-0 md:mx-0 text-lg  rounded-lg";
   const routeHandler = (change: String) => {
     if (change === "primary") {
       navigate("/login");
@@ -23,82 +23,96 @@ export const Navigation = () => {
 
   const isMedium = useMediaQuery({ query: queries.md });
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (
-    <nav className="mx-auto pt-4 border-b-primary-background border pb-4">
-      {/* for laptop and tablet */}
-      <div className="px-4 md:px-0 flex justify-between items-center md:flex md:justify-between md:items-center container">
-        <NavLink to="/" className="flex items-center gap-x-1">
-          <span>
-            <LogoIcon />
-          </span>
-          <span className="text-primary-500 text-xl text-bold font-bold">
-            Hêlane
-          </span>
-        </NavLink>
-        <ul className="hidden md:flex md:justify-between">
-          <li className="">
-            <NavLink
-              to="/"
-              className={({ isActive }) => {
-                return isActive ? activeClasses : inactiveClasses;
-              }}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/search"
-              className={({ isActive }) => {
-                return isActive ? activeClasses : inactiveClasses;
-              }}
-            >
-              Search
-            </NavLink>
-          </li>
+    <>
+      <nav className=" lg:mx-auto pt-4 lg:border-b-primary-background lg:border pb-4">
+        {/* for laptop and tablet */}
+        <div className="px-4 md:px-0 flex justify-between items-center md:flex md:justify-between md:items-center container">
+          <NavLink to="/" className="flex items-center gap-x-1">
+            <span>
+              <LogoIcon />
+            </span>
+            <span className="text-primary-500 text-xl text-bold font-bold">
+              Hêlane
+            </span>
+          </NavLink>
+          <ul className="hidden md:flex md:justify-between">
+            <li className="">
+              <NavLink
+                to="/"
+                className={({ isActive }) => {
+                  return isActive ? activeClasses : inactiveClasses;
+                }}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/search"
+                className={({ isActive }) => {
+                  return isActive ? activeClasses : inactiveClasses;
+                }}
+              >
+                Search
+              </NavLink>
+            </li>
 
-          <li>
-            <NavLink
-              to="/agents"
-              className={({ isActive }) => {
-                return isActive ? activeClasses : inactiveClasses;
-              }}
-            >
-              Agents
-            </NavLink>
-          </li>
-        </ul>
+            <li>
+              <NavLink
+                to="/agents"
+                className={({ isActive }) => {
+                  return isActive ? activeClasses : inactiveClasses;
+                }}
+              >
+                Agents
+              </NavLink>
+            </li>
+          </ul>
 
-        <div className="hidden md:flex md:gap-x-6">
-          <div className="flex gap-x-2">
-            <Button onClick={() => routeHandler("primary")} variant="primary">
-              Login
-            </Button>
+          <div className="hidden md:flex md:gap-x-6">
+            <div className="flex gap-x-2">
+              <Button onClick={() => routeHandler("primary")} variant="primary">
+                Login
+              </Button>
 
-            <Button
-              onClick={() => routeHandler("secondary")}
-              variant="secondary"
-            >
-              Sign up
-            </Button>
+              <Button
+                onClick={() => routeHandler("secondary")}
+                variant="secondary"
+              >
+                Sign up
+              </Button>
+            </div>
+          </div>
+          <div className="md:hidden block">
+            <HamburgerIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
           </div>
         </div>
-        <div className="md:hidden block">
-          <HamburgerIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
-        </div>
-      </div>
-      {/* for mobile */}
+        {/* for mobile */}
+
+      </nav>
       <div
-        className={`min-h-screen fixed top-0 md:hidden z-[10000] overflow-y-hidden bg-white w-full flex justify-between py-[30px] items-baseline px-4 duration-300  ease-in  ${
-          isMenuOpen ? "left-0" : "-left-full"
-        }`}
+        className={`min-h-screen fixed top-0 md:hidden z-[10000] overflow-y-hidden bg-white  w-full flex flex-col gap-y-10 py-2  items-baseline px-4 duration-300  ease-in  ${isMenuOpen ? "left-0" : "-left-full"
+          }`}
       >
-        <ul className=" flex flex-col gap-y-16 items-start justify-start ">
+        <div className="flex justify-between w-full py-4">
+          <NavLink to="/" onClick={() => setIsMenuOpen(!isMenuOpen)} className="flex items-center gap-x-1">
+            <span>
+              <LogoIcon />
+            </span>
+            <span className="text-primary-500 text-xl text-bold font-bold">
+              Hêlane
+            </span>
+          </NavLink>
+          <CloseIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
+        </div>
+        <ul className=" flex flex-col  items-start  h-[300px] justify-between ">
           <li className="">
             <NavLink
               to="/"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={({ isActive }) => {
                 return isActive ? activeClasses : inactiveClasses;
               }}
@@ -109,6 +123,7 @@ export const Navigation = () => {
           <li>
             <NavLink
               to="/search"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={({ isActive }) => {
                 return isActive ? activeClasses : inactiveClasses;
               }}
@@ -120,6 +135,7 @@ export const Navigation = () => {
           <li>
             <NavLink
               to="/agents"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={({ isActive }) => {
                 return isActive ? activeClasses : inactiveClasses;
               }}
@@ -136,8 +152,9 @@ export const Navigation = () => {
           </Button>
         </ul>
 
-        <CloseIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
+
       </div>
-    </nav>
+    </>
+
   );
 };
