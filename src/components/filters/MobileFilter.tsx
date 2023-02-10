@@ -46,10 +46,10 @@ const bathrooms = [
 ];
 
 const homeSizes = [
-  { value: 100, label: "100m" },
-  { value: 200, label: "200m" },
-  { value: 300, label: "300m" },
-  { value: 10_000, label: "300m+" },
+  { value: 100, label: "100" },
+  { value: 200, label: "200" },
+  { value: 300, label: "300" },
+  { value: 10_000, label: "300+" },
 ];
 export const MobileFilter = () => {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
