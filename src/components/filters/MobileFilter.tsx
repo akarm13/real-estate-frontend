@@ -62,7 +62,7 @@ const colourStyles: StylesConfig = {
     ...styles,
     backgroundColor: "white",
     borderRadius: 8,
-    minHeight: 48,
+    minHeight: 40,
     borderColor: isFocused ? "#5B4DFF" : "#ECEBEF",
   }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -78,6 +78,9 @@ const colourStyles: StylesConfig = {
       backgroundColor: "rgba(91, 77, 255, 0.1)",
       borderRadius: 8,
       padding: "4px 8px",
+      height: 32,
+      display: "flex",
+      alignItems: "center",
     };
   },
   multiValueLabel: (styles, { data }) => ({
