@@ -6,6 +6,7 @@ type Props = {
   secondInputPlaceholder?: string;
   firstInputValue?: string;
   secondInputValue?: string;
+
   onFirstInputChange?: (value: string) => void;
   onSecondInputChange?: (value: string) => void;
 };
@@ -18,8 +19,10 @@ export const PriceInput = ({
   onSecondInputChange,
   secondInputPlaceholder,
   secondInputValue,
+
 }: Props) => {
   return (
+
     <div className={`flex items-center gap-x-4 ${containerClassName}`}>
       <div className="relative flex">
         <div className="absolute left-0 top-0 h-full flex items-center justify-center bg-white-100 rounded-lg w-8 text-gray-700">
@@ -46,5 +49,6 @@ export const PriceInput = ({
         />
       </div>
     </div>
+
   );
 };
