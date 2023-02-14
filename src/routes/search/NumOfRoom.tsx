@@ -6,12 +6,8 @@ export const NumOfRoom = () => {
 
   return (
     <div className="w-full">
-
-      <h1 className="mb-4 capitalize text-lg text-primaryText font-semibold">
-        rooms
-      </h1>
       <div className="flex md:flex-col justify-between gap-y-8">
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col gap-y-2">
           <span className="w-full   text-base  text-primaryText  font-medium capitalize">
             bedroom
           </span>

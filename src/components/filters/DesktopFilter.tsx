@@ -12,7 +12,7 @@ export const DesktopFilter = () => {
       <Type />
       <hr />
       <PriceInput
-
+        name="Price"
         containerClassName="mt-4"
         firstInputPlaceholder="Min Price"
         secondInputPlaceholder="Max Price"
