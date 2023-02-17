@@ -10,7 +10,7 @@ import { useState } from "react";
 export const Navigation = () => {
   const navigate = useNavigate();
   const activeClasses =
-    "md:bg-primary-background  md:text-primary-500 md:px-4 md:py-2 md:my-0 md:mx-0 md:rounded-lg";
+    "md:bg-primary-background md:text-primary-500 md:px-4 md:py-2 md:my-0 md:mx-0 md:rounded-lg font-medium";
   const inactiveClasses =
     "md:bg-white text-secondaryText md:px-4 md:py-2 md:my-0 md:mx-0 rounded-lg";
   const routeHandler = (change: String) => {
