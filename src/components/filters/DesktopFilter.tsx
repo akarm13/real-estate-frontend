@@ -66,16 +66,16 @@ export const DesktopFilter = () => {
       <HomeSize />
       <hr />
 
-      <div className="p-4">
+      <div className="p-1">
         <div className="flex items-center">
           <h1 className="text-base font-semibold text-primaryText flex flex-col">
             <span>Keyword</span>
-            <span className="text-gray-500 font-normal mt-1">
+            <span className="text-gray-500 font-normal text-sm mt-1">
               (Search by title, ameneties, etc.)
             </span>
           </h1>
         </div>
-        <div className="grid items-center mt-4 flex-wrap mb-12">
+        <div className="grid items-center mt-4 flex-wrap ">
           {/* Put the dropdown list above */}
           <CreatableSelect
             options={[]}
