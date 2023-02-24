@@ -7,7 +7,7 @@ import { HomeSize } from "./HomeSize";
 import { InputSearch } from "./InputSearch";
 import { NumOfRoom } from "./NumOfRoom";
 import { RangePrice } from "./RangePrice";
-import { Type } from "./Type";
+import { Type } from "./TypeOfHouse";
 
 import { Link } from "react-router-dom";
 import { featuredProperties } from "../../dummyData";

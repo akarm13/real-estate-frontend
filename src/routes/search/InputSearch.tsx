@@ -8,7 +8,7 @@ export const InputSearch = () => {
     query: queries.sm,
   });
   return (
-    <div className="flex justify-between items-center w-full">
+    <div className="lg:flex lg:justify-between lg:items-center lg:w-full hidden">
       <div className="bg-searchBackground py-1 md:py-2 md: px-4 w-full mx-auto md:mx-0 lg:w-[700px] rounded-lg flex justify-between">
         {isSmall ? (
           <>

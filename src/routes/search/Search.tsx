@@ -14,6 +14,7 @@ import {
 import { featuredProperties } from "../../dummyData";
 import { ReactComponent as FilterIcon } from "../../assets/icons/search/filters.svg";
 import { Button } from "../../components/Button";
+import { InputSearch } from "./InputSearch";
 const sortOptions = [
   { value: "newest", label: "Newest" },
   { value: "oldest", label: "Oldest" },
@@ -34,6 +35,7 @@ export const Search = () => {
         </div>
 
         <div className="flex flex-col">
+          <InputSearch />
           <div className="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ">
             {featuredProperties.map((property) => (
               <Link key={property.id} to={`/listings/${property.id}`}>
