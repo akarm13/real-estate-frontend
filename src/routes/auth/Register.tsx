@@ -10,14 +10,25 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SignUser } from "../../types/property";
 import { Button } from "../../components/Button";
-
+import axios from "axios";
+import { response } from "../../types/property";
+import { useCreatedUserMutation } from "../../services/auth";
 export const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const textStyle = 'font-bold text-base text-primaryText'
+
+  const [
+    createdUser, // This is the mutation trigger
+    result,   // This is the destructured mutation result
+  ] = useCreatedUserMutation()
+  console.log("result 1", result);
+
+
   const schema = yup.object().shape({
-    fullname: yup.string().required(),
+    fullName: yup.string().required(),
     email: yup.string().email().required(),
+    phone: yup.string().required(),
     agent: yup.string().required(),
     password: yup.string().min(5).max(20).required(),
   });
@@ -30,8 +41,19 @@ export const Register = () => {
     resolver: yupResolver(schema),
   });
 
-  const onsubmit = (data: SignUser) => {
-    console.log(data);
+  const onsubmit = async (user: SignUser) => {
+
+    if (user.agent === "YES") {
+      delete user.agent
+      user.role = 'agent'
+
+      createdUser(user)
+    } else {
+
+      delete user.agent
+      user.role = 'user'
+      createdUser(user)
+    }
   };
 
   return (
@@ -70,18 +92,18 @@ export const Register = () => {
               onSubmit={handleSubmit(onsubmit)}
             >
               <div className="flex flex-col  gap-2">
-                <label htmlFor="fullname" className={textStyle}>
+                <label htmlFor="fullName" className={textStyle}>
                   Full name
                 </label>
                 <input
-                  {...register("fullname")}
+                  {...register("fullName")}
                   className="bg-white border border-primary-background  h-14 ring-0    focus:outline-none focus:border-primary-500 font-bold  text-secondaryText  rounded-lg"
                   type="text"
-                  name="fullname"
-                  id="fullname"
+                  name="fullName"
+                  id="fullName"
                 />
                 <p className="text-sm text-red-700">
-                  {errors.fullname?.message?.toString()}
+                  {errors.fullName?.message?.toString()}
                 </p>
               </div>
 
@@ -98,6 +120,21 @@ export const Register = () => {
                 />
                 <p className="text-sm text-red-700">
                   {errors.email?.message?.toString()}
+                </p>
+              </div>
+              <div className="flex  flex-col  gap-2">
+                <label htmlFor="phone" className={textStyle}>
+                  Phone Number
+                </label>
+                <input
+                  {...register("phone")}
+                  className="bg-white border border-primary-background  h-14 ring-0    focus:outline-none focus:border-primary-500 font-bold  text-secondaryText  rounded-lg"
+                  type="text"
+                  name="phone"
+                  id="phone"
+                />
+                <p className="text-sm text-red-700">
+                  {errors.phone?.message?.toString()}
                 </p>
               </div>
 
