@@ -27,9 +27,15 @@ export type LoginUser = {
 }
 
 export type SignUser = {
-  fullname: string,
+  fullName: string,
   email: string,
-  agent: string,
+  agent?: string,
+  role?: string,
+  phone: string,
   password: string
+}
 
+export type response = {
+  token: string,
+  expiresInSeconds: number
 }
