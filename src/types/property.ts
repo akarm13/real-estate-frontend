@@ -20,22 +20,21 @@ export type Question = {
   isShown: boolean;
 };
 
+export type LoginPayload = {
+  email: string;
+  password: string;
+};
 
-export type LoginUser = {
-  email: string,
-  password: string
-}
+export type RegisterPayload = {
+  fullName: string;
+  email: string;
+  agent: string;
+  role: string;
+  phone: string;
+  password: string;
+};
 
-export type SignUser = {
-  fullName: string,
-  email: string,
-  agent?: string,
-  role?: string,
-  phone: string,
-  password: string
-}
-
-export type response = {
-  token: string,
-  expiresInSeconds: number
-}
+export type TokenResponse = {
+  token: string;
+  expiresInSeconds: number;
+};

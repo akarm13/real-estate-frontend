@@ -8,29 +8,21 @@ import { ReactComponent as SignIllustration } from "../../assets/illustrations/s
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { SignUser } from "../../types/property";
 import { Button } from "../../components/Button";
-import axios from "axios";
-import { response } from "../../types/property";
-import { useCreateUserMutation } from "../../services/auth";
+import { RegisterPayload } from "../../types/property";
+import { useRegisterMutation } from "../../api/endpoints/auth";
 import { useEffect } from "react";
+
 export const Register = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const textStyle = 'font-bold text-base text-primaryText'
+  const textStyle = "font-bold text-base text-primaryText";
 
-  const [
-    createUser, // This is the mutation trigger
-    result,   // This is the destructured mutation result
-  ] = useCreateUserMutation()
-
-
+  const [createUser, result] = useRegisterMutation();
 
   const schema = yup.object().shape({
     fullName: yup.string().required(),
     email: yup.string().email().required(),
     phone: yup.string().required(),
-    agent: yup.string().required(),
+    role: yup.string().required(),
     password: yup.string().min(5).max(20).required(),
   });
 
@@ -39,38 +31,25 @@ export const Register = () => {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUser>({
+  } = useForm<RegisterPayload>({
     resolver: yupResolver(schema),
   });
 
-
   useEffect(() => {
-
-
-
-
-
-    if (result.originalArgs) {
-
-
-      localStorage.setItem('token', JSON.stringify(result?.data))
+    if (result.data?.token) {
+      localStorage.setItem("token", result.data?.token);
     }
-  }, [result])
-  const onsubmit = async (user: SignUser) => {
+  }, [result]);
+  const onsubmit = async (user: RegisterPayload) => {
+    if (user.role === "YES") {
+      user.role = "agent";
 
-    if (user.agent === "YES") {
-      delete user.agent
-      user.role = 'agent'
-
-      createUser(user)
-
+      createUser(user);
     } else {
-
-      delete user.agent
-      user.role = 'user'
-      createUser(user)
+      user.role = "user";
+      createUser(user);
     }
-    reset()
+    // reset();
   };
 
   return (
@@ -161,9 +140,9 @@ export const Register = () => {
                 </label>
 
                 <select
-                  {...register("agent")}
+                  {...register("role")}
                   className="bg-white border border-primary-background  h-14 ring-0 px-2    focus:outline-none focus:border-primary-500 font-bold  text-secondaryText  rounded-lg"
-                  name="agent"
+                  name="role"
                   id="agent"
                 >
                   <option className="capitalize">YES</option>
@@ -192,15 +171,19 @@ export const Register = () => {
               </div>
 
               <div className="flex flex-col  my-2 ">
-                <Button onClick={() => console.log("primary")} variant="primary">
+                <Button
+                  onClick={() => console.log("primary")}
+                  variant="primary"
+                >
                   Create account
                 </Button>
               </div>
             </form>
 
-
             <p className=" ">
-              <span className="text-secondaryText text-base  font-normal pr-1.5 leading-6">Don’t have a Hêlane account yet?</span>
+              <span className="text-secondaryText text-base  font-normal pr-1.5 leading-6">
+                Don’t have a Hêlane account yet?
+              </span>
               <NavLink to="/login" className="text-primaryText">
                 Login
               </NavLink>

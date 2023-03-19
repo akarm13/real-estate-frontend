@@ -1,4 +1,4 @@
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { ReactComponent as LogoIcon } from "../../assets/icons/listing/logo.svg";
 
@@ -7,13 +7,10 @@ import { ReactComponent as LoginIllustration } from "../../assets/illustrations/
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { LoginUser } from "../../types/property";
 import { Button } from "../../components/Button";
+import { LoginPayload } from "../../types/property";
 
 export const Login = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-
   const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().min(5).max(20).required(),
@@ -23,11 +20,11 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginUser>({
+  } = useForm<LoginPayload>({
     resolver: yupResolver(schema),
   });
 
-  const onsubmit = (data: LoginUser) => {
+  const onSubmit = (data: LoginPayload) => {
     if (data.email && data.password) {
       console.log(data.email);
       console.log(data.password);
@@ -56,10 +53,8 @@ export const Login = () => {
         </div>
         <div className="flex-1  justify-center items-center">
           {/* login and sign up section */}
-
           <div className="flex flex-col   gap-14 my-16 md:my-20 md:mx-12  mx-5">
             <div className="flex flex-col gap-y-4">
-
               <p className="lg:text-2xl text-xl font-medium  text-primaryText">
                 Welcome to Hêlane
               </p>
@@ -68,13 +63,15 @@ export const Login = () => {
               </h3>
             </div>
             <div className="">
-
               <form
                 className="my-5 flex flex-col gap-4 max-w-[550px] md:w-[592px]"
-                onSubmit={handleSubmit(onsubmit)}
+                onSubmit={handleSubmit(onSubmit)}
               >
                 <div className="flex flex-col  gap-4">
-                  <label htmlFor="email" className="font-bold text-base text-primaryText ">
+                  <label
+                    htmlFor="email"
+                    className="font-bold text-base text-primaryText "
+                  >
                     Email address
                   </label>
                   <input
@@ -90,7 +87,10 @@ export const Login = () => {
                 </div>
 
                 <div className="flex flex-col gap-4">
-                  <label htmlFor="password" className="font-bold text-base text-primaryText">
+                  <label
+                    htmlFor="password"
+                    className="font-bold text-base text-primaryText"
+                  >
                     Password
                   </label>
                   <input
@@ -106,15 +106,19 @@ export const Login = () => {
                 </div>
 
                 <div className="flex flex-col  my-2 ">
-                  <Button onClick={() => console.log("primary")} variant="primary">
+                  <Button
+                    onClick={() => console.log("primary")}
+                    variant="primary"
+                  >
                     Login
                   </Button>
-
                 </div>
               </form>
 
               <p className=" ">
-                <span className="text-secondaryText text-base  font-normal pr-1.5 leading-6">Don’t have a Hêlane account yet?</span>
+                <span className="text-secondaryText text-base  font-normal pr-1.5 leading-6">
+                  Don’t have a Hêlane account yet?
+                </span>
                 <NavLink to="/register" className="text-primaryText">
                   Sign up
                 </NavLink>

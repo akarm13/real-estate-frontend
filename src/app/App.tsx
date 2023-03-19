@@ -16,8 +16,6 @@ function App() {
 
   const [user, setUser] = useState(null);
 
-  console.log(user);
-
   // If the current page is the login or register page
   const isAuthPage =
     location.pathname === "/register" || location.pathname === "/login";
