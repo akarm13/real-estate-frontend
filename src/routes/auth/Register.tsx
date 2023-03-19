@@ -16,7 +16,7 @@ import { useEffect } from "react";
 export const Register = () => {
   const textStyle = "font-bold text-base text-primaryText";
 
-  const [createUser, result] = useRegisterMutation();
+  const [createUser, { data, isLoading }] = useRegisterMutation();
 
   const schema = yup.object().shape({
     fullName: yup.string().required(),
@@ -36,10 +36,10 @@ export const Register = () => {
   });
 
   useEffect(() => {
-    if (result.data?.token) {
-      localStorage.setItem("token", result.data?.token);
+    if (data?.token) {
+      localStorage.setItem("token", data?.token);
     }
-  }, [result]);
+  }, [data]);
   const onsubmit = async (user: RegisterPayload) => {
     if (user.role === "YES") {
       user.role = "agent";
