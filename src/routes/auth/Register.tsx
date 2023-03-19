@@ -12,17 +12,18 @@ import { SignUser } from "../../types/property";
 import { Button } from "../../components/Button";
 import axios from "axios";
 import { response } from "../../types/property";
-import { useCreatedUserMutation } from "../../services/auth";
+import { useCreateUserMutation } from "../../services/auth";
+import { useEffect } from "react";
 export const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const textStyle = 'font-bold text-base text-primaryText'
 
   const [
-    createdUser, // This is the mutation trigger
+    createUser, // This is the mutation trigger
     result,   // This is the destructured mutation result
-  ] = useCreatedUserMutation()
-  console.log("result 1", result);
+  ] = useCreateUserMutation()
+
 
 
   const schema = yup.object().shape({
@@ -35,25 +36,41 @@ export const Register = () => {
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<SignUser>({
     resolver: yupResolver(schema),
   });
 
+
+  useEffect(() => {
+
+
+
+
+
+    if (result.originalArgs) {
+
+
+      localStorage.setItem('token', JSON.stringify(result?.data))
+    }
+  }, [result])
   const onsubmit = async (user: SignUser) => {
 
     if (user.agent === "YES") {
       delete user.agent
       user.role = 'agent'
 
-      createdUser(user)
+      createUser(user)
+
     } else {
 
       delete user.agent
       user.role = 'user'
-      createdUser(user)
+      createUser(user)
     }
+    reset()
   };
 
   return (

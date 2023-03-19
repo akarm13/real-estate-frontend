@@ -7,9 +7,9 @@ export const authApi = createApi({
     reducerPath: 'authApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://real-estate-api-production.up.railway.app/auth/' }),
     endpoints: (builder) => ({
-        createdUser: builder.mutation({
+        createUser: builder.mutation({
             query: (user: SignUser) => ({
-                url: "register?fbclid=IwAR1zu3EVdr4s5LiWJCsqS9TM1B4-O9bHtMER8ph4hOvzPNSLQ3q5mxZtUgg",
+                url: "register",
                 method: "POST",
                 body: user
             })
@@ -19,4 +19,4 @@ export const authApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useCreatedUserMutation } = authApi
+export const { useCreateUserMutation } = authApi
