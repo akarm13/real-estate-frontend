@@ -9,6 +9,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "../../components/Button";
 import { LoginPayload } from "../../types/property";
+import { useLoginMutation } from "../../api/endpoints/auth";
+import { useEffect } from "react";
+import { ClipLoader } from "react-spinners";
 
 export const Login = () => {
   const schema = yup.object().shape({
@@ -18,17 +21,24 @@ export const Login = () => {
 
   const {
     register,
+
     handleSubmit,
     formState: { errors },
   } = useForm<LoginPayload>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: LoginPayload) => {
-    if (data.email && data.password) {
-      console.log(data.email);
-      console.log(data.password);
+  const [loginUser, { data, isLoading, isError }] = useLoginMutation()
+
+  useEffect(() => {
+    console.log(data);
+
+    if (data?.token) {
+      localStorage.setItem("token", data?.token);
     }
+  }, [data]);
+  const onSubmit = (data: LoginPayload) => {
+    loginUser(data)
   };
 
   return (
@@ -104,13 +114,25 @@ export const Login = () => {
                     {errors.password?.message?.toString()}
                   </p>
                 </div>
-
+                <div className="flex flex-col  gap-2">
+                  {
+                    isError && <span className="text-sm text-red-700"> this email does not exit or the password may be wrong</span>
+                  }
+                </div>
                 <div className="flex flex-col  my-2 ">
                   <Button
                     onClick={() => console.log("primary")}
                     variant="primary"
                   >
-                    Login
+                    {
+                      isLoading ? <ClipLoader
+                        color="#36d7b7"
+
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+
+                      /> : "Login"
+                    }
                   </Button>
                 </div>
               </form>

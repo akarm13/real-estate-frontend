@@ -13,6 +13,8 @@ export const authApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+
+
     }),
     login: builder.mutation<TokenResponse, LoginPayload>({
       query: (body) => ({
@@ -24,4 +26,4 @@ export const authApi = api.injectEndpoints({
   }),
 });
 
-export const { useRegisterMutation } = authApi;
+export const { useRegisterMutation, useLoginMutation } = authApi;
