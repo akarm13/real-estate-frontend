@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { ReactComponent as LogoIcon } from "../../assets/icons/listing/logo.svg";
 
@@ -30,11 +30,15 @@ export const Login = () => {
 
   const [loginUser, { data, isLoading, isError }] = useLoginMutation()
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     console.log(data);
 
     if (data?.token) {
       localStorage.setItem("token", data?.token);
+      navigate('/')
+
     }
   }, [data]);
   const onSubmit = (data: LoginPayload) => {

@@ -18,6 +18,7 @@ export const Register = () => {
 
   const [createUser, { data, isLoading, isError }] = useRegisterMutation();
 
+  const navigate = useNavigate()
 
   const schema = yup.object().shape({
     fullName: yup.string().required(),
@@ -42,6 +43,8 @@ export const Register = () => {
 
     if (data?.token) {
       localStorage.setItem("token", data?.token);
+      navigate('/')
+
     }
   }, [data]);
   const onsubmit = async (user: RegisterPayload) => {
