@@ -37,5 +37,4 @@ export type RegisterPayload = {
 export type TokenResponse = {
   token: string;
   expiresInSeconds: number;
-
 };
