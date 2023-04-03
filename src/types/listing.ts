@@ -92,3 +92,28 @@ export type Rooms = {
   bathrooms: number;
   other: number;
 };
+
+export type SearchPayload = {
+  keyword?: string;
+  buildingType?: BuildingType[];
+  type?: ListingType[];
+  minPrice?: number;
+  maxPrice?: number;
+  minBedrooms?: number;
+  maxBedrooms?: number;
+  minBathrooms?: number;
+  maxBathrooms?: number;
+  minHomeSize?: number;
+  maxHomeSize?: number;
+  pageNumber?: number;
+  pageSize?: number;
+  longitude?: number;
+  latitude?: number;
+  radius?: number;
+};
+
+export type ListingStatus = "featured" | "normal";
+
+export type ListingType = "sale" | "rent";
+
+export type BuildingType = "house" | "apartment" | "villa" | "land";
