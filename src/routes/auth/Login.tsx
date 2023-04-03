@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "../../components/Button";
-import { LoginPayload } from "../../types/property";
+import { LoginPayload } from "../../types/listing";
 import { useLoginMutation } from "../../api/endpoints/auth";
 import { useEffect } from "react";
 import { ClipLoader } from "react-spinners";
@@ -28,21 +28,20 @@ export const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const [loginUser, { data, isLoading, isError }] = useLoginMutation()
+  const [loginUser, { data, isLoading, isError }] = useLoginMutation();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(data);
 
     if (data?.token) {
       localStorage.setItem("token", data?.token);
-      navigate('/')
-
+      navigate("/");
     }
   }, [data]);
   const onSubmit = (data: LoginPayload) => {
-    loginUser(data)
+    loginUser(data);
   };
 
   return (
@@ -119,24 +118,27 @@ export const Login = () => {
                   </p>
                 </div>
                 <div className="flex flex-col  gap-2">
-                  {
-                    isError && <span className="text-sm text-red-700"> this email does not exit or the password may be wrong</span>
-                  }
+                  {isError && (
+                    <span className="text-sm text-red-700">
+                      {" "}
+                      this email does not exit or the password may be wrong
+                    </span>
+                  )}
                 </div>
                 <div className="flex flex-col  my-2 ">
                   <Button
                     onClick={() => console.log("primary")}
                     variant="primary"
                   >
-                    {
-                      isLoading ? <ClipLoader
+                    {isLoading ? (
+                      <ClipLoader
                         color="#36d7b7"
-
                         aria-label="Loading Spinner"
                         data-testid="loader"
-
-                      /> : "Login"
-                    }
+                      />
+                    ) : (
+                      "Login"
+                    )}
                   </Button>
                 </div>
               </form>

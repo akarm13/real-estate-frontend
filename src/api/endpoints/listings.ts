@@ -1,4 +1,4 @@
-import { Listing } from "../../types/property";
+import { Listing } from "../../types/listing";
 import { api } from "../rtk-api";
 export type SearchPayload = {
   keyword?: string;
@@ -19,11 +19,11 @@ export type SearchPayload = {
   radius?: number;
 };
 
-export type ListingStatus = 'featured' | 'normal';
+export type ListingStatus = "featured" | "normal";
 
-export type ListingType = 'sale' | 'rent';
+export type ListingType = "sale" | "rent";
 
-export type BuildingType = 'house' | 'apartment' | 'villa' | 'land';
+export type BuildingType = "house" | "apartment" | "villa" | "land";
 
 export const listingsApi = api.injectEndpoints({
   endpoints: (builder) => ({

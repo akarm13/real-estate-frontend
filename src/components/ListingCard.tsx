@@ -1,6 +1,6 @@
 import house from "../assets/house/1.jpg";
 
-import { PropertyStatus, PropertyType } from "../types/property";
+import { PropertyStatus, PropertyType } from "../types/listing";
 
 import { ReactComponent as AreaIcon } from "../assets/icons/listing/area.svg";
 import { ReactComponent as BathroomIcon } from "../assets/icons/listing/bathroom.svg";

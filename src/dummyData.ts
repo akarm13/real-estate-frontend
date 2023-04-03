@@ -1,4 +1,4 @@
-import { Property } from "./types/property";
+import { Property } from "./types/listing";
 
 export const featuredProperties: Property[] = [
   {

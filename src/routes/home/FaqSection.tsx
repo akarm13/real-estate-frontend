@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Question } from "../../types/property";
+import { Question } from "../../types/listing";
 
 import { ReactComponent as PlusIcon } from "../../assets/icons/listing/plus.svg";
 import { ReactComponent as MinusIcon } from "../../assets/icons/listing/minus.svg";

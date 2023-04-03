@@ -6,11 +6,13 @@ import { ReactComponent as CloseIcon } from "../assets/icons/close.svg";
 import { useMediaQuery } from "react-responsive";
 import { queries } from "../devices";
 import { useState } from "react";
-import { TokenResponse } from "../types/property";
+import { TokenResponse } from "../types/listing";
 
 export const Navigation = () => {
   const navigate = useNavigate();
-  const [token, setToken] = useState<String | null>(localStorage.getItem('token'))
+  const [token, setToken] = useState<String | null>(
+    localStorage.getItem("token")
+  );
   console.log(token);
 
   const activeClasses =
@@ -23,8 +25,8 @@ export const Navigation = () => {
     } else if (change === "secondary") {
       navigate("/register");
     } else if (change == "logout") {
-      localStorage.removeItem('token')
-      setToken('')
+      localStorage.removeItem("token");
+      setToken("");
     }
   };
 
@@ -80,14 +82,19 @@ export const Navigation = () => {
           </ul>
 
           <div className="hidden md:flex md:gap-x-6">
-            {
-              token ? <Button
+            {token ? (
+              <Button
                 onClick={() => routeHandler("logout")}
                 variant="secondary"
               >
                 Logout
-              </Button> : <div className="flex gap-x-2">
-                <Button onClick={() => routeHandler("primary")} variant="primary">
+              </Button>
+            ) : (
+              <div className="flex gap-x-2">
+                <Button
+                  onClick={() => routeHandler("primary")}
+                  variant="primary"
+                >
                   Login
                 </Button>
 
@@ -98,8 +105,7 @@ export const Navigation = () => {
                   Sign up
                 </Button>
               </div>
-            }
-
+            )}
           </div>
           <div className="md:hidden block">
             <HamburgerIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
@@ -108,8 +114,9 @@ export const Navigation = () => {
         {/* for mobile */}
       </nav>
       <div
-        className={`min-h-screen fixed top-0 md:hidden z-[10000] overflow-y-hidden bg-white  w-full flex flex-col gap-y-10 py-2  items-baseline px-4 duration-300  ease-in  ${isMenuOpen ? "left-0" : "-left-full"
-          }`}
+        className={`min-h-screen fixed top-0 md:hidden z-[10000] overflow-y-hidden bg-white  w-full flex flex-col gap-y-10 py-2  items-baseline px-4 duration-300  ease-in  ${
+          isMenuOpen ? "left-0" : "-left-full"
+        }`}
       >
         <div className="flex justify-between w-full py-4">
           <NavLink
@@ -161,13 +168,12 @@ export const Navigation = () => {
               Agents
             </NavLink>
           </li>
-          {
-            token ? <Button
-              onClick={() => routeHandler("logout")}
-              variant="secondary"
-            >
+          {token ? (
+            <Button onClick={() => routeHandler("logout")} variant="secondary">
               Logout
-            </Button> : <>
+            </Button>
+          ) : (
+            <>
               <Button onClick={() => routeHandler("primary")} variant="primary">
                 Login
               </Button>
@@ -179,8 +185,7 @@ export const Navigation = () => {
                 Sign up
               </Button>
             </>
-          }
-
+          )}
         </ul>
       </div>
     </>

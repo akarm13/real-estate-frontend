@@ -1,4 +1,3 @@
-
 export type PropertyType = "rent" | "sale";
 export type PropertyStatus = "featured" | "sold" | "new" | "normal";
 
@@ -40,9 +39,6 @@ export type TokenResponse = {
   expiresInSeconds: number;
 };
 
-
-
-
 export type Listing = {
   _id: string;
   title: string;
@@ -61,22 +57,22 @@ export type Listing = {
   createdAt: Date;
   updatedAt: Date;
   __v: number;
-}
+};
 
 export type Amenity = {
   _id: string;
   title: string;
   __v: number;
-}
+};
 
 export type Geometry = {
   coordinates: number[];
-}
+};
 
 export type Location = {
   address: string;
   city: string;
-}
+};
 
 export type User = {
   _id: string;
@@ -89,10 +85,10 @@ export type User = {
   createdAt: Date;
   updatedAt: Date;
   __v: number;
-}
+};
 
 export type Rooms = {
   bedrooms: number;
   bathrooms: number;
   other: number;
-}
+};

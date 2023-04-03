@@ -2,7 +2,7 @@ import {
   LoginPayload,
   RegisterPayload,
   TokenResponse,
-} from "../../types/property";
+} from "../../types/listing";
 import { api } from "../rtk-api";
 
 export const authApi = api.injectEndpoints({
@@ -13,8 +13,6 @@ export const authApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
-
-
     }),
     login: builder.mutation<TokenResponse, LoginPayload>({
       query: (body) => ({

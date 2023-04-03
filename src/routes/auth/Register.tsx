@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "../../components/Button";
-import { RegisterPayload } from "../../types/property";
+import { RegisterPayload } from "../../types/listing";
 import { useRegisterMutation } from "../../api/endpoints/auth";
 import { useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -18,7 +18,7 @@ export const Register = () => {
 
   const [createUser, { data, isLoading, isError }] = useRegisterMutation();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const schema = yup.object().shape({
     fullName: yup.string().required(),
@@ -27,7 +27,6 @@ export const Register = () => {
     role: yup.string().required(),
     password: yup.string().min(5).max(20).required(),
   });
-
 
   const {
     register,
@@ -39,17 +38,12 @@ export const Register = () => {
   });
 
   useEffect(() => {
-
-
     if (data?.token) {
       localStorage.setItem("token", data?.token);
-      navigate('/')
-
+      navigate("/");
     }
   }, [data]);
   const onsubmit = async (user: RegisterPayload) => {
-
-
     if (user.role === "YES") {
       user.role = "agent";
 
@@ -58,14 +52,11 @@ export const Register = () => {
       user.role = "user";
       createUser(user);
     }
-
   };
 
   return (
     <div className="h-screen ">
-
       <div className="md:flex h-full">
-
         <div className="flex-1 md:bg-primary-background ">
           <NavLink
             to="/"
@@ -161,7 +152,6 @@ export const Register = () => {
                 </select>
 
                 <p className="text-sm text-red-700">
-
                   {errors.agent?.message?.toString()}
                 </p>
               </div>
@@ -182,30 +172,27 @@ export const Register = () => {
                 </p>
               </div>
               <div className="flex flex-col  gap-2">
-                {
-                  isError && <span className="text-sm text-red-700">User with this email or phone already exists</span>
-                }
+                {isError && (
+                  <span className="text-sm text-red-700">
+                    User with this email or phone already exists
+                  </span>
+                )}
               </div>
               <div className="flex flex-col  my-2 ">
-
-
-
                 <Button
                   onClick={() => console.log("primary")}
                   variant="primary"
                 >
-                  {
-                    isLoading ? <ClipLoader
+                  {isLoading ? (
+                    <ClipLoader
                       color="#36d7b7"
-
                       aria-label="Loading Spinner"
                       data-testid="loader"
-
-                    /> : "Create account"
-                  }
-
+                    />
+                  ) : (
+                    "Create account"
+                  )}
                 </Button>
-
               </div>
             </form>
 
