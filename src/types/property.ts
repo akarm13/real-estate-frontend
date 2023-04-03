@@ -1,3 +1,4 @@
+
 export type PropertyType = "rent" | "sale";
 export type PropertyStatus = "featured" | "sold" | "new" | "normal";
 
@@ -38,3 +39,60 @@ export type TokenResponse = {
   token: string;
   expiresInSeconds: number;
 };
+
+
+
+
+export type Listing = {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  status: string;
+  area: number;
+  rooms: Rooms;
+  images: string[];
+  type: string;
+  buildingType: string;
+  geometry: Geometry;
+  location: Location;
+  amenities: Amenity[];
+  owner: User[];
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+}
+
+export type Amenity = {
+  _id: string;
+  title: string;
+  __v: number;
+}
+
+export type Geometry = {
+  coordinates: number[];
+}
+
+export type Location = {
+  address: string;
+  city: string;
+}
+
+export type User = {
+  _id: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  avatar: string;
+  isVerified: boolean;
+  role: string;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+}
+
+export type Rooms = {
+  bedrooms: number;
+  bathrooms: number;
+  other: number;
+}
