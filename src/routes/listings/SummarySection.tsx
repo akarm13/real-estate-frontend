@@ -8,10 +8,12 @@ import { Button } from "../../components/Button";
 import { useParams, Link } from "react-router-dom";
 import { featuredProperties } from "../../dummyData";
 
-export const SummarySection = () => {
-  const { houseId } = useParams();
+export const SummarySection = ({ data }: any) => {
 
-  const houses = featuredProperties.find((house) => house.id === houseId);
+  //  data.owner.name = data 
+
+  console.log(data?.owner.fullName);
+
 
   return (
     <div className="lg:flex w-full ">
@@ -23,7 +25,7 @@ export const SummarySection = () => {
             <div className="flex items-center mx-2 mt-4">
               <BedroomIcon />
 
-              <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-xs ">{houses?.bedrooms}</span>
+              <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-xs ">{data?.rooms.bedrooms}</span>
             </div>
           </div>
           <div className="ml-2">
@@ -31,21 +33,21 @@ export const SummarySection = () => {
             <div className="flex items-center mx-2 mt-4">
               <BathroomIcon />
 
-              <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-xs">{houses?.bathrooms}</span>
+              <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-xs">{data?.rooms.bathrooms}</span>
             </div>
           </div>
           <div className="ml-2">
             <p className="font-semibold text-xs md:text-base md:ml-0 ml-1  lg:text-lg">Square Area</p>
             <div className="flex items-center  mt-4">
-              <MeterIcon  />
+              <MeterIcon />
 
-              <span className="mx-1 md:mx-4 w-16 lg:text-base md:text-sm text-xs">{houses?.area} m2</span>
+              <span className="mx-1 md:mx-4 w-16 lg:text-base md:text-sm text-xs">{data?.area} m2</span>
             </div>
           </div>
           <div className="">
             <p className="font-semibold text-xs md:text-base   lg:text-lg">Status</p>
             <div className="flex items-center  mt-4">
-              <CheckMarkIcon  />
+              <CheckMarkIcon />
 
               <span className="md:mx-4 lg:text-base md:text-sm text-xs">Active</span>
             </div>
@@ -56,15 +58,7 @@ export const SummarySection = () => {
           <h2 className="lg:text-2xl md:text-lg font-semibold">About this home</h2>
 
           <p className="text-secondaryText text-sm lg:text-base">
-            A beautiful 2-bedroom, 2-bathroom house, with a total area of 200
-            square meters, is now available for sale in Aqary Street,
-            Sulaymaniyah. This active listing features a spacious living area,
-            modern kitchen, and comfortable bedrooms. The house is
-            well-maintained and ready for its new owners. Its prime location in
-            Aqary Street makes it a perfect choice for those looking for easy
-            access to local amenities and a convenient lifestyle. this is a
-            great opportunity to own a wonderful home in a sought-after
-            location.
+            {data?.description}
           </p>
         </div>
       </div>
@@ -73,13 +67,13 @@ export const SummarySection = () => {
         <h5 className="font-semibold text-base lg:text-lg">Sale Price</h5>
 
         <h3 className="text-primary-500 text-lg lg:text-2xl font-bold ">
-          ${houses?.price}
+          ${data?.price}
         </h3>
 
         <div className="flex md:w-48 w-44 justify-between  ">
           <Person />
           <div>
-            <h4 className="font-semibold lg:text-base text-sm"> Akar Mohammed</h4>
+            <h4 className="font-semibold lg:text-base text-sm"> {data?.owner.fullName}</h4>
             <h5 className="text-secondaryText lg:text-base text-sm">Verified Agent</h5>
           </div>
         </div>
@@ -102,7 +96,7 @@ export const SummarySection = () => {
         </div>
 
         <Button className="text-sm" onClick={() => console.log("login")} variant="primary">
-          Show phone number
+          {data?.owner.phone}
         </Button>
       </div>
     </div>

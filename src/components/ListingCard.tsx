@@ -1,6 +1,6 @@
 import house from "../assets/house/1.jpg";
 
-import { PropertyStatus, PropertyType } from "../types/listing";
+import { Listing, PropertyStatus, PropertyType } from "../types/listing";
 
 import { ReactComponent as AreaIcon } from "../assets/icons/listing/area.svg";
 import { ReactComponent as BathroomIcon } from "../assets/icons/listing/bathroom.svg";
@@ -8,26 +8,16 @@ import { ReactComponent as BedroomIcon } from "../assets/icons/listing/bedroom.s
 import { ReactComponent as FeaturedStarIcon } from "../assets/icons/listing/featured-star.svg";
 import { ReactComponent as LocationIcon } from "../assets/icons/listing/location.svg";
 
-type Props = {
-  price: number;
-  title: string;
-  address: string;
-  type: PropertyType;
-  bedrooms: number;
-  bathrooms: number;
-  area: number;
-  status: PropertyStatus;
-};
+
 export const ListingCard = ({
   price,
-  address,
+  location,
   area,
-  bathrooms,
-  bedrooms,
+  rooms,
   status,
   title,
   type,
-}: Props) => {
+}: Listing) => {
   // If type is sale then "bg-primary-800 text-white" else "bg-primary-200 text-primary-800"
   const typeColor =
     type === "sale"
@@ -56,7 +46,7 @@ export const ListingCard = ({
         <p className="flex gap-x-2 p-0 m-0 items-center">
           <LocationIcon />
           <span className="text-secondaryText text-sm lg:text-md">
-            {address}
+            {location.address + ' ' + location.city}
           </span>
         </p>
 
@@ -64,12 +54,12 @@ export const ListingCard = ({
         <div className="flex justify-between w-full mt-2 gap-x-4 lg:gap-0">
           <PropertyDetail
             icon={<BedroomIcon />}
-            value={bedrooms}
+            value={rooms.bedrooms}
             text={"bd."}
           />
           <PropertyDetail
             icon={<BathroomIcon />}
-            value={bathrooms}
+            value={rooms.bathrooms}
             text={"bth."}
           />
           <PropertyDetail icon={<AreaIcon />} value={area} text={"m²"} />

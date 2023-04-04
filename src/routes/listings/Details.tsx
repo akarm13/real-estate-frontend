@@ -8,18 +8,27 @@ import { SummarySection } from "./SummarySection";
 import { MapSection } from "./MapSection";
 import { SimilarListingsSection } from "./SimilarListingsSection";
 import { featuredProperties } from "../../dummyData";
+import { useGetListingByIdQuery } from "../../api/endpoints/listings";
+import { Listing, ListingIdRequest } from "../../types/listing";
 
 export const Details = () => {
-  const { houseId } = useParams();
+  const { houseId } = useParams<ListingIdRequest>();
 
-  const houses = featuredProperties.find((house) => house.id === houseId);
+
+
+
+
+  const { data, isLoading, isError } = useGetListingByIdQuery(houseId);
+
+
+
 
   return (
     <div className="w-full">
       <div className="flex flex-col w-full mx-auto px-5 lg:px-36 py-12">
         <div>
           <Link className="flex  items-center	" to="/search">
-            <BackIcon  />
+            <BackIcon />
             <p className="lg:text-sm text-xs font-semibold text-primary-400 font-sans ml-2">
               Back to map
             </p>
@@ -28,7 +37,7 @@ export const Details = () => {
 
         <div className=" flex lg:w-full   justify-between items-center  pt-10">
           <h3 className="font-semibold  text-sm md:text-lg lg:text-3xl font-sans">
-            A nice house for sale in Aqary
+            {data?.title}
           </h3>
 
           <div className="flex  lg:mr-14">
@@ -46,15 +55,15 @@ export const Details = () => {
 
         <div className="mt-4">
           <p className="text-secondaryText md:text-base text-sm lg:text-xl font-medium font-sans">
-            {houses?.address}
+            {data?.location.address + ' ' + data?.location.city}
           </p>
         </div>
 
-        <HouseGallery />
-        <SummarySection />
-        <AmenitiesSection />
+        <HouseGallery data={data} />
+        <SummarySection data={data} />
+        <AmenitiesSection data={data} />
         <MapSection />
-        <SimilarListingsSection />
+        {/* <SimilarListingsSection /> */}
       </div>
     </div>
   );
