@@ -4,16 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { DesktopFilter } from "../../components/filters/DesktopFilter";
 import { MobileFilter } from "../../components/filters/MobileFilter";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../components/Select";
 import { featuredProperties } from "../../dummyData";
-import { ReactComponent as FilterIcon } from "../../assets/icons/search/filters.svg";
-import { Button } from "../../components/Button";
 import { InputSearch } from "./InputSearch";
 const sortOptions = [
   { value: "newest", label: "Newest" },

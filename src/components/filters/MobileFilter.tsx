@@ -9,6 +9,8 @@ import CreatableSelect from "react-select/creatable";
 import makeAnimated from "react-select/animated";
 import { StylesConfig } from "react-select";
 
+import "react-spring-bottom-sheet/dist/style.css";
+
 type ListingType = "sale" | "rent";
 type ListingCategory = "houses" | "apartments" | "villa" | "land" | "all";
 

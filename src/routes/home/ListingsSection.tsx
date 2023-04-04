@@ -31,12 +31,16 @@ export const ListingsSection = () => {
           />
         </div>
       ) : (
-        <div className="lg:grid lg:grid-cols-listing lg:gap-x-4 lg:flex-wrap lg:gap-y-10 mt-16 flex gap-x-4   snap-x overflow-x-auto snap-proximity lg:snap-none">
-          {data?.data.map((property) => (
-            <Link key={property._id} to={`/listings/${property._id}`}>
-              <ListingCard {...property} />
-            </Link>
-          ))}
+        <div className="lg:grid lg:grid-cols-listing lg:gap-x-4 lg:flex-wrap lg:gap-y-10 mt-16 flex gap-x-4 snap-x overflow-x-auto snap-proximity lg:snap-none">
+          {data?.data !== undefined && data.data?.length > 0 ? (
+            data?.data.map((property) => (
+              <Link key={property?._id} to={`/listings/${property?._id}`}>
+                <ListingCard {...property} />
+              </Link>
+            ))
+          ) : (
+            <h1>No listings found</h1>
+          )}
         </div>
       )}
     </div>
