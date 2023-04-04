@@ -5,7 +5,6 @@ export const Type = () => {
   const isMedium = useMediaQuery({ query: queries.md });
   return (
     <div className="">
-
       <h1 className="mb-4 capitalize text-lg text-primaryText font-semibold">
         Type
       </h1>
@@ -44,7 +43,6 @@ export const Type = () => {
           </div>
         </li>
       </ul>
-
     </div>
   );
 };

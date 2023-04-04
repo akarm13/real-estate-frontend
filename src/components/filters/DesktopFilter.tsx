@@ -8,7 +8,6 @@ import CreatableSelect from "react-select/creatable";
 import { StylesConfig } from "react-select";
 import makeAnimated from "react-select/animated";
 
-
 export const DesktopFilter = () => {
   const colourStyles: StylesConfig = {
     control: (styles, { isFocused }) => ({
@@ -59,7 +58,8 @@ export const DesktopFilter = () => {
         firstInputPlaceholder="Min Price"
         secondInputPlaceholder="Max Price"
         onFirstInputChange={(value) => console.log(value)}
-        onSecondInputChange={(value) => console.log(value)} />
+        onSecondInputChange={(value) => console.log(value)}
+      />
       <hr />
       <NumOfRoom />
       <hr />
@@ -95,5 +95,5 @@ export const DesktopFilter = () => {
         APPLY FILTERS
       </Button>
     </div>
-  )
+  );
 };

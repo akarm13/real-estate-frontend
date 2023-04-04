@@ -92,7 +92,6 @@ export const NumOfRoom = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-
 export const api = createApi({
   tagTypes: [],
   baseQuery: fetchBaseQuery({
@@ -25,4 +24,4 @@ export const api = createApi({
   reducerPath: "api",
 });
 
-export const { } = api;
+export const {} = api;

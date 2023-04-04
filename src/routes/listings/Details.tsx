@@ -14,14 +14,7 @@ import { Listing, ListingIdRequest } from "../../types/listing";
 export const Details = () => {
   const { houseId } = useParams<ListingIdRequest>();
 
-
-
-
-
   const { data, isLoading, isError } = useGetListingByIdQuery(houseId);
-
-
-
 
   return (
     <div className="w-full">
@@ -43,19 +36,23 @@ export const Details = () => {
           <div className="flex  lg:mr-14">
             <div className="flex items-center justify-between border-primary-background mr-1 lg:mr-4 px-1 py-1 lg:px-5 lg:py-3 border-2 rounded-lg">
               <LocationIcon width={17} />
-              <span className="font-semibold text-xs lg:text-base mx-1 md:mx-2">Share</span>
+              <span className="font-semibold text-xs lg:text-base mx-1 md:mx-2">
+                Share
+              </span>
             </div>
 
             <div className="flex items-center justify-between border-primary-background px-1 py-1  lg:px-5 lg:py-3  border-2 rounded-lg">
               <FeaturedStarIcon width={17} />
-              <span className="font-semibold text-xs lg:text-base mx-1 md:mx-2">Favorite</span>
+              <span className="font-semibold text-xs lg:text-base mx-1 md:mx-2">
+                Favorite
+              </span>
             </div>
           </div>
         </div>
 
         <div className="mt-4">
           <p className="text-secondaryText md:text-base text-sm lg:text-xl font-medium font-sans">
-            {data?.location.address + ' ' + data?.location.city}
+            {data?.location.address + " " + data?.location.city}
           </p>
         </div>
 

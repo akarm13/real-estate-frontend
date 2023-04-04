@@ -8,7 +8,6 @@ import { ReactComponent as BedroomIcon } from "../assets/icons/listing/bedroom.s
 import { ReactComponent as FeaturedStarIcon } from "../assets/icons/listing/featured-star.svg";
 import { ReactComponent as LocationIcon } from "../assets/icons/listing/location.svg";
 
-
 export const ListingCard = ({
   price,
   location,
@@ -46,7 +45,7 @@ export const ListingCard = ({
         <p className="flex gap-x-2 p-0 m-0 items-center">
           <LocationIcon />
           <span className="text-secondaryText text-sm lg:text-md">
-            {location.address + ' ' + location.city}
+            {location.address + " " + location.city}
           </span>
         </p>
 
