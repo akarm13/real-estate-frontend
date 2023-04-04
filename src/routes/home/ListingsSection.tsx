@@ -4,7 +4,11 @@ import { featuredProperties } from "../../dummyData";
 import { useGetAllListingsQuery } from "../../api/endpoints/listings";
 
 export const ListingsSection = () => {
-  const { data } = useGetAllListingsQuery();
+  const { data, isLoading, isError } = useGetAllListingsQuery({
+    pageNumber: 1,
+    pageSize: 10,
+  });
+
   return (
     <div className="w-5/6 md: mx-auto mt-24">
       <h1 className="font-semibold text-2xl md:text-3xl text-primary-900">
