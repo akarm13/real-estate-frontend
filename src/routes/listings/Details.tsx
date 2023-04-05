@@ -11,6 +11,7 @@ import { featuredProperties } from "../../dummyData";
 import { useGetListingByIdQuery } from "../../api/endpoints/listings";
 import { Listing, ListingIdRequest } from "../../types/listing";
 
+
 export const Details = () => {
   const { houseId } = useParams<ListingIdRequest>();
 
