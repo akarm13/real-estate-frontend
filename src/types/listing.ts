@@ -121,3 +121,11 @@ export type BuildingType = "house" | "apartment" | "villa" | "land";
 export type ListingIdRequest = {
   houseId: string | undefined;
 };
+
+export type userIdRequest = {
+  sub: string | undefined;
+};
+
+
+
+
