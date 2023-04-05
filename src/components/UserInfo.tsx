@@ -26,19 +26,23 @@ export const UserInfo = ({ data }: any) => {
     return (
 
 
-        <div className="dropdown inline-block relative pr-10">
-            <button className=" text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+        <div className="dropdown inline-block relative pr-12">
+            <button className=" text-gray-700  font-semibold py-2 px-4 rounded inline-flex items-center">
                 <span className="mr-1  w-10 h-10 rounded-full ">
                     <img src={data?.avatar} className="w-full h-full" alt="" />
                 </span>
                 <DropDown onClick={() => setBool(!bool)} />
             </button>
-            <ul className={`dropdown-menu absolute  ${bool ? 'block' : 'hidden'} text-gray-700   pt-1`}>
-                <li className=""><span>Profile</span></li>
-                <li className=""><span>Edit profile</span></li>
-                <li className=""><span>My listings</span></li>
-                <li className=""><span>My favorites</span></li>
-                <li className=""><span>Account Settings</span></li>
+            <ul className={`dropdown-menu absolute right-0 ${bool ? 'block' : 'hidden'} cursor-pointer w-60 flex flex-col gap-3 text-gray-700 bg-[#FEFEFF] py-10 px-5  pt-0 `}>
+                <li className="hover:bg-slate-50 p-[3px]"><span>Profile</span></li>
+                <hr></hr>
+                <li className="hover:bg-slate-50 p-[3px]"><span>Edit profile</span></li>
+                <hr></hr>
+                <li className="hover:bg-slate-50 p-[3px]"><span>My listings</span></li>
+                <li className="hover:bg-slate-50 p-[3px]"><span>My favorites</span></li>
+                <hr></hr>
+                <li className="hover:bg-slate-50 p-[3px]"><span>Account Settings</span></li>
+                <hr></hr>
 
                 <li className="">  <Button
                     onClick={() => routeHandler("logout")}
