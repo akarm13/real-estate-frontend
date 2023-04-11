@@ -1,18 +1,32 @@
 import { useMediaQuery } from "react-responsive";
 import { queries } from "../../devices";
+import { useState } from "react";
 
 type Props = {
-
-  onInputHandle: (value: string) => void;
-
+  onInputHandle: (values: string[]) => void;
 };
 export const Type = ({ onInputHandle }: Props) => {
-  const isMedium = useMediaQuery({ query: queries.md });
+  const [, setSelectedTypes] = useState<string[]>([]);
 
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
 
-  const onInputChange = (value: any) => {
-    onInputHandle(value.target.value)
+    if (isChecked) {
+      setSelectedTypes((prev) => {
+        const updated = [...prev, value];
+        onInputHandle(updated);
+        return updated;
+      });
+    } else {
+      setSelectedTypes((prev) => {
+        const updated = prev.filter((item) => item !== value);
+        onInputHandle(updated);
+        return updated;
+      });
+    }
   };
+
   return (
     <div className="">
       <h1 className="mb-4 capitalize text-lg text-primaryText font-semibold">

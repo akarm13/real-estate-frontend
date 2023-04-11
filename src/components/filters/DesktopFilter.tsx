@@ -97,8 +97,10 @@ export const DesktopFilter = () => {
 
   return (
     <div className="py-6 px-5 border-primary-background border-2 flex flex-col gap-y-6 rounded-lg">
-      <Category onInputHandle={(value) => setCategory([...category, value])} />
-      <Type onInputHandle={(value) => setType([...type, value])} />
+      <Category
+        onInputHandle={(selectedCategories) => setCategory(selectedCategories)}
+      />
+      <Type onInputHandle={(selectedTypes) => setType(selectedTypes)} />
       <hr />
       <PriceInput
         name="Price"
