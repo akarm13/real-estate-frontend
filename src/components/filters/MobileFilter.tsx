@@ -10,7 +10,9 @@ import makeAnimated from "react-select/animated";
 import { StylesConfig } from "react-select";
 
 import "react-spring-bottom-sheet/dist/style.css";
-
+import { useLocation, useNavigate } from "react-router-dom";
+import queryString from "query-string";
+import { removeUnusedQueryParams } from "../../utils/url";
 type ListingType = "sale" | "rent";
 type ListingCategory = "houses" | "apartments" | "villa" | "land" | "all";
 
@@ -107,14 +109,46 @@ export const MobileFilter = () => {
   const [selectedBedrooms, setSelectedBedrooms] = useState<number[]>([]);
   const [selectedBathrooms, setSelectedBathrooms] = useState<number[]>([]);
   const [selectedHomeSizes, setSelectedHomeSizes] = useState<number[]>([]);
+  const [minPrice, setMinPrice] = useState<number>();
+  const [maxPrice, setMaxPrice] = useState<number>();
   useState<ListingCategory>("all");
   const sheetRef = useRef<BottomSheetRef>();
+  const location = useLocation();
 
+  const query = queryString.parse(location.search);
+
+  const navigate = useNavigate();
   const onDismiss = () => {
     setIsFiltersOpen(false);
     if (sheetRef.current) {
       sheetRef.current.snapTo(0);
     }
+    const queryParams = {
+
+      minPrice: minPrice?.toString(),
+      maxPrice: maxPrice?.toString(),
+      minBedrooms: selectedBedrooms.join(","),
+      minBathrooms: selectedBathrooms.join(","),
+      minHomeSize: selectedHomeSizes.join(","),
+      category: selectedCategories.join(","),
+      type: selectedTypes.join(","),
+    };
+
+    // Construct the full URL with query parameters
+    const fullUrl = queryString.stringifyUrl({
+      url: "/search",
+      query: queryParams,
+    });
+
+    // Remove unused query parameters
+    const cleanUrl = removeUnusedQueryParams(fullUrl);
+
+    console.log({
+      cleanUrl,
+    });
+
+    // Navigate to the cleaned URL
+    navigate(cleanUrl);
   };
 
   const handleCategoryClick = (category: ListingCategory) => {
@@ -228,6 +262,7 @@ export const MobileFilter = () => {
             onClick={onDismiss}
             variant="primary"
             className="w-full h-12 rounded-lg"
+
           >
             Search 891 results
           </Button>
@@ -288,8 +323,8 @@ export const MobileFilter = () => {
             containerClassName="mt-4"
             firstInputPlaceholder="Min Price"
             secondInputPlaceholder="Max Price"
-            onFirstInputChange={(value) => console.log(value)}
-            onSecondInputChange={(value) => console.log(value)}
+            onFirstInputChange={(value) => setMinPrice(+value)}
+            onSecondInputChange={(value) => setMaxPrice(+value)}
           />
         </div>
 
