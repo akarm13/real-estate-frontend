@@ -110,6 +110,7 @@ export type SearchPayload = {
   longitude?: number;
   latitude?: number;
   radius?: number;
+
 };
 
 export type ListingStatus = "featured" | "normal";

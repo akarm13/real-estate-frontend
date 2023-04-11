@@ -1,7 +1,13 @@
 import { useMediaQuery } from "react-responsive";
 import { queries } from "../../devices";
-
-export const HomeSize = () => {
+type Props = {
+  onFirstInputChange?: (value: string) => void;
+  onSecondInputChange?: (value: string) => void;
+}
+export const HomeSize = ({
+  onFirstInputChange,
+  onSecondInputChange,
+}: Props) => {
   const isMedium = useMediaQuery({ query: queries.md });
 
   return (
@@ -19,26 +25,28 @@ export const HomeSize = () => {
               className="bg-white px-2 py-2 flex gap-x-3 text-gray-600 border-gray-300 w-28 rounded-lg outline-none"
               name=""
               id=""
+              onChange={(e) => onFirstInputChange?.(e.target.value)}
             >
               <option value="">Min</option>
-              <option value="">100m</option>
-              <option value="">200m</option>
-              <option value="">300m</option>
-              <option value="">400m</option>
-              <option value="">500m</option>
+              <option value="100">100m</option>
+              <option value="200">200m</option>
+              <option value="300">300m</option>
+              <option value="400">400m</option>
+              <option value="500">500m</option>
             </select>
             <span>-</span>
             <select
               className="bg-white px-2 py-2 flex gap-x-3 w-28 text-gray-600 border-gray-300 rounded-lg outline-none items-center"
               name=""
               id=""
+              onChange={(e) => onSecondInputChange?.(e.target.value)}
             >
               <option value="">Max</option>
-              <option value="">100m</option>
-              <option value="">200m</option>
-              <option value="">300m</option>
-              <option value="">400m</option>
-              <option value="">500m</option>
+              <option value="100">100m</option>
+              <option value="200">200m</option>
+              <option value="300">300m</option>
+              <option value="400">400m</option>
+              <option value="500">500m</option>
             </select>
           </div>
         </div>

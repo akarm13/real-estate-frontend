@@ -1,8 +1,18 @@
 import { useMediaQuery } from "react-responsive";
 import { queries } from "../../devices";
 
-export const Category = () => {
+type Props = {
+
+  onInputHandle: (value: string) => void;
+
+};
+
+export const Category = ({ onInputHandle }: Props) => {
   const isMedium = useMediaQuery({ query: queries.md });
+
+  const onInputChange = (value: any) => {
+    onInputHandle(value.target.value)
+  };
   return (
     <div className="">
       {isMedium ? (
@@ -16,8 +26,9 @@ export const Category = () => {
                 <input
                   id="house-checkbox"
                   type="checkbox"
-                  value=""
+                  value="house"
                   className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  onChange={(e) => onInputChange?.(e)}
                 />
                 <label
                   htmlFor="house-checkbox"
@@ -33,8 +44,9 @@ export const Category = () => {
                 <input
                   id="apar-checkbox"
                   type="checkbox"
-                  value=""
+                  value="apartment"
                   className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  onChange={(e) => onInputChange?.(e)}
                 />
                 <label
                   htmlFor="apar-checkbox"
@@ -50,8 +62,9 @@ export const Category = () => {
                 <input
                   id="villa-checkbox"
                   type="checkbox"
-                  value=""
+                  value="villa"
                   className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  onChange={(e) => onInputChange?.(e)}
                 />
                 <label
                   htmlFor="villa-checkbox"
@@ -67,8 +80,10 @@ export const Category = () => {
                 <input
                   id="land-checkbox"
                   type="checkbox"
-                  value=""
+                  value="land"
+                  name="land"
                   className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  onChange={(e) => onInputChange?.(e)}
                 />
                 <label
                   htmlFor="land-checkbox"

@@ -1,8 +1,18 @@
 import { useMediaQuery } from "react-responsive";
 import { queries } from "../../devices";
 
-export const Type = () => {
+type Props = {
+
+  onInputHandle: (value: string) => void;
+
+};
+export const Type = ({ onInputHandle }: Props) => {
   const isMedium = useMediaQuery({ query: queries.md });
+
+
+  const onInputChange = (value: any) => {
+    onInputHandle(value.target.value)
+  };
   return (
     <div className="">
       <h1 className="mb-4 capitalize text-lg text-primaryText font-semibold">
@@ -14,8 +24,9 @@ export const Type = () => {
             <input
               id="rent-checkbox"
               type="checkbox"
-              value=""
+              value="rent"
               className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+              onChange={(e) => onInputChange?.(e)}
             />
             <label
               htmlFor="rent-checkbox"
@@ -31,8 +42,9 @@ export const Type = () => {
             <input
               id="sale-checkbox"
               type="checkbox"
-              value=""
+              value="sale"
               className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+              onChange={(e) => onInputChange?.(e)}
             />
             <label
               htmlFor="sale-checkbox"
