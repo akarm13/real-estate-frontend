@@ -115,8 +115,6 @@ export const MobileFilter = () => {
   const sheetRef = useRef<BottomSheetRef>();
   const location = useLocation();
 
-  const query = queryString.parse(location.search);
-
   const navigate = useNavigate();
   const onDismiss = () => {
     setIsFiltersOpen(false);
@@ -124,7 +122,6 @@ export const MobileFilter = () => {
       sheetRef.current.snapTo(0);
     }
     const queryParams = {
-
       minPrice: minPrice?.toString(),
       maxPrice: maxPrice?.toString(),
       minBedrooms: selectedBedrooms.join(","),
@@ -262,7 +259,6 @@ export const MobileFilter = () => {
             onClick={onDismiss}
             variant="primary"
             className="w-full h-12 rounded-lg"
-
           >
             Search 891 results
           </Button>
