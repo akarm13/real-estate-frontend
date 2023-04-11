@@ -8,21 +8,25 @@ import CreatableSelect from "react-select/creatable";
 import { StylesConfig } from "react-select";
 import makeAnimated from "react-select/animated";
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import queryString from "query-string";
+import { removeUnusedQueryParams } from "../../utils/url";
 
 export const DesktopFilter = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [minPrice, setMinPrice] = useState<number>();
+  const [maxPrice, setMaxPrice] = useState<number>();
+  const [minBedrooms, setMinBedrooms] = useState<number>();
+  const [maxBedrooms, setMaxBedrooms] = useState<number>();
+  const [minBathrooms, setMinBathrooms] = useState<number>();
+  const [maxBathrooms, setMaxBathrooms] = useState<number>();
+  const [minArea, setMinArea] = useState<number>();
+  const [maxArea, setMaxArea] = useState<number>();
+  const [category, setCategory] = useState<string[]>([]);
+  const [type, setType] = useState<string[]>([]);
 
-  const [minPrice, setMinPrice] = useState<number>()
-  const [maxPrice, setMaxPrice] = useState<number>()
-  const [minBedrooms, setMinBedrooms] = useState<number>()
-  const [maxBedrooms, setMaxBedrooms] = useState<number>()
-  const [minBathrooms, setMinBathrooms] = useState<number>()
-  const [maxBathrooms, setMaxBathrooms] = useState<number>()
-  const [minArea, setMinArea] = useState<number>()
-  const [maxArea, setMaxArea] = useState<number>()
-  const [category, setCategory] = useState<string[]>([])
-  const [type, setType] = useState<string[]>([])
+  const location = useLocation();
+
+  const query = queryString.parse(location.search);
 
   const navigate = useNavigate();
   const colourStyles: StylesConfig = {
@@ -63,38 +67,59 @@ export const DesktopFilter = () => {
     }),
   };
 
-
-  const search = () => {
-
-    // navigate({
-    //   pathname: '/search',
-    //   search: `?minPrice=${minPrice}&maxPrice=&minBedrooms=${minBedrooms}&maxBedrooms=${maxBedrooms}&minBathrooms=${minBathrooms}&maxBathrooms=${maxBathrooms}&minHomeSize=${minArea}&maxHomeSize=${maxArea}`,
-    // });
-
-  }
   const animatedComponents = makeAnimated();
+
+  const handleSearch = () => {
+    query.minPrice = minPrice?.toString() || null;
+    query.maxPrice = maxPrice?.toString() || null;
+    query.minBedrooms = minBedrooms?.toString() || null;
+    query.maxBedrooms = maxBedrooms?.toString() || null;
+    query.minBathrooms = minBathrooms?.toString() || null;
+    query.maxBathrooms = maxBathrooms?.toString() || null;
+    query.minArea = minArea?.toString() || null;
+    query.maxArea = maxArea?.toString() || null;
+    query.category = category.join(",") || [];
+    query.type = type.toString() || [];
+
+    // Construct the full URL with query parameters
+    const fullUrl = queryString.stringifyUrl({ url: "/search", query });
+
+    // Remove unused query parameters
+    const cleanUrl = removeUnusedQueryParams(fullUrl);
+
+    console.log({
+      cleanUrl,
+    });
+
+    // Navigate to the cleaned URL
+    navigate(cleanUrl);
+  };
+
   return (
     <div className="py-6 px-5 border-primary-background border-2 flex flex-col gap-y-6 rounded-lg">
       <Category onInputHandle={(value) => setCategory([...category, value])} />
-      <Type onInputHandle={(value) => setCategory([...category, value])} />
+      <Type onInputHandle={(value) => setType([...type, value])} />
       <hr />
       <PriceInput
         name="Price"
         containerClassName="mt-4"
         firstInputPlaceholder="Min Price"
         secondInputPlaceholder="Max Price"
-        onFirstInputChange={(value) => setMinPrice(+(value))}
-        onSecondInputChange={(value) => setMaxPrice(+(value))}
+        onFirstInputChange={(value) => setMinPrice(+value)}
+        onSecondInputChange={(value) => setMaxPrice(+value)}
       />
       <hr />
-      <NumOfRoom onFirstBedInputChange={(value) => setMinBedrooms(+value)}
+      <NumOfRoom
+        onFirstBedInputChange={(value) => setMinBedrooms(+value)}
         onSecondBedInputChange={(value) => setMaxBedrooms(+value)}
         onFirstBathInputChange={(value) => setMinBathrooms(+value)}
         onSecondBathInputChange={(value) => setMaxBathrooms(+value)}
       />
       <hr />
-      <HomeSize onFirstInputChange={(value) => setMinArea(+(value))}
-        onSecondInputChange={(value) => setMaxArea(+(value))} />
+      <HomeSize
+        onFirstInputChange={(value) => setMinArea(+value)}
+        onSecondInputChange={(value) => setMaxArea(+value)}
+      />
       <hr />
 
       <div className="p-1">
@@ -122,7 +147,7 @@ export const DesktopFilter = () => {
         </div>
       </div>
       <hr />
-      <Button onClick={search} variant="primary">
+      <Button onClick={handleSearch} variant="primary">
         APPLY FILTERS
       </Button>
     </div>
