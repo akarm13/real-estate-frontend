@@ -70,19 +70,24 @@ export const DesktopFilter = () => {
   const animatedComponents = makeAnimated();
 
   const handleSearch = () => {
-    query.minPrice = minPrice?.toString() || null;
-    query.maxPrice = maxPrice?.toString() || null;
-    query.minBedrooms = minBedrooms?.toString() || null;
-    query.maxBedrooms = maxBedrooms?.toString() || null;
-    query.minBathrooms = minBathrooms?.toString() || null;
-    query.maxBathrooms = maxBathrooms?.toString() || null;
-    query.minArea = minArea?.toString() || null;
-    query.maxArea = maxArea?.toString() || null;
-    query.category = category.join(",") || [];
-    query.type = type.toString() || [];
+    const queryParams = {
+      minPrice: minPrice?.toString(),
+      maxPrice: maxPrice?.toString(),
+      minBedrooms: minBedrooms?.toString(),
+      maxBedrooms: maxBedrooms?.toString(),
+      minBathrooms: minBathrooms?.toString(),
+      maxBathrooms: maxBathrooms?.toString(),
+      minArea: minArea?.toString(),
+      maxArea: maxArea?.toString(),
+      category: category.join(","),
+      type: type.join(","),
+    };
 
     // Construct the full URL with query parameters
-    const fullUrl = queryString.stringifyUrl({ url: "/search", query });
+    const fullUrl = queryString.stringifyUrl({
+      url: "/search",
+      query: queryParams,
+    });
 
     // Remove unused query parameters
     const cleanUrl = removeUnusedQueryParams(fullUrl);
