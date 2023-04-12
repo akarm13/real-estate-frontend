@@ -5,6 +5,7 @@ import { useGetAllListingsQuery } from "../../api/endpoints/listings";
 import { ClipLoader } from "react-spinners";
 import { Listing } from "../../types/listing";
 import { useState } from "react";
+import SkeletonListingCard from "../../components/skeleton/SkeletonListingCard";
 
 export const ListingsSection = () => {
   const { data, isLoading, isError } = useGetAllListingsQuery({
@@ -23,12 +24,10 @@ export const ListingsSection = () => {
         Discover the best properties
       </h4>
       {isLoading ? (
-        <div className="w-full flex justify-center items-center mt-10">
-          <ClipLoader
-            color="#36d7b7"
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
+        <div className="lg:grid lg:grid-cols-listing lg:gap-x-4 lg:flex-wrap lg:gap-y-10 mt-16 flex gap-x-4 snap-x overflow-x-auto snap-proximity lg:snap-none">
+          {Array.from({ length: 8 }).map((_, index) => (
+            <SkeletonListingCard key={index} />
+          ))}
         </div>
       ) : (
         <div className="lg:grid lg:grid-cols-listing lg:gap-x-4 lg:flex-wrap lg:gap-y-10 mt-16 flex gap-x-4 snap-x overflow-x-auto snap-proximity lg:snap-none">
