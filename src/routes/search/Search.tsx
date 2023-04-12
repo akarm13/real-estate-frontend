@@ -11,6 +11,8 @@ import queryString from "query-string";
 
 import { SearchPayload } from "../../types/listing";
 import { removeUnusedQueryParams } from "../../utils/url";
+import { Skeleton } from "../../components/skeleton/Skeleton";
+import SkeletonListingCard from "../../components/skeleton/SkeletonListingCard";
 
 const sortOptions = [
   { value: "newest", label: "Newest" },
@@ -44,7 +46,13 @@ export const Search = () => {
         <div className="flex flex-col">
           <InputSearch />
           <div className="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ">
-            {data?.data !== undefined && data.data?.length > 0 ? (
+            {isLoading ? (
+              <>
+                {Array.from({ length: 6 }).map((_, index) => (
+                  <SkeletonListingCard key={index} />
+                ))}
+              </>
+            ) : data?.data !== undefined && data.data?.length > 0 ? (
               data?.data.map((property) => (
                 <Link key={property?._id} to={`/listings/${property?._id}`}>
                   <ListingCard {...property} />
