@@ -91,9 +91,9 @@ export const DesktopFilter = ({ isLoading }: Props) => {
       maxBathrooms: maxBathrooms?.toString(),
       minArea: minArea?.toString(),
       maxArea: maxArea?.toString(),
-      category: category.join(","),
+      buildingType: category.join(","),
       type: type.join(","),
-      Keyword: Keyword.join(","),
+      keyword: Keyword.join(","),
     };
 
     // Construct the full URL with query parameters
