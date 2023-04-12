@@ -29,24 +29,31 @@ export const Search = () => {
     removeUnusedQueryParams(location.search)
   );
 
-  const { data, isLoading, isError } = useGetAllListingsQuery(query, {
-    refetchOnMountOrArgChange: true,
-  });
+  const { data, isLoading, isError, isFetching } = useGetAllListingsQuery(
+    query,
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
 
   return (
     <div className="mt-11 container">
       <div className="grid grid-cols-1 lg:grid-cols-search gap-x-8">
         <div className="hidden lg:block">
-          <DesktopFilter />
+          <DesktopFilter isLoading={isFetching || isLoading} />
         </div>
         <div className="lg:hidden">
-          <MobileFilter />
+          <MobileFilter isLoading={isFetching || isLoading} />
         </div>
 
         <div className="flex flex-col">
           <InputSearch />
-          <div className="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ">
-            {isLoading ? (
+          <div
+            className={`grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ${
+              isFetching ? "pointer-events-none" : ""
+            }`}
+          >
+            {isLoading || isFetching ? (
               <>
                 {Array.from({ length: 6 }).map((_, index) => (
                   <SkeletonListingCard key={index} />
