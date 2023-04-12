@@ -7,7 +7,7 @@ import { Type } from "../../routes/search/TypeOfHouse";
 import CreatableSelect from "react-select/creatable";
 import { StylesConfig } from "react-select";
 import makeAnimated from "react-select/animated";
-import { useState } from "react";
+import { KeyboardEventHandler, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import queryString from "query-string";
 import { removeUnusedQueryParams } from "../../utils/url";
@@ -16,6 +16,10 @@ type Props = {
   isLoading: boolean;
 };
 
+interface Option {
+  label: string;
+  value: string;
+}
 export const DesktopFilter = ({ isLoading }: Props) => {
   const [minPrice, setMinPrice] = useState<number>();
   const [maxPrice, setMaxPrice] = useState<number>();
@@ -27,6 +31,8 @@ export const DesktopFilter = ({ isLoading }: Props) => {
   const [maxArea, setMaxArea] = useState<number>();
   const [category, setCategory] = useState<string[]>([]);
   const [type, setType] = useState<string[]>([]);
+  const [inputValue, setInputValue] = useState<string>('');
+  const [Keyword, setkeyword] = useState<string[]>([]);
 
   const location = useLocation();
 
@@ -74,6 +80,8 @@ export const DesktopFilter = ({ isLoading }: Props) => {
   const animatedComponents = makeAnimated();
 
   const handleSearch = () => {
+    console.log(Keyword);
+
     const queryParams = {
       minPrice: minPrice?.toString(),
       maxPrice: maxPrice?.toString(),
@@ -85,6 +93,7 @@ export const DesktopFilter = ({ isLoading }: Props) => {
       maxArea: maxArea?.toString(),
       category: category.join(","),
       type: type.join(","),
+      Keyword: Keyword.join(","),
     };
 
     // Construct the full URL with query parameters
@@ -104,11 +113,35 @@ export const DesktopFilter = ({ isLoading }: Props) => {
     navigate(cleanUrl);
   };
 
+  const handleKeyDown: KeyboardEventHandler = (event) => {
+
+
+
+    if (!inputValue) return;
+    switch (event.key) {
+      case 'Enter':
+      case 'Tab':
+        setkeyword((prev) => [...prev, inputValue]);
+        setInputValue('');
+        event.preventDefault();
+    }
+  };
+
+
+  const hanldeValue = (newValue: any) => {
+
+    const value = newValue.map((value: any) =>
+      value.value
+
+    )
+    setkeyword(value)
+
+
+  }
   return (
     <div
-      className={`py-6 px-5 border-primary-background border-2 flex flex-col gap-y-6 rounded-lg ${
-        isLoading ? "opacity-60 pointer-events-none" : ""
-      }`}
+      className={`py-6 px-5 border-primary-background border-2 flex flex-col gap-y-6 rounded-lg ${isLoading ? "opacity-60 pointer-events-none" : ""
+        }`}
     >
       <Category
         onInputHandle={(selectedCategories) => setCategory(selectedCategories)}
@@ -151,8 +184,14 @@ export const DesktopFilter = ({ isLoading }: Props) => {
           <CreatableSelect
             options={[]}
             isMulti
+
             placeholder="Eg. Balcony, Swimming pool, etc."
             styles={colourStyles}
+            onChange={(newValue) => hanldeValue(newValue)
+            }
+            onInputChange={(newValue) => setInputValue(newValue)
+            }
+            onKeyDown={handleKeyDown}
             components={{
               ...animatedComponents,
               DropdownIndicator: () => null,
