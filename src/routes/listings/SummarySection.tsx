@@ -11,7 +11,7 @@ import { featuredProperties } from "../../dummyData";
 export const SummarySection = ({ data }: any) => {
   //  data.owner.name = data
 
-  console.log(data?.owner.fullName);
+
 
   return (
     <div className="lg:flex w-full ">
