@@ -7,8 +7,28 @@ import { Type } from "../../routes/search/TypeOfHouse";
 import CreatableSelect from "react-select/creatable";
 import { StylesConfig } from "react-select";
 import makeAnimated from "react-select/animated";
+import { useState } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import queryString from "query-string";
+import { removeUnusedQueryParams } from "../../utils/url";
 
 export const DesktopFilter = () => {
+  const [minPrice, setMinPrice] = useState<number>();
+  const [maxPrice, setMaxPrice] = useState<number>();
+  const [minBedrooms, setMinBedrooms] = useState<number>();
+  const [maxBedrooms, setMaxBedrooms] = useState<number>();
+  const [minBathrooms, setMinBathrooms] = useState<number>();
+  const [maxBathrooms, setMaxBathrooms] = useState<number>();
+  const [minArea, setMinArea] = useState<number>();
+  const [maxArea, setMaxArea] = useState<number>();
+  const [category, setCategory] = useState<string[]>([]);
+  const [type, setType] = useState<string[]>([]);
+
+  const location = useLocation();
+
+  const query = queryString.parse(location.search);
+
+  const navigate = useNavigate();
   const colourStyles: StylesConfig = {
     control: (styles, { isFocused }) => ({
       ...styles,
@@ -46,24 +66,67 @@ export const DesktopFilter = () => {
       backgroundColor: "white",
     }),
   };
+
   const animatedComponents = makeAnimated();
+
+  const handleSearch = () => {
+    const queryParams = {
+      minPrice: minPrice?.toString(),
+      maxPrice: maxPrice?.toString(),
+      minBedrooms: minBedrooms?.toString(),
+      maxBedrooms: maxBedrooms?.toString(),
+      minBathrooms: minBathrooms?.toString(),
+      maxBathrooms: maxBathrooms?.toString(),
+      minArea: minArea?.toString(),
+      maxArea: maxArea?.toString(),
+      category: category.join(","),
+      type: type.join(","),
+    };
+
+    // Construct the full URL with query parameters
+    const fullUrl = queryString.stringifyUrl({
+      url: "/search",
+      query: queryParams,
+    });
+
+    // Remove unused query parameters
+    const cleanUrl = removeUnusedQueryParams(fullUrl);
+
+    console.log({
+      cleanUrl,
+    });
+
+    // Navigate to the cleaned URL
+    navigate(cleanUrl);
+  };
+
   return (
     <div className="py-6 px-5 border-primary-background border-2 flex flex-col gap-y-6 rounded-lg">
-      <Category />
-      <Type />
+      <Category
+        onInputHandle={(selectedCategories) => setCategory(selectedCategories)}
+      />
+      <Type onInputHandle={(selectedTypes) => setType(selectedTypes)} />
       <hr />
       <PriceInput
         name="Price"
         containerClassName="mt-4"
         firstInputPlaceholder="Min Price"
         secondInputPlaceholder="Max Price"
-        onFirstInputChange={(value) => console.log(value)}
-        onSecondInputChange={(value) => console.log(value)}
+        onFirstInputChange={(value) => setMinPrice(+value)}
+        onSecondInputChange={(value) => setMaxPrice(+value)}
       />
       <hr />
-      <NumOfRoom />
+      <NumOfRoom
+        onFirstBedInputChange={(value) => setMinBedrooms(+value)}
+        onSecondBedInputChange={(value) => setMaxBedrooms(+value)}
+        onFirstBathInputChange={(value) => setMinBathrooms(+value)}
+        onSecondBathInputChange={(value) => setMaxBathrooms(+value)}
+      />
       <hr />
-      <HomeSize />
+      <HomeSize
+        onFirstInputChange={(value) => setMinArea(+value)}
+        onSecondInputChange={(value) => setMaxArea(+value)}
+      />
       <hr />
 
       <div className="p-1">
@@ -91,7 +154,7 @@ export const DesktopFilter = () => {
         </div>
       </div>
       <hr />
-      <Button onClick={() => console.log("login")} variant="primary">
+      <Button onClick={handleSearch} variant="primary">
         APPLY FILTERS
       </Button>
     </div>

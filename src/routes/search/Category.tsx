@@ -1,14 +1,40 @@
 import { useMediaQuery } from "react-responsive";
 import { queries } from "../../devices";
+import { useState } from "react";
 
-export const Category = () => {
+type Props = {
+  onInputHandle: (values: string[]) => void;
+};
+
+export const Category = ({ onInputHandle }: Props) => {
   const isMedium = useMediaQuery({ query: queries.md });
+  const [, setSelectedCategories] = useState<string[]>([]);
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      setSelectedCategories((prev) => {
+        const updated = [...prev, value];
+        onInputHandle(updated);
+        return updated;
+      });
+    } else {
+      setSelectedCategories((prev) => {
+        const updated = prev.filter((item) => item !== value);
+        onInputHandle(updated);
+        return updated;
+      });
+    }
+  };
+
   return (
     <div className="">
       {isMedium ? (
         <>
           <h1 className="mb-4 capitalize text-lg text-primaryText font-semibold">
-            category
+            Category
           </h1>
           <ul className=" text-sm font-medium  flex gap-y-3 flex-col ">
             <li className="w-full ">
@@ -16,8 +42,9 @@ export const Category = () => {
                 <input
                   id="house-checkbox"
                   type="checkbox"
-                  value=""
+                  value="house"
                   className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  onChange={(e) => onInputChange?.(e)}
                 />
                 <label
                   htmlFor="house-checkbox"
@@ -33,8 +60,9 @@ export const Category = () => {
                 <input
                   id="apar-checkbox"
                   type="checkbox"
-                  value=""
+                  value="apartment"
                   className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  onChange={(e) => onInputChange?.(e)}
                 />
                 <label
                   htmlFor="apar-checkbox"
@@ -50,8 +78,9 @@ export const Category = () => {
                 <input
                   id="villa-checkbox"
                   type="checkbox"
-                  value=""
+                  value="villa"
                   className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  onChange={(e) => onInputChange?.(e)}
                 />
                 <label
                   htmlFor="villa-checkbox"
@@ -67,8 +96,10 @@ export const Category = () => {
                 <input
                   id="land-checkbox"
                   type="checkbox"
-                  value=""
+                  value="land"
+                  name="land"
                   className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  onChange={(e) => onInputChange?.(e)}
                 />
                 <label
                   htmlFor="land-checkbox"
