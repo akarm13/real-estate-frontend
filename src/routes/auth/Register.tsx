@@ -18,6 +18,9 @@ export const Register = () => {
 
   const [createUser, { data, isLoading, isError }] = useRegisterMutation();
 
+
+console.log(useRegisterMutation())
+
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
