@@ -99,7 +99,11 @@ const colourStyles: StylesConfig = {
   }),
 };
 
-export const MobileFilter = () => {
+type Props = {
+  isLoading: boolean;
+};
+
+export const MobileFilter = ({ isLoading }: Props) => {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState<ListingType[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<

@@ -12,7 +12,11 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import queryString from "query-string";
 import { removeUnusedQueryParams } from "../../utils/url";
 
-export const DesktopFilter = () => {
+type Props = {
+  isLoading: boolean;
+};
+
+export const DesktopFilter = ({ isLoading }: Props) => {
   const [minPrice, setMinPrice] = useState<number>();
   const [maxPrice, setMaxPrice] = useState<number>();
   const [minBedrooms, setMinBedrooms] = useState<number>();
@@ -101,7 +105,11 @@ export const DesktopFilter = () => {
   };
 
   return (
-    <div className="py-6 px-5 border-primary-background border-2 flex flex-col gap-y-6 rounded-lg">
+    <div
+      className={`py-6 px-5 border-primary-background border-2 flex flex-col gap-y-6 rounded-lg ${
+        isLoading ? "opacity-60 pointer-events-none" : ""
+      }`}
+    >
       <Category
         onInputHandle={(selectedCategories) => setCategory(selectedCategories)}
       />
