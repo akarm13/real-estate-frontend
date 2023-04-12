@@ -11,11 +11,10 @@ import { featuredProperties } from "../../dummyData";
 import { useGetListingByIdQuery } from "../../api/endpoints/listings";
 import { Listing, ListingIdRequest } from "../../types/listing";
 
-
 export const Details = () => {
   const { houseId } = useParams<ListingIdRequest>();
 
-  const { data, isLoading, isError } = useGetListingByIdQuery(houseId);
+  const { data, isLoading, isError } = useGetListingByIdQuery(houseId || "");
 
   return (
     <div className="w-full">

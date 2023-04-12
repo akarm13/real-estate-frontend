@@ -16,9 +16,9 @@ export const listingsApi = api.injectEndpoints({
       },
     }),
     // getListingById using rtk query method
-    getListingById: builder.query<Listing, ListingIdRequest>({
+    getListingById: builder.query<Listing, string>({
       query: (id) => ({
-        url: `/ listings / ${id}`,
+        url: `/listings/${id}`,
         method: "GET",
       }),
     }),
