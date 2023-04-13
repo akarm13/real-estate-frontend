@@ -2,11 +2,16 @@ import { useMediaQuery } from "react-responsive";
 import { ReactComponent as SearchIcon } from "../../assets/icons/listing/search-gray.svg";
 import { ReactComponent as LocationIcon } from "../../assets/icons/search/location.svg";
 import { queries } from "../../devices";
+import {useGetListingByTitleQuery} from "../../api/endpoints/listings"
+import { useState } from "react";
 
-export const InputSearch = () => {
+export const InputSearch = ({title,setTitle}:any) => {
   const isSmall = useMediaQuery({
     query: queries.sm,
   });
+
+
+
   return (
     <div className="lg:flex lg:justify-between lg:items-center lg:w-full hidden">
       <div className="bg-searchBackground py-1 md:py-2 md: px-4 w-full mx-auto md:mx-0 lg:w-[700px] rounded-lg flex justify-between">
@@ -24,6 +29,8 @@ export const InputSearch = () => {
               type="text"
               placeholder="City or address"
               className="text-center bg-transparent border-none focus:ring-0 focus:ring-offset-0"
+              value={title}
+              onChange={(e) =>setTitle(e.target.value)}
             />
             <SearchIcon className="self-center" />
           </>
@@ -32,6 +39,8 @@ export const InputSearch = () => {
             type="text"
             placeholder="City or address"
             className=" bg-transparent w-11/12 border-none focus:ring-0 focus:ring-offset-0"
+            value={title}
+            onChange={(e) =>setTitle(e.target.value)}
           />
         )}
       </div>

@@ -7,7 +7,7 @@ import queryString from "query-string";
 export const listingsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllListings: builder.query<PaginatedResponse<Listing>, SearchPayload>({
-      query: (body) => {
+      query: (body)=> {
         // Go through each key in the body object and remove the null values
         return {
           url: `/listings?${queryString.stringify(body)}`,
@@ -22,7 +22,13 @@ export const listingsApi = api.injectEndpoints({
         method: "GET",
       }),
     }),
+    getListingByTitle: builder.query({
+      query: (title) => ({
+      url: `/listings?keyword=${title}`,
+      method: "GET"
+      })
+    })
   }),
 });
 
-export const { useGetAllListingsQuery, useGetListingByIdQuery } = listingsApi;
+export const { useGetAllListingsQuery, useGetListingByIdQuery,useGetListingByTitleQuery } = listingsApi;
