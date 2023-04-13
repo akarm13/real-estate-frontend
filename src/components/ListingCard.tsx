@@ -1,6 +1,4 @@
-import house from "../assets/house/1.jpg";
-
-import { Listing, PropertyStatus, PropertyType } from "../types/listing";
+import { Listing } from "../types/listing";
 
 import { ReactComponent as AreaIcon } from "../assets/icons/listing/area.svg";
 import { ReactComponent as BathroomIcon } from "../assets/icons/listing/bathroom.svg";
@@ -9,7 +7,6 @@ import { ReactComponent as FeaturedStarIcon } from "../assets/icons/listing/feat
 import { ReactComponent as LocationIcon } from "../assets/icons/listing/location.svg";
 
 export const ListingCard = ({
-  images,
   price,
   location,
   area,
@@ -17,6 +14,7 @@ export const ListingCard = ({
   status,
   title,
   type,
+  images,
 }: Listing) => {
   // If type is sale then "bg-primary-800 text-white" else "bg-primary-200 text-primary-800"
   const typeColor =
@@ -24,12 +22,11 @@ export const ListingCard = ({
       ? "bg-primary-800 text-primary-100"
       : "bg-primary-100 text-primary-800";
 
-    
   return (
     <div className="flex flex-col transition duration-200 relative z-0 listing-card rounded-lg snap-center my-4 lg:my-0">
       <div className="overflow-hidden rounded-lg">
         <img
-          src={images[3]}
+          src={images[0]}
           alt="house"
           className="h-[170px] w-full rounded-lg object-cover"
         />

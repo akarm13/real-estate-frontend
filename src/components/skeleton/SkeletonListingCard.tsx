@@ -7,7 +7,7 @@ const SkeletonListingCard: React.FC = () => {
   return (
     <div className="flex flex-col transition duration-200 relative z-0 listing-card rounded-lg snap-center my-4 lg:my-0">
       <div className="overflow-hidden rounded-lg">
-        <Skeleton className="h-[170px] w-full" />
+        <Skeleton className="h-[170px] w-full " />
       </div>
       <div className="absolute left-2 px-4 py-2 rounded-lg uppercase my-2 font-medium bg-primary-200 text-primary-800 text-sm">
         <Skeleton className="h-3 w-10" />
@@ -34,12 +34,29 @@ const SkeletonListingCard: React.FC = () => {
               <Skeleton className="h-4 w-4" />
             </div>
           </div>
-          {/* Repeat the above div two more times for other property details */}
+          <div className="flex gap-x-2 items-center text-gray-600">
+            <span className="text-primary-500 rounded-lg">
+              <Skeleton className="h-4 w-4" />
+            </span>
+            <div className="flex items-center gap-x-1">
+              <Skeleton className="h-4 w-4" />
+              <Skeleton className="h-4 w-4" />
+            </div>
+          </div>
+          <div className="flex gap-x-2 items-center text-gray-600">
+            <span className="text-primary-500 rounded-lg">
+              <Skeleton className="h-4 w-4" />
+            </span>
+            <div className="flex items-center gap-x-1">
+              <Skeleton className="h-4 w-4" />
+              <Skeleton className="h-4 w-4" />
+            </div>
+          </div>
         </div>
         <div className="absolute bg-primary-500 flex -top-7 -left-1 items-center gap-x-2 py-2 px-4 rounded-lg">
           <Skeleton className="w-4 h-4" />
           <span className="text-white uppercase text-sm font-semibold">
-            <Skeleton className="h-3 w-10" />
+            <Skeleton className="h-4 w-10" />
           </span>
         </div>
       </div>
