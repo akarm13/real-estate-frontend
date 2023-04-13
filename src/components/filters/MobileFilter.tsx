@@ -1,7 +1,7 @@
 import { ReactComponent as SearchIcon } from "../../assets/icons/listing/search.svg";
 import { ReactComponent as FilterIcon } from "../../assets/icons/search/filters.svg";
 import { Button } from "../../components/Button";
-import { useRef, useState } from "react";
+import { KeyboardEventHandler, useRef, useState } from "react";
 import { BottomSheet, BottomSheetRef } from "react-spring-bottom-sheet";
 import { PriceInput } from "./PriceInput";
 import { SelectButton } from "./SelectButton";
@@ -115,6 +115,8 @@ export const MobileFilter = ({ isLoading }: Props) => {
   const [selectedHomeSizes, setSelectedHomeSizes] = useState<number[]>([]);
   const [minPrice, setMinPrice] = useState<number>();
   const [maxPrice, setMaxPrice] = useState<number>();
+  const [inputValue, setInputValue] = useState<string>('');
+  const [Keyword, setkeyword] = useState<string[]>([]);
   useState<ListingCategory>("all");
   const sheetRef = useRef<BottomSheetRef>();
   const location = useLocation();
@@ -133,6 +135,7 @@ export const MobileFilter = ({ isLoading }: Props) => {
       minHomeSize: selectedHomeSizes.join(","),
       category: selectedCategories.join(","),
       type: selectedTypes.join(","),
+      keyword: Keyword.join(","),
     };
 
     // Construct the full URL with query parameters
@@ -199,7 +202,31 @@ export const MobileFilter = ({ isLoading }: Props) => {
       setSelectedHomeSizes([homeSize]);
     }
   };
+  const handleKeyDown: KeyboardEventHandler = (event) => {
 
+
+
+    if (!inputValue) return;
+    switch (event.key) {
+      case 'Enter':
+      case 'Tab':
+        setkeyword((prev) => [...prev, inputValue]);
+        setInputValue('');
+        event.preventDefault();
+    }
+  };
+
+
+  const hanldeValue = (newValue: any) => {
+
+    const value = newValue.map((value: any) =>
+      value.value
+
+    )
+    setkeyword(value)
+
+
+  }
   return (
     <div className="flex flex-col">
       <div className="relative">
@@ -407,6 +434,11 @@ export const MobileFilter = ({ isLoading }: Props) => {
               isMulti
               placeholder="Eg. Balcony, Swimming pool, etc."
               styles={colourStyles}
+              onChange={(newValue) => hanldeValue(newValue)
+              }
+              onInputChange={(newValue) => setInputValue(newValue)
+              }
+              onKeyDown={handleKeyDown}
               components={{
                 ...animatedComponents,
                 DropdownIndicator: () => null,
