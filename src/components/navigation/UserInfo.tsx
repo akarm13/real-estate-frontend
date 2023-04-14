@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ReactComponent as DropDown } from "../../assets/icons/dropdown.svg";
 import { Button } from "../Button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/slices/auth";
+
+import { useClickAway } from "react-use";
 
 export const UserInfo = ({ data }: any) => {
   const [isNavigationOpen, setIsNavigationOpen] = useState<boolean>(false);
@@ -23,8 +25,16 @@ export const UserInfo = ({ data }: any) => {
     }
   };
 
+  // Use useclickaway to close the dropdown when clicked outside
+
+  const ref = useRef(null);
+
+  useClickAway(ref, () => {
+    setIsNavigationOpen(false);
+  });
+
   return (
-    <div className="dropdown inline-block relative pr-12">
+    <div className="dropdown inline-block relative pr-12" ref={ref}>
       <button
         className=" text-gray-700  font-semibold py-2 px-4 rounded inline-flex items-center"
         onClick={() => setIsNavigationOpen(!isNavigationOpen)}
