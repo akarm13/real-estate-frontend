@@ -9,6 +9,7 @@ import { ReactComponent as FeaturedStarIcon } from "../assets/icons/listing/feat
 import { ReactComponent as LocationIcon } from "../assets/icons/listing/location.svg";
 
 export const ListingCard = ({
+  images,
   price,
   location,
   area,
@@ -23,11 +24,12 @@ export const ListingCard = ({
       ? "bg-primary-800 text-primary-100"
       : "bg-primary-100 text-primary-800";
 
+    
   return (
     <div className="flex flex-col transition duration-200 relative z-0 listing-card rounded-lg snap-center my-4 lg:my-0">
       <div className="overflow-hidden rounded-lg">
         <img
-          src={house}
+          src={images[3]}
           alt="house"
           className="h-[170px] w-full rounded-lg object-cover"
         />
