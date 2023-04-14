@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useLazyGetMeQuery } from "../api/endpoints/user";
 import { isValidToken } from "../utils/auth";
-import { setToken, setUser } from "../store/slices/auth";
+import { setIsLoadingUser, setToken, setUser } from "../store/slices/auth";
 
 export const useSetUserFromLocalStorage = () => {
   const dispatch = useDispatch();
@@ -11,12 +11,14 @@ export const useSetUserFromLocalStorage = () => {
 
   const trigger = useCallback(async () => {
     if (token !== null && isValidToken(token)) {
+      dispatch(setIsLoadingUser(true));
       try {
         const getMeResponse = await getMe(token).unwrap();
 
         if (getMeResponse) {
           dispatch(setToken(token));
           dispatch(setUser(getMeResponse));
+          dispatch(setIsLoadingUser(false));
         }
       } catch (error) {
         console.log(error);

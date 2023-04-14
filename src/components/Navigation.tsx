@@ -10,6 +10,9 @@ import { Button } from "./Button";
 import { UserInfo } from "./navigation/UserInfo";
 
 import { selectAuth, selectIsAuthenticated } from "../store/slices/auth";
+import { selectIsGetMeLoading, useGetMeQuery } from "../api/endpoints/user";
+import { RootState } from "../store/store";
+import { Skeleton } from "./skeleton/Skeleton";
 
 export const Navigation = () => {
   const navigate = useNavigate();
@@ -17,6 +20,7 @@ export const Navigation = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const { user } = useSelector(selectAuth);
 
+  console.log(user);
   const activeClasses =
     "md:bg-primary-background md:text-primary-500 md:px-4 md:py-2 md:my-0 md:mx-0 md:rounded-lg font-medium";
   const inactiveClasses =
@@ -32,8 +36,6 @@ export const Navigation = () => {
       navigate("/");
     }
   };
-
-  const isMedium = useMediaQuery({ query: queries.md });
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
@@ -59,19 +61,27 @@ export const Navigation = () => {
               </>
             ) : (
               <div className="flex gap-x-2">
-                <Button
-                  onClick={() => routeHandler("primary")}
-                  variant="primary"
-                >
-                  Login
-                </Button>
+                {!user ? (
+                  <>
+                    <Skeleton className="w-40 h-10 my-2 " />
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      onClick={() => routeHandler("primary")}
+                      variant="primary"
+                    >
+                      Login
+                    </Button>
 
-                <Button
-                  onClick={() => routeHandler("secondary")}
-                  variant="secondary"
-                >
-                  Sign up
-                </Button>
+                    <Button
+                      onClick={() => routeHandler("secondary")}
+                      variant="secondary"
+                    >
+                      Sign up
+                    </Button>
+                  </>
+                )}
               </div>
             )}
           </div>

@@ -6,12 +6,14 @@ type AuthState = {
   user: User | null;
   token: string | null;
   isAuthenticated: boolean;
+  isLoadingUser: boolean;
 };
 
 const initialState: AuthState = {
   user: null,
   token: null,
   isAuthenticated: false,
+  isLoadingUser: true,
 };
 
 const authSlice = createSlice({
@@ -30,6 +32,10 @@ const authSlice = createSlice({
       state.token = null;
       state.isAuthenticated = false;
     },
+
+    setIsLoadingUser(state, action: PayloadAction<boolean>) {
+      state.isLoadingUser = action.payload;
+    },
   },
 });
 
@@ -43,4 +49,5 @@ export const selectIsAuthenticated = (state: RootState) =>
   state.auth.user !== null;
 
 export const authSliceReducer = authSlice.reducer;
-export const { setUser, setToken, logout } = authSlice.actions;
+export const { setUser, setToken, setIsLoadingUser, logout } =
+  authSlice.actions;
