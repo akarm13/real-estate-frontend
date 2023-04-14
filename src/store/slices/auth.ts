@@ -34,7 +34,13 @@ const authSlice = createSlice({
 });
 
 export const selectAuth = (state: RootState) => state.auth;
-export const selectIsAgent = (state: RootState) => state.auth.user?.isAgent;
+export const selectIsAgent = (state: RootState) =>
+  state.auth.user?.role === "agent";
+
+export const selectIsAuthenticated = (state: RootState) =>
+  state.auth.isAuthenticated &&
+  state.auth.token !== null &&
+  state.auth.user !== null;
 
 export const authSliceReducer = authSlice.reducer;
 export const { setUser, setToken } = authSlice.actions;

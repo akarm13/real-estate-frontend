@@ -1,7 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useRoutes,
+  useLocation,
+} from "react-router-dom";
 
-import { Route, Routes, useLocation, useNavigation } from "react-router-dom";
 import { Home } from "../routes/home/Home";
 import { Navigation } from "../components/Navigation";
 import { ScrollToTop } from "../components/ScrollToTop";
@@ -12,28 +18,49 @@ import { Details } from "../routes/listings/Details";
 import { Footer } from "../components/Footer";
 import { Agent } from "../routes/agents/Agent";
 
+import { GuestRoute } from "../components/GuestRoute";
+import { useSetUserFromLocalStorage } from "../hooks/useSetUserFromLocalStorage";
+
 function App() {
+  const routes = useRoutes([
+    { path: "/", element: <Home /> },
+    {
+      path: "/register",
+      element: <GuestRoute />,
+      children: [{ index: true, element: <Register /> }],
+    },
+    {
+      path: "/login",
+      element: <GuestRoute />,
+      children: [{ index: true, element: <Login /> }],
+    },
+    { path: "/search", element: <Search /> },
+    { path: "/listings/:houseId", element: <Details /> },
+    { path: "/agents", element: <Agent /> },
+  ]);
+
   const location = useLocation();
 
-  const [user, setUser] = useState(null);
-
-  // If the current page is the login or register page
   const isAuthPage =
-    location.pathname === "/register" || location.pathname === "/login";
+    location.pathname.includes("login") ||
+    location.pathname.includes("register");
+
+  const { trigger, isLoading } = useSetUserFromLocalStorage();
+
+  // Don't trigger the hook if we're on the auth page
+
+  useEffect(() => {
+    if (!isAuthPage) {
+      trigger();
+    }
+  }, [trigger, isAuthPage]);
 
   return (
     <main className="bg-[#FEFEFF] font-sans">
       {!isAuthPage && <Navigation />}
 
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register></Register>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/search?" element={<Search />} />
-        <Route path="/listings/:houseId" element={<Details />} />
-        <Route path="/agents" element={<Agent />} />
-      </Routes>
+      {routes}
       {!isAuthPage && <Footer />}
     </main>
   );

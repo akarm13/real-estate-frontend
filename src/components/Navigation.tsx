@@ -9,18 +9,21 @@ import { ReactComponent as LogoIcon } from "../assets/icons/listing/logo.svg";
 import { queries } from "../devices";
 import { Button } from "./Button";
 import { UserInfo } from "./UserInfo";
+import { useSelector } from "react-redux";
+
+import { selectIsAuthenticated, selectAuth } from "../store/slices/auth";
+
 export const Navigation = () => {
   const navigate = useNavigate();
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token")
-  );
-  var decoded = token && jwt_decode(token);
-  const { data, isLoading, isError } = useGetMeQuery(decoded?.sub);
+
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const { user } = useSelector(selectAuth);
 
   const activeClasses =
     "md:bg-primary-background md:text-primary-500 md:px-4 md:py-2 md:my-0 md:mx-0 md:rounded-lg font-medium";
   const inactiveClasses =
     "md:bg-white text-secondaryText md:px-4 md:py-2 md:my-0 md:mx-0 rounded-lg";
+
   const routeHandler = (change: String) => {
     if (change === "primary") {
       navigate("/login");
@@ -29,7 +32,6 @@ export const Navigation = () => {
     } else if (change == "logout") {
       localStorage.removeItem("token");
       navigate("/");
-      setToken("");
     }
   };
 
@@ -85,9 +87,9 @@ export const Navigation = () => {
           </ul>
 
           <div className="hidden md:flex md:gap-x-6">
-            {token ? (
+            {isAuthenticated ? (
               <>
-                <UserInfo data={data} />
+                <UserInfo data={user} />
               </>
             ) : (
               <div className="flex gap-x-2">
@@ -168,7 +170,7 @@ export const Navigation = () => {
               Agents
             </NavLink>
           </li>
-          {token ? (
+          {isAuthenticated ? (
             <Button onClick={() => routeHandler("logout")} variant="secondary">
               Logout
             </Button>

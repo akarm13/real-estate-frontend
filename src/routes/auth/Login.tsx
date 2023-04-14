@@ -15,6 +15,7 @@ import { useLazyGetMeQuery } from "../../api/endpoints/user";
 import { Button } from "../../components/Button";
 import { LoginPayload } from "../../types/listing";
 import { setToken, setUser } from "../../store/slices/auth";
+import { isValidToken } from "../../utils/auth";
 
 const schema = yup.object().shape({
   email: yup
