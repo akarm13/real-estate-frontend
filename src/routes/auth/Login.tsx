@@ -17,8 +17,16 @@ import { LoginPayload } from "../../types/listing";
 import { setToken, setUser } from "../../store/slices/auth";
 
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().min(5).max(20).required(),
+  email: yup
+    .string()
+    .required("Email is required")
+    .email("Please enter a valid email address"),
+
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(5, "Password must be at least 5 characters long")
+    .max(20),
 });
 
 export const Login = () => {
@@ -127,8 +135,7 @@ export const Login = () => {
                 <div className="flex flex-col  gap-2">
                   {isLoginError && (
                     <span className="text-sm text-red-700">
-                      {" "}
-                      this email does not exit or the password may be wrong
+                      Invalid email or password
                     </span>
                   )}
                 </div>
