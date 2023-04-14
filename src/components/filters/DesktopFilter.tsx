@@ -31,7 +31,7 @@ export const DesktopFilter = ({ isLoading }: Props) => {
   const [maxArea, setMaxArea] = useState<number>();
   const [category, setCategory] = useState<string[]>([]);
   const [type, setType] = useState<string[]>([]);
-  const [inputValue, setInputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>("");
   const [Keyword, setkeyword] = useState<string[]>([]);
 
   const location = useLocation();
@@ -114,34 +114,25 @@ export const DesktopFilter = ({ isLoading }: Props) => {
   };
 
   const handleKeyDown: KeyboardEventHandler = (event) => {
-
-
-
     if (!inputValue) return;
     switch (event.key) {
-      case 'Enter':
-      case 'Tab':
+      case "Enter":
+      case "Tab":
         setkeyword((prev) => [...prev, inputValue]);
-        setInputValue('');
+        setInputValue("");
         event.preventDefault();
     }
   };
 
-
   const hanldeValue = (newValue: any) => {
-
-    const value = newValue.map((value: any) =>
-      value.value
-
-    )
-    setkeyword(value)
-
-
-  }
+    const value = newValue.map((value: any) => value.value);
+    setkeyword(value);
+  };
   return (
     <div
-      className={`py-6 px-5 border-primary-background border-2 flex flex-col gap-y-6 rounded-lg ${isLoading ? "opacity-60 pointer-events-none" : ""
-        }`}
+      className={`py-6 px-5 border-primary-background border-2 flex flex-col gap-y-6 rounded-lg ${
+        isLoading ? "opacity-60 pointer-events-none" : ""
+      }`}
     >
       <Category
         onInputHandle={(selectedCategories) => setCategory(selectedCategories)}
@@ -184,13 +175,10 @@ export const DesktopFilter = ({ isLoading }: Props) => {
           <CreatableSelect
             options={[]}
             isMulti
-
             placeholder="Eg. Balcony, Swimming pool, etc."
             styles={colourStyles}
-            onChange={(newValue) => hanldeValue(newValue)
-            }
-            onInputChange={(newValue) => setInputValue(newValue)
-            }
+            onChange={(newValue) => hanldeValue(newValue)}
+            onInputChange={(newValue) => setInputValue(newValue)}
             onKeyDown={handleKeyDown}
             components={{
               ...animatedComponents,

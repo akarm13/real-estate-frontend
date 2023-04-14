@@ -8,8 +8,7 @@ import { MobileFilter } from "../../components/filters/MobileFilter";
 import { InputSearch } from "./InputSearch";
 import { useGetAllListingsQuery } from "../../api/endpoints/listings";
 import queryString from "query-string";
-import {useGetListingByTitleQuery} from "../../api/endpoints/listings"
-
+import { useGetListingByTitleQuery } from "../../api/endpoints/listings";
 
 import { SearchPayload } from "../../types/listing";
 import { removeUnusedQueryParams } from "../../utils/url";
@@ -24,8 +23,7 @@ const sortOptions = [
 
 export const Search = () => {
   const [value, setValue] = useState(sortOptions[0].value);
-  const [title , setTitle] = useState("")
-
+  const [title, setTitle] = useState("");
 
   // change searchParams from string to number
 
@@ -33,19 +31,16 @@ export const Search = () => {
     removeUnusedQueryParams(location.search)
   );
 
-  let { data, isLoading, isError, isFetching } = useGetAllListingsQuery(
-    query,
-    {
-      refetchOnMountOrArgChange: true,
-    }
-  );
+  let { data, isLoading, isError, isFetching } = useGetAllListingsQuery(query, {
+    refetchOnMountOrArgChange: true,
+  });
 
-  let {data:SearchByTitle} = useGetListingByTitleQuery(title)
+  let { data: SearchByTitle } = useGetListingByTitleQuery(title);
 
- let listing = data || SearchByTitle
- if(title){
-  listing=SearchByTitle
- }
+  let listing = data || SearchByTitle;
+  if (title) {
+    listing = SearchByTitle;
+  }
 
   return (
     <div className="mt-11 container">
@@ -71,13 +66,12 @@ export const Search = () => {
                 ))}
               </>
             ) : listing?.data !== undefined && listing.data?.length > 0 ? (
-              listing?.data.map((property:any) => (
+              listing?.data.map((property: any) => (
                 <Link key={property?._id} to={`/listings/${property?._id}`}>
                   <ListingCard {...property} />
                 </Link>
               ))
             ) : (
-              
               <h1>No listings found</h1>
             )}
           </div>

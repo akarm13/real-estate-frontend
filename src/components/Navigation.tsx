@@ -1,14 +1,13 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Button } from "./Button";
-import { ReactComponent as LogoIcon } from "../assets/icons/listing/logo.svg";
-import { ReactComponent as HamburgerIcon } from "../assets/icons/hamburger-icon.svg";
-import { ReactComponent as CloseIcon } from "../assets/icons/close.svg";
-import { useMediaQuery } from "react-responsive";
-import { queries } from "../devices";
-import { useState } from "react";
-import { TokenResponse } from "../types/listing";
-import { useGetUserQuery } from "../api/endpoints/user";
 import jwt_decode from "jwt-decode";
+import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useGetUserQuery } from "../api/endpoints/user";
+import { ReactComponent as CloseIcon } from "../assets/icons/close.svg";
+import { ReactComponent as HamburgerIcon } from "../assets/icons/hamburger-icon.svg";
+import { ReactComponent as LogoIcon } from "../assets/icons/listing/logo.svg";
+import { queries } from "../devices";
+import { Button } from "./Button";
 import { UserInfo } from "./UserInfo";
 export const Navigation = () => {
   const navigate = useNavigate();
@@ -16,8 +15,7 @@ export const Navigation = () => {
     localStorage.getItem("token")
   );
   var decoded = token && jwt_decode(token);
-  const { data, isLoading, isError } = useGetUserQuery(decoded?.sub)
-
+  const { data, isLoading, isError } = useGetUserQuery(decoded?.sub);
 
   const activeClasses =
     "md:bg-primary-background md:text-primary-500 md:px-4 md:py-2 md:my-0 md:mx-0 md:rounded-lg font-medium";
@@ -30,7 +28,7 @@ export const Navigation = () => {
       navigate("/register");
     } else if (change == "logout") {
       localStorage.removeItem("token");
-      navigate('/')
+      navigate("/");
       setToken("");
     }
   };
@@ -116,8 +114,9 @@ export const Navigation = () => {
         {/* for mobile */}
       </nav>
       <div
-        className={`min-h-screen fixed top-0 md:hidden z-[10000] overflow-y-hidden bg-white  w-full flex flex-col gap-y-10 py-2  items-baseline px-4 duration-300  ease-in  ${isMenuOpen ? "left-0" : "-left-full"
-          }`}
+        className={`min-h-screen fixed top-0 md:hidden z-[10000] overflow-y-hidden bg-white  w-full flex flex-col gap-y-10 py-2  items-baseline px-4 duration-300  ease-in  ${
+          isMenuOpen ? "left-0" : "-left-full"
+        }`}
       >
         <div className="flex justify-between w-full py-4">
           <NavLink

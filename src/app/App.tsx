@@ -10,7 +10,7 @@ import { Login } from "../routes/auth/Login";
 import { Search } from "../routes/search/Search";
 import { Details } from "../routes/listings/Details";
 import { Footer } from "../components/Footer";
-import {Agent} from "../routes/agents/Agent"
+import { Agent } from "../routes/agents/Agent";
 
 function App() {
   const location = useLocation();
@@ -32,7 +32,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/search?" element={<Search />} />
         <Route path="/listings/:houseId" element={<Details />} />
-        <Route path="/agents" element={<Agent/>}/>
+        <Route path="/agents" element={<Agent />} />
       </Routes>
       {!isAuthPage && <Footer />}
     </main>

@@ -11,8 +11,6 @@ import { featuredProperties } from "../../dummyData";
 export const SummarySection = ({ data }: any) => {
   //  data.owner.name = data
 
-
-
   return (
     <div className="lg:flex w-full ">
       <div className="flex flex-col gap-6">
