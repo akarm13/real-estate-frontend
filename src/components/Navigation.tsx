@@ -1,17 +1,15 @@
-import jwt_decode from "jwt-decode";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useGetMeQuery } from "../api/endpoints/user";
 import { ReactComponent as CloseIcon } from "../assets/icons/close.svg";
 import { ReactComponent as HamburgerIcon } from "../assets/icons/hamburger-icon.svg";
 import { ReactComponent as LogoIcon } from "../assets/icons/listing/logo.svg";
 import { queries } from "../devices";
 import { Button } from "./Button";
-import { UserInfo } from "./UserInfo";
-import { useSelector } from "react-redux";
+import { UserInfo } from "./navigation/UserInfo";
 
-import { selectIsAuthenticated, selectAuth } from "../store/slices/auth";
+import { selectAuth, selectIsAuthenticated } from "../store/slices/auth";
 
 export const Navigation = () => {
   const navigate = useNavigate();
@@ -52,39 +50,7 @@ export const Navigation = () => {
               Hêlane
             </span>
           </NavLink>
-          <ul className="hidden md:flex md:justify-between">
-            <li className="">
-              <NavLink
-                to="/"
-                className={({ isActive }) => {
-                  return isActive ? activeClasses : inactiveClasses;
-                }}
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/search"
-                className={({ isActive }) => {
-                  return isActive ? activeClasses : inactiveClasses;
-                }}
-              >
-                Search
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/agents"
-                className={({ isActive }) => {
-                  return isActive ? activeClasses : inactiveClasses;
-                }}
-              >
-                Agents
-              </NavLink>
-            </li>
-          </ul>
+          <ul className="hidden md:flex md:justify-between"></ul>
 
           <div className="hidden md:flex md:gap-x-6">
             {isAuthenticated ? (

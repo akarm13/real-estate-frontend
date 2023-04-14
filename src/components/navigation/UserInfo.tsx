@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { ReactComponent as DropDown } from "../assets/icons/dropdown.svg";
-import { Button } from "./Button";
+import { ReactComponent as DropDown } from "../../assets/icons/dropdown.svg";
+import { Button } from "../Button";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/slices/auth";
 
 export const UserInfo = ({ data }: any) => {
-  const [bool, setBool] = useState<boolean>(false);
+  const [isNavigationOpen, setIsNavigationOpen] = useState<boolean>(false);
+
   const navigate = useNavigate();
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token")
-  );
+  const dispatch = useDispatch();
+
   const routeHandler = (change: String) => {
     if (change === "primary") {
       navigate("/login");
@@ -16,23 +18,25 @@ export const UserInfo = ({ data }: any) => {
       navigate("/register");
     } else if (change == "logout") {
       localStorage.removeItem("token");
-      navigate("/");
-      setBool(false);
-      setToken("");
+      dispatch(logout);
+      navigate("/login");
     }
   };
 
   return (
     <div className="dropdown inline-block relative pr-12">
-      <button className=" text-gray-700  font-semibold py-2 px-4 rounded inline-flex items-center">
+      <button
+        className=" text-gray-700  font-semibold py-2 px-4 rounded inline-flex items-center"
+        onClick={() => setIsNavigationOpen(!isNavigationOpen)}
+      >
         <span className="mr-1  w-10 h-10 rounded-full ">
           <img src={data?.avatar} className="w-full h-full" alt="" />
         </span>
-        <DropDown onClick={() => setBool(!bool)} />
+        <DropDown />
       </button>
       <ul
         className={`dropdown-menu absolute right-0 ${
-          bool ? "block" : "hidden"
+          isNavigationOpen ? "block" : "hidden"
         } cursor-pointer w-60 flex flex-col gap-3 text-primary-500 font-medium z-10 bg-white  shadow-xl py-4 px-5  pt-0 `}
       >
         <li className="hover:bg-slate-50 p-[7px] ">
@@ -56,7 +60,6 @@ export const UserInfo = ({ data }: any) => {
         <hr></hr>
 
         <li className="">
-          {" "}
           <Button onClick={() => routeHandler("logout")} variant="secondary">
             Logout
           </Button>
