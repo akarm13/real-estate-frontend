@@ -2,10 +2,12 @@ import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { api } from "../api/rtk-api";
+import { authSliceReducer } from "./slices/auth";
 
 const store: ToolkitStore = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
+    auth: authSliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),

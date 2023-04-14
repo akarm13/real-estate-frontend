@@ -1,47 +1,55 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { ReactComponent as LogoIcon } from "../../assets/icons/listing/logo.svg";
 
 import { ReactComponent as LoginIllustration } from "../../assets/illustrations/login-illustration.svg";
 
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { ClipLoader } from "react-spinners";
+import * as yup from "yup";
+import { useLoginMutation } from "../../api/endpoints/auth";
+import { useLazyGetMeQuery } from "../../api/endpoints/user";
 import { Button } from "../../components/Button";
 import { LoginPayload } from "../../types/listing";
-import { useLoginMutation } from "../../api/endpoints/auth";
-import { useEffect } from "react";
-import { ClipLoader } from "react-spinners";
+import { setToken, setUser } from "../../store/slices/auth";
+
+const schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().min(5).max(20).required(),
+});
 
 export const Login = () => {
-  const schema = yup.object().shape({
-    email: yup.string().email().required(),
-    password: yup.string().min(5).max(20).required(),
-  });
-
   const {
     register,
-
     handleSubmit,
     formState: { errors },
   } = useForm<LoginPayload>({
     resolver: yupResolver(schema),
   });
 
-  const [loginUser, { data, isLoading, isError }] = useLoginMutation();
+  const [login, { isLoading: isLoginLoading, isError: isLoginError }] =
+    useLoginMutation();
+  const [getMe, { isLoading: isGetMeLoading }] = useLazyGetMeQuery();
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(data);
+  const onSubmit = async (payload: LoginPayload) => {
+    try {
+      const response = await login(payload).unwrap();
+      const token = response.token;
+      const getMeResponse = await getMe(token).unwrap();
 
-    if (data?.token) {
-      localStorage.setItem("token", data?.token);
-      navigate("/");
+      if (getMeResponse && token) {
+        localStorage.setItem("token", token);
+        dispatch(setUser(getMeResponse));
+        dispatch(setToken(token));
+      }
+    } catch (error) {
+      console.log(error);
     }
-  }, [data]);
-  const onSubmit = (data: LoginPayload) => {
-    loginUser(data);
   };
 
   return (
@@ -65,7 +73,6 @@ export const Login = () => {
           </div>
         </div>
         <div className="flex-1  justify-center items-center">
-          {/* login and sign up section */}
           <div className="flex flex-col   gap-14 my-16 md:my-20 md:mx-12  mx-5">
             <div className="flex flex-col gap-y-4">
               <p className="lg:text-2xl text-xl font-medium  text-primaryText">
@@ -118,7 +125,7 @@ export const Login = () => {
                   </p>
                 </div>
                 <div className="flex flex-col  gap-2">
-                  {isError && (
+                  {isLoginError && (
                     <span className="text-sm text-red-700">
                       {" "}
                       this email does not exit or the password may be wrong
@@ -129,16 +136,9 @@ export const Login = () => {
                   <Button
                     onClick={() => console.log("primary")}
                     variant="primary"
+                    isLoading={isLoginLoading || isGetMeLoading}
                   >
-                    {isLoading ? (
-                      <ClipLoader
-                        color="#36d7b7"
-                        aria-label="Loading Spinner"
-                        data-testid="loader"
-                      />
-                    ) : (
-                      "Login"
-                    )}
+                    Login
                   </Button>
                 </div>
               </form>

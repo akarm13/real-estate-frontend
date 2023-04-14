@@ -3,13 +3,16 @@ import { api } from "../rtk-api";
 
 export const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getUser: builder.query<User, userIdRequest>({
-      query: (id) => ({
-        url: `/users/${id}`,
+    getMe: builder.query<User, string>({
+      query: (token) => ({
+        url: `/users/me`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         method: "GET",
       }),
     }),
   }),
 });
 
-export const { useGetUserQuery } = userApi;
+export const { useLazyGetMeQuery, useGetMeQuery } = userApi;

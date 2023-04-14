@@ -2,7 +2,7 @@ import jwt_decode from "jwt-decode";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useGetUserQuery } from "../api/endpoints/user";
+import { useGetMeQuery } from "../api/endpoints/user";
 import { ReactComponent as CloseIcon } from "../assets/icons/close.svg";
 import { ReactComponent as HamburgerIcon } from "../assets/icons/hamburger-icon.svg";
 import { ReactComponent as LogoIcon } from "../assets/icons/listing/logo.svg";
@@ -15,7 +15,7 @@ export const Navigation = () => {
     localStorage.getItem("token")
   );
   var decoded = token && jwt_decode(token);
-  const { data, isLoading, isError } = useGetUserQuery(decoded?.sub);
+  const { data, isLoading, isError } = useGetMeQuery(decoded?.sub);
 
   const activeClasses =
     "md:bg-primary-background md:text-primary-500 md:px-4 md:py-2 md:my-0 md:mx-0 md:rounded-lg font-medium";
