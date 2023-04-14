@@ -1,15 +1,21 @@
 import { useRef, useState } from "react";
-import { ReactComponent as DropDown } from "../../assets/icons/dropdown.svg";
-import { Button } from "../Button";
+import { ReactComponent as DropDownIcon } from "../../assets/icons/dropdown.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/slices/auth";
 
 import { useClickAway } from "react-use";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../DropdownMenu";
+
+import { Settings, LogOut, Star, ListMinus, UserCog, User } from "lucide-react";
 
 export const UserInfo = ({ data }: any) => {
-  const [isNavigationOpen, setIsNavigationOpen] = useState<boolean>(false);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -25,56 +31,66 @@ export const UserInfo = ({ data }: any) => {
     }
   };
 
-  // Use useclickaway to close the dropdown when clicked outside
-
   const ref = useRef(null);
 
-  useClickAway(ref, () => {
-    setIsNavigationOpen(false);
-  });
-
   return (
-    <div className="dropdown inline-block relative pr-12" ref={ref}>
-      <button
-        className=" text-gray-700  font-semibold py-2 px-4 rounded inline-flex items-center"
-        onClick={() => setIsNavigationOpen(!isNavigationOpen)}
-      >
-        <span className="mr-1  w-10 h-10 rounded-full ">
-          <img src={data?.avatar} className="w-full h-full" alt="" />
-        </span>
-        <DropDown />
-      </button>
-      <ul
-        className={`dropdown-menu absolute right-0 ${
-          isNavigationOpen ? "block" : "hidden"
-        } cursor-pointer w-60 flex flex-col gap-3 text-primary-500 font-medium z-10 bg-white  shadow-xl py-4 px-5  pt-0 `}
-      >
-        <li className="hover:bg-slate-50 p-[7px] ">
-          <span className="">Profile</span>
-        </li>
-        <hr></hr>
-        <li className="hover:bg-slate-50 p-[3px]">
-          <span className="">Edit profile</span>
-        </li>
-        <hr></hr>
-        <li className="hover:bg-slate-50 p-[3px]">
-          <span className="">My listings</span>
-        </li>
-        <li className="hover:bg-slate-50 p-[3px]">
-          <span className="">My favorites</span>
-        </li>
-        <hr></hr>
-        <li className="hover:bg-slate-50 p-[3px]">
-          <span className="">Account Settings</span>
-        </li>
-        <hr></hr>
-
-        <li className="">
-          <Button onClick={() => routeHandler("logout")} variant="secondary">
-            Logout
-          </Button>
-        </li>
-      </ul>
+    <div className="relative pr-12" ref={ref}>
+      <DropdownMenu>
+        <DropdownMenuTrigger className="text-gray-800 font-semibold py-2 px-4 rounded inline-flex items-center outline-none">
+          <span className="mr-1 w-10 h-10 rounded-full">
+            <img src={data?.avatar} className="w-full h-full rounded-full" />
+          </span>
+          <DropDownIcon />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem
+            onSelect={() => console.log("Profile")}
+            className="cursor-pointer text-base text-gray-800 hover:text-primaryText focus:bg-primary-50 px-4 py-2"
+          >
+            <User className="mr-2 h-4 w-4" />
+            <span>Profile</span>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            onSelect={() => console.log("Edit profile")}
+            className="cursor-pointer text-base text-gray-800 hover:text-primaryText focus:bg-primary-50 px-4 py-2"
+          >
+            <UserCog className="mr-2 h-4 w-4" />
+            <span>Edit profile</span>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            onSelect={() => console.log("My listings")}
+            className="cursor-pointer text-base text-gray-800 hover:text-primaryText focus:bg-primary-50 px-4 py-2"
+          >
+            <ListMinus className="mr-2 h-4 w-4" />
+            <span>My listings</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onSelect={() => console.log("My favorites")}
+            className="cursor-pointer text-base text-gray-800 hover:text-primaryText focus:bg-primary-50 px-4 py-2"
+          >
+            <Star className="mr-2 h-4 w-4" />
+            <span>My favorites</span>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            onSelect={() => console.log("Account Settings")}
+            className="cursor-pointer text-base text-gray-800 hover:text-primaryText focus:bg-primary-50 px-4 py-2"
+          >
+            <Settings className="mr-2 h-4 w-4" />
+            <span>Account Settings</span>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            onSelect={() => routeHandler("logout")}
+            className="cursor-pointer text-base text-gray-800 hover:text-primaryText focus:bg-primary-50 px-4 py-2"
+          >
+            <LogOut className="mr-2 h-4 w-4" />
+            <span>Log out</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 };
