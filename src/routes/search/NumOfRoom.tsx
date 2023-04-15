@@ -21,7 +21,7 @@ export const NumOfRoom = ({
       <div className="flex md:flex-col justify-between gap-y-8">
         <div className="flex flex-col gap-y-2">
           <span className="w-full   text-base  text-primaryText  font-medium capitalize">
-            bedroom
+            Bedrooms
           </span>
           <div className="flex items-center justify-between ">
             <select

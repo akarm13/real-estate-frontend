@@ -124,7 +124,7 @@ export const DesktopFilter = ({ isLoading }: Props) => {
     }
   };
 
-  const hanldeValue = (newValue: any) => {
+  const handleValue = (newValue: any) => {
     const value = newValue.map((value: any) => value.value);
     setkeyword(value);
   };
@@ -177,7 +177,7 @@ export const DesktopFilter = ({ isLoading }: Props) => {
             isMulti
             placeholder="Eg. Balcony, Swimming pool, etc."
             styles={colourStyles}
-            onChange={(newValue) => hanldeValue(newValue)}
+            onChange={(newValue) => handleValue(newValue)}
             onInputChange={(newValue) => setInputValue(newValue)}
             onKeyDown={handleKeyDown}
             components={{

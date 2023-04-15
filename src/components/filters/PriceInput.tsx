@@ -33,6 +33,7 @@ export const PriceInput = ({
           </div>
           <input
             type="number"
+            min={0}
             placeholder={firstInputPlaceholder}
             value={firstInputValue}
             onChange={(e) => onFirstInputChange?.(e.target.value)}
@@ -45,6 +46,7 @@ export const PriceInput = ({
           </div>
           <input
             type="number"
+            min={0}
             placeholder={secondInputPlaceholder}
             value={secondInputValue}
             onChange={(e) => onSecondInputChange?.(e.target.value)}
