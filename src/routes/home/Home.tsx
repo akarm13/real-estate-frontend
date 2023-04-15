@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
-    <div className="pt-7 ">
+    <div className="pt-16 xl:pt-0">
       <HeroSection />
       <BenefitsSection />
       <ListingsSection />

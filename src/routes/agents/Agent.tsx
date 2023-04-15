@@ -40,7 +40,7 @@ export const Agent = () => {
   });
 
   return (
-    <div className=" ml-24 mt-9">
+    <div className="pt-32 container">
       <div className="bg-searchBackground py-1 md:py-2 md: px-4 w-full mx-auto md:mx-0 lg:w-[1370px] rounded-lg flex justify-between">
         {isSmall ? (
           <>

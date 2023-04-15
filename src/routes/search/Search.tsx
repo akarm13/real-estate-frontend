@@ -43,7 +43,7 @@ export const Search = () => {
   }
 
   return (
-    <div className="mt-11 container">
+    <div className="pt-32 container">
       <div className="grid grid-cols-1 lg:grid-cols-search gap-x-8">
         <div className="hidden lg:block">
           <DesktopFilter isLoading={isFetching || isLoading} />
