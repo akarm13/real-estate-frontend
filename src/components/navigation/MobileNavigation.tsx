@@ -9,35 +9,23 @@ import { useState } from "react";
 
 import { ReactComponent as LogoIcon } from "../../assets/icons/listing/logo.svg";
 import { Button } from "../Button";
+import { Menu, XIcon } from "lucide-react";
 
-export const MobileNavigation = () => {
+type Props = {
+  isMenuOpen: boolean;
+  setIsMenuOpen: (value: boolean) => void;
+};
+
+export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const { user } = useSelector(selectAuth);
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <div
-      className={`min-h-screen fixed top-0 md:hidden z-[10000] overflow-y-hidden bg-white w-full flex flex-col gap-y-10 py-2 items-baseline px-4 duration-300 ease-in ${
+      className={`min-h-screen fixed top-[74px] md:hidden z-20 overflow-y-hidden bg-white w-full flex flex-col gap-y-10 items-baseline px-4 py-8  ${
         isMenuOpen ? "left-0" : "-left-full"
       }`}
     >
-      <div className="flex justify-between w-full py-4">
-        <NavLink
-          to="/"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="flex items-center gap-x-1"
-        >
-          <span>
-            <LogoIcon />
-          </span>
-          <span className="text-primary-500 text-xl text-bold font-bold">
-            Hêlane
-          </span>
-        </NavLink>
-        <CloseIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
-      </div>
-      <NavigationLinks />
       {isAuthenticated ? (
         <>
           <UserInfo data={user} />

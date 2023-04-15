@@ -5,7 +5,7 @@ import { Skeleton } from "./Skeleton";
 
 const SkeletonListingCard: React.FC = () => {
   return (
-    <div className="flex flex-col transition duration-200 relative z-0 listing-card rounded-lg snap-center my-4 lg:my-0">
+    <div className="flex flex-col transition duration-200 relative z-10 listing-card rounded-lg snap-center my-4 lg:my-0">
       <div className="overflow-hidden rounded-lg">
         <Skeleton className="h-[170px] w-full" />
       </div>
