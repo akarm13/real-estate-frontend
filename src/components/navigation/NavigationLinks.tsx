@@ -7,7 +7,7 @@ export const NavigationLinks = () => {
     "md:bg-white text-secondaryText md:px-4 md:py-2 md:my-0 md:mx-0 rounded-lg";
 
   return (
-    <ul className="flex flex-col md:flex-row md:justify-center">
+    <ul className="hidden md:flex  md:flex-row md:justify-center flex-grow">
       <li>
         <NavLink
           to="/"

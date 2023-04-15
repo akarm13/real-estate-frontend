@@ -1,15 +1,5 @@
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { ReactComponent as CloseIcon } from "../../assets/icons/close.svg";
 import { selectAuth, selectIsAuthenticated } from "../../store/slices/auth";
-import { AuthButtons } from "./AuthButtons";
-import { NavigationLinks } from "./NavigationLinks";
-import { UserInfo } from "./UserInfo";
-import { useState } from "react";
-
-import { ReactComponent as LogoIcon } from "../../assets/icons/listing/logo.svg";
-import { Button } from "../Button";
-import { Menu, XIcon } from "lucide-react";
 
 type Props = {
   isMenuOpen: boolean;
@@ -26,16 +16,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
         isMenuOpen ? "left-0" : "-left-full"
       }`}
     >
-      {isAuthenticated ? (
-        <>
-          <UserInfo data={user} />
-          <Button variant="secondary" onClick={() => console.log("will fix")}>
-            Logout
-          </Button>
-        </>
-      ) : (
-        <AuthButtons />
-      )}
+      {/* <UserActionsMenu user={user} /> */}
     </div>
   );
 };
