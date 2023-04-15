@@ -6,7 +6,7 @@ import {
 } from "../../store/slices/auth";
 import { Link, NavLink } from "react-router-dom";
 import { activeClasses, inactiveClasses } from "./NavigationLinks";
-import { cn } from "../../utils/common";
+import { cn, toggleBodyOverflow } from "../../utils/common";
 import {
   ListMinus,
   LogOut,
@@ -15,6 +15,7 @@ import {
   UserCog,
   UserIcon,
 } from "lucide-react";
+import { useEffect } from "react";
 
 type Props = {
   isMenuOpen: boolean;
@@ -36,6 +37,9 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
     localStorage.removeItem("token");
   };
 
+  useEffect(() => {
+    toggleBodyOverflow(isMenuOpen);
+  }, [isMenuOpen]);
   return (
     <div
       className={`min-h-screen fixed top-[74px] md:hidden z-20 overflow-y-auto bg-white w-full flex flex-col gap-y-8 items-start px-8 py-8  ${
