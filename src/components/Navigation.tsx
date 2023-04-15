@@ -1,17 +1,27 @@
 import { Menu, Plus, XIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ReactComponent as LogoWithText } from "../assets/logo-with-text.svg";
 import { selectAuth } from "../store/slices/auth";
 import { Button } from "./Button";
 import { MobileNavigation } from "./navigation/MobileNavigation";
 import { NavigationLinks } from "./navigation/NavigationLinks";
 import { UserActionsMenu } from "./navigation/UserActionsMenu";
+import { selectIsGetMeLoading } from "../api/endpoints/user";
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const { user } = useSelector(selectAuth);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const isGetMeLoading = useSelector(selectIsGetMeLoading);
+
+  useEffect(() => {
+    if (isGetMeLoading !== undefined) {
+      setIsLoading(isGetMeLoading);
+    }
+  }, [isGetMeLoading]);
 
   const handleAddClick = () => {
     console.log("Add");
@@ -36,13 +46,22 @@ export const Navigation = () => {
                 <LogoWithText className="h-8 sm:h-12" />
               </NavLink>
             </div>
-            <Button
-              variant="primary"
-              className="mr-4 md:hidden tems-center py-[6px] px-2"
-              onClick={handleAddClick}
-            >
-              <Plus className="text-white" />
-            </Button>
+            {isLoading && !user ? (
+              <Button
+                variant="primary"
+                className="mr-4 md:hidden items-center py-[6px] px-2"
+                onClick={handleAddClick}
+              >
+                <Plus className="text-white" />
+              </Button>
+            ) : (
+              <Link
+                to="/login"
+                className="px-2 py[6px] items-center md:hidden mr-4 text-secondaryText"
+              >
+                Sign in
+              </Link>
+            )}
           </div>
           <NavigationLinks />
           <UserActionsMenu user={user} />
