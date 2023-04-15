@@ -35,7 +35,7 @@ function App() {
       children: [{ index: true, element: <Login /> }],
     },
     { path: "/search", element: <Search /> },
-    { path: "/listings/:houseId", element: <Details /> },
+    { path: "/listings/:id", element: <Details /> },
     { path: "/agents", element: <Agent /> },
   ]);
 

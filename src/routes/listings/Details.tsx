@@ -9,12 +9,13 @@ import { MapSection } from "./MapSection";
 import { SimilarListingsSection } from "./SimilarListingsSection";
 import { featuredProperties } from "../../dummyData";
 import { useGetListingByIdQuery } from "../../api/endpoints/listings";
-import { Listing, ListingIdRequest } from "../../types/listing";
+import { Listing } from "../../types/listing";
+import { Skeleton } from "../../components/skeleton/Skeleton";
 
 export const Details = () => {
-  const { houseId } = useParams<ListingIdRequest>();
+  const { id } = useParams<{ id: string }>();
 
-  const { data, isLoading, isError } = useGetListingByIdQuery(houseId || "");
+  const { data, isLoading, isError } = useGetListingByIdQuery(id || "");
 
   return (
     <div className="w-full">
@@ -29,9 +30,13 @@ export const Details = () => {
         </div>
 
         <div className=" flex lg:w-full   justify-between items-center  pt-10">
-          <h3 className="font-semibold  text-sm md:text-lg lg:text-3xl font-sans">
-            {data?.title}
-          </h3>
+          {isLoading ? (
+            <Skeleton className="w-1/2 h-8" />
+          ) : (
+            <h3 className="font-semibold  text-sm md:text-lg lg:text-3xl font-sans">
+              {data?.title}
+            </h3>
+          )}
 
           <div className="flex  lg:mr-14">
             <div className="flex items-center justify-between border-primary-background mr-1 lg:mr-4 px-1 py-1 lg:px-5 lg:py-3 border-2 rounded-lg">
@@ -52,14 +57,33 @@ export const Details = () => {
 
         <div className="mt-4">
           <p className="text-secondaryText md:text-base text-sm lg:text-xl font-medium font-sans">
-            {data?.location.address + " " + data?.location.city}
+            {isLoading ? (
+              <Skeleton className="w-52 h-8" />
+            ) : (
+              data?.location.address + " " + data?.location.city
+            )}
           </p>
         </div>
 
-        <HouseGallery data={data} />
-        <SummarySection data={data} />
-        <AmenitiesSection data={data} />
-        <MapSection />
+        <HouseGallery
+          images={data?.images || []}
+          type={data?.type}
+          isLoading={isLoading}
+        />
+        <SummarySection
+          rooms={data?.rooms}
+          area={data?.area}
+          price={data?.price}
+          owner={data?.owner}
+          status={data?.status}
+          description={data?.description}
+          isLoading={isLoading}
+        />
+        <AmenitiesSection
+          amenities={data?.amenities || []}
+          isLoading={isLoading}
+        />
+        <MapSection isLoading={isLoading} geometry={data?.geometry} />
         {/* <SimilarListingsSection /> */}
       </div>
     </div>

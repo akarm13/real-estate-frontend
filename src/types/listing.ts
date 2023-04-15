@@ -53,7 +53,7 @@ export type Listing = {
   geometry: Geometry;
   location: Location;
   amenities: Amenity[];
-  owner: User[];
+  owner: User;
   createdAt: Date;
   updatedAt: Date;
   __v: number;

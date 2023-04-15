@@ -1,16 +1,30 @@
-import { ReactComponent as BedroomIcon } from "../../assets/icons/listing/bedroom.svg";
-import { ReactComponent as BathroomIcon } from "../../assets/icons/listing/bathroom.svg";
-import { ReactComponent as MeterIcon } from "../../assets/housedetail/meters.svg";
 import { ReactComponent as CheckMarkIcon } from "../../assets/housedetail/checkmark.svg";
+import { ReactComponent as MeterIcon } from "../../assets/housedetail/meters.svg";
 import { ReactComponent as Person } from "../../assets/housedetail/person.svg";
+import { ReactComponent as BathroomIcon } from "../../assets/icons/listing/bathroom.svg";
+import { ReactComponent as BedroomIcon } from "../../assets/icons/listing/bedroom.svg";
 import { Button } from "../../components/Button";
 
-import { useParams, Link } from "react-router-dom";
-import { featuredProperties } from "../../dummyData";
+import { Listing } from "../../types/listing";
 
-export const SummarySection = ({ data }: any) => {
-  //  data.owner.name = data
+type Props = {
+  rooms: Listing["rooms"] | undefined;
+  area: Listing["area"] | undefined;
+  description: Listing["description"] | undefined;
+  price: Listing["price"] | undefined;
+  owner: Listing["owner"] | undefined;
+  status: Listing["status"] | undefined;
+  isLoading: boolean;
+};
 
+export const SummarySection = ({
+  rooms,
+  area,
+  price,
+  owner,
+  status,
+  description,
+}: Props) => {
   return (
     <div className="lg:flex w-full ">
       <div className="flex flex-col gap-6">
@@ -24,7 +38,7 @@ export const SummarySection = ({ data }: any) => {
               <BedroomIcon />
 
               <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-xs ">
-                {data?.rooms.bedrooms}
+                {rooms?.bedrooms}
               </span>
             </div>
           </div>
@@ -36,7 +50,7 @@ export const SummarySection = ({ data }: any) => {
               <BathroomIcon />
 
               <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-xs">
-                {data?.rooms.bathrooms}
+                {rooms?.bathrooms}
               </span>
             </div>
           </div>
@@ -48,7 +62,7 @@ export const SummarySection = ({ data }: any) => {
               <MeterIcon />
 
               <span className="mx-1 md:mx-4 w-16 lg:text-base md:text-sm text-xs">
-                {data?.area} m2
+                {area} m2
               </span>
             </div>
           </div>
@@ -60,7 +74,7 @@ export const SummarySection = ({ data }: any) => {
               <CheckMarkIcon />
 
               <span className="md:mx-4 lg:text-base md:text-sm text-xs">
-                Active
+                {status}
               </span>
             </div>
           </div>
@@ -72,7 +86,7 @@ export const SummarySection = ({ data }: any) => {
           </h2>
 
           <p className="text-secondaryText text-sm lg:text-base">
-            {data?.description}
+            {description}
           </p>
         </div>
       </div>
@@ -81,7 +95,7 @@ export const SummarySection = ({ data }: any) => {
         <h5 className="font-semibold text-base lg:text-lg">Sale Price</h5>
 
         <h3 className="text-primary-500 text-lg lg:text-2xl font-bold ">
-          ${data?.price}
+          ${price}
         </h3>
 
         <div className="flex md:w-48 w-44 justify-between  ">
@@ -89,7 +103,7 @@ export const SummarySection = ({ data }: any) => {
           <div>
             <h4 className="font-semibold lg:text-base text-sm">
               {" "}
-              {data?.owner.fullName}
+              {owner?.fullName}
             </h4>
             <h5 className="text-secondaryText lg:text-base text-sm">
               Verified Agent
@@ -125,7 +139,7 @@ export const SummarySection = ({ data }: any) => {
           onClick={() => console.log("login")}
           variant="primary"
         >
-          {data?.owner.phone}
+          {owner?.phone}
         </Button>
       </div>
     </div>
