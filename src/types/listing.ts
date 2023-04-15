@@ -1,3 +1,5 @@
+import { User } from "./auth";
+
 export type PropertyType = "rent" | "sale";
 export type PropertyStatus = "featured" | "sold" | "new" | "normal";
 
@@ -72,19 +74,6 @@ export type Geometry = {
 export type Location = {
   address: string;
   city: string;
-};
-
-export type User = {
-  _id: string;
-  fullName: string;
-  email: string;
-  phone: string;
-  avatar: string;
-  isVerified: boolean;
-  role: string;
-  createdAt: Date;
-  updatedAt: Date;
-  __v: number;
 };
 
 export type Rooms = {

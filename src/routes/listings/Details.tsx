@@ -1,16 +1,13 @@
 import { Link, useParams } from "react-router-dom";
+import { useGetListingByIdQuery } from "../../api/endpoints/listings";
 import { ReactComponent as BackIcon } from "../../assets/housedetail/back.svg";
 import { ReactComponent as FeaturedStarIcon } from "../../assets/icons/listing/star.svg";
 import { ReactComponent as LocationIcon } from "../../assets/icons/search/location.svg";
+import { Skeleton } from "../../components/skeleton/Skeleton";
 import { AmenitiesSection } from "./AmenitiesSection";
 import { HouseGallery } from "./HouseGallery";
-import { SummarySection } from "./SummarySection";
 import { MapSection } from "./MapSection";
-import { SimilarListingsSection } from "./SimilarListingsSection";
-import { featuredProperties } from "../../dummyData";
-import { useGetListingByIdQuery } from "../../api/endpoints/listings";
-import { Listing } from "../../types/listing";
-import { Skeleton } from "../../components/skeleton/Skeleton";
+import { SummarySection } from "./SummarySection";
 
 export const Details = () => {
   const { id } = useParams<{ id: string }>();

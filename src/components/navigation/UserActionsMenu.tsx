@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout, selectIsAuthenticated } from "../../store/slices/auth";
+import { logout } from "../../store/slices/auth";
 
 import {
   DropdownMenu,
@@ -22,9 +22,9 @@ import {
   Plus,
 } from "lucide-react";
 import { Button } from "../Button";
-import { User } from "../../types/listing";
 import { selectIsGetMeLoading } from "../../api/endpoints/user";
 import { Skeleton } from "../skeleton/Skeleton";
+import { User } from "../../types/auth";
 
 type Props = {
   user: User | null;

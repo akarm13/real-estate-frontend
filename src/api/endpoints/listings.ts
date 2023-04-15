@@ -1,4 +1,4 @@
-import { Listing, ListingIdRequest, SearchPayload } from "../../types/listing";
+import { Listing, SearchPayload } from "../../types/listing";
 import { api } from "../rtk-api";
 
 import { PaginatedResponse } from "../../types/common";

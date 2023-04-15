@@ -1,5 +1,5 @@
 import { RootState } from "../../store/store";
-import { User } from "../../types/listing";
+import { User } from "../../types/auth";
 import { api } from "../rtk-api";
 
 export const userApi = api.injectEndpoints({
