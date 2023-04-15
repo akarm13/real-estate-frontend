@@ -6,10 +6,6 @@ import { ReactComponent as BedroomIcon } from "../assets/icons/listing/bedroom.s
 import { ReactComponent as FeaturedStarIcon } from "../assets/icons/listing/featured-star.svg";
 import { ReactComponent as LocationIcon } from "../assets/icons/listing/location.svg";
 
-type Props = Listing & {
-  isLoading: boolean;
-};
-
 export const ListingCard = ({
   price,
   location,
@@ -19,8 +15,7 @@ export const ListingCard = ({
   title,
   type,
   images,
-  isLoading,
-}: Props) => {
+}: Listing) => {
   // If type is sale then "bg-primary-800 text-white" else "bg-primary-200 text-primary-800"
   const typeColor =
     type === "sale"
