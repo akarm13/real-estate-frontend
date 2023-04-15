@@ -1,10 +1,8 @@
-import { useRef, useState } from "react";
-import { ReactComponent as DropDownIcon } from "../../assets/icons/dropdown.svg";
-import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { logout } from "../../store/slices/auth";
 
-import { useClickAway } from "react-use";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +11,15 @@ import {
   DropdownMenuTrigger,
 } from "../DropdownMenu";
 
-import { Settings, LogOut, Star, ListMinus, UserCog, User } from "lucide-react";
+import {
+  ListMinus,
+  LogOut,
+  Settings,
+  Star,
+  User,
+  UserCog,
+  ChevronDown,
+} from "lucide-react";
 
 export const UserInfo = ({ data }: any) => {
   const navigate = useNavigate();
@@ -36,11 +42,14 @@ export const UserInfo = ({ data }: any) => {
   return (
     <div className="relative pr-12" ref={ref}>
       <DropdownMenu>
-        <DropdownMenuTrigger className="text-gray-800 font-semibold py-2 px-4 rounded inline-flex items-center outline-none">
-          <span className="mr-1 w-10 h-10 rounded-full">
-            <img src={data?.avatar} className="w-full h-full rounded-full" />
-          </span>
-          <DropDownIcon />
+        <DropdownMenuTrigger className="flex items-center outline-none">
+          <img
+            src={data?.avatar}
+            height={44}
+            width={44}
+            className="object-cover rounded-full mr-2"
+          />
+          <ChevronDown className="h-4 w-4" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem

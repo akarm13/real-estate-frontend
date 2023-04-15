@@ -7,8 +7,8 @@ export const NavigationLinks = () => {
     "md:bg-white text-secondaryText md:px-4 md:py-2 md:my-0 md:mx-0 rounded-lg";
 
   return (
-    <ul className="flex md:justify-between">
-      <li className="">
+    <ul className="flex flex-col md:flex-row md:justify-center">
+      <li>
         <NavLink
           to="/"
           className={({ isActive }) => {
