@@ -81,7 +81,6 @@ export const Details = () => {
           isLoading={isLoading}
         />
         <MapSection isLoading={isLoading} geometry={data?.geometry} />
-        {/* <SimilarListingsSection /> */}
       </div>
     </div>
   );

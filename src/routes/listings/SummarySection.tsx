@@ -35,6 +35,15 @@ const AgentInfoSkeleton = () => (
   </div>
 );
 
+const DescriptionSkeleton = () => (
+  <>
+    <Skeleton className="w-full h-4" />
+    <Skeleton className="w-5/6 h-4 mt-2" />
+    <Skeleton className="w-4/6 h-4 mt-2" />
+    <Skeleton className="w-3/6 h-4 mt-2" />
+    <Skeleton className="w-2/6 h-4 mt-2" />
+  </>
+);
 export const SummarySection = ({
   rooms,
   area,
@@ -50,7 +59,7 @@ export const SummarySection = ({
     setIsPhoneVisible(!isPhoneVisible);
   };
 
-  // isLoading = true;
+  isLoading = true;
   return (
     <div className="grid grid-cols-5 gap-x-8">
       <div className="flex flex-col gap-6 col-span-3">
@@ -131,7 +140,14 @@ export const SummarySection = ({
           </h2>
 
           <p className="text-secondaryText text-sm lg:text-base">
-            {description}
+            {isLoading ? (
+              <>
+                <DescriptionSkeleton />
+              </>
+            ) : (
+              <span>{description}</span>
+            )}
+            {}
           </p>
         </div>
       </div>
