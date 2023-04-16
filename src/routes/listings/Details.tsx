@@ -20,7 +20,7 @@ export const Details = () => {
         <div>
           <Link className="flex  items-center	" to="/search">
             <BackIcon />
-            <p className="lg:text-sm text-xs font-semibold text-primary-400 font-sans ml-2">
+            <p className="lg:text-base text-sm font-semibold text-primary-400 font-sans ml-2">
               Back to map
             </p>
           </Link>

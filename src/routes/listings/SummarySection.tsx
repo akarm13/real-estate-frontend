@@ -23,7 +23,7 @@ const RoomInfoSkeleton = () => (
   <div className="flex items-center mx-2 mt-4">
     <Skeleton className="w-6 h-6 rounded-lg" />
     <div className="flex flex-col">
-      <Skeleton className="ml-2 w-12 h-4" />
+      <Skeleton className="ml-2 w-12 h-6" />
     </div>
   </div>
 );
@@ -61,8 +61,8 @@ export const SummarySection = ({
 
   return (
     <div className="grid grid-cols-5 gap-x-8">
-      <div className="flex flex-col gap-6 col-span-3">
-        <div className="my-8 flex items-center justify-around h-28  bg-white border rounded-lg py-6 px-12">
+      <div className="flex flex-col gap-6 col-span-3 ">
+        <div className="my-8 flex items-center justify-around rounded-lg border border-primary-background py-6 px-12">
           <div className="ml-2">
             <p className="font-semibold text-xs md:text-base lg:text-lg">
               Bedrooms
@@ -133,7 +133,7 @@ export const SummarySection = ({
           </div>
         </div>
 
-        <div className="max-w-[715px] flex flex-col gap-4">
+        <div className="flex flex-col gap-4">
           <h2 className="lg:text-2xl md:text-lg font-semibold">
             About this home
           </h2>
@@ -144,14 +144,13 @@ export const SummarySection = ({
                 <DescriptionSkeleton />
               </>
             ) : (
-              <span>{description}</span>
+              <>{description}</>
             )}
-            {}
           </p>
         </div>
       </div>
 
-      <div className="flex flex-col bg-white border my-12 px-6 py-6 rounded-lg gap-6 col-span-2">
+      <div className="flex flex-col bg-white border border-primary-background  px-6 py-6 rounded-lg gap-6 col-span-2 my-8">
         <h5 className="font-semibold text-base lg:text-lg">Sale Price</h5>
 
         <h3 className="text-primary-500 text-lg lg:text-2xl font-bold ">
