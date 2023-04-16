@@ -15,8 +15,8 @@ export const Details = () => {
   const { data, isLoading, isError } = useGetListingByIdQuery(id || "");
 
   return (
-    <div className="w-full">
-      <div className="flex flex-col w-full mx-auto px-5 lg:px-36 py-12">
+    <div className="w-full pt-24">
+      <div className="flex flex-col w-full mx-auto md:px-0 container py-12">
         <div>
           <Link className="flex  items-center	" to="/search">
             <BackIcon />
@@ -26,7 +26,7 @@ export const Details = () => {
           </Link>
         </div>
 
-        <div className=" flex lg:w-full   justify-between items-center  pt-10">
+        <div className="flex lg:w-full justify-between items-center  pt-10">
           {isLoading ? (
             <Skeleton className="w-1/2 h-8" />
           ) : (
@@ -35,9 +35,9 @@ export const Details = () => {
             </h3>
           )}
 
-          <div className="flex  lg:mr-14">
+          <div className="flex">
             <div className="flex items-center justify-between border-primary-background mr-1 lg:mr-4 px-1 py-1 lg:px-5 lg:py-3 border-2 rounded-lg">
-              <LocationIcon width={17} />
+              <LocationIcon width={16} />
               <span className="font-semibold text-xs lg:text-base mx-1 md:mx-2">
                 Share
               </span>
@@ -81,7 +81,6 @@ export const Details = () => {
           isLoading={isLoading}
         />
         <MapSection isLoading={isLoading} geometry={data?.geometry} />
-        {/* <SimilarListingsSection /> */}
       </div>
     </div>
   );
