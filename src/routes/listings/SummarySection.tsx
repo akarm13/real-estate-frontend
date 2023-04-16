@@ -150,7 +150,7 @@ export const SummarySection = ({
         </div>
       </div>
 
-      <div className="flex flex-col bg-white border border-primary-background  px-6 py-6 rounded-lg gap-6 col-span-2 my-8">
+      <div className="flex flex-col bg-white border border-primary-background  px-6 py-6 rounded-lg gap-6 col-span-2 my-8 max-h-[350px]">
         <h5 className="font-semibold text-base lg:text-lg">Sale Price</h5>
 
         <h3 className="text-primary-500 text-lg lg:text-2xl font-bold ">
