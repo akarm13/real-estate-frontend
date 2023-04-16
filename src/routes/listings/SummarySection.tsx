@@ -59,7 +59,6 @@ export const SummarySection = ({
     setIsPhoneVisible(!isPhoneVisible);
   };
 
-  isLoading = false;
   return (
     <div className="grid grid-cols-5 gap-x-8">
       <div className="flex flex-col gap-6 col-span-3">
