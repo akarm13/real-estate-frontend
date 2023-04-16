@@ -21,7 +21,7 @@ export const Navigation = () => {
     if (isGetMeLoading !== undefined) {
       setIsLoading(isGetMeLoading);
     }
-  }, [isGetMeLoading]);
+  }, [isGetMeLoading, isLoading]);
 
   const handleAddClick = () => {
     console.log("Add");
@@ -29,9 +29,6 @@ export const Navigation = () => {
   return (
     <>
       <nav className="lg:mx-auto pt-4 border border-b-primary-background pb-4 fixed bg-white w-full z-20">
-        {/* for laptop and tablet */}
-        {/* Full width - 32px */}
-
         <div className="flex justify-between items-center md:flex md:justify-between md:items-center md:w-[calc(100%-4rem)] px-4 mx-auto">
           <div className="flex items-center justify-between w-full md:w-auto">
             <Button
@@ -46,7 +43,7 @@ export const Navigation = () => {
                 <LogoWithText className="h-8 sm:h-12" />
               </NavLink>
             </div>
-            {isLoading && !user ? (
+            {user ? (
               <Button
                 variant="primary"
                 className="mr-4 md:hidden items-center py-[6px] px-2"
