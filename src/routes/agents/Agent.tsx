@@ -5,6 +5,7 @@ import { ReactComponent as LocationIcon } from "../../assets/icons/listing/locat
 import { ReactComponent as SearchIcon } from "../../assets/icons/listing/search-gray.svg";
 import { useMediaQuery } from "react-responsive";
 import { queries } from "../../devices";
+import { useGetAgentQuery } from "../../api/endpoints/user";
 
 const personDetail = [
   {
@@ -39,6 +40,10 @@ export const Agent = () => {
     query: queries.sm,
   });
 
+  const {data, isLoading , isFetching , isError} = useGetAgentQuery("")
+
+  console.log(data)
+
   return (
     <div className=" ml-24 mt-9">
       <div className="bg-searchBackground py-1 md:py-2 md: px-4 w-full mx-auto md:mx-0 lg:w-[1370px] rounded-lg flex justify-between">
@@ -61,12 +66,13 @@ export const Agent = () => {
       </div>
 
       <div className="flex mt-9 gap-6 ">
-        {personDetail.map((person) => {
-          const { id, img, name, location } = person;
+        {data.map((person:any) => {
+          const { avatar,createdAt,email , fullName,isVerified ,phone,role,updatedAt,__v,_id } = person;
+          if(role === "agent"){
           return (
-            <div key={id} className=" bg-white border  px-4 py-4 rounded-2xl ">
+            <div key={_id} className=" bg-white border  px-4 py-4 rounded-2xl ">
               <img
-                src={img}
+                src={avatar}
                 alt="name"
                 className="rounded-2xl w-[300px] h-[190px]"
               ></img>
@@ -78,13 +84,13 @@ export const Agent = () => {
                 </span>
               </div>
 
-              <h1 className="mt-2 font-sans text-lg font-bold">{name}</h1>
+              <h1 className="mt-2 font-sans text-lg font-bold">{fullName}</h1>
 
               <span className="flex gap-2 items-center mt-2">
-                <LocationIcon /> {location}
+                <LocationIcon /> Sulaymaniyah
               </span>
             </div>
-          );
+          )};
         })}
       </div>
     </div>
