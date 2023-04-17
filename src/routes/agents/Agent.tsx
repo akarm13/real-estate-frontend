@@ -59,7 +59,7 @@ export const Agent = () => {
         ) : (
           <input
             type="text"
-            placeholder="City or address"
+            placeholder="Name"
             className=" bg-transparent w-11/12 border-none focus:ring-0 focus:ring-offset-0"
           />
         )}
