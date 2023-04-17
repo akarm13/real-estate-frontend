@@ -1,48 +1,17 @@
-import React from "react";
-import Person from "../../assets/agent/person1.jpg";
+import { useMediaQuery } from "react-responsive";
+import { useGetAgentQuery } from "../../api/endpoints/user";
 import { ReactComponent as StarIcon } from "../../assets/icons/listing/featured-star.svg";
 import { ReactComponent as LocationIcon } from "../../assets/icons/listing/location.svg";
 import { ReactComponent as SearchIcon } from "../../assets/icons/listing/search-gray.svg";
-import { useMediaQuery } from "react-responsive";
 import { queries } from "../../devices";
-import { useGetAgentQuery } from "../../api/endpoints/user";
-
-const personDetail = [
-  {
-    id: 1,
-    img: Person,
-    name: "Akar Mohammed",
-    location: "Sulaymaniyah",
-  },
-  {
-    id: 2,
-    img: Person,
-    name: "Akar Mohammed",
-    location: "Sulaymaniyah",
-  },
-  {
-    id: 3,
-    img: Person,
-
-    name: "Akar Mohammed",
-    location: "Sulaymaniyah",
-  },
-  {
-    id: 4,
-    img: Person,
-    name: "Akar Mohammed",
-    location: "Sulaymaniyah",
-  },
-];
+import { User } from "../../types/listing";
 
 export const Agent = () => {
   const isSmall = useMediaQuery({
     query: queries.sm,
   });
 
-  const {data, isLoading , isFetching , isError} = useGetAgentQuery("")
-
-  console.log(data)
+  const { data, isLoading, isFetching, isError } = useGetAgentQuery();
 
   return (
     <div className=" ml-24 mt-9">
@@ -66,32 +35,37 @@ export const Agent = () => {
       </div>
 
       <div className="flex mt-9 gap-6 ">
-        {data.map((person:any) => {
-          const { avatar,createdAt,email , fullName,isVerified ,phone,role,updatedAt,__v,_id } = person;
-          if(role === "agent"){
-          return (
-            <div key={_id} className=" bg-white border  px-4 py-4 rounded-2xl ">
-              <img
-                src={avatar}
-                alt="name"
-                className="rounded-2xl w-[300px] h-[190px]"
-              ></img>
+        {data &&
+          data.data &&
+          data.data.map((person: User) => {
+            return (
+              <div
+                key={person?._id}
+                className=" bg-white border  px-4 py-4 rounded-2xl "
+              >
+                <img
+                  src={person?.avatar}
+                  alt="name"
+                  className="rounded-2xl w-[300px] h-[190px]"
+                ></img>
 
-              <div className=" bg-primary-500 flex  w-[120px]  items-center gap-x-2 py-2 px-4 mt-2 rounded-lg">
-                <StarIcon width={16} height={16} />
-                <span className="text-white uppercase text-sm font-semibold">
-                  verified
+                <div className=" bg-primary-500 flex  w-[120px]  items-center gap-x-2 py-2 px-4 mt-2 rounded-lg">
+                  <StarIcon width={16} height={16} />
+                  <span className="text-white uppercase text-sm font-semibold">
+                    {person?.isVerified ? "Verified" : "Not Verified"}
+                  </span>
+                </div>
+
+                <h1 className="mt-2 font-sans text-lg font-bold capitalize">
+                  {person?.fullName}
+                </h1>
+
+                <span className="flex gap-2 items-center mt-2">
+                  <LocationIcon /> Sulaymaniyah
                 </span>
               </div>
-
-              <h1 className="mt-2 font-sans text-lg font-bold">{fullName}</h1>
-
-              <span className="flex gap-2 items-center mt-2">
-                <LocationIcon /> Sulaymaniyah
-              </span>
-            </div>
-          )};
-        })}
+            );
+          })}
       </div>
     </div>
   );
