@@ -2,8 +2,6 @@ import { useMemo, useState } from "react";
 import Lightbox, { SlideImage } from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
-// Import Swiper styles
-
 import { useMediaQuery } from "react-responsive";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { queries } from "../../devices";
@@ -36,19 +34,10 @@ const skeletonContainerClasses = [
 ];
 
 export const HouseGallery = ({ images, type, isLoading }: Props) => {
-  const [open, setOpen] = useState(false);
-
-  const slideImages = useMemo(() => {
-    return images.map((image) => ({
-      src: image,
-      alt: "house",
-    })) as SlideImage[];
-  }, [images]);
-
   const isMedium = useMediaQuery({ query: queries.md });
   return (
     <div className="mt-7">
-      <div className="gallery-container relative">
+      <div className="grid grid-cols-1 grid-rows-1 md:grid-cols-5 md:grid-rows-2 md:gap-8 relative">
         {isLoading ? (
           <SkeletonPlaceholders />
         ) : (
@@ -127,7 +116,6 @@ const GalleryImagesMedium = ({
   );
 };
 
-// Render gallery images for small screens
 const GalleryImagesSmall = ({
   images,
   type,
@@ -137,22 +125,22 @@ const GalleryImagesSmall = ({
 }) => {
   return (
     <Swiper
-      slidesPerView={1}
+      slidesPerView={"auto"}
       spaceBetween={10}
       loop={true}
       pagination={{
         clickable: true,
       }}
       modules={[Pagination]}
-      className="mySwiper py-10"
+      className="h-[350px]"
     >
-      {images.slice(0, 2).map((image, index) => (
+      {images.map((image, index) => (
         <SwiperSlide key={index}>
-          <div className="relative">
+          <div className="relative aspect-w-16 aspect-h-9 w-full">
             <img
               src={image}
               alt={`House photo ${index + 1}`}
-              className={`h-[340px] object-cover rounded-2xl w-full ${
+              className={`object-cover w-full h-full rounded-2xl ${
                 index === 0 ? "border-2 border-primary-500" : ""
               }`}
             />

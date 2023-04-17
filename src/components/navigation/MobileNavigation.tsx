@@ -42,7 +42,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
   }, [isMenuOpen]);
   return (
     <div
-      className={`min-h-screen fixed top-[74px] md:hidden z-20 overflow-y-auto bg-white w-full flex flex-col gap-y-8 items-start px-8 py-8  ${
+      className={`min-h-screen fixed top-[74px] md:hidden z-20 bg-white w-full flex flex-col gap-y-8 items-start px-8 py-8  ${
         isMenuOpen ? "left-0" : "-left-full"
       }`}
     >

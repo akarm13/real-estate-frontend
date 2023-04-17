@@ -60,11 +60,11 @@ export const SummarySection = ({
   };
 
   return (
-    <div className="grid grid-cols-5 gap-x-8">
-      <div className="flex flex-col gap-6 col-span-3 ">
-        <div className="my-8 flex items-center justify-around rounded-lg border border-primary-background py-6 px-12">
+    <div className="grid grid-cols-1 md:grid-cols-5 md:gap-x-8">
+      <div className="flex flex-col gap-6 col-span-3 order-2">
+        <div className="grid grid-cols-2 gap-8 my-8 md:flex items-center justify-around rounded-lg border border-primary-background py-6 px-12">
           <div className="ml-2">
-            <p className="font-semibold text-xs md:text-base lg:text-lg">
+            <p className="font-semibold text-sm md:text-base lg:text-lg">
               Bedrooms
             </p>
 
@@ -74,14 +74,14 @@ export const SummarySection = ({
               <div className="flex items-center mx-2 mt-4">
                 <BedroomIcon />
 
-                <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-xs ">
+                <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-sm ">
                   {rooms?.bedrooms}
                 </span>
               </div>
             )}
           </div>
           <div className="ml-2">
-            <p className="font-semibold text-xs md:text-base  lg:text-lg">
+            <p className="font-semibold text-sm md:text-base  lg:text-lg">
               Bathrooms
             </p>
 
@@ -91,14 +91,14 @@ export const SummarySection = ({
               <div className="flex items-center mx-2 mt-4">
                 <BathroomIcon />
 
-                <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-xs">
+                <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-sm">
                   {rooms?.bathrooms}
                 </span>
               </div>
             )}
           </div>
           <div className="ml-2">
-            <p className="font-semibold text-xs md:text-base md:ml-0 ml-1  lg:text-lg">
+            <p className="font-semibold text-sm md:text-base md:ml-0 ml-1  lg:text-lg">
               Square Area
             </p>
 
@@ -108,24 +108,24 @@ export const SummarySection = ({
               <div className="flex items-center  mt-4">
                 <MeterIcon />
 
-                <span className="mx-1 md:mx-4 w-16 lg:text-base md:text-sm text-xs">
+                <span className="mx-1 md:mx-4 w-16 lg:text-base md:text-sm text-sm">
                   {area} m2
                 </span>
               </div>
             )}
           </div>
-          <div className="">
-            <p className="font-semibold text-xs md:text-base   lg:text-lg">
+          <div className="ml-2">
+            <p className="font-semibold text-sm md:text-base lg:text-lg">
               Status
             </p>
 
             {isLoading ? (
               <RoomInfoSkeleton />
             ) : (
-              <div className="flex items-center  mt-4">
+              <div className="flex items-center mt-4 gap-x-2">
                 <CheckMarkIcon />
 
-                <span className="md:mx-4 lg:text-base md:text-sm text-xs translate-x-0 capitalize">
+                <span className="md:mx-4 lg:text-base md:text-sm text-sm translate-x-0 capitalize">
                   {status}
                 </span>
               </div>
@@ -150,7 +150,7 @@ export const SummarySection = ({
         </div>
       </div>
 
-      <div className="flex flex-col bg-white border border-primary-background  px-6 py-6 rounded-lg gap-6 col-span-2 my-8 max-h-[350px]">
+      <div className="w-full flex flex-col bg-white border border-primary-background  px-6 py-6 rounded-lg gap-6 col-span-2 my-8 md:max-h-[350px] order-1">
         <h5 className="font-semibold text-base lg:text-lg">Sale Price</h5>
 
         <h3 className="text-primary-500 text-lg lg:text-2xl font-bold ">
@@ -197,24 +197,24 @@ export const SummarySection = ({
           ) : (
             <>
               <div className="flex flex-col gap-2 items-center">
-                <h4 className="font-semibold  lg:text-base md:text-sm text-xs ">
+                <h4 className="font-semibold  lg:text-base md:text-sm text-sm ">
                   Rating
                 </h4>
-                <p className="text-xs md:text-base">5/5</p>
+                <p className="text-sm md:text-base">5/5</p>
               </div>
 
               <div className="flex flex-col  gap-2 items-center">
-                <h4 className="font-semibold  lg:text-base md:text-sm text-xs ">
+                <h4 className="font-semibold  lg:text-base md:text-sm text-sm ">
                   Properties Listed
                 </h4>
-                <p className="text-xs md:text-base">2</p>
+                <p className="text-sm md:text-base">2</p>
               </div>
 
               <div className="flex flex-col  gap-2 items-center">
-                <h4 className="font-semibold  lg:text-base md:text-sm text-xs ">
+                <h4 className="font-semibold  lg:text-base md:text-sm text-sm ">
                   Properties sold
                 </h4>
-                <p className="text-xs md:text-base">2</p>
+                <p className="text-sm md:text-base">2</p>
               </div>
             </>
           )}
