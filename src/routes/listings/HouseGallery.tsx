@@ -132,11 +132,11 @@ const GalleryImagesSmall = ({
         clickable: true,
       }}
       modules={[Pagination]}
-      className="h-[200px]"
     >
+      <TypeBadge type={type} className="absolute top-2 left-4 z-10" />
       {images.map((image, index) => (
         <SwiperSlide key={index}>
-          <div className="relative aspect-w-16 aspect-h-9 w-full">
+          <div className="relative w-full">
             <img
               src={image}
               alt={`House photo ${index + 1}`}
@@ -144,11 +144,6 @@ const GalleryImagesSmall = ({
                 index === 0 ? "border-2 border-primary-500" : ""
               }`}
             />
-            {index === 0 && (
-              <p className="absolute top-2 left-4 bg-black text-white font-medium px-6 py-1 lg:px-12 lg:py-2 rounded-lg">
-                For {type}
-              </p>
-            )}
           </div>
         </SwiperSlide>
       ))}
