@@ -11,7 +11,7 @@ export const AmenitiesSection = ({ amenities, isLoading }: Props) => {
     <div className="flex flex-col gap-6 mt-12">
       <h2 className="text-2xl font-semibold">Amenities</h2>
 
-      <div className="flex lg:flex-row flex-col gap-4 w-[730px] flex-wrap">
+      <div className="flex lg:flex-row flex-col gap-4 flex-wrap">
         {isLoading ? (
           <>
             <Skeleton className="w-32 h-8 rounded-lg" />
