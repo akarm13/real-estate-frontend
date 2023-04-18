@@ -134,11 +134,9 @@ export const SummarySection = ({
         </div>
 
         <div className="flex flex-col gap-4">
-          <h2 className="lg:text-2xl md:text-lg font-semibold">
-            About this home
-          </h2>
+          <h2 className="text-lg lg:text-2xl font-semibold">About this home</h2>
 
-          <p className="text-secondaryText text-sm lg:text-base">
+          <p className="text-secondaryText">
             {isLoading ? (
               <>
                 <DescriptionSkeleton />
@@ -191,29 +189,25 @@ export const SummarySection = ({
           )}
         </div>
 
-        <div className="flex w-full  justify-between items-center  ">
+        <div className="flex flex-col md:flex-row w-full justify-between items-center  ">
           {isLoading ? (
             [1, 2, 3].map((_, index) => <AgentInfoSkeleton key={index} />)
           ) : (
             <>
               <div className="flex flex-col gap-2 items-center">
-                <h4 className="font-semibold  lg:text-base md:text-sm text-sm ">
-                  Rating
-                </h4>
+                <h4 className="font-semibold lg:text-base">Rating</h4>
                 <p className="text-sm md:text-base">5/5</p>
               </div>
 
               <div className="flex flex-col  gap-2 items-center">
-                <h4 className="font-semibold  lg:text-base md:text-sm text-sm ">
+                <h4 className="font-semibold lg:text-base">
                   Properties Listed
                 </h4>
                 <p className="text-sm md:text-base">2</p>
               </div>
 
-              <div className="flex flex-col  gap-2 items-center">
-                <h4 className="font-semibold  lg:text-base md:text-sm text-sm ">
-                  Properties sold
-                </h4>
+              <div className="flex flex-col gap-2 items-center">
+                <h4 className="font-semibold lg:text-base">Properties sold</h4>
                 <p className="text-sm md:text-base">2</p>
               </div>
             </>

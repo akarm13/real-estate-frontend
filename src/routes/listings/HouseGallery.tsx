@@ -132,7 +132,7 @@ const GalleryImagesSmall = ({
         clickable: true,
       }}
       modules={[Pagination]}
-      className="h-[350px]"
+      className="h-[200px]"
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>

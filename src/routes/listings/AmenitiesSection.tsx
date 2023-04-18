@@ -9,7 +9,7 @@ type Props = {
 export const AmenitiesSection = ({ amenities, isLoading }: Props) => {
   return (
     <div className="flex flex-col gap-6 mt-12">
-      <h2 className="text-2xl font-semibold">Amenities</h2>
+      <h2 className="text-lg md:text-2xl font-semibold">Amenities</h2>
 
       <div className="flex lg:flex-row flex-col gap-4 flex-wrap">
         {isLoading ? (
