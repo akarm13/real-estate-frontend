@@ -8,6 +8,7 @@ import { AmenitiesSection } from "./AmenitiesSection";
 import { HouseGallery } from "./HouseGallery";
 import { MapSection } from "./MapSection";
 import { SummarySection } from "./SummarySection";
+import { Button } from "../../components/Button";
 
 export const Details = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,9 +17,9 @@ export const Details = () => {
 
   return (
     <div className="w-full pt-24">
-      <div className="flex flex-col w-full mx-auto md:px-0 container py-12">
+      <div className="flex flex-col w-full mx-auto md:px-0 container">
         <div>
-          <Link className="flex  items-center	" to="/search">
+          <Link className="flex  items-center" to="/search">
             <BackIcon />
             <p className="lg:text-base text-sm font-semibold text-primary-400 font-sans ml-2">
               Back to map
@@ -26,34 +27,47 @@ export const Details = () => {
           </Link>
         </div>
 
-        <div className="flex lg:w-full justify-between items-center  pt-10">
+        <div className="flex flex-col lg:flex-row lg:w-full justify-between md:items-center pt-4">
           {isLoading ? (
             <Skeleton className="w-1/2 h-8" />
           ) : (
-            <h3 className="font-semibold  text-sm md:text-lg lg:text-3xl font-sans">
+            <h3 className="font-semibold text-2xl lg:text-3xl font-sans">
               {data?.title}
             </h3>
           )}
-
-          <div className="flex">
-            <div className="flex items-center justify-between border-primary-background mr-1 lg:mr-4 px-1 py-1 lg:px-5 lg:py-3 border-2 rounded-lg">
+          <p className="mt-2 md:hidden text-secondaryText md:text-base lg:text-xl font-medium font-sans">
+            {isLoading ? (
+              <Skeleton className="w-52 h-8" />
+            ) : (
+              data?.location.address + " " + data?.location.city
+            )}
+          </p>
+          <div className="flex md:self-auto mt-4 md:mt-0 gap-x-4">
+            <Button
+              variant="secondary"
+              onClick={() => console.log("hello")}
+              className="flex items-center"
+            >
               <LocationIcon width={16} />
-              <span className="font-semibold text-xs lg:text-base mx-1 md:mx-2">
+              <span className="font-medium lg:text-base ml-2 md:mx-2">
                 Share
               </span>
-            </div>
-
-            <div className="flex items-center justify-between border-primary-background px-1 py-1  lg:px-5 lg:py-3  border-2 rounded-lg">
-              <FeaturedStarIcon width={17} />
-              <span className="font-semibold text-xs lg:text-base mx-1 md:mx-2">
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => console.log("hello")}
+              className="flex items-center"
+            >
+              <FeaturedStarIcon width={16} />
+              <span className="font-medium lg:text-base ml-2 md:mx-2">
                 Favorite
               </span>
-            </div>
+            </Button>
           </div>
         </div>
 
         <div className="mt-4">
-          <p className="text-secondaryText md:text-base text-sm lg:text-xl font-medium font-sans">
+          <p className="hidden md:flex text-secondaryText md:text-base text-sm lg:text-xl font-medium font-sans">
             {isLoading ? (
               <Skeleton className="w-52 h-8" />
             ) : (
