@@ -16,14 +16,8 @@ export const ListingCard = ({
   type,
   images,
 }: Listing) => {
-  // If type is sale then "bg-primary-800 text-white" else "bg-primary-200 text-primary-800"
-  const typeColor =
-    type === "sale"
-      ? "bg-primary-800 text-primary-100"
-      : "bg-primary-100 text-primary-800";
-
   return (
-    <div className="flex flex-col transition duration-200 relative z-0 listing-card rounded-lg snap-center my-4 lg:my-0">
+    <div className="flex flex-col transition duration-200 relative z-10 listing-card rounded-lg snap-center my-4 lg:my-0">
       <div className="overflow-hidden rounded-lg">
         <img
           src={images[0]}
@@ -31,11 +25,7 @@ export const ListingCard = ({
           className="h-[170px] w-full rounded-lg object-cover"
         />
       </div>
-      <span
-        className={`absolute left-2 px-4 py-2 rounded-lg uppercase my-2 font-medium ${typeColor} text-sm`}
-      >
-        {type}
-      </span>
+      <TypeBadge type={type} className="absolute top-2 left-4" />
       <div className="flex flex-col gap-y-2 px-5 items-baseline bg-white border border-primary-background py-6 rounded-lg relative ">
         <span className="text-primary-500 font-bold text-lg">${price}</span>
         <h3 className="text-primary-900 font-semibold text-md lg:text-lg h-[60px]">
@@ -87,5 +77,24 @@ export const PropertyDetail = ({ icon, value, text }: PropertyDetailProps) => {
         <span className="text-sm md:text-base">{text}</span>
       </div>
     </div>
+  );
+};
+
+export type TypeBadgeProps = {
+  type: string;
+  className?: string;
+};
+export const TypeBadge = ({ type, className }: TypeBadgeProps) => {
+  const typeColor =
+    type === "sale"
+      ? "bg-primary-800 text-primary-100"
+      : "bg-primary-100 text-primary-800";
+
+  return (
+    <span
+      className={`absolute left-2 px-4 py-2 rounded-lg uppercase my-2 font-medium ${typeColor} text-sm ${className}`}
+    >
+      {type}
+    </span>
   );
 };

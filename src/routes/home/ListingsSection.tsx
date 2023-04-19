@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
-import { ListingCard } from "../../components/ListingCard";
-import { featuredProperties } from "../../dummyData";
 import { useGetAllListingsQuery } from "../../api/endpoints/listings";
-import { ClipLoader } from "react-spinners";
-import { Listing } from "../../types/listing";
-import { useState } from "react";
+import { ListingCard } from "../../components/ListingCard";
 import SkeletonListingCard from "../../components/skeleton/SkeletonListingCard";
 
 export const ListingsSection = () => {
@@ -12,8 +8,6 @@ export const ListingsSection = () => {
     pageNumber: 1,
     pageSize: 10,
   });
-
-  console.log(data?.data);
 
   return (
     <div className="w-5/6 md: mx-auto mt-24">

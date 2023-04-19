@@ -3,6 +3,7 @@ import { Button } from "../../components/Button";
 import { ReactComponent as HouseIllustration } from "../../assets/illustrations/house-illustration.svg";
 import { useMediaQuery } from "react-responsive";
 import { queries } from "../../devices";
+import { LinkButton } from "../../components/LinkButton";
 export const HeroSection = () => {
   const isSmall = useMediaQuery({
     query: queries.sm,
@@ -19,12 +20,12 @@ export const HeroSection = () => {
           </p>
         </div>
         <div className="flex gap-x-6">
-          <Button onClick={() => console.log("login")} variant="primary">
+          <LinkButton to="/listings" variant="primary">
             {isSmall ? "Browse Listings" : "Listings"}
-          </Button>
-          <Button onClick={() => console.log("sign up")} variant="secondary">
+          </LinkButton>
+          <LinkButton to="/agents" variant="secondary">
             {isSmall ? "Browse Agents" : "Agents"}
-          </Button>
+          </LinkButton>
         </div>
       </div>
       <div className="hidden md:flex">

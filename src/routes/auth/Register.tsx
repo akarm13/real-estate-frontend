@@ -18,8 +18,7 @@ export const Register = () => {
 
   const [createUser, { data, isLoading, isError }] = useRegisterMutation();
 
-
-console.log(useRegisterMutation())
+  console.log(useRegisterMutation());
 
   const navigate = useNavigate();
 

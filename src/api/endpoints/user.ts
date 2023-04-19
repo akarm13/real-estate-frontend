@@ -1,13 +1,16 @@
-import { get } from "immer/dist/internal";
-import { User, userIdRequest } from "../../types/listing";
-import { api } from "../rtk-api";
+import { RootState } from "../../store/store";
+import { User } from "../../types/auth";
 import { PaginatedResponse } from "../../types/common";
+import { api } from "../rtk-api";
 
 export const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getUser: builder.query<User, userIdRequest>({
-      query: (id) => ({
-        url: `/users/${id}`,
+    getMe: builder.query<User, string>({
+      query: (token) => ({
+        url: `/users/me`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         method: "GET",
       }),
     }),
@@ -20,4 +23,14 @@ export const userApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetUserQuery, useGetAgentQuery } = userApi;
+// Where the endPoint name is "getMe"
+export const selectIsGetMeLoading = (state: RootState) => {
+  if (state.api.queries) {
+    return Object.values((state.api as any).queries).some(
+      (query: any) =>
+        query.endpointName === "getMe" && query.status === "pending"
+    );
+  }
+};
+
+export const { useLazyGetMeQuery, useGetMeQuery, useGetAgentQuery } = userApi;

@@ -13,3 +13,40 @@
 .listing-card:hover {
   box-shadow: 1px 2px 3px 0 rgba(91 77 255 / 8%);
 }
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+}
+
+.first {
+  grid-area: 1 / 1 / 3 / 4;
+}
+.second {
+  grid-area: 1 / 4 / 2 / 6;
+}
+.third {
+  grid-area: 2 / 4 / 3 / 6;
+}
+
+.first-skeleton {
+  grid-area: 1 / 1 / 3 / 4;
+  height: 494px;
+}
+
+.second-skeleton {
+  grid-area: 1 / 4 / 2 / 6;
+  height: 232px;
+}
+
+.third-skeleton {
+  grid-area: 2 / 4 / 3 / 6;
+  height: 232px;
+}
+
+.swiper-pagination-bullet {
+  background: #ffffff !important;
+}

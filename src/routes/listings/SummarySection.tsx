@@ -1,135 +1,250 @@
-import { ReactComponent as BedroomIcon } from "../../assets/icons/listing/bedroom.svg";
-import { ReactComponent as BathroomIcon } from "../../assets/icons/listing/bathroom.svg";
-import { ReactComponent as MeterIcon } from "../../assets/housedetail/meters.svg";
+import { useState } from "react";
 import { ReactComponent as CheckMarkIcon } from "../../assets/housedetail/checkmark.svg";
-import { ReactComponent as Person } from "../../assets/housedetail/person.svg";
+import { ReactComponent as MeterIcon } from "../../assets/housedetail/meters.svg";
+import { ReactComponent as BathroomIcon } from "../../assets/icons/listing/bathroom.svg";
+import { ReactComponent as BedroomIcon } from "../../assets/icons/listing/bedroom.svg";
 import { Button } from "../../components/Button";
 
-import { useParams, Link } from "react-router-dom";
-import { featuredProperties } from "../../dummyData";
+import { CopyIcon, LucidePhone, PhoneIcon } from "lucide-react";
+import { Skeleton } from "../../components/skeleton/Skeleton";
+import { Listing } from "../../types/listing";
+import { useCopyToClipboard } from "react-use";
+import { toast } from "react-hot-toast";
 
-export const SummarySection = ({ data }: any) => {
-  //  data.owner.name = data
+type Props = {
+  rooms: Listing["rooms"] | undefined;
+  area: Listing["area"] | undefined;
+  description: Listing["description"] | undefined;
+  price: Listing["price"] | undefined;
+  owner: Listing["owner"] | undefined;
+  status: Listing["status"] | undefined;
+  isLoading: boolean;
+};
 
+const RoomInfoSkeleton = () => (
+  <div className="flex items-center mx-2 mt-4">
+    <Skeleton className="w-6 h-6 rounded-lg" />
+    <div className="flex flex-col">
+      <Skeleton className="ml-2 w-12 h-6" />
+    </div>
+  </div>
+);
 
+const AgentInfoSkeleton = () => (
+  <div className="flex flex-col gap-2 items-center">
+    <Skeleton className="w-16 h-4" />
+    <Skeleton className="w-8 h-4" />
+  </div>
+);
 
+const DescriptionSkeleton = () => (
+  <>
+    <Skeleton className="w-full h-4" />
+    <Skeleton className="w-5/6 h-4 mt-2" />
+    <Skeleton className="w-4/6 h-4 mt-2" />
+    <Skeleton className="w-3/6 h-4 mt-2" />
+    <Skeleton className="w-2/6 h-4 mt-2" />
+  </>
+);
+export const SummarySection = ({
+  rooms,
+  area,
+  price,
+  owner,
+  status,
+  description,
+  isLoading,
+}: Props) => {
+  const [isPhoneVisible, setIsPhoneVisible] = useState(false);
+
+  const handleShowButtonPress = () => {
+    setIsPhoneVisible(true);
+  };
+
+  const [value, copy] = useCopyToClipboard();
+
+  const handleCopyButtonPress = () => {
+    if (owner?.phone === undefined) return;
+    copy(owner?.phone);
+    toast.success("Phone number copied!");
+  };
   return (
-    <div className="lg:flex w-full ">
-      <div className="flex flex-col gap-6">
-        <div className="my-8 flex  items-center justify-around  max-w-[720px] h-28  bg-white border rounded-lg p-5">
-          <div className="ml-2">
-            <p className="font-semibold text-xs md:text-base lg:text-lg">
+    <div className="grid grid-cols-1 md:grid-cols-5 md:gap-x-8">
+      <div className="flex flex-col gap-6 col-span-3 order-2 md:order-1">
+        <div className="grid grid-cols-2 gap-8 my-8 lg:flex items-center justify-around rounded-lg border-none md:border border-primary-background py-2">
+          <div className="ml-2 flex flex-col">
+            <p className="font-semibold font-sm md:text-base md:ml-0 lg:text-lg">
               Bedrooms
             </p>
+            {isLoading ? (
+              <RoomInfoSkeleton />
+            ) : (
+              <div className="flex items-center mx-2 mt-4">
+                <BedroomIcon />
 
-            <div className="flex items-center mx-2 mt-4">
-              <BedroomIcon />
-
-              <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-xs ">
-                {data?.rooms.bedrooms}
-              </span>
-            </div>
+                <span className="mx-1 md:mx-4 w-16 font-medium text-primaryText">
+                  {rooms?.bedrooms}
+                </span>
+              </div>
+            )}
           </div>
-          <div className="ml-2">
-            <p className="font-semibold text-xs md:text-base  lg:text-lg">
+          <div className="ml-2  flex flex-col">
+            <p className="font-semibold font-sm md:text-base md:ml-0 lg:text-lg">
               Bathrooms
             </p>
-            <div className="flex items-center mx-2 mt-4">
-              <BathroomIcon />
 
-              <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-xs">
-                {data?.rooms.bathrooms}
-              </span>
-            </div>
+            {isLoading ? (
+              <RoomInfoSkeleton />
+            ) : (
+              <div className="flex items-center mx-2 mt-4">
+                <BathroomIcon />
+
+                <span className="mx-1 md:mx-4 w-16 font-medium text-primaryText">
+                  {rooms?.bathrooms}
+                </span>
+              </div>
+            )}
           </div>
-          <div className="ml-2">
-            <p className="font-semibold text-xs md:text-base md:ml-0 ml-1  lg:text-lg">
+          <div className="ml-2 flex flex-col">
+            <p className="font-semibold font-sm md:text-base md:ml-0 lg:text-lg">
               Square Area
             </p>
-            <div className="flex items-center  mt-4">
-              <MeterIcon />
 
-              <span className="mx-1 md:mx-4 w-16 lg:text-base md:text-sm text-xs">
-                {data?.area} m2
-              </span>
-            </div>
+            {isLoading ? (
+              <RoomInfoSkeleton />
+            ) : (
+              <div className="flex items-center mt-4">
+                <MeterIcon />
+
+                <span className="mx-1 md:mx-4 w-16 font-medium text-primaryText">
+                  {area} m2
+                </span>
+              </div>
+            )}
           </div>
-          <div className="">
-            <p className="font-semibold text-xs md:text-base   lg:text-lg">
+          <div className="ml-2  flex flex-col">
+            <p className="font-semibold font-sm md:text-base md:ml-0 lg:text-lg">
               Status
             </p>
-            <div className="flex items-center  mt-4">
-              <CheckMarkIcon />
 
-              <span className="md:mx-4 lg:text-base md:text-sm text-xs">
-                Active
-              </span>
-            </div>
+            {isLoading ? (
+              <RoomInfoSkeleton />
+            ) : (
+              <div className="flex items-center mt-4 gap-x-2">
+                <CheckMarkIcon />
+
+                <span className="md:mx-4 w-16 font-medium text-primaryText capitalize">
+                  {status}
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
-        <div className="max-w-[715px] flex flex-col gap-4">
-          <h2 className="lg:text-2xl md:text-lg font-semibold">
-            About this home
-          </h2>
+        <div className="flex flex-col gap-4">
+          <h2 className="text-lg lg:text-2xl font-semibold">About this home</h2>
 
-          <p className="text-secondaryText text-sm lg:text-base">
-            {data?.description}
+          <p className="text-secondaryText">
+            {isLoading ? (
+              <>
+                <DescriptionSkeleton />
+              </>
+            ) : (
+              <>{description}</>
+            )}
           </p>
         </div>
       </div>
 
-      <div className="flex flex-col max-w-[360px] md:w-[400px] bg-white border my-12 lg:ml-14 px-6 py-6 rounded-lg gap-6">
-        <h5 className="font-semibold text-base lg:text-lg">Sale Price</h5>
-
-        <h3 className="text-primary-500 text-lg lg:text-2xl font-bold ">
-          ${data?.price}
+      <div className="w-full flex flex-col bg-white border border-none md:border-primary-background  px-2 py-6 rounded-lg gap-6 col-span-2 my-8 md:max-h-[350px] order-1 md:order-2">
+        <h3 className="text-primary-500 lg:text-2xl font-bold text-2xl">
+          {isLoading ? (
+            <Skeleton className="w-32 h-8" />
+          ) : (
+            <span className="">${price}</span>
+          )}
         </h3>
 
-        <div className="flex md:w-48 w-44 justify-between  ">
-          <Person />
-          <div>
-            <h4 className="font-semibold lg:text-base text-sm">
-              {" "}
-              {data?.owner.fullName}
-            </h4>
-            <h5 className="text-secondaryText lg:text-base text-sm">
-              Verified Agent
-            </h5>
-          </div>
+        <div className="flex md:w-48 w-44 gap-x-4">
+          {isLoading ? (
+            <>
+              <Skeleton className="w-12 h-12 rounded-full" />
+              <div className="flex flex-col">
+                <Skeleton className="w-32 h-4" />
+                <Skeleton className="w-24 h-4 mt-2" />
+              </div>
+            </>
+          ) : (
+            <>
+              <img
+                src={owner?.avatar}
+                alt="avatar"
+                className="w-12 h-12 rounded-full"
+              />
+              <div>
+                <h4 className="font-bold lg:text-base">{owner?.fullName}</h4>
+                <h5 className="text-secondaryText lg:text-base font-medium">
+                  Verified Agent
+                </h5>
+              </div>
+            </>
+          )}
         </div>
 
-        <div className="flex w-full  justify-between items-center  ">
-          <div className="flex flex-col gap-2 items-center">
-            <h4 className="font-semibold  lg:text-base md:text-sm text-xs ">
-              Rating
-            </h4>
-            <p className="text-xs md:text-base">5/5</p>
-          </div>
+        <div className="flex  md:flex-row w-full justify-between items-center  ">
+          {isLoading ? (
+            [1, 2, 3].map((_, index) => <AgentInfoSkeleton key={index} />)
+          ) : (
+            <>
+              <div className="flex flex-col gap-2 items-center">
+                <h4 className="font-semibold lg:text-base">Rating</h4>
+                <p className="font-medium text-primaryText">5/5</p>
+              </div>
 
-          <div className="flex flex-col  gap-2 items-center">
-            <h4 className="font-semibold  lg:text-base md:text-sm text-xs ">
-              Properties Listed
-            </h4>
-            <p className="text-xs md:text-base">2</p>
-          </div>
+              <div className="flex flex-col  gap-2 items-center">
+                <h4 className="font-semibold lg:text-base">Listed</h4>
+                <p className="font-medium text-primaryText">2</p>
+              </div>
 
-          <div className="flex flex-col  gap-2 items-center">
-            <h4 className="font-semibold  lg:text-base md:text-sm text-xs ">
-              Properties sold
-            </h4>
-            <p className="text-xs md:text-base">2</p>
-          </div>
+              <div className="flex flex-col gap-2 items-center">
+                <h4 className="font-semibold lg:text-base">Sold</h4>
+                <p className="font-medium text-primaryText">2</p>
+              </div>
+            </>
+          )}
         </div>
 
         <Button
-          className="text-sm"
-          onClick={() => console.log("login")}
-          variant="primary"
+          onClick={handleShowButtonPress}
+          variant="secondary"
+          className="hidden sm:flex items-center"
         >
-          {data?.owner.phone}
+          <PhoneIcon className="text-gray-700 mr-2" />
+          <span className="mr-2">{owner?.phone}</span>
+          <button
+            onClick={handleCopyButtonPress}
+            className="text-primary-500 py-2"
+          >
+            <CopyIcon className="h-4 w-4" />
+          </button>
         </Button>
       </div>
+      <ContactAgentMobile phone={owner?.phone || ""} />
+    </div>
+  );
+};
+
+const ContactAgentMobile = ({ phone }: { phone: string }) => {
+  // Show a call button on mobile a fixed bottom navigation
+  return (
+    <div className="sm:hidden fixed bottom-0 left-0 w-full bg-white border-t border-primary-background py-4 z-20 shadow-lg">
+      <a
+        className="flex justify-center gap-x-4 items-center px-4 py-4"
+        href={`tel:${phone}`}
+      >
+        <LucidePhone className="text-gray-700" />
+        <p className="font-semibold">Call Agent</p>
+      </a>
     </div>
   );
 };

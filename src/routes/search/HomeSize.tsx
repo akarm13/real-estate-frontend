@@ -3,7 +3,7 @@ import { queries } from "../../devices";
 type Props = {
   onFirstInputChange?: (value: string) => void;
   onSecondInputChange?: (value: string) => void;
-}
+};
 export const HomeSize = ({
   onFirstInputChange,
   onSecondInputChange,

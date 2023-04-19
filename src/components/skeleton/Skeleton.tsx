@@ -5,5 +5,9 @@ type Props = {
 };
 
 export const Skeleton: React.FC<Props> = ({ className }) => {
-  return <div className={`bg-gray-200 animate-pulse ${className ?? ""}`}></div>;
+  return (
+    <span
+      className={`flex bg-gray-200 animate-pulse ${className ?? ""}`}
+    ></span>
+  );
 };

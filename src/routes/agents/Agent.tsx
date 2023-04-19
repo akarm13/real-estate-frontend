@@ -4,7 +4,7 @@ import { ReactComponent as StarIcon } from "../../assets/icons/listing/featured-
 import { ReactComponent as LocationIcon } from "../../assets/icons/listing/location.svg";
 import { ReactComponent as SearchIcon } from "../../assets/icons/listing/search-gray.svg";
 import { queries } from "../../devices";
-import { User } from "../../types/listing";
+import { User } from "../../types/auth";
 
 export const Agent = () => {
   const isSmall = useMediaQuery({
@@ -14,14 +14,14 @@ export const Agent = () => {
   const { data, isLoading, isFetching, isError } = useGetAgentQuery();
 
   return (
-    <div className=" ml-24 mt-9">
-      <div className="bg-searchBackground py-1 md:py-2 md: px-4 w-full mx-auto md:mx-0 lg:w-[1370px] rounded-lg flex justify-between">
+    <div className="pt-32 container">
+      <div className="bg-searchBackground py-1 md:py-2 md: px-4 w-full mx-auto md:mx-0 rounded-lg flex justify-between">
         {isSmall ? (
           <>
             <input
               type="text"
               placeholder="Name"
-              className=" bg-transparent w-[1000px] border-none focus:ring-0 focus:ring-offset-0"
+              className=" bg-transparen border-none focus:ring-0 focus:ring-offset-0"
             />
             <SearchIcon className="self-center" />
           </>

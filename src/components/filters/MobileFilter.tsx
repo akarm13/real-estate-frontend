@@ -115,7 +115,7 @@ export const MobileFilter = ({ isLoading }: Props) => {
   const [selectedHomeSizes, setSelectedHomeSizes] = useState<number[]>([]);
   const [minPrice, setMinPrice] = useState<number>();
   const [maxPrice, setMaxPrice] = useState<number>();
-  const [inputValue, setInputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>("");
   const [Keyword, setkeyword] = useState<string[]>([]);
   useState<ListingCategory>("all");
   const sheetRef = useRef<BottomSheetRef>();
@@ -203,30 +203,20 @@ export const MobileFilter = ({ isLoading }: Props) => {
     }
   };
   const handleKeyDown: KeyboardEventHandler = (event) => {
-
-
-
     if (!inputValue) return;
     switch (event.key) {
-      case 'Enter':
-      case 'Tab':
+      case "Enter":
+      case "Tab":
         setkeyword((prev) => [...prev, inputValue]);
-        setInputValue('');
+        setInputValue("");
         event.preventDefault();
     }
   };
 
-
   const hanldeValue = (newValue: any) => {
-
-    const value = newValue.map((value: any) =>
-      value.value
-
-    )
-    setkeyword(value)
-
-
-  }
+    const value = newValue.map((value: any) => value.value);
+    setkeyword(value);
+  };
   return (
     <div className="flex flex-col">
       <div className="relative">
@@ -434,10 +424,8 @@ export const MobileFilter = ({ isLoading }: Props) => {
               isMulti
               placeholder="Eg. Balcony, Swimming pool, etc."
               styles={colourStyles}
-              onChange={(newValue) => hanldeValue(newValue)
-              }
-              onInputChange={(newValue) => setInputValue(newValue)
-              }
+              onChange={(newValue) => hanldeValue(newValue)}
+              onInputChange={(newValue) => setInputValue(newValue)}
               onKeyDown={handleKeyDown}
               components={{
                 ...animatedComponents,

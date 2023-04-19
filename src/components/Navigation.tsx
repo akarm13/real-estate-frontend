@@ -1,194 +1,73 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Menu, Plus, XIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
+import { ReactComponent as LogoWithText } from "../assets/logo-with-text.svg";
+import { selectAuth } from "../store/slices/auth";
 import { Button } from "./Button";
-import { ReactComponent as LogoIcon } from "../assets/icons/listing/logo.svg";
-import { ReactComponent as HamburgerIcon } from "../assets/icons/hamburger-icon.svg";
-import { ReactComponent as CloseIcon } from "../assets/icons/close.svg";
-import { useMediaQuery } from "react-responsive";
-import { queries } from "../devices";
-import { useState } from "react";
-import { TokenResponse } from "../types/listing";
-import { useGetUserQuery } from "../api/endpoints/user";
-import jwt_decode from "jwt-decode";
-import { UserInfo } from "./UserInfo";
+import { MobileNavigation } from "./navigation/MobileNavigation";
+import { NavigationLinks } from "./navigation/NavigationLinks";
+import { UserActionsMenu } from "./navigation/UserActionsMenu";
+import { selectIsGetMeLoading } from "../api/endpoints/user";
+
 export const Navigation = () => {
-  const navigate = useNavigate();
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token")
-  );
-  var decoded = token && jwt_decode(token);
-  const { data, isLoading, isError } = useGetUserQuery(decoded?.sub)
-
-
-  const activeClasses =
-    "md:bg-primary-background md:text-primary-500 md:px-4 md:py-2 md:my-0 md:mx-0 md:rounded-lg font-medium";
-  const inactiveClasses =
-    "md:bg-white text-secondaryText md:px-4 md:py-2 md:my-0 md:mx-0 rounded-lg";
-  const routeHandler = (change: String) => {
-    if (change === "primary") {
-      navigate("/login");
-    } else if (change === "secondary") {
-      navigate("/register");
-    } else if (change == "logout") {
-      localStorage.removeItem("token");
-      navigate('/')
-      setToken("");
-    }
-  };
-
-  const isMedium = useMediaQuery({ query: queries.md });
-
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const { user } = useSelector(selectAuth);
+  const [isLoading, setIsLoading] = useState(true);
 
+  const isGetMeLoading = useSelector(selectIsGetMeLoading);
+
+  useEffect(() => {
+    if (isGetMeLoading !== undefined) {
+      setIsLoading(isGetMeLoading);
+    }
+  }, [isGetMeLoading, isLoading]);
+
+  const handleAddClick = () => {
+    console.log("Add");
+  };
   return (
     <>
-      <nav className=" lg:mx-auto pt-4 lg:border-b-primary-background lg:border pb-4">
-        {/* for laptop and tablet */}
-        <div className="px-4 md:px-0 flex justify-between items-center md:flex md:justify-between md:items-center container">
-          <NavLink to="/" className="flex items-center gap-x-1">
-            <span>
-              <LogoIcon />
-            </span>
-            <span className="text-primary-500 text-xl text-bold font-bold">
-              Hêlane
-            </span>
-          </NavLink>
-          <ul className="hidden md:flex md:justify-between">
-            <li className="">
-              <NavLink
-                to="/"
-                className={({ isActive }) => {
-                  return isActive ? activeClasses : inactiveClasses;
-                }}
-              >
-                Home
+      <nav className="lg:mx-auto pt-4 border border-b-primary-background pb-4 fixed bg-white w-full z-20">
+        <div className="flex justify-between items-center md:flex md:justify-between md:items-center md:container md:px-0 px-4 mx-auto">
+          <div className="flex items-center justify-between w-full md:w-auto">
+            <Button
+              variant="none"
+              className="md:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <XIcon /> : <Menu />}
+            </Button>
+            <div className="flex justify-center md:w-auto">
+              <NavLink to="/" className="flex items-center gap-x-1">
+                <LogoWithText className="h-8 sm:h-12" />
               </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/search"
-                className={({ isActive }) => {
-                  return isActive ? activeClasses : inactiveClasses;
-                }}
+            </div>
+            {user ? (
+              <Button
+                variant="primary"
+                className="mr-4 md:hidden items-center py-[6px] px-2"
+                onClick={handleAddClick}
               >
-                Search
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/agents"
-                className={({ isActive }) => {
-                  return isActive ? activeClasses : inactiveClasses;
-                }}
-              >
-                Agents
-              </NavLink>
-            </li>
-          </ul>
-
-          <div className="hidden md:flex md:gap-x-6">
-            {token ? (
-              <>
-                <UserInfo data={data} />
-              </>
+                <Plus className="text-white" />
+              </Button>
             ) : (
-              <div className="flex gap-x-2">
-                <Button
-                  onClick={() => routeHandler("primary")}
-                  variant="primary"
-                >
-                  Login
-                </Button>
-
-                <Button
-                  onClick={() => routeHandler("secondary")}
-                  variant="secondary"
-                >
-                  Sign up
-                </Button>
-              </div>
+              <Link
+                to="/login"
+                className="px-2 py[6px] items-center md:hidden mr-4 text-secondaryText"
+              >
+                Sign in
+              </Link>
             )}
           </div>
-          <div className="md:hidden block">
-            <HamburgerIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
-          </div>
+          <NavigationLinks />
+          <UserActionsMenu user={user} />
+          <MobileNavigation
+            isMenuOpen={isMenuOpen}
+            setIsMenuOpen={setIsMenuOpen}
+          />
         </div>
-        {/* for mobile */}
       </nav>
-      <div
-        className={`min-h-screen fixed top-0 md:hidden z-[10000] overflow-y-hidden bg-white  w-full flex flex-col gap-y-10 py-2  items-baseline px-4 duration-300  ease-in  ${isMenuOpen ? "left-0" : "-left-full"
-          }`}
-      >
-        <div className="flex justify-between w-full py-4">
-          <NavLink
-            to="/"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex items-center gap-x-1"
-          >
-            <span>
-              <LogoIcon />
-            </span>
-            <span className="text-primary-500 text-xl text-bold font-bold">
-              Hêlane
-            </span>
-          </NavLink>
-          <CloseIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
-        </div>
-        <ul className=" flex flex-col  items-start  h-[300px] justify-between ">
-          <li className="">
-            <NavLink
-              to="/"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={({ isActive }) => {
-                return isActive ? activeClasses : inactiveClasses;
-              }}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/search"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={({ isActive }) => {
-                return isActive ? activeClasses : inactiveClasses;
-              }}
-            >
-              Search
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              to="/agents"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={({ isActive }) => {
-                return isActive ? activeClasses : inactiveClasses;
-              }}
-            >
-              Agents
-            </NavLink>
-          </li>
-          {token ? (
-            <Button onClick={() => routeHandler("logout")} variant="secondary">
-              Logout
-            </Button>
-          ) : (
-            <>
-              <Button onClick={() => routeHandler("primary")} variant="primary">
-                Login
-              </Button>
-
-              <Button
-                onClick={() => routeHandler("secondary")}
-                variant="secondary"
-              >
-                Sign up
-              </Button>
-            </>
-          )}
-        </ul>
-      </div>
     </>
   );
 };

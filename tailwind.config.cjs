@@ -17,8 +17,23 @@ module.exports = {
       boxShadow: {
         footer: "0px -2px 64px 22px rgba(0, 0, 0, 0.02)",
       },
+      keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
       colors: {
         primary: {
+          50: "#F5F6FF",
           100: "#DEDBFF",
           200: "#BDB8FF",
           300: "#9C94FF",
@@ -50,5 +65,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"), require("tailwindcss-animate")],
 };
