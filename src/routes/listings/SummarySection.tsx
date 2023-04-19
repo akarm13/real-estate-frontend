@@ -225,9 +225,9 @@ export const SummarySection = ({
 const ContactAgentMobile = ({ phone }: { phone: string }) => {
   // Show a call button on mobile a fixed bottom navigation
   return (
-    <div className="sm:hidden fixed bottom-0 left-0 w-full bg-white border-t border-primary-background py-4 z-10 shadow-lg">
+    <div className="sm:hidden fixed bottom-0 left-0 w-full bg-white border-t border-primary-background py-4 z-20 shadow-lg">
       <a
-        className="flex justify-center gap-x-4 items-center px-4 py-2"
+        className="flex justify-center gap-x-4 items-center px-4 py-4"
         href={`tel:${phone}`}
       >
         <LucidePhone className="text-gray-700" />
