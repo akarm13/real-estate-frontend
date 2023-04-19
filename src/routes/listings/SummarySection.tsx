@@ -5,9 +5,11 @@ import { ReactComponent as BathroomIcon } from "../../assets/icons/listing/bathr
 import { ReactComponent as BedroomIcon } from "../../assets/icons/listing/bedroom.svg";
 import { Button } from "../../components/Button";
 
+import { CopyIcon, LucidePhone, PhoneIcon } from "lucide-react";
 import { Skeleton } from "../../components/skeleton/Skeleton";
 import { Listing } from "../../types/listing";
-import { LucideMessageSquare, LucidePhone } from "lucide-react";
+import { useCopyToClipboard } from "react-use";
+import { toast } from "react-hot-toast";
 
 type Props = {
   rooms: Listing["rooms"] | undefined;
@@ -55,14 +57,21 @@ export const SummarySection = ({
 }: Props) => {
   const [isPhoneVisible, setIsPhoneVisible] = useState(false);
 
-  const handleTogglePhone = () => {
-    setIsPhoneVisible(!isPhoneVisible);
+  const handleShowButtonPress = () => {
+    setIsPhoneVisible(true);
   };
 
+  const [value, copy] = useCopyToClipboard();
+
+  const handleCopyButtonPress = () => {
+    if (owner?.phone === undefined) return;
+    copy(owner?.phone);
+    toast.success("Phone number copied!");
+  };
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 md:gap-x-8">
-      <div className="flex flex-col gap-6 col-span-3 order-2">
-        <div className="grid grid-cols-2 gap-8 my-8 md:flex items-center justify-around rounded-lg border-none md:border border-primary-background py-2">
+      <div className="flex flex-col gap-6 col-span-3 order-2 md:order-1">
+        <div className="grid grid-cols-2 gap-8 my-8 lg:flex items-center justify-around rounded-lg border-none md:border border-primary-background py-2">
           <div className="ml-2 flex flex-col">
             <p className="font-semibold font-sm md:text-base md:ml-0 lg:text-lg">
               Bedrooms
@@ -147,7 +156,7 @@ export const SummarySection = ({
         </div>
       </div>
 
-      <div className="w-full flex flex-col bg-white border border-none md:border-primary-background  px-2 py-6 rounded-lg gap-6 col-span-2 my-8 md:max-h-[350px] order-1">
+      <div className="w-full flex flex-col bg-white border border-none md:border-primary-background  px-2 py-6 rounded-lg gap-6 col-span-2 my-8 md:max-h-[350px] order-1 md:order-2">
         <h3 className="text-primary-500 lg:text-2xl font-bold text-2xl">
           {isLoading ? (
             <Skeleton className="w-32 h-8" />
@@ -206,15 +215,18 @@ export const SummarySection = ({
         </div>
 
         <Button
-          onClick={handleTogglePhone}
-          variant="primary"
-          className="hidden md:flex"
+          onClick={handleShowButtonPress}
+          variant="secondary"
+          className="hidden sm:flex items-center"
         >
-          {isPhoneVisible ? (
-            <span className="mr-2">{owner?.phone}</span>
-          ) : (
-            <span className="mr-2">Show phone number</span>
-          )}
+          <PhoneIcon className="text-gray-700 mr-2" />
+          <span className="mr-2">{owner?.phone}</span>
+          <button
+            onClick={handleCopyButtonPress}
+            className="text-primary-500 py-2"
+          >
+            <CopyIcon className="h-4 w-4" />
+          </button>
         </Button>
       </div>
       <ContactAgentMobile phone={owner?.phone || ""} />

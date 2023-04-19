@@ -20,6 +20,7 @@ import { Agent } from "../routes/agents/Agent";
 
 import { GuestRoute } from "../components/GuestRoute";
 import { useSetUserFromLocalStorage } from "../hooks/useSetUserFromLocalStorage";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const routes = useRoutes([
@@ -60,6 +61,7 @@ function App() {
       {!isAuthPage && <Navigation />}
 
       <ScrollToTop />
+      <Toaster />
       {routes}
       {!isAuthPage && <Footer />}
     </main>
