@@ -1,5 +1,6 @@
 import { RootState } from "../../store/store";
 import { User } from "../../types/auth";
+import { PaginatedResponse } from "../../types/common";
 import { api } from "../rtk-api";
 
 export const userApi = api.injectEndpoints({
@@ -13,10 +14,14 @@ export const userApi = api.injectEndpoints({
         method: "GET",
       }),
     }),
+    getAgent: builder.query<PaginatedResponse<User>, void>({
+      query: () => ({
+        url: "/users/agents",
+        method: "GET",
+      }),
+    }),
   }),
 });
-
-export const { useLazyGetMeQuery, useGetMeQuery } = userApi;
 
 // Where the endPoint name is "getMe"
 export const selectIsGetMeLoading = (state: RootState) => {
@@ -27,3 +32,5 @@ export const selectIsGetMeLoading = (state: RootState) => {
     );
   }
 };
+
+export const { useLazyGetMeQuery, useGetMeQuery, useGetAgentQuery } = userApi;
