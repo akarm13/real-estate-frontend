@@ -136,7 +136,9 @@ const GalleryImagesSmall = ({
       <TypeBadge type={type} className="absolute top-2 left-4 z-10" />
       {images.map((image, index) => (
         <SwiperSlide key={index}>
-          <div className="relative w-full">
+          <div className="relative h-[250px] rounded-2xl">
+            {/* Overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black opacity-30 to-transparent rounded-2xl" />
             <img
               src={image}
               alt={`House photo ${index + 1}`}

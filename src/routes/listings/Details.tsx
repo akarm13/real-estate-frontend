@@ -13,13 +13,13 @@ import { Button } from "../../components/Button";
 export const Details = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { data, isLoading, isError } = useGetListingByIdQuery(id || "");
+  const { data, isLoading } = useGetListingByIdQuery(id || "");
 
   return (
     <div className="w-full pt-24">
       <div className="flex flex-col w-full mx-auto md:px-0 container">
         <div>
-          <Link className="flex  items-center" to="/search">
+          <Link className="flex items-center" to="/search">
             <BackIcon />
             <p className="lg:text-base text-sm font-semibold text-primary-400 font-sans ml-2">
               Back to map

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { ReactComponent as CheckMarkIcon } from "../../assets/housedetail/checkmark.svg";
 import { ReactComponent as MeterIcon } from "../../assets/housedetail/meters.svg";
-import { ReactComponent as Person } from "../../assets/housedetail/person.svg";
 import { ReactComponent as BathroomIcon } from "../../assets/icons/listing/bathroom.svg";
 import { ReactComponent as BedroomIcon } from "../../assets/icons/listing/bedroom.svg";
 import { Button } from "../../components/Button";
 
-import { Listing } from "../../types/listing";
 import { Skeleton } from "../../components/skeleton/Skeleton";
+import { Listing } from "../../types/listing";
+import { LucideMessageSquare, LucidePhone } from "lucide-react";
 
 type Props = {
   rooms: Listing["rooms"] | undefined;
@@ -62,26 +62,25 @@ export const SummarySection = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 md:gap-x-8">
       <div className="flex flex-col gap-6 col-span-3 order-2">
-        <div className="grid grid-cols-2 gap-8 my-8 md:flex items-center justify-around rounded-lg border border-primary-background py-6 px-12">
-          <div className="ml-2">
-            <p className="font-semibold text-sm md:text-base lg:text-lg">
+        <div className="grid grid-cols-2 gap-8 my-8 md:flex items-center justify-around rounded-lg border-none md:border border-primary-background py-2">
+          <div className="ml-2 flex flex-col">
+            <p className="font-semibold font-sm md:text-base md:ml-0 lg:text-lg">
               Bedrooms
             </p>
-
             {isLoading ? (
               <RoomInfoSkeleton />
             ) : (
               <div className="flex items-center mx-2 mt-4">
                 <BedroomIcon />
 
-                <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-sm ">
+                <span className="mx-1 md:mx-4 w-16 font-medium text-primaryText">
                   {rooms?.bedrooms}
                 </span>
               </div>
             )}
           </div>
-          <div className="ml-2">
-            <p className="font-semibold text-sm md:text-base  lg:text-lg">
+          <div className="ml-2  flex flex-col">
+            <p className="font-semibold font-sm md:text-base md:ml-0 lg:text-lg">
               Bathrooms
             </p>
 
@@ -91,31 +90,31 @@ export const SummarySection = ({
               <div className="flex items-center mx-2 mt-4">
                 <BathroomIcon />
 
-                <span className="mx-2 md:mx-4 lg:text-base md:text-sm text-sm">
+                <span className="mx-1 md:mx-4 w-16 font-medium text-primaryText">
                   {rooms?.bathrooms}
                 </span>
               </div>
             )}
           </div>
-          <div className="ml-2">
-            <p className="font-semibold text-sm md:text-base md:ml-0 ml-1  lg:text-lg">
+          <div className="ml-2 flex flex-col">
+            <p className="font-semibold font-sm md:text-base md:ml-0 lg:text-lg">
               Square Area
             </p>
 
             {isLoading ? (
               <RoomInfoSkeleton />
             ) : (
-              <div className="flex items-center  mt-4">
+              <div className="flex items-center mt-4">
                 <MeterIcon />
 
-                <span className="mx-1 md:mx-4 w-16 lg:text-base md:text-sm text-sm">
+                <span className="mx-1 md:mx-4 w-16 font-medium text-primaryText">
                   {area} m2
                 </span>
               </div>
             )}
           </div>
-          <div className="ml-2">
-            <p className="font-semibold text-sm md:text-base lg:text-lg">
+          <div className="ml-2  flex flex-col">
+            <p className="font-semibold font-sm md:text-base md:ml-0 lg:text-lg">
               Status
             </p>
 
@@ -125,7 +124,7 @@ export const SummarySection = ({
               <div className="flex items-center mt-4 gap-x-2">
                 <CheckMarkIcon />
 
-                <span className="md:mx-4 lg:text-base md:text-sm text-sm translate-x-0 capitalize">
+                <span className="md:mx-4 w-16 font-medium text-primaryText capitalize">
                   {status}
                 </span>
               </div>
@@ -148,16 +147,12 @@ export const SummarySection = ({
         </div>
       </div>
 
-      <div className="w-full flex flex-col bg-white border border-primary-background  px-6 py-6 rounded-lg gap-6 col-span-2 my-8 md:max-h-[350px] order-1">
-        <h5 className="font-semibold text-base lg:text-lg">Sale Price</h5>
-
-        <h3 className="text-primary-500 text-lg lg:text-2xl font-bold ">
+      <div className="w-full flex flex-col bg-white border border-none md:border-primary-background  px-2 py-6 rounded-lg gap-6 col-span-2 my-8 md:max-h-[350px] order-1">
+        <h3 className="text-primary-500 lg:text-2xl font-bold text-2xl">
           {isLoading ? (
             <Skeleton className="w-32 h-8" />
           ) : (
-            <span className="text-primary-500 text-lg lg:text-2xl font-bold ">
-              ${price}
-            </span>
+            <span className="">${price}</span>
           )}
         </h3>
 
@@ -178,10 +173,8 @@ export const SummarySection = ({
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h4 className="font-semibold lg:text-base text-sm">
-                  {owner?.fullName}
-                </h4>
-                <h5 className="text-secondaryText lg:text-base text-sm">
+                <h4 className="font-bold lg:text-base">{owner?.fullName}</h4>
+                <h5 className="text-secondaryText lg:text-base font-medium">
                   Verified Agent
                 </h5>
               </div>
@@ -189,32 +182,34 @@ export const SummarySection = ({
           )}
         </div>
 
-        <div className="flex flex-col md:flex-row w-full justify-between items-center  ">
+        <div className="flex  md:flex-row w-full justify-between items-center  ">
           {isLoading ? (
             [1, 2, 3].map((_, index) => <AgentInfoSkeleton key={index} />)
           ) : (
             <>
               <div className="flex flex-col gap-2 items-center">
                 <h4 className="font-semibold lg:text-base">Rating</h4>
-                <p className="text-sm md:text-base">5/5</p>
+                <p className="font-medium text-primaryText">5/5</p>
               </div>
 
               <div className="flex flex-col  gap-2 items-center">
-                <h4 className="font-semibold lg:text-base">
-                  Properties Listed
-                </h4>
-                <p className="text-sm md:text-base">2</p>
+                <h4 className="font-semibold lg:text-base">Listed</h4>
+                <p className="font-medium text-primaryText">2</p>
               </div>
 
               <div className="flex flex-col gap-2 items-center">
-                <h4 className="font-semibold lg:text-base">Properties sold</h4>
-                <p className="text-sm md:text-base">2</p>
+                <h4 className="font-semibold lg:text-base">Sold</h4>
+                <p className="font-medium text-primaryText">2</p>
               </div>
             </>
           )}
         </div>
 
-        <Button onClick={handleTogglePhone} variant="primary">
+        <Button
+          onClick={handleTogglePhone}
+          variant="primary"
+          className="hidden md:flex"
+        >
           {isPhoneVisible ? (
             <span className="mr-2">{owner?.phone}</span>
           ) : (
@@ -222,6 +217,22 @@ export const SummarySection = ({
           )}
         </Button>
       </div>
+      <ContactAgentMobile phone={owner?.phone || ""} />
+    </div>
+  );
+};
+
+const ContactAgentMobile = ({ phone }: { phone: string }) => {
+  // Show a call button on mobile a fixed bottom navigation
+  return (
+    <div className="sm:hidden fixed bottom-0 left-0 w-full bg-white border-t border-primary-background py-4 z-10 shadow-lg">
+      <a
+        className="flex justify-center gap-x-4 items-center px-4 py-2"
+        href={`tel:${phone}`}
+      >
+        <LucidePhone className="text-gray-700" />
+        <p className="font-semibold">Call Agent</p>
+      </a>
     </div>
   );
 };
