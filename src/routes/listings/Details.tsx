@@ -3,12 +3,12 @@ import { useGetListingByIdQuery } from "../../api/endpoints/listings";
 import { ReactComponent as BackIcon } from "../../assets/housedetail/back.svg";
 import { ReactComponent as FeaturedStarIcon } from "../../assets/icons/listing/star.svg";
 import { ReactComponent as LocationIcon } from "../../assets/icons/search/location.svg";
+import { Button } from "../../components/Button";
 import { Skeleton } from "../../components/skeleton/Skeleton";
 import { AmenitiesSection } from "./AmenitiesSection";
 import { HouseGallery } from "./HouseGallery";
 import { MapSection } from "./MapSection";
 import { SummarySection } from "./SummarySection";
-import { Button } from "../../components/Button";
 
 export const Details = () => {
   const { id } = useParams<{ id: string }>();
@@ -27,7 +27,7 @@ export const Details = () => {
           </Link>
         </div>
 
-        <div className="flex flex-col lg:flex-row lg:w-full justify-between md:items-center pt-4">
+        <div className="flex flex-col lg:flex-row lg:w-full justify-between lg:items-center pt-4">
           {isLoading ? (
             <Skeleton className="w-1/2 h-8" />
           ) : (
@@ -42,7 +42,7 @@ export const Details = () => {
               data?.location.address + " " + data?.location.city
             )}
           </p>
-          <div className="flex md:self-auto mt-4 md:mt-0 gap-x-4">
+          <div className="flex md:self-auto mt-4 lg:mt-0 gap-x-4">
             <Button
               variant="secondary"
               onClick={() => console.log("hello")}
