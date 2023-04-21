@@ -14,7 +14,7 @@ export const userApi = api.injectEndpoints({
         method: "GET",
       }),
     }),
-    getAgent: builder.query<PaginatedResponse<User>, void>({
+    getAgents: builder.query<PaginatedResponse<User>, void>({
       query: () => ({
         url: "/users/agents",
         method: "GET",
@@ -33,4 +33,4 @@ export const selectIsGetMeLoading = (state: RootState) => {
   }
 };
 
-export const { useLazyGetMeQuery, useGetMeQuery, useGetAgentQuery } = userApi;
+export const { useLazyGetMeQuery, useGetMeQuery, useGetAgentsQuery } = userApi;

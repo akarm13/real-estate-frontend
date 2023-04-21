@@ -10,7 +10,7 @@ import { HouseGallery } from "./HouseGallery";
 import { MapSection } from "./MapSection";
 import { SummarySection } from "./SummarySection";
 
-export const Details = () => {
+export const ListingDetails = () => {
   const { id } = useParams<{ id: string }>();
 
   const { data, isLoading } = useGetListingByIdQuery(id || "");
