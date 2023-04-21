@@ -57,10 +57,6 @@ export const SummarySection = ({
 }: Props) => {
   const [isPhoneVisible, setIsPhoneVisible] = useState(false);
 
-  const handleShowButtonPress = () => {
-    setIsPhoneVisible(true);
-  };
-
   const [value, copy] = useCopyToClipboard();
 
   const handleCopyButtonPress = () => {
@@ -71,7 +67,7 @@ export const SummarySection = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 md:gap-x-8">
       <div className="flex flex-col gap-6 col-span-3 order-2 md:order-1">
-        <div className="grid grid-cols-2 gap-8 my-8 lg:flex items-center justify-around rounded-lg border-none md:border border-primary-background py-2">
+        <div className="grid grid-cols-2 my-4 md:my-8 lg:grid-cols-4 items-center rounded-lg border-0 lg:border border-primary-background md:p-4 gap-y-8">
           <div className="ml-2 flex flex-col">
             <p className="font-semibold font-sm md:text-base md:ml-0 lg:text-lg">
               Bedrooms
@@ -141,7 +137,7 @@ export const SummarySection = ({
           </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 my-4 md:my-0">
           <h2 className="text-lg lg:text-2xl font-semibold">About this home</h2>
 
           <p className="text-secondaryText">
@@ -156,7 +152,7 @@ export const SummarySection = ({
         </div>
       </div>
 
-      <div className="w-full flex flex-col bg-white border border-none md:border-primary-background  px-2 py-6 rounded-lg gap-6 col-span-2 my-8 md:max-h-[350px] order-1 md:order-2">
+      <div className="my-4 w-full flex flex-col bg-white border-0 lg:border md:border-primary-background  px-2 py-6 rounded-lg gap-6 col-span-2 md:my-8 md:max-h-[300px] order-1 md:order-2 lg:px-8 lg:py-6">
         <h3 className="text-primary-500 lg:text-2xl font-bold text-2xl">
           {isLoading ? (
             <Skeleton className="w-32 h-8" />
@@ -184,7 +180,7 @@ export const SummarySection = ({
               <div>
                 <h4 className="font-bold lg:text-base">{owner?.fullName}</h4>
                 <h5 className="text-secondaryText lg:text-base font-medium">
-                  Verified Agent
+                  {owner?.isVerified ? "Verified" : "Not verified"}
                 </h5>
               </div>
             </>
@@ -214,20 +210,20 @@ export const SummarySection = ({
           )}
         </div>
 
-        <Button
-          onClick={handleShowButtonPress}
-          variant="secondary"
-          className="hidden sm:flex items-center"
-        >
-          <PhoneIcon className="text-gray-700 mr-2" />
-          <span className="mr-2">{owner?.phone}</span>
+        <div className="hidden md:flex md:justify-between mt-2">
+          <div className="flex items-center">
+            <PhoneIcon className="text-gray-700 mr-2" />
+            <span className="mr-2 font-medium text-gray-700">
+              {owner?.phone}
+            </span>
+          </div>
           <button
             onClick={handleCopyButtonPress}
-            className="text-primary-500 py-2"
+            className="text-primary-500 py-2 ml-2 md:ml-0"
           >
-            <CopyIcon className="h-4 w-4" />
+            <CopyIcon className="h-5 w-5" />
           </button>
-        </Button>
+        </div>
       </div>
       <ContactAgentMobile phone={owner?.phone || ""} />
     </div>
@@ -237,7 +233,7 @@ export const SummarySection = ({
 const ContactAgentMobile = ({ phone }: { phone: string }) => {
   // Show a call button on mobile a fixed bottom navigation
   return (
-    <div className="sm:hidden fixed bottom-0 left-0 w-full bg-white border-t border-primary-background py-4 z-20 shadow-lg">
+    <div className="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-primary-background py-4 z-20 shadow-lg">
       <a
         className="flex justify-center gap-x-4 items-center px-4 py-4"
         href={`tel:${phone}`}

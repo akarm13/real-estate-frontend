@@ -41,7 +41,7 @@ export const Agent = () => {
             return (
               <div
                 key={person?._id}
-                className=" bg-white border  px-4 py-4 rounded-2xl "
+                className="bg-white border  px-4 py-4 rounded-2xl "
               >
                 <img
                   src={person?.avatar}
