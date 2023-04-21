@@ -12,9 +12,9 @@ export const HomeSize = ({
 
   return (
     <div className="">
-      <h1 className="mb-4 text-lg font-semibold break-words text-primary">
+      <h1 className="text-primary mb-4 break-words text-lg font-semibold">
         <span>Home Size</span>
-        <span className="text-base font-normal text-secondary ml-1">
+        <span className="text-secondary ml-1 text-base font-normal">
           (m<sup>2</sup>)
         </span>
       </h1>
@@ -22,7 +22,7 @@ export const HomeSize = ({
         <div className="flex flex-col gap-y-4">
           <div className="flex items-center justify-between ">
             <select
-              className="bg-white px-2 py-2 flex gap-x-3 text-gray-600 border-gray-300 w-28 rounded-lg outline-none"
+              className="flex w-28 gap-x-3 rounded-lg border-gray-300 bg-white px-2 py-2 text-gray-600 outline-none"
               name=""
               id=""
               onChange={(e) => onFirstInputChange?.(e.target.value)}
@@ -36,7 +36,7 @@ export const HomeSize = ({
             </select>
             <span>-</span>
             <select
-              className="bg-white px-2 py-2 flex gap-x-3 w-28 text-gray-600 border-gray-300 rounded-lg outline-none items-center"
+              className="flex w-28 items-center gap-x-3 rounded-lg border-gray-300 bg-white px-2 py-2 text-gray-600 outline-none"
               name=""
               id=""
               onChange={(e) => onSecondInputChange?.(e.target.value)}

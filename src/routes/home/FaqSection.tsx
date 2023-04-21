@@ -52,15 +52,15 @@ export const FaqSection = () => {
 
   return (
     <div className="">
-      <div className="w-5/6 md: mx-auto mt-24">
-        <h1 className="font-semibold text-2xl md:text-3xl text-primary-900">
+      <div className="md: mx-auto mt-24 w-5/6">
+        <h1 className="text-2xl font-semibold text-primary-900 md:text-3xl">
           Frequently asked questions
         </h1>
-        <h4 className="text-secondaryText text-base md:text-xl font-semibold mt-2">
+        <h4 className="mt-2 text-base font-semibold text-secondaryText md:text-xl">
           Everything you need to know about us
         </h4>
 
-        <div className="flex flex-col gap-y-10 mt-16">
+        <div className="mt-16 flex flex-col gap-y-10">
           <div className="flex flex-col gap-y-8">
             {questionList.map((question) => (
               <div key={question.id} className="flex flex-col">
@@ -70,12 +70,12 @@ export const FaqSection = () => {
                 >
                   {question.isShown ? <MinusIcon /> : <PlusIcon />}
 
-                  <h2 className="text-primary-900 font-semibold md:text-xl text-left">
+                  <h2 className="text-left font-semibold text-primary-900 md:text-xl">
                     {question.question}
                   </h2>
                 </button>
                 {question.isShown && (
-                  <p className="text-sm pl-8 md:text-base w-full md:w-4/5 lg:1/2 md:pl-9 text-secondaryText mt-4">
+                  <p className="lg:1/2 mt-4 w-full pl-8 text-sm text-secondaryText md:w-4/5 md:pl-9 md:text-base">
                     {question.description}
                   </p>
                 )}

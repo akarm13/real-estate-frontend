@@ -11,11 +11,11 @@ export const InputSearch = ({ title, setTitle }: any) => {
   });
 
   return (
-    <div className="lg:flex lg:justify-between lg:items-center lg:w-full hidden">
-      <div className="bg-searchBackground py-1 md:py-2 md: px-4 w-full mx-auto md:mx-0 lg:w-[700px] rounded-lg flex justify-between">
+    <div className="hidden lg:flex lg:w-full lg:items-center lg:justify-between">
+      <div className="md: mx-auto flex w-full justify-between rounded-lg bg-searchBackground py-1 px-4 md:mx-0 md:py-2 lg:w-[700px]">
         {isSmall ? (
           <>
-            <select className="bg-white text-black px-4 py-1 flex gap-x-4 w-32 text-lg border-none rounded-lg outline-none focus:ring-0 focus:ring-offset-0">
+            <select className="flex w-32 gap-x-4 rounded-lg border-none bg-white px-4 py-1 text-lg text-black outline-none focus:ring-0 focus:ring-offset-0">
               <option className="capitalize" value="rent">
                 Rent
               </option>
@@ -26,7 +26,7 @@ export const InputSearch = ({ title, setTitle }: any) => {
             <input
               type="text"
               placeholder="City or address"
-              className="text-center bg-transparent border-none focus:ring-0 focus:ring-offset-0"
+              className="border-none bg-transparent text-center focus:ring-0 focus:ring-offset-0"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -36,7 +36,7 @@ export const InputSearch = ({ title, setTitle }: any) => {
           <input
             type="text"
             placeholder="City or address"
-            className=" bg-transparent w-11/12 border-none focus:ring-0 focus:ring-offset-0"
+            className=" w-11/12 border-none bg-transparent focus:ring-0 focus:ring-offset-0"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -44,7 +44,7 @@ export const InputSearch = ({ title, setTitle }: any) => {
       </div>
 
       {isSmall && (
-        <div className="flex items-center border-primary-background  px-9 py-3 border-2 rounded-lg">
+        <div className="flex items-center rounded-lg  border-2 border-primary-background px-9 py-3">
           <LocationIcon />
         </div>
       )}

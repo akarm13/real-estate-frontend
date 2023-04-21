@@ -7,7 +7,7 @@ export const inactiveClasses =
 
 export const NavigationLinks = () => {
   return (
-    <ul className="hidden md:flex  md:flex-row md:justify-center flex-grow">
+    <ul className="hidden flex-grow  md:flex md:flex-row md:justify-center">
       <li>
         <NavLink
           to="/"

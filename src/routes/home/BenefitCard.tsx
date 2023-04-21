@@ -7,12 +7,12 @@ type Props = {
 
 export const BenefitCard = ({ title, description }: Props) => {
   return (
-    <div className="bg-white border border-primary-background text-center  flex flex-col items-center gap-y-6 py-[40px] rounded-2xl h-80 hover:shadow-footer transition">
-      <div className="bg-primary-background p-4 flex items-center justify-center rounded-2xl">
+    <div className="flex h-80 flex-col items-center  gap-y-6 rounded-2xl border border-primary-background bg-white py-[40px] text-center transition hover:shadow-footer">
+      <div className="flex items-center justify-center rounded-2xl bg-primary-background p-4">
         <SearchIcon fill="currentColor" className="text-primary-500" />
       </div>
-      <h1 className="text-primary-900 font-semibold text-xl">{title}</h1>
-      <p className="w-10/12 mx-auto text-secondaryText">{description}</p>
+      <h1 className="text-xl font-semibold text-primary-900">{title}</h1>
+      <p className="mx-auto w-10/12 text-secondaryText">{description}</p>
     </div>
   );
 };

@@ -33,22 +33,22 @@ export const Category = ({ onInputHandle }: Props) => {
     <div className="">
       {isMedium ? (
         <>
-          <h1 className="mb-4 capitalize text-lg text-primaryText font-semibold">
+          <h1 className="mb-4 text-lg font-semibold capitalize text-primaryText">
             Category
           </h1>
-          <ul className=" text-sm font-medium  flex gap-y-3 flex-col ">
+          <ul className=" flex flex-col  gap-y-3 text-sm font-medium ">
             <li className="w-full ">
               <div className="flex items-center ">
                 <input
                   id="house-checkbox"
                   type="checkbox"
                   value="house"
-                  className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  className="h-5 w-5 rounded border-0  bg-gray-100  text-primary-500 focus:ring-0 focus:ring-offset-0"
                   onChange={(e) => onInputChange?.(e)}
                 />
                 <label
                   htmlFor="house-checkbox"
-                  className="w-full ml-2 text-base  text-primary-900 font-normal"
+                  className="ml-2 w-full text-base  font-normal text-primary-900"
                 >
                   Houses
                 </label>
@@ -61,12 +61,12 @@ export const Category = ({ onInputHandle }: Props) => {
                   id="apar-checkbox"
                   type="checkbox"
                   value="apartment"
-                  className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  className="h-5 w-5 rounded border-0  bg-gray-100  text-primary-500 focus:ring-0 focus:ring-offset-0"
                   onChange={(e) => onInputChange?.(e)}
                 />
                 <label
                   htmlFor="apar-checkbox"
-                  className="w-full ml-2 text-base  text-primary-900 font-normal"
+                  className="ml-2 w-full text-base  font-normal text-primary-900"
                 >
                   Apartments
                 </label>
@@ -79,12 +79,12 @@ export const Category = ({ onInputHandle }: Props) => {
                   id="villa-checkbox"
                   type="checkbox"
                   value="villa"
-                  className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  className="h-5 w-5 rounded border-0  bg-gray-100  text-primary-500 focus:ring-0 focus:ring-offset-0"
                   onChange={(e) => onInputChange?.(e)}
                 />
                 <label
                   htmlFor="villa-checkbox"
-                  className="w-full  ml-2 text-base  text-primary-900 font-normal"
+                  className="ml-2  w-full text-base  font-normal text-primary-900"
                 >
                   Villa
                 </label>
@@ -98,12 +98,12 @@ export const Category = ({ onInputHandle }: Props) => {
                   type="checkbox"
                   value="land"
                   name="land"
-                  className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+                  className="h-5 w-5 rounded border-0  bg-gray-100  text-primary-500 focus:ring-0 focus:ring-offset-0"
                   onChange={(e) => onInputChange?.(e)}
                 />
                 <label
                   htmlFor="land-checkbox"
-                  className="w-full  ml-2 text-base  text-primary-900 font-normal"
+                  className="ml-2  w-full text-base  font-normal text-primary-900"
                 >
                   Land
                 </label>
@@ -113,7 +113,7 @@ export const Category = ({ onInputHandle }: Props) => {
         </>
       ) : (
         <select
-          className="bg-white px-2 w-36 py-2 flex gap-x-3 text-gray-600 border-gray-300 md:w-28 rounded-lg outline-none"
+          className="flex w-36 gap-x-3 rounded-lg border-gray-300 bg-white px-2 py-2 text-gray-600 outline-none md:w-28"
           name=""
           id=""
         >

@@ -29,22 +29,22 @@ export const Type = ({ onInputHandle }: Props) => {
 
   return (
     <div className="">
-      <h1 className="mb-4 capitalize text-lg text-primaryText font-semibold">
+      <h1 className="mb-4 text-lg font-semibold capitalize text-primaryText">
         Type
       </h1>
-      <ul className=" text-sm font-medium  flex gap-y-3 flex-col ">
+      <ul className=" flex flex-col  gap-y-3 text-sm font-medium ">
         <li className="w-full ">
           <div className="flex items-center ">
             <input
               id="rent-checkbox"
               type="checkbox"
               value="rent"
-              className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+              className="h-5 w-5 rounded border-0  bg-gray-100  text-primary-500 focus:ring-0 focus:ring-offset-0"
               onChange={(e) => onInputChange?.(e)}
             />
             <label
               htmlFor="rent-checkbox"
-              className="w-full  ml-2 text-base  text-primary-900 font-normal"
+              className="ml-2  w-full text-base  font-normal text-primary-900"
             >
               Rent
             </label>
@@ -57,12 +57,12 @@ export const Type = ({ onInputHandle }: Props) => {
               id="sale-checkbox"
               type="checkbox"
               value="sale"
-              className="w-5 h-5 text-primary-500 bg-gray-100  border-0  rounded focus:ring-0 focus:ring-offset-0"
+              className="h-5 w-5 rounded border-0  bg-gray-100  text-primary-500 focus:ring-0 focus:ring-offset-0"
               onChange={(e) => onInputChange?.(e)}
             />
             <label
               htmlFor="sale-checkbox"
-              className="w-full  ml-2 text-base  text-primary-900 font-normal"
+              className="ml-2  w-full text-base  font-normal text-primary-900"
             >
               Sale
             </label>

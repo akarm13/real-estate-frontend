@@ -7,7 +7,7 @@ type Props = {
 export const Skeleton: React.FC<Props> = ({ className }) => {
   return (
     <span
-      className={`flex bg-gray-200 animate-pulse ${className ?? ""}`}
+      className={`flex animate-pulse bg-gray-200 ${className ?? ""}`}
     ></span>
   );
 };

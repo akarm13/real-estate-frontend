@@ -17,7 +17,7 @@ export const ListingCard = ({
   images,
 }: Listing) => {
   return (
-    <div className="flex flex-col transition duration-200 relative z-10 listing-card rounded-lg snap-center my-4 lg:my-0">
+    <div className="listing-card relative z-10 my-4 flex snap-center flex-col rounded-lg transition duration-200 lg:my-0">
       <div className="overflow-hidden rounded-lg">
         <img
           src={images[0]}
@@ -26,20 +26,20 @@ export const ListingCard = ({
         />
       </div>
       <TypeBadge type={type} className="absolute top-2 left-4" />
-      <div className="flex flex-col gap-y-2 px-5 items-baseline bg-white border border-primary-background py-6 rounded-lg relative ">
-        <span className="text-primary-500 font-bold text-lg">${price}</span>
-        <h3 className="text-primary-900 font-semibold text-md lg:text-lg h-[60px]">
+      <div className="relative flex flex-col items-baseline gap-y-2 rounded-lg border border-primary-background bg-white px-5 py-6 ">
+        <span className="text-lg font-bold text-primary-500">${price}</span>
+        <h3 className="text-md h-[60px] font-semibold text-primary-900 lg:text-lg">
           {title}
         </h3>
-        <p className="flex gap-x-2 p-0 m-0 items-center">
+        <p className="m-0 flex items-center gap-x-2 p-0">
           <LocationIcon />
-          <span className="text-secondaryText text-sm lg:text-md">
+          <span className="lg:text-md text-sm text-secondaryText">
             {location.address + " " + location.city}
           </span>
         </p>
 
-        <hr className="w-full mx-auto my-2 bg-primary-background" />
-        <div className="flex justify-between w-full mt-2 gap-x-4 lg:gap-0">
+        <hr className="mx-auto my-2 w-full bg-primary-background" />
+        <div className="mt-2 flex w-full justify-between gap-x-4 lg:gap-0">
           <PropertyDetail
             icon={<BedroomIcon />}
             value={rooms.bedrooms}
@@ -52,9 +52,9 @@ export const ListingCard = ({
           />
           <PropertyDetail icon={<AreaIcon />} value={area} text={"m²"} />
         </div>
-        <div className="absolute bg-primary-500 flex -top-7 -left-1 items-center gap-x-2 py-2 px-4 rounded-lg">
+        <div className="absolute -top-7 -left-1 flex items-center gap-x-2 rounded-lg bg-primary-500 py-2 px-4">
           <FeaturedStarIcon width={16} height={16} />
-          <span className="text-white uppercase text-sm font-semibold">
+          <span className="text-sm font-semibold uppercase text-white">
             {status}
           </span>
         </div>
@@ -70,8 +70,8 @@ type PropertyDetailProps = {
 };
 export const PropertyDetail = ({ icon, value, text }: PropertyDetailProps) => {
   return (
-    <div className="flex gap-x-2 items-center text-gray-600">
-      <span className="text-primary-500 rounded-lg">{icon}</span>
+    <div className="flex items-center gap-x-2 text-gray-600">
+      <span className="rounded-lg text-primary-500">{icon}</span>
       <div className="flex items-center gap-x-1">
         <span className="text-sm md:text-base">{value} </span>
         <span className="text-sm md:text-base">{text}</span>
@@ -92,7 +92,7 @@ export const TypeBadge = ({ type, className }: TypeBadgeProps) => {
 
   return (
     <span
-      className={`absolute left-2 px-4 py-2 rounded-lg uppercase my-2 font-medium ${typeColor} text-sm ${className}`}
+      className={`absolute left-2 my-2 rounded-lg px-4 py-2 font-medium uppercase ${typeColor} text-sm ${className}`}
     >
       {type}
     </span>

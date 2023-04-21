@@ -58,37 +58,37 @@ export const Register = () => {
 
   return (
     <div className="h-screen ">
-      <div className="md:flex h-full">
+      <div className="h-full md:flex">
         <div className="flex-1 md:bg-primary-background ">
           <NavLink
             to="/"
-            className="flex pl-4 pt-10  items-center gap-x-1 md:pl-32  md:pt-6"
+            className="flex items-center gap-x-1  pl-4 pt-10 md:pl-32  md:pt-6"
           >
             <span>
               <LogoIcon />
             </span>
-            <span className="text-primaryText text-xl text-bold font-bold">
+            <span className="text-bold text-xl font-bold text-primaryText">
               Hêlane
             </span>
           </NavLink>
 
-          <div className=" hidden md:flex justify-center items-center w-3/5 mx-auto pt-10">
+          <div className=" mx-auto hidden w-3/5 items-center justify-center pt-10 md:flex">
             <SignIllustration className="w-full" />
           </div>
         </div>
 
-        <div className="flex-1   h-full bg-[#FEFEFF]  justify-center items-center">
+        <div className="h-full   flex-1 items-center  justify-center bg-[#FEFEFF]">
           {/* login and sign up section */}
-          <div className="flex flex-col   gap-1 my-16 md:my-10 md:mx-12  mx-5  ">
-            <p className="md:text-2xl text-xl font-medium text-primaryText">
+          <div className="my-16 mx-5   flex flex-col gap-1 md:my-10  md:mx-12  ">
+            <p className="text-xl font-medium text-primaryText md:text-2xl">
               Welcome to Hêlane
             </p>
-            <h3 className="md:text-4xl text-2xl font-bold text-primaryText">
+            <h3 className="text-2xl font-bold text-primaryText md:text-4xl">
               New account
             </h3>
 
             <form
-              className="my-5 flex  flex-col gap-4 max-w-[550px] md:max-w-[592px]"
+              className="my-5 flex  max-w-[550px] flex-col gap-4 md:max-w-[592px]"
               onSubmit={handleSubmit(onsubmit)}
             >
               <div className="flex flex-col  gap-2">
@@ -97,7 +97,7 @@ export const Register = () => {
                 </label>
                 <input
                   {...register("fullName")}
-                  className="bg-white border border-primary-background  h-14 ring-0    focus:outline-none focus:border-primary-500 font-bold  text-secondaryText  rounded-lg"
+                  className="h-14 rounded-lg border  border-primary-background bg-white    font-bold text-secondaryText ring-0  focus:border-primary-500  focus:outline-none"
                   type="text"
                   name="fullName"
                   id="fullName"
@@ -113,7 +113,7 @@ export const Register = () => {
                 </label>
                 <input
                   {...register("email")}
-                  className="bg-white border border-primary-background  h-14 ring-0    focus:outline-none focus:border-primary-500 font-bold  text-secondaryText  rounded-lg"
+                  className="h-14 rounded-lg border  border-primary-background bg-white    font-bold text-secondaryText ring-0  focus:border-primary-500  focus:outline-none"
                   type="email"
                   name="email"
                   id="email"
@@ -128,7 +128,7 @@ export const Register = () => {
                 </label>
                 <input
                   {...register("phone")}
-                  className="bg-white border border-primary-background  h-14 ring-0    focus:outline-none focus:border-primary-500 font-bold  text-secondaryText  rounded-lg"
+                  className="h-14 rounded-lg border  border-primary-background bg-white    font-bold text-secondaryText ring-0  focus:border-primary-500  focus:outline-none"
                   type="text"
                   name="phone"
                   id="phone"
@@ -145,7 +145,7 @@ export const Register = () => {
 
                 <select
                   {...register("role")}
-                  className="bg-white border border-primary-background  h-14 ring-0 px-2    focus:outline-none focus:border-primary-500 font-bold  text-secondaryText  rounded-lg"
+                  className="h-14 rounded-lg border  border-primary-background bg-white px-2    font-bold text-secondaryText ring-0  focus:border-primary-500  focus:outline-none"
                   name="role"
                   id="agent"
                 >
@@ -164,7 +164,7 @@ export const Register = () => {
                 </label>
                 <input
                   {...register("password")}
-                  className="bg-white border border-primary-background  h-14 ring-0   focus:outline-none focus:border-primary-500 font-bold  text-secondaryText  rounded-lg"
+                  className="h-14 rounded-lg border  border-primary-background bg-white   font-bold text-secondaryText ring-0  focus:border-primary-500  focus:outline-none"
                   type="password"
                   name="password"
                   id="password"
@@ -180,7 +180,7 @@ export const Register = () => {
                   </span>
                 )}
               </div>
-              <div className="flex flex-col  my-2 ">
+              <div className="my-2 flex  flex-col ">
                 <Button
                   onClick={() => console.log("primary")}
                   variant="primary"
@@ -199,7 +199,7 @@ export const Register = () => {
             </form>
 
             <p className=" ">
-              <span className="text-secondaryText text-base  font-normal pr-1.5 leading-6">
+              <span className="pr-1.5 text-base  font-normal leading-6 text-secondaryText">
                 Don’t have a Hêlane account yet?
               </span>
               <NavLink to="/login" className="text-primaryText">

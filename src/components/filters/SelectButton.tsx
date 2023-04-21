@@ -17,7 +17,7 @@ export const SelectButton = ({
     : "bg-white text-primaryText";
   return (
     <button
-      className={`border border-primary-background h-10 py-2 px-4 rounded-lg ${selectedClass} ${className} pointer-events-auto cursor-pointer focus:outline-none focus:shadow-outline active:shadow-outline`}
+      className={`h-10 rounded-lg border border-primary-background py-2 px-4 ${selectedClass} ${className} focus:shadow-outline active:shadow-outline pointer-events-auto cursor-pointer focus:outline-none`}
       onClick={onClick}
       type="button"
       {...props}

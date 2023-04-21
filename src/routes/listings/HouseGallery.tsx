@@ -37,7 +37,7 @@ export const HouseGallery = ({ images, type, isLoading }: Props) => {
   const isMedium = useMediaQuery({ query: queries.md });
   return (
     <div className="mt-7">
-      <div className="grid grid-cols-1 grid-rows-1 md:grid-cols-5 md:grid-rows-2 md:gap-8 relative">
+      <div className="relative grid grid-cols-1 grid-rows-1 md:grid-cols-5 md:grid-rows-2 md:gap-8">
         {isLoading ? (
           <SkeletonPlaceholders />
         ) : (
@@ -62,7 +62,7 @@ const SkeletonPlaceholders = () => {
           key={index}
           className={`w-full  ${skeletonContainerClasses[index]}`}
         >
-          <Skeleton className="rounded-2xl w-full h-full" />
+          <Skeleton className="h-full w-full rounded-2xl" />
         </div>
       ))}
     </>
@@ -91,8 +91,8 @@ const GalleryImagesMedium = ({
           <img
             src={image}
             alt={`House photo ${index + 1}`}
-            className={`object-cover rounded-2xl ${
-              index === 0 ? "max-h-[500px] h-full" : "max-h-[235px] h-full"
+            className={`rounded-2xl object-cover ${
+              index === 0 ? "h-full max-h-[500px]" : "h-full max-h-[235px]"
             } w-full`}
           />
           {index === 0 && (
@@ -106,7 +106,7 @@ const GalleryImagesMedium = ({
       <Button
         variant="none"
         onClick={() => setOpen(true)}
-        className="absolute bottom-3 right-3 lg:bottom-4 md:bottom-2 lg:right-8 md:-right-2 border-primary-500  font-semibold lg:text-sm text-xs bg-white flex items-center px-1 py-1 lg:px-6 lg:py-2 rounded-lg  "
+        className="absolute bottom-3 right-3 flex items-center rounded-lg border-primary-500 bg-white  px-1 py-1 text-xs font-semibold md:bottom-2 md:-right-2 lg:bottom-4 lg:right-8 lg:px-6 lg:py-2 lg:text-sm  "
       >
         <GalleryIcon />
         <span className="ml-2 ">View all {images.length} photos </span>
@@ -138,11 +138,11 @@ const GalleryImagesSmall = ({
         <SwiperSlide key={index}>
           <div className="relative h-[250px] rounded-2xl">
             {/* Overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black opacity-30 to-transparent rounded-2xl" />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black to-transparent opacity-30" />
             <img
               src={image}
               alt={`House photo ${index + 1}`}
-              className={`object-cover w-full h-full rounded-2xl ${
+              className={`h-full w-full rounded-2xl object-cover ${
                 index === 0 ? "border-2 border-primary-500" : ""
               }`}
             />

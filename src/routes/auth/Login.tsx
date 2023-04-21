@@ -71,49 +71,49 @@ export const Login = () => {
 
   return (
     <div className="h-screen">
-      <div className="md:flex h-full">
+      <div className="h-full md:flex">
         <div className="flex-1 md:bg-primary-background ">
           <NavLink
             to="/"
-            className="flex pl-4 pt-10  items-center gap-x-1 md:pl-32  md:pt-6"
+            className="flex items-center gap-x-1  pl-4 pt-10 md:pl-32  md:pt-6"
           >
             <span>
               <LogoIcon />
             </span>
-            <span className="text-primary-900 text-xl text-bold font-bold">
+            <span className="text-bold text-xl font-bold text-primary-900">
               Hêlane
             </span>
           </NavLink>
 
-          <div className="hidden md:flex justify-center items-center w-3/5 mx-auto pt-10">
+          <div className="mx-auto hidden w-3/5 items-center justify-center pt-10 md:flex">
             <LoginIllustration className="w-full" />
           </div>
         </div>
-        <div className="flex-1  justify-center items-center">
-          <div className="flex flex-col   gap-14 my-16 md:my-20 md:mx-12  mx-5">
+        <div className="flex-1  items-center justify-center">
+          <div className="my-16 mx-5   flex flex-col gap-14 md:my-20  md:mx-12">
             <div className="flex flex-col gap-y-4">
-              <p className="lg:text-2xl text-xl font-medium  text-primaryText">
+              <p className="text-xl font-medium text-primaryText  lg:text-2xl">
                 Welcome to Hêlane
               </p>
-              <h3 className="lg:text-4xl text-2xl font-bold text-primaryText">
+              <h3 className="text-2xl font-bold text-primaryText lg:text-4xl">
                 Login to your account
               </h3>
             </div>
             <div className="">
               <form
-                className="my-5 flex flex-col gap-4 max-w-[550px] md:w-[592px]"
+                className="my-5 flex max-w-[550px] flex-col gap-4 md:w-[592px]"
                 onSubmit={handleSubmit(onSubmit)}
               >
                 <div className="flex flex-col  gap-4">
                   <label
                     htmlFor="email"
-                    className="font-bold text-base text-primaryText "
+                    className="text-base font-bold text-primaryText "
                   >
                     Email address
                   </label>
                   <input
                     {...register("email")}
-                    className="bg-white border border-primary-background  h-14 ring-0    focus:outline-none focus:border-primary-500 font-bold  text-secondaryText  rounded-lg"
+                    className="h-14 rounded-lg border  border-primary-background bg-white    font-bold text-secondaryText ring-0  focus:border-primary-500  focus:outline-none"
                     type="email"
                     name="email"
                     id="email"
@@ -126,13 +126,13 @@ export const Login = () => {
                 <div className="flex flex-col gap-4">
                   <label
                     htmlFor="password"
-                    className="font-bold text-base text-primaryText"
+                    className="text-base font-bold text-primaryText"
                   >
                     Password
                   </label>
                   <input
                     {...register("password")}
-                    className="bg-white border border-primary-background  h-14 ring-0    focus:outline-none focus:border-primary-500 font-bold  text-secondaryText  rounded-lg"
+                    className="h-14 rounded-lg border  border-primary-background bg-white    font-bold text-secondaryText ring-0  focus:border-primary-500  focus:outline-none"
                     type="password"
                     name="password"
                     id="password"
@@ -148,7 +148,7 @@ export const Login = () => {
                     </span>
                   )}
                 </div>
-                <div className="flex flex-col  my-2 ">
+                <div className="my-2 flex  flex-col ">
                   <Button
                     onClick={() => console.log("primary")}
                     variant="primary"
@@ -160,7 +160,7 @@ export const Login = () => {
               </form>
 
               <p className=" ">
-                <span className="text-secondaryText text-base  font-normal pr-1.5 leading-6">
+                <span className="pr-1.5 text-base  font-normal leading-6 text-secondaryText">
                   Don’t have a Hêlane account yet?
                 </span>
                 <NavLink to="/register" className="text-primaryText">

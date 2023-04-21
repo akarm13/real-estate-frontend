@@ -130,8 +130,8 @@ export const DesktopFilter = ({ isLoading }: Props) => {
   };
   return (
     <div
-      className={`py-6 px-5 border-primary-background border-2 flex flex-col gap-y-6 rounded-lg ${
-        isLoading ? "opacity-60 pointer-events-none" : ""
+      className={`flex flex-col gap-y-6 rounded-lg border-2 border-primary-background py-6 px-5 ${
+        isLoading ? "pointer-events-none opacity-60" : ""
       }`}
     >
       <Category
@@ -163,14 +163,14 @@ export const DesktopFilter = ({ isLoading }: Props) => {
 
       <div className="p-1">
         <div className="flex items-center">
-          <h1 className="text-base font-semibold text-primaryText flex flex-col">
+          <h1 className="flex flex-col text-base font-semibold text-primaryText">
             <span>Keyword</span>
-            <span className="text-gray-500 font-normal text-sm mt-1">
+            <span className="mt-1 text-sm font-normal text-gray-500">
               (Search by title, ameneties, etc.)
             </span>
           </h1>
         </div>
-        <div className="grid items-center mt-4 flex-wrap ">
+        <div className="mt-4 grid flex-wrap items-center ">
           {/* Put the dropdown list above */}
           <CreatableSelect
             options={[]}

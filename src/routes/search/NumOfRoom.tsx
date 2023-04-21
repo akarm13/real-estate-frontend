@@ -18,14 +18,14 @@ export const NumOfRoom = ({
 
   return (
     <div className="w-full">
-      <div className="flex md:flex-col justify-between gap-y-8">
+      <div className="flex justify-between gap-y-8 md:flex-col">
         <div className="flex flex-col gap-y-2">
-          <span className="w-full   text-base  text-primaryText  font-medium capitalize">
+          <span className="w-full   text-base  font-medium  capitalize text-primaryText">
             Bedrooms
           </span>
           <div className="flex items-center justify-between ">
             <select
-              className="bg-white px-2 py-2 flex gap-x-3 text-gray-600 border-gray-300 w-28 rounded-lg outline-none"
+              className="flex w-28 gap-x-3 rounded-lg border-gray-300 bg-white px-2 py-2 text-gray-600 outline-none"
               name=""
               id=""
               onChange={(e) => onFirstBedInputChange?.(e.target.value)}
@@ -44,7 +44,7 @@ export const NumOfRoom = ({
             </select>
             <span>-</span>
             <select
-              className="bg-white px-2 py-2 flex gap-x-3 w-28 text-gray-600 border-gray-300 rounded-lg outline-none items-center"
+              className="flex w-28 items-center gap-x-3 rounded-lg border-gray-300 bg-white px-2 py-2 text-gray-600 outline-none"
               name=""
               id=""
               onChange={(e) => onSecondBedInputChange?.(e.target.value)}
@@ -64,12 +64,12 @@ export const NumOfRoom = ({
           </div>
         </div>
         <div className="flex flex-col gap-y-4">
-          <span className="w-full   text-base  text-primaryText  font-medium capitalize">
+          <span className="w-full   text-base  font-medium  capitalize text-primaryText">
             Bathroom
           </span>
           <div className="flex items-center justify-between ">
             <select
-              className="bg-white px-2 py-2 flex gap-x-3 w-28 text-gray-600 border-gray-300 rounded-lg outline-none"
+              className="flex w-28 gap-x-3 rounded-lg border-gray-300 bg-white px-2 py-2 text-gray-600 outline-none"
               name=""
               id=""
               onChange={(e) => onFirstBathInputChange?.(e.target.value)}
@@ -88,7 +88,7 @@ export const NumOfRoom = ({
             </select>
             <span>-</span>
             <select
-              className="bg-white px-2 py-2 flex gap-x-3 w-28 text-gray-600 border-gray-300 rounded-lg outline-none items-center"
+              className="flex w-28 items-center gap-x-3 rounded-lg border-gray-300 bg-white px-2 py-2 text-gray-600 outline-none"
               onChange={(e) => onSecondBathInputChange?.(e.target.value)}
             >
               <option value="n/a">Max</option>

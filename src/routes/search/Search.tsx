@@ -43,8 +43,8 @@ export const Search = () => {
   }
 
   return (
-    <div className="pt-32 container">
-      <div className="grid grid-cols-1 lg:grid-cols-search gap-x-8">
+    <div className="container pt-32">
+      <div className="grid grid-cols-1 gap-x-8 lg:grid-cols-search">
         <div className="hidden lg:block">
           <DesktopFilter isLoading={isFetching || isLoading} />
         </div>
@@ -55,7 +55,7 @@ export const Search = () => {
         <div className="flex flex-col">
           <InputSearch title={title} setTitle={setTitle} />
           <div
-            className={`grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 md:gap-x-3 gap-y-3 pt-4 ${
+            className={`grid grid-cols-1  gap-y-3 pt-4 md:grid-cols-2 md:gap-x-3 xl:grid-cols-3 ${
               isFetching ? "pointer-events-none" : ""
             }`}
           >

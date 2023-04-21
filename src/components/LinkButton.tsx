@@ -12,7 +12,7 @@ export const LinkButton = ({ to, children, variant, className }: Props) => {
     return (
       <Link
         to={to}
-        className={`bg-primary-500 hover:bg-primary-600 font-semibold text-white md:py-2 py-2 px-4 md:px-4 rounded-lg transition flex items-center ${className}`}
+        className={`flex items-center rounded-lg bg-primary-500 py-2 px-4 font-semibold text-white transition hover:bg-primary-600 md:py-2 md:px-4 ${className}`}
       >
         {children}
       </Link>
@@ -22,7 +22,7 @@ export const LinkButton = ({ to, children, variant, className }: Props) => {
     return (
       <Link
         to={to}
-        className={`bg-white text-secondaryText py-2 px-4 md:py-2 md:px-4 rounded-lg flex items-center ${className}`}
+        className={`flex items-center rounded-lg bg-white py-2 px-4 text-secondaryText md:py-2 md:px-4 ${className}`}
       >
         {children}
       </Link>
@@ -32,7 +32,7 @@ export const LinkButton = ({ to, children, variant, className }: Props) => {
   return (
     <Link
       to={to}
-      className={`bg-white text-black border-2 border-primary-background md:hover:bg-gray-100 py-2 px-4 md:py-2 md:px-4 rounded-lg flex items-center ${className}`}
+      className={`flex items-center rounded-lg border-2 border-primary-background bg-white py-2 px-4 text-black md:py-2 md:px-4 md:hover:bg-gray-100 ${className}`}
     >
       {children}
     </Link>

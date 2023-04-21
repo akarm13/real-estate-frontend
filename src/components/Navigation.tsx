@@ -28,9 +28,9 @@ export const Navigation = () => {
   };
   return (
     <>
-      <nav className="lg:mx-auto pt-4 border border-b-primary-background pb-4 fixed bg-white w-full z-20">
-        <div className="flex justify-between items-center md:flex md:justify-between md:items-center md:container md:px-0 px-4 mx-auto">
-          <div className="flex items-center justify-between w-full md:w-auto">
+      <nav className="fixed z-20 w-full border border-b-primary-background bg-white pt-4 pb-4 lg:mx-auto">
+        <div className="mx-auto flex items-center justify-between px-4 md:container md:flex md:items-center md:justify-between md:px-0">
+          <div className="flex w-full items-center justify-between md:w-auto">
             <Button
               variant="none"
               className="md:hidden"
@@ -46,7 +46,7 @@ export const Navigation = () => {
             {user ? (
               <Button
                 variant="primary"
-                className="mr-4 md:hidden items-center py-[6px] px-2"
+                className="mr-4 items-center py-[6px] px-2 md:hidden"
                 onClick={handleAddClick}
               >
                 <Plus className="text-white" />
@@ -54,7 +54,7 @@ export const Navigation = () => {
             ) : (
               <Link
                 to="/login"
-                className="px-2 py[6px] items-center md:hidden mr-4 text-secondaryText"
+                className="py[6px] mr-4 items-center px-2 text-secondaryText md:hidden"
               >
                 Sign in
               </Link>

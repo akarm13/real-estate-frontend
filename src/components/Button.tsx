@@ -15,7 +15,7 @@ export const Button = ({
   isLoading,
 }: Props) => {
   const loader = (
-    <div className="flex justify-center items-center">
+    <div className="flex items-center justify-center">
       <span className="pr-2">Please wait...</span>
       <ClipLoader
         color={variant === "primary" ? "#FFF" : "#36d7b7"}
@@ -30,7 +30,7 @@ export const Button = ({
     return (
       <button
         onClick={onClick}
-        className={`bg-primary-500 hover:bg-primary-600 font-semibold text-white md:py-2 py-2 px-4 md:px-4 rounded-lg transition ${className} ${
+        className={`rounded-lg bg-primary-500 py-2 px-4 font-semibold text-white transition hover:bg-primary-600 md:py-2 md:px-4 ${className} ${
           isLoading ? "pointer-events-none opacity-80" : ""
         }`}
       >
@@ -42,7 +42,7 @@ export const Button = ({
     return (
       <button
         onClick={onClick}
-        className={`bg-white  text-secondaryText py-2 px-4 md:py-2 md:px-4 rounded-lg ${className}`}
+        className={`rounded-lg  bg-white py-2 px-4 text-secondaryText md:py-2 md:px-4 ${className}`}
       >
         {isLoading ? loader : children}
       </button>
@@ -52,7 +52,7 @@ export const Button = ({
   return (
     <button
       onClick={onClick}
-      className={`bg-white  text-black  border-2 border-primary-background md:hover:bg-gray-100 py-2 px-4 md:py-2 md:px-4 rounded-lg ${className}`}
+      className={`rounded-lg  border-2  border-primary-background bg-white py-2 px-4 text-black md:py-2 md:px-4 md:hover:bg-gray-100 ${className}`}
     >
       {isLoading ? loader : children}
     </button>

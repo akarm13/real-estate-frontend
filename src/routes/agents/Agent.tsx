@@ -14,8 +14,8 @@ export const Agent = () => {
   const { data, isLoading, isFetching, isError } = useGetAgentQuery();
 
   return (
-    <div className="pt-32 container">
-      <div className="bg-searchBackground py-1 md:py-2 md: px-4 w-full mx-auto md:mx-0 rounded-lg flex justify-between">
+    <div className="container pt-32">
+      <div className="md: mx-auto flex w-full justify-between rounded-lg bg-searchBackground py-1 px-4 md:mx-0 md:py-2">
         {isSmall ? (
           <>
             <input
@@ -29,29 +29,29 @@ export const Agent = () => {
           <input
             type="text"
             placeholder="Name"
-            className=" bg-transparent w-11/12 border-none focus:ring-0 focus:ring-offset-0"
+            className=" w-11/12 border-none bg-transparent focus:ring-0 focus:ring-offset-0"
           />
         )}
       </div>
 
-      <div className="flex mt-9 gap-6 ">
+      <div className="mt-9 flex gap-6 ">
         {data &&
           data.data &&
           data.data.map((person: User) => {
             return (
               <div
                 key={person?._id}
-                className="bg-white border  px-4 py-4 rounded-2xl "
+                className="rounded-2xl border  bg-white px-4 py-4 "
               >
                 <img
                   src={person?.avatar}
                   alt="name"
-                  className="rounded-2xl w-[300px] h-[190px]"
+                  className="h-[190px] w-[300px] rounded-2xl"
                 ></img>
 
-                <div className=" bg-primary-500 flex items-center gap-x-2 py-2 px-4 mt-2 rounded-lg">
+                <div className=" mt-2 flex items-center gap-x-2 rounded-lg bg-primary-500 py-2 px-4">
                   <StarIcon width={16} height={16} />
-                  <span className="text-white uppercase text-sm font-semibold">
+                  <span className="text-sm font-semibold uppercase text-white">
                     {person?.isVerified ? "Verified" : "Not Verified"}
                   </span>
                 </div>
@@ -60,7 +60,7 @@ export const Agent = () => {
                   {person?.fullName}
                 </h1>
 
-                <span className="flex gap-2 items-center mt-2">
+                <span className="mt-2 flex items-center gap-2">
                   <LocationIcon /> Sulaymaniyah
                 </span>
               </div>

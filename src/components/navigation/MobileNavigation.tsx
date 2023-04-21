@@ -42,7 +42,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
   }, [isMenuOpen]);
   return (
     <div
-      className={`min-h-screen fixed top-[74px] md:hidden z-20 bg-white w-full flex flex-col gap-y-8 items-start px-8 py-8  ${
+      className={`fixed top-[74px] z-20 flex min-h-screen w-full flex-col items-start gap-y-8 bg-white px-8 py-8 md:hidden  ${
         isMenuOpen ? "left-0" : "-left-full"
       }`}
     >
@@ -59,21 +59,21 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
       </div>
       <hr className="w-full border-gray-100" />
       {isAuthenticated && (
-        <div className="flex flex-col gap-y-8 w-full">
+        <div className="flex w-full flex-col gap-y-8">
           <div className="flex items-center gap-x-3">
             <img
               src={user?.avatar}
               height={40}
               width={40}
-              className="object-cover rounded-full mr-2"
+              className="mr-2 rounded-full object-cover"
             />
             <div className="flex flex-col items-center">
-              <span className="font-bold text-lg">{user?.fullName}</span>
+              <span className="text-lg font-bold">{user?.fullName}</span>
             </div>
           </div>
           <Link
             to="/profile"
-            className="text-gray-600 font-medium flex items-center gap-x-2"
+            className="flex items-center gap-x-2 font-medium text-gray-600"
             onClick={closeMenu}
           >
             <UserIcon className="mr-2 h-4 w-4" />
@@ -81,7 +81,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
           </Link>
           <Link
             to="/profile"
-            className="text-gray-600 font-medium flex items-center gap-x-2"
+            className="flex items-center gap-x-2 font-medium text-gray-600"
             onClick={closeMenu}
           >
             <UserCog className="mr-2 h-4 w-4" />
@@ -89,7 +89,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
           </Link>
           <Link
             to="/profile"
-            className="text-gray-600 font-medium flex items-center gap-x-2"
+            className="flex items-center gap-x-2 font-medium text-gray-600"
             onClick={closeMenu}
           >
             <ListMinus className="mr-2 h-4 w-4" />
@@ -97,7 +97,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
           </Link>
           <Link
             to="/profile"
-            className="text-gray-600 font-medium flex items-center gap-x-2"
+            className="flex items-center gap-x-2 font-medium text-gray-600"
             onClick={closeMenu}
           >
             <Star className="mr-2 h-4 w-4" />
@@ -105,7 +105,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
           </Link>
           <Link
             to="/profile"
-            className="text-gray-600 font-medium flex items-center gap-x-2"
+            className="flex items-center gap-x-2 font-medium text-gray-600"
             onClick={closeMenu}
           >
             <Settings className="mr-2 h-4 w-4" />
@@ -115,7 +115,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
           <hr className="w-full border-gray-100" />
           <Link
             to="/profile"
-            className="text-gray-600 font-medium flex items-center gap-x-2"
+            className="flex items-center gap-x-2 font-medium text-gray-600"
             onClick={handleLogout}
           >
             <LogOut className="mr-2 h-4 w-4" />
@@ -140,8 +140,8 @@ const NavigationItem = ({ children, to, onClick }: NavigationItemProps) => {
       to={to}
       className={({ isActive }) => {
         return isActive
-          ? cn(activeClasses, "font-bold text-lg")
-          : cn(inactiveClasses, "font-bold text-gray-600 text-lg");
+          ? cn(activeClasses, "text-lg font-bold")
+          : cn(inactiveClasses, "text-lg font-bold text-gray-600");
       }}
     >
       {children}

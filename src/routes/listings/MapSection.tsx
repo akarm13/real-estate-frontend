@@ -20,11 +20,11 @@ export const MapSection = ({ geometry, isLoading }: Props) => {
     : defaultCenter;
 
   return (
-    <div className="flex flex-col gap-6 mt-14 z-10">
-      <h2 className="lg:text-2xl text-lg font-semibold">Location</h2>
-      <div className="max-w-[720px] h-[353px] md:h-[553px] lg:h-[653px] w-full rounded-2xl overflow-hidden">
+    <div className="z-10 mt-14 flex flex-col gap-6">
+      <h2 className="text-lg font-semibold lg:text-2xl">Location</h2>
+      <div className="h-[353px] w-full max-w-[720px] overflow-hidden rounded-2xl md:h-[553px] lg:h-[653px]">
         {isLoading ? (
-          <Skeleton className="w-full h-full" />
+          <Skeleton className="h-full w-full" />
         ) : (
           <MapContainer
             center={center}

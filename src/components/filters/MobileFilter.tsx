@@ -223,7 +223,7 @@ export const MobileFilter = ({ isLoading }: Props) => {
         <input
           type="text"
           placeholder="Search"
-          className="flex h-10 w-full rounded-lg border border-primary-100 bg-transparent py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 focus:border-primary-500 transition"
+          className="flex h-10 w-full rounded-lg border border-primary-100 bg-transparent py-2 px-3 text-sm transition placeholder:text-slate-400 focus:border-primary-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
         />
         <SearchIcon
           className="absolute top-3 right-3 text-gray-500"
@@ -232,7 +232,7 @@ export const MobileFilter = ({ isLoading }: Props) => {
         />
       </div>
 
-      <div className="flex justify-between items-center mt-4">
+      <div className="mt-4 flex items-center justify-between">
         <Button
           variant="secondary"
           onClick={() => {
@@ -242,7 +242,7 @@ export const MobileFilter = ({ isLoading }: Props) => {
             }
           }}
         >
-          <div className="flex justify-center items-center">
+          <div className="flex items-center justify-center">
             <FilterIcon
               className="mr-2 text-gray-500"
               width={16}
@@ -257,12 +257,12 @@ export const MobileFilter = ({ isLoading }: Props) => {
         </Button>
       </div>
 
-      <div className="flex justify-between items-center mt-8 mb-4">
+      <div className="mt-8 mb-4 flex items-center justify-between">
         <h1 className="text-xl font-bold">Results</h1>
         <div className="flex items-center">
           <select
             id="sort"
-            className="border border-primary-100 rounded-lg focus:border-primary-400 transition text-sm"
+            className="rounded-lg border border-primary-100 text-sm transition focus:border-primary-400"
           >
             {sortOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -279,7 +279,7 @@ export const MobileFilter = ({ isLoading }: Props) => {
           <Button
             onClick={onDismiss}
             variant="primary"
-            className="w-full h-12 rounded-lg"
+            className="h-12 w-full rounded-lg"
           >
             Search 891 results
           </Button>
@@ -288,11 +288,11 @@ export const MobileFilter = ({ isLoading }: Props) => {
         <div className="p-4">
           <div className="flex flex-col">
             <h1 className="text-base font-semibold text-primaryText ">Type</h1>
-            <span className="text-gray-500 font-normal mt-1">
+            <span className="mt-1 font-normal text-gray-500">
               (multiple selection)
             </span>
           </div>
-          <div className="grid grid-cols-2 gap-x-2 gap-y-3 items-center mt-4">
+          <div className="mt-4 grid grid-cols-2 items-center gap-x-2 gap-y-3">
             {types.map((type) => (
               <SelectButton
                 isSelected={selectedTypes.includes(type.value)}
@@ -307,14 +307,14 @@ export const MobileFilter = ({ isLoading }: Props) => {
 
         <div className="p-4">
           <div className="flex flex-col">
-            <h1 className="text-base font-semibold text-primaryText flex flex-col">
+            <h1 className="flex flex-col text-base font-semibold text-primaryText">
               Category
             </h1>
-            <span className="text-gray-500 font-normal mt-1">
+            <span className="mt-1 font-normal text-gray-500">
               (multiple selection)
             </span>
           </div>
-          <div className="grid items-center mt-4 grid-cols-2 gap-x-2 flex-wrap gap-y-3">
+          <div className="mt-4 grid grid-cols-2 flex-wrap items-center gap-x-2 gap-y-3">
             {categories.map((category) => (
               <SelectButton
                 isSelected={selectedCategories.includes(category.value)}
@@ -351,7 +351,7 @@ export const MobileFilter = ({ isLoading }: Props) => {
               Bedrooms
             </h1>
           </div>
-          <div className="grid items-center mt-4 grid-cols-6 flex-wrap gap-y-3">
+          <div className="mt-4 grid grid-cols-6 flex-wrap items-center gap-y-3">
             {bedrooms.map((bedroom, i) => (
               <SelectButton
                 isSelected={selectedBedrooms.includes(bedroom.value)}
@@ -371,7 +371,7 @@ export const MobileFilter = ({ isLoading }: Props) => {
               Bathrooms
             </h1>
           </div>
-          <div className="grid items-center mt-4 grid-cols-6 flex-wrap gap-y-3">
+          <div className="mt-4 grid grid-cols-6 flex-wrap items-center gap-y-3">
             {bathrooms.map((bathroom, i) => (
               <SelectButton
                 isSelected={selectedBathrooms.includes(bathroom.value)}
@@ -389,12 +389,12 @@ export const MobileFilter = ({ isLoading }: Props) => {
           <div className="flex items-center">
             <h1 className="text-base font-semibold text-primaryText">
               <span>Home Size</span>
-              <span className="text-base font-normal text-secondary ml-1">
+              <span className="text-secondary ml-1 text-base font-normal">
                 (m<sup>2</sup>)
               </span>
             </h1>
           </div>
-          <div className="grid items-center mt-4 grid-cols-4 flex-wrap gap-y-3">
+          <div className="mt-4 grid grid-cols-4 flex-wrap items-center gap-y-3">
             {homeSizes.map((homeSize, i) => (
               <SelectButton
                 isSelected={selectedHomeSizes.includes(homeSize.value)}
@@ -410,14 +410,14 @@ export const MobileFilter = ({ isLoading }: Props) => {
 
         <div className="p-4">
           <div className="flex items-center">
-            <h1 className="text-base font-semibold text-primaryText flex flex-col">
+            <h1 className="flex flex-col text-base font-semibold text-primaryText">
               <span>Keyword</span>
-              <span className="text-gray-500 font-normal mt-1">
+              <span className="mt-1 font-normal text-gray-500">
                 (Search by title, ameneties, etc.)
               </span>
             </h1>
           </div>
-          <div className="grid items-center mt-4 flex-wrap mb-12">
+          <div className="mt-4 mb-12 grid flex-wrap items-center">
             {/* Put the dropdown list above */}
             <CreatableSelect
               options={[]}

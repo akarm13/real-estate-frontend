@@ -60,13 +60,13 @@ export const UserActionsMenu = ({ user }: Props) => {
 
   if (isLoading && !user)
     return (
-      <div className="hidden md:flex relative gap-x-2 min-w-[176px]" ref={ref}>
+      <div className="relative hidden min-w-[176px] gap-x-2 md:flex" ref={ref}>
         <Skeleton className="h-11 w-36 rounded-lg" />
       </div>
     );
 
   return (
-    <div className="hidden md:flex relative gap-x-2 min-w-[176px]" ref={ref}>
+    <div className="relative hidden min-w-[176px] gap-x-2 md:flex" ref={ref}>
       {user ? (
         <div className="flex items-center gap-x-8">
           <Button
@@ -82,7 +82,7 @@ export const UserActionsMenu = ({ user }: Props) => {
                 src={user?.avatar}
                 height={44}
                 width={44}
-                className="object-cover rounded-full mr-2"
+                className="mr-2 rounded-full object-cover"
               />
               <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
@@ -94,7 +94,7 @@ export const UserActionsMenu = ({ user }: Props) => {
             >
               <DropdownMenuItem
                 onSelect={() => console.log("Profile")}
-                className="cursor-pointer text-base text-gray-800 hover:text-primaryText focus:bg-primary-50 px-4 py-2"
+                className="cursor-pointer px-4 py-2 text-base text-gray-800 hover:text-primaryText focus:bg-primary-50"
               >
                 <UserIcon className="mr-2 h-4 w-4" />
                 <span>Profile</span>
@@ -102,7 +102,7 @@ export const UserActionsMenu = ({ user }: Props) => {
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onSelect={() => console.log("Edit profile")}
-                className="cursor-pointer text-base text-gray-800 hover:text-primaryText focus:bg-primary-50 px-4 py-2"
+                className="cursor-pointer px-4 py-2 text-base text-gray-800 hover:text-primaryText focus:bg-primary-50"
               >
                 <UserCog className="mr-2 h-4 w-4" />
                 <span>Edit profile</span>
@@ -110,14 +110,14 @@ export const UserActionsMenu = ({ user }: Props) => {
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onSelect={() => console.log("My listings")}
-                className="cursor-pointer text-base text-gray-800 hover:text-primaryText focus:bg-primary-50 px-4 py-2"
+                className="cursor-pointer px-4 py-2 text-base text-gray-800 hover:text-primaryText focus:bg-primary-50"
               >
                 <ListMinus className="mr-2 h-4 w-4" />
                 <span>My listings</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 onSelect={() => console.log("My favorites")}
-                className="cursor-pointer text-base text-gray-800 hover:text-primaryText focus:bg-primary-50 px-4 py-2"
+                className="cursor-pointer px-4 py-2 text-base text-gray-800 hover:text-primaryText focus:bg-primary-50"
               >
                 <Star className="mr-2 h-4 w-4" />
                 <span>My favorites</span>
@@ -125,7 +125,7 @@ export const UserActionsMenu = ({ user }: Props) => {
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onSelect={() => console.log("Account Settings")}
-                className="cursor-pointer text-base text-gray-800 hover:text-primaryText focus:bg-primary-50 px-4 py-2"
+                className="cursor-pointer px-4 py-2 text-base text-gray-800 hover:text-primaryText focus:bg-primary-50"
               >
                 <Settings className="mr-2 h-4 w-4" />
                 <span>Account Settings</span>
@@ -133,7 +133,7 @@ export const UserActionsMenu = ({ user }: Props) => {
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onSelect={() => routeHandler("logout")}
-                className="cursor-pointer text-base text-gray-800 hover:text-primaryText focus:bg-primary-50 px-4 py-2"
+                className="cursor-pointer px-4 py-2 text-base text-gray-800 hover:text-primaryText focus:bg-primary-50"
               >
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>

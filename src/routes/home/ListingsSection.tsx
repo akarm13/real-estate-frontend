@@ -10,21 +10,21 @@ export const ListingsSection = () => {
   });
 
   return (
-    <div className="w-5/6 md: mx-auto mt-24">
-      <h1 className="font-semibold text-2xl md:text-3xl text-primary-900">
+    <div className="md: mx-auto mt-24 w-5/6">
+      <h1 className="text-2xl font-semibold text-primary-900 md:text-3xl">
         Featured Listings
       </h1>
-      <h4 className="text-secondaryText text-base md:text-xl font-semibold mt-2">
+      <h4 className="mt-2 text-base font-semibold text-secondaryText md:text-xl">
         Discover the best properties
       </h4>
       {isLoading ? (
-        <div className="lg:grid lg:grid-cols-listing lg:gap-x-4 lg:flex-wrap lg:gap-y-10 mt-16 flex gap-x-4 snap-x overflow-x-auto snap-proximity lg:snap-none">
+        <div className="mt-16 flex snap-x snap-proximity gap-x-4 overflow-x-auto lg:grid lg:snap-none lg:grid-cols-listing lg:flex-wrap lg:gap-x-4 lg:gap-y-10">
           {Array.from({ length: 8 }).map((_, index) => (
             <SkeletonListingCard key={index} />
           ))}
         </div>
       ) : (
-        <div className="lg:grid lg:grid-cols-listing lg:gap-x-4 lg:flex-wrap lg:gap-y-10 mt-16 flex gap-x-4 snap-x overflow-x-auto snap-proximity lg:snap-none">
+        <div className="mt-16 flex snap-x snap-proximity gap-x-4 overflow-x-auto lg:grid lg:snap-none lg:grid-cols-listing lg:flex-wrap lg:gap-x-4 lg:gap-y-10">
           {data?.data !== undefined && data.data?.length > 0 ? (
             data?.data.map((property) => (
               <Link key={property?._id} to={`/listings/${property?._id}`}>
