@@ -49,7 +49,7 @@ export const Agent = () => {
                   className="rounded-2xl w-[300px] h-[190px]"
                 ></img>
 
-                <div className=" bg-primary-500 flex  w-[120px]  items-center gap-x-2 py-2 px-4 mt-2 rounded-lg">
+                <div className=" bg-primary-500 flex items-center gap-x-2 py-2 px-4 mt-2 rounded-lg">
                   <StarIcon width={16} height={16} />
                   <span className="text-white uppercase text-sm font-semibold">
                     {person?.isVerified ? "Verified" : "Not Verified"}
