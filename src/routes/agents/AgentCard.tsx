@@ -22,7 +22,7 @@ export const AgentCard = ({
   isVerified,
 }: Props) => {
   return (
-    <div className="relative flex  flex-col rounded-2xl border border-primary-background lg:max-w-xs">
+    <div className="relative flex flex-col rounded-2xl border border-primary-background">
       {isVerified ? (
         <div className="absolute right-0 top-0 flex items-center gap-x-2 rounded-lg bg-primary-500 py-2 px-4">
           <StarIcon width={16} height={16} />

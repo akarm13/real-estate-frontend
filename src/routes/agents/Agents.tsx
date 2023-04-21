@@ -8,7 +8,7 @@ export const Agents = () => {
 
   return (
     <div className="container pt-24">
-      <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {data?.data?.map((agent: User) => (
           <AgentCard
             key={agent._id}
