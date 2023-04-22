@@ -1,12 +1,11 @@
 import { SearchIcon } from "lucide-react";
 import { useGetAgentsQuery } from "../../api/endpoints/user";
 
-import { SkeletonAgentCard } from "../../components/skeleton/SkeletonAgentCard";
-import { User } from "../../types/auth";
-import { AgentCard } from "./AgentCard";
-import { Skeleton } from "../../components/skeleton/Skeleton";
-import { useDebounce } from "use-debounce";
 import { useState } from "react";
+import { useDebounce } from "use-debounce";
+import { Skeleton } from "../../components/skeleton/Skeleton";
+import { AgentList } from "./AgentList";
+import { LoadingSkeleton } from "./LoadingSkeleton";
 
 export const Agents = () => {
   const [search, setSearch] = useState("");
@@ -25,6 +24,8 @@ export const Agents = () => {
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setStatus(e.target.value);
   };
+
+  const isSearching = isLoading || isFetching;
 
   return (
     <div className="container pt-24">
@@ -67,23 +68,11 @@ export const Agents = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-        {isLoading || isFetching
-          ? Array.from({ length: 6 }).map((_, index) => (
-              <SkeletonAgentCard key={index} />
-            ))
-          : data?.data?.map((agent: User) => (
-              <AgentCard
-                key={agent._id}
-                id={agent._id}
-                fullName={agent.fullName}
-                email={agent.email}
-                phone={agent.phone}
-                avatar={agent.avatar}
-                isVerified={agent.isVerified}
-              />
-            ))}
-      </div>
+      {isSearching ? (
+        <LoadingSkeleton />
+      ) : (
+        <AgentList agents={data?.data || []} />
+      )}
     </div>
   );
 };
