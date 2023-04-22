@@ -1,8 +1,10 @@
 import { SearchIcon } from "lucide-react";
 import { useGetAgentsQuery } from "../../api/endpoints/user";
 
+import { SkeletonAgentCard } from "../../components/skeleton/SkeletonAgentCard";
 import { User } from "../../types/auth";
 import { AgentCard } from "./AgentCard";
+import { Skeleton } from "../../components/skeleton/Skeleton";
 
 export const Agents = () => {
   const { data, isLoading, isFetching, isError } = useGetAgentsQuery();
@@ -13,7 +15,13 @@ export const Agents = () => {
 
       <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
         <p className="order-2 mt-8 md:order-none md:mt-0">
-          <span className="text-primaryText">Showing</span> 1-10 of 100
+          {isLoading || isFetching ? (
+            <Skeleton className="h-4 w-20" />
+          ) : (
+            <span className="text-primaryText">
+              {data?.data?.length} agents found
+            </span>
+          )}
         </p>
         <div className="flex-2 flex flex-col items-center gap-x-4 gap-y-4 md:flex-row">
           <select className="h-10 w-full min-w-[120px] rounded-lg border border-primary-100 bg-transparent px-3 text-slate-400 focus:outline-none">
@@ -33,17 +41,21 @@ export const Agents = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-        {data?.data?.map((agent: User) => (
-          <AgentCard
-            key={agent._id}
-            id={agent._id}
-            fullName={agent.fullName}
-            email={agent.email}
-            phone={agent.phone}
-            avatar={agent.avatar}
-            isVerified={agent.isVerified}
-          />
-        ))}
+        {isLoading || isFetching
+          ? Array.from({ length: 6 }).map((_, index) => (
+              <SkeletonAgentCard key={index} />
+            ))
+          : data?.data?.map((agent: User) => (
+              <AgentCard
+                key={agent._id}
+                id={agent._id}
+                fullName={agent.fullName}
+                email={agent.email}
+                phone={agent.phone}
+                avatar={agent.avatar}
+                isVerified={agent.isVerified}
+              />
+            ))}
       </div>
     </div>
   );
