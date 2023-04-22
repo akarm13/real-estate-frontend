@@ -5,9 +5,26 @@ import { SkeletonAgentCard } from "../../components/skeleton/SkeletonAgentCard";
 import { User } from "../../types/auth";
 import { AgentCard } from "./AgentCard";
 import { Skeleton } from "../../components/skeleton/Skeleton";
+import { useDebounce } from "use-debounce";
+import { useState } from "react";
 
 export const Agents = () => {
-  const { data, isLoading, isFetching, isError } = useGetAgentsQuery();
+  const [search, setSearch] = useState("");
+  const [searchDebounced] = useDebounce(search, 500);
+  const [status, setStatus] = useState("");
+
+  const { data, isLoading, isFetching, isError } = useGetAgentsQuery(
+    { search: searchDebounced, verificationStatus: status },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
+  const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setStatus(e.target.value);
+  };
 
   return (
     <div className="container pt-24">
@@ -24,8 +41,15 @@ export const Agents = () => {
           )}
         </p>
         <div className="flex-2 flex flex-col items-center gap-x-4 gap-y-4 md:flex-row">
-          <select className="h-10 w-full min-w-[120px] rounded-lg border border-primary-100 bg-transparent px-3 text-slate-400 focus:outline-none">
-            <option value="">Sort by</option>
+          <select
+            className={`h-10 w-full min-w-[120px] rounded-lg border border-primary-100 bg-transparent px-3  focus:outline-none disabled:cursor-not-allowed disabled:opacity-50`}
+            value={status}
+            onChange={handleStatusChange}
+            disabled={isLoading || isFetching}
+          >
+            <option value="" disabled>
+              Status
+            </option>
             <option value="all">All</option>
             <option value="verified">Verified</option>
             <option value="unverified">Unverified</option>
@@ -35,6 +59,9 @@ export const Agents = () => {
             <input
               className="flex h-10  w-full rounded-lg border border-primary-100 bg-transparent py-2 px-3 pl-10 placeholder:text-slate-400 focus:outline-none  disabled:cursor-not-allowed disabled:opacity-50 md:min-w-[350px]"
               placeholder="Search by name, email, phone"
+              value={search}
+              onChange={handleSearchChange}
+              disabled={isLoading || isFetching}
             />
           </div>
         </div>

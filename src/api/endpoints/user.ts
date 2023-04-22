@@ -1,4 +1,5 @@
 import { RootState } from "../../store/store";
+import { AgentSearchParams } from "../../types/agent";
 import { User } from "../../types/auth";
 import { PaginatedResponse } from "../../types/common";
 import { api } from "../rtk-api";
@@ -14,11 +15,23 @@ export const userApi = api.injectEndpoints({
         method: "GET",
       }),
     }),
-    getAgents: builder.query<PaginatedResponse<User>, void>({
-      query: () => ({
-        url: "/users/agents",
-        method: "GET",
-      }),
+    getAgents: builder.query<PaginatedResponse<User>, AgentSearchParams>({
+      query: ({ search, verificationStatus }) => {
+        const params: AgentSearchParams = {};
+
+        if (search) {
+          params.search = search;
+        }
+
+        if (verificationStatus) {
+          params.verificationStatus = verificationStatus;
+        }
+        return {
+          url: "/users/agents",
+          method: "GET",
+          params,
+        };
+      },
     }),
   }),
 });
