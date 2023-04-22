@@ -1,26 +1,19 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useRoutes,
-  useLocation,
-} from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation, useRoutes } from "react-router-dom";
 
-import { Home } from "../routes/home/Home";
+import { Footer } from "../components/Footer";
 import { Navigation } from "../components/Navigation";
 import { ScrollToTop } from "../components/ScrollToTop";
-import { Register } from "../routes/auth/Register";
+import { Agents } from "../routes/agents/Agents";
 import { Login } from "../routes/auth/Login";
+import { Register } from "../routes/auth/Register";
+import { Home } from "../routes/home/Home";
+import { ListingDetails } from "../routes/listings/ListingDetails";
 import { Search } from "../routes/search/Search";
-import { Details } from "../routes/listings/Details";
-import { Footer } from "../components/Footer";
-import { Agent } from "../routes/agents/Agent";
 
+import { Toaster } from "react-hot-toast";
 import { GuestRoute } from "../components/GuestRoute";
 import { useSetUserFromLocalStorage } from "../hooks/useSetUserFromLocalStorage";
-import { Toaster } from "react-hot-toast";
 
 function App() {
   const routes = useRoutes([
@@ -36,8 +29,8 @@ function App() {
       children: [{ index: true, element: <Login /> }],
     },
     { path: "/search", element: <Search /> },
-    { path: "/listings/:id", element: <Details /> },
-    { path: "/agents", element: <Agent /> },
+    { path: "/listings/:id", element: <ListingDetails /> },
+    { path: "/agents", element: <Agents /> },
   ]);
 
   const location = useLocation();
