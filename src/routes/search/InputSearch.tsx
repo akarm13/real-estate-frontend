@@ -4,6 +4,7 @@ import { ReactComponent as LocationIcon } from "../../assets/icons/search/locati
 import { queries } from "../../devices";
 import { useGetListingByTitleQuery } from "../../api/endpoints/listings";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const InputSearch = ({ title, setTitle }: any) => {
   const isSmall = useMediaQuery({
@@ -44,9 +45,12 @@ export const InputSearch = ({ title, setTitle }: any) => {
       </div>
 
       {isSmall && (
-        <div className="flex items-center rounded-lg  border-2 border-primary-background px-9 py-3">
+        <Link
+          className="flex items-center rounded-lg  border-2 border-primary-background px-9 py-3"
+          to="/map"
+        >
           <LocationIcon />
-        </div>
+        </Link>
       )}
     </div>
   );

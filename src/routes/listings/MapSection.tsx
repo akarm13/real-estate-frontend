@@ -1,24 +1,44 @@
-import { Listing } from "../../types/listing";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useEffect, useRef, useState } from "react";
+import Map, { MapRef, Marker } from "react-map-gl";
 import { Skeleton } from "../../components/skeleton/Skeleton";
-
+import { Listing } from "../../types/listing";
 const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
-
-console.log(accessToken);
 
 type Props = {
   geometry: Listing["geometry"] | undefined;
   isLoading: boolean;
 };
-``;
+
+export type MapViewport = {
+  width?: string;
+  height?: string;
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
 
 export const MapSection = ({ geometry, isLoading }: Props) => {
-  const defaultCenter = { lat: 51.505, lng: -0.09 };
-  const center = geometry
-    ? { lat: geometry.coordinates[0], lng: geometry.coordinates[1] }
-    : defaultCenter;
+  const [viewport, setViewport] = useState<MapViewport>({
+    width: "100%",
+    height: "100%",
+    latitude: 35.5784474,
+    longitude: 45.3864838,
+    zoom: 12,
+  });
 
+  const mapRef = useRef<MapRef>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    // Center the map on the marker
+    if (mapRef.current && geometry?.coordinates && isMounted) {
+      console.log("centering map");
+      mapRef.current.getMap().flyTo({
+        center: [geometry.coordinates[1], geometry.coordinates[0]],
+        zoom: 14,
+      });
+    }
+  }, [geometry?.coordinates?.length, mapRef?.current, isMounted]);
   return (
     <div className="z-10 mt-14 flex flex-col gap-6">
       <h2 className="text-lg font-semibold lg:text-2xl">Location</h2>
@@ -26,22 +46,26 @@ export const MapSection = ({ geometry, isLoading }: Props) => {
         {isLoading ? (
           <Skeleton className="h-full w-full" />
         ) : (
-          <MapContainer
-            center={center}
-            zoom={13}
-            style={{ width: "100%", height: "100%", zIndex: 10 }}
+          <Map
+            ref={mapRef}
+            mapboxAccessToken={accessToken}
+            mapStyle="mapbox://styles/mapbox/streets-v9"
+            onRender={() => {
+              setIsMounted(true);
+            }}
+            onMove={({ viewState }) => {
+              setViewport({
+                ...viewState,
+              });
+            }}
+            {...viewport}
           >
-            <TileLayer
-              url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${accessToken}`}
-            />
-            <Marker position={center}>
-              <Popup>
-                {geometry
-                  ? `Latitude: ${geometry.coordinates[1]}, Longitude: ${geometry.coordinates[0]}`
-                  : "Default Location"}
-              </Popup>
-            </Marker>
-          </MapContainer>
+            <Marker
+              longitude={geometry?.coordinates[1]}
+              latitude={geometry?.coordinates[0]}
+              anchor="bottom"
+            ></Marker>
+          </Map>
         )}
       </div>
     </div>
