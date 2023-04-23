@@ -16,10 +16,6 @@ type Props = {
   isLoading: boolean;
 };
 
-interface Option {
-  label: string;
-  value: string;
-}
 export const DesktopFilter = ({ isLoading }: Props) => {
   const [minPrice, setMinPrice] = useState<number>();
   const [maxPrice, setMaxPrice] = useState<number>();

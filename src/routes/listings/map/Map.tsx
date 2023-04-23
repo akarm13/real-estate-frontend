@@ -17,6 +17,9 @@ import { useClickAway } from "react-use";
 import { MarkerIcon } from "./MarkerIcon";
 import { CompactListingCard } from "./CompactListingCard";
 import { ReactComponent as ListIcon } from "../../../assets/icons/search/list.svg";
+import { Button } from "../../../components/Button";
+import { LinkButton } from "../../../components/LinkButton";
+import { FilterIcon } from "lucide-react";
 
 const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
@@ -106,12 +109,19 @@ export const Map = () => {
             </div>
           </div>
           <div className="sticky top-0 flex flex-col gap-y-8">
-            <Link
-              className="flex items-center self-end rounded-lg border-2 border-primary-background px-9 py-3"
-              to="/search"
-            >
-              <ListIcon />
-            </Link>
+            <div className="flex gap-x-4 self-end">
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  console.log("hello world");
+                }}
+              >
+                <FilterIcon />
+              </Button>
+              <LinkButton to="/search" variant="secondary">
+                <ListIcon />
+              </LinkButton>
+            </div>
 
             <div className="h-[80vh]">
               <div className="relative">

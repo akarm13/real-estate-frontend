@@ -15,6 +15,7 @@ import { Skeleton } from "../../components/skeleton/Skeleton";
 import SkeletonListingCard from "../../components/skeleton/SkeletonListingCard";
 
 import { ReactComponent as MapIcon } from "../../assets/icons/search/map.svg";
+import { LinkButton } from "../../components/LinkButton";
 const sortOptions = [
   { value: "newest", label: "Newest" },
   { value: "oldest", label: "Oldest" },
@@ -57,12 +58,9 @@ export const Search = () => {
         <div className="flex flex-col">
           <div className="flex items-center justify-between gap-x-8">
             <InputSearch title={title} setTitle={setTitle} />
-            <Link
-              className="flex items-center self-end  rounded-lg border-2 border-primary-background px-9 py-3"
-              to="/map"
-            >
+            <LinkButton variant="secondary" to="/map">
               <MapIcon />
-            </Link>
+            </LinkButton>
           </div>
           <div
             className={`grid grid-cols-1  gap-y-3 pt-4 md:grid-cols-2 md:gap-x-3 xl:grid-cols-3 ${
