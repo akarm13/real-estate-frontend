@@ -20,6 +20,12 @@ import { ReactComponent as ListIcon } from "../../../assets/icons/search/list.sv
 import { Button } from "../../../components/Button";
 import { LinkButton } from "../../../components/LinkButton";
 import { FilterIcon } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../../../components/Popover";
+import { DesktopFilter } from "../../../components/filters/DesktopFilter";
 
 const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
@@ -110,14 +116,22 @@ export const Map = () => {
           </div>
           <div className="sticky top-0 flex flex-col gap-y-8">
             <div className="flex gap-x-4 self-end">
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  console.log("hello world");
-                }}
-              >
-                <FilterIcon />
-              </Button>
+              <Popover>
+                <PopoverTrigger>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      console.log("hello world");
+                    }}
+                  >
+                    <FilterIcon />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="bg-white overflow-y-scroll">
+                  <DesktopFilter isLoading={isLoading || isFetching} />
+                </PopoverContent>
+              </Popover>
+
               <LinkButton to="/search" variant="secondary">
                 <ListIcon />
               </LinkButton>

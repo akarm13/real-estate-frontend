@@ -126,7 +126,7 @@ export const DesktopFilter = ({ isLoading }: Props) => {
   };
   return (
     <div
-      className={`flex flex-col gap-y-6 rounded-lg border-2 border-primary-background py-6 px-5 ${
+      className={`flex flex-col gap-y-6 rounded-lg border-2 border-primary-background py-6 px-5 bg-white ${
         isLoading ? "pointer-events-none opacity-60" : ""
       }`}
     >

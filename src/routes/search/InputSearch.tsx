@@ -22,7 +22,7 @@ export const InputSearch = ({ title, setTitle }: any) => {
           <input
             type="text"
             placeholder="City or address"
-            className="border-none bg-transparent text-center focus:ring-0 focus:ring-offset-0"
+            className="border-none bg-transparent text-center focus:ring-0 focus:ring-offset-0 w-full"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
