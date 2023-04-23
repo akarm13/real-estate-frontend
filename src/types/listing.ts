@@ -96,9 +96,7 @@ export type SearchPayload = {
   maxHomeSize?: number;
   pageNumber?: number;
   pageSize?: number;
-  longitude?: number;
-  latitude?: number;
-  radius?: number;
+  boundingBox?: string;
 };
 
 export type ListingStatus = "featured" | "normal";
