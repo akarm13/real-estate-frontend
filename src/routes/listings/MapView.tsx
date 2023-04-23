@@ -12,6 +12,7 @@ import { removeUnusedQueryParams } from "../../utils/url";
 import { useDebounce } from "use-debounce";
 import SkeletonListingCard from "../../components/skeleton/SkeletonListingCard";
 import { ClipLoader } from "react-spinners";
+import { NoListingsFound } from "./NoListingsFound";
 
 const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
@@ -89,7 +90,7 @@ export const MapView = () => {
                   </Link>
                 ))
               ) : (
-                <h1>No listings found</h1>
+                <NoListingsFound />
               )}
             </div>
           </div>
