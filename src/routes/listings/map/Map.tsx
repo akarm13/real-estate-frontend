@@ -1,22 +1,25 @@
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useEffect, useRef, useState } from "react";
-import Map, { MapRef, Marker, ViewStateChangeEvent } from "react-map-gl";
-import { Link, useNavigate } from "react-router-dom";
-import { useGetAllListingsQuery } from "../../api/endpoints/listings";
-import { ListingCard } from "../../components/ListingCard";
-import { InputSearch } from "../search/InputSearch";
-import { MapViewport } from "./MapSection";
-import { SearchPayload } from "../../types/listing";
 import queryString from "query-string";
-import { removeUnusedQueryParams } from "../../utils/url";
-import { useDebounce } from "use-debounce";
-import SkeletonListingCard from "../../components/skeleton/SkeletonListingCard";
+import { useEffect, useRef, useState } from "react";
+import MapGl, { MapRef, Marker, ViewStateChangeEvent } from "react-map-gl";
+import { Link, useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { NoListingsFound } from "./NoListingsFound";
+import { useDebounce } from "use-debounce";
+import { useGetAllListingsQuery } from "../../../api/endpoints/listings";
+import { ListingCard } from "../../../components/ListingCard";
+import SkeletonListingCard from "../../../components/skeleton/SkeletonListingCard";
+import { Listing, SearchPayload } from "../../../types/listing";
+import { removeUnusedQueryParams } from "../../../utils/url";
+import { InputSearch } from "../../search/InputSearch";
+import { MapViewport } from "../MapSection";
+import { NoListingsFound } from "../NoListingsFound";
+import { useClickAway } from "react-use";
+import { MarkerIcon } from "./MarkerIcon";
+import { CompactListingCard } from "./CompactListingCard";
 
 const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
-export const MapView = () => {
+export const Map = () => {
   const [viewport, setViewport] = useState<MapViewport>({
     latitude: 35.5784474,
     longitude: 45.3864838,
@@ -69,6 +72,13 @@ export const MapView = () => {
     refetchOnMountOrArgChange: true,
   });
 
+  const [selectedListing, setSelectedListing] = useState<Listing | null>(null);
+
+  const compactRef = useRef<HTMLDivElement | null>(null);
+
+  useClickAway(compactRef, () => {
+    setSelectedListing(null);
+  });
   return (
     <div className="w-full pt-24">
       <div className="container mx-auto flex w-full flex-col md:px-0">
@@ -84,9 +94,9 @@ export const MapView = () => {
                   ))}
                 </>
               ) : listing?.data !== undefined && listing.data?.length > 0 ? (
-                listing?.data.map((property: any) => (
-                  <Link key={property?._id} to={`/listings/${property?._id}`}>
-                    <ListingCard {...property} />
+                listing?.data.map((listing: Listing) => (
+                  <Link key={listing?._id} to={`/listings/${listing?._id}`}>
+                    <ListingCard {...listing} />
                   </Link>
                 ))
               ) : (
@@ -94,7 +104,7 @@ export const MapView = () => {
               )}
             </div>
           </div>
-          <div className="sticky top-0">
+          <div className="sticky top-0 mt-auto h-[80vh]">
             <div className="relative">
               <div className="absolute top-6 left-6 z-10 flex">
                 <ClipLoader
@@ -107,7 +117,7 @@ export const MapView = () => {
                 />
               </div>
             </div>
-            <Map
+            <MapGl
               ref={mapRef}
               mapboxAccessToken={accessToken}
               mapStyle="mapbox://styles/mapbox/streets-v9"
@@ -124,20 +134,26 @@ export const MapView = () => {
                   key={listing._id}
                   latitude={listing.geometry.coordinates[0]}
                   longitude={listing.geometry.coordinates[1]}
+                  onClick={() => {
+                    setSelectedListing(listing);
+                  }}
+                  style={{
+                    cursor: "pointer",
+                    zIndex: selectedListing?._id === listing._id ? 10 : 1,
+                  }}
                 >
+                  {selectedListing?._id === listing._id && (
+                    <div ref={compactRef} className="">
+                      <CompactListingCard listing={{ ...selectedListing }} />
+                    </div>
+                  )}
                   <MarkerIcon />
                 </Marker>
               ))}
-            </Map>
+            </MapGl>
           </div>
         </div>
       </div>
     </div>
-  );
-};
-
-const MarkerIcon = () => {
-  return (
-    <div className="h-5 w-5 rounded-full border-[3px] border-white bg-primary-500 shadow-pin"></div>
   );
 };

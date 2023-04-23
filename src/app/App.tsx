@@ -14,7 +14,7 @@ import { Search } from "../routes/search/Search";
 import { Toaster } from "react-hot-toast";
 import { GuestRoute } from "../components/GuestRoute";
 import { useSetUserFromLocalStorage } from "../hooks/useSetUserFromLocalStorage";
-import { MapView } from "../routes/listings/MapView";
+import { Map } from "../routes/listings/map/Map";
 
 function App() {
   const routes = useRoutes([
@@ -30,7 +30,7 @@ function App() {
       children: [{ index: true, element: <Login /> }],
     },
     { path: "/search", element: <Search /> },
-    { path: "/map", element: <MapView /> },
+    { path: "/map", element: <Map /> },
 
     { path: "/listings/:id", element: <ListingDetails /> },
     { path: "/agents", element: <Agents /> },
