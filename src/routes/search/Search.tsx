@@ -51,11 +51,11 @@ export const Search = () => {
           <DesktopFilter isLoading={isFetching || isLoading} />
         </div>
         <div className="lg:hidden">
-          <MobileFilter isLoading={isFetching || isLoading} />
+          <MobileFilter title={title} setTitle={setTitle} isLoading={isFetching || isLoading} />
         </div>
 
         <div className="flex flex-col">
-          <InputSearch title={title} setTitle={setTitle} />
+          <InputSearch title={title} setTitle={setTitle}   />
           <div
             className={`grid grid-cols-1  gap-y-3 pt-4 md:grid-cols-2 md:gap-x-3 xl:grid-cols-3 ${
               isFetching ? "pointer-events-none" : ""

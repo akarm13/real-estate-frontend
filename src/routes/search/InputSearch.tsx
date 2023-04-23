@@ -5,11 +5,13 @@ import { queries } from "../../devices";
 import { useGetListingByTitleQuery } from "../../api/endpoints/listings";
 import { useState } from "react";
 
-export const InputSearch = ({ title, setTitle }: any) => {
+export const InputSearch = ({ title, setTitle, }: any) => {
   const isSmall = useMediaQuery({
     query: queries.sm,
   });
 
+
+  
   return (
     <div className="hidden lg:flex lg:w-full lg:items-center lg:justify-between">
       <div className="md: mx-auto flex w-full justify-between rounded-lg bg-searchBackground py-1 px-4 md:mx-0 md:py-2 lg:w-[700px]">
