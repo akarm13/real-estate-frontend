@@ -76,10 +76,10 @@ export const CompactListingCard = ({ listing }: Props) => {
         </div>
         <Link
           to={`/listings/${listing?._id}`}
-          className="tranisition mt-8 flex items-center gap-x-2 hover:underline"
+          className="mt-4 flex items-center gap-x-2 transition hover:underline"
         >
           <ViewIcon className="h-5 w-5" />
-          <span className="font-semibold text-primary-500">View agent</span>
+          <span className="font-semibold text-primary-500">View listing</span>
         </Link>
       </div>
     </motion.div>
