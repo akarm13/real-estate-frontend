@@ -1,5 +1,3 @@
-import { ListingCard } from "../../components/ListingCard";
-
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { DesktopFilter } from "../../components/filters/DesktopFilter";
@@ -9,12 +7,14 @@ import { InputSearch } from "./InputSearch";
 import { useGetAllListingsQuery } from "../../api/endpoints/listings";
 import queryString from "query-string";
 import { useGetListingByTitleQuery } from "../../api/endpoints/listings";
+import { ListingCard } from "../../components/ListingCard";
 
 import { SearchPayload } from "../../types/listing";
 import { removeUnusedQueryParams } from "../../utils/url";
 import { Skeleton } from "../../components/skeleton/Skeleton";
 import SkeletonListingCard from "../../components/skeleton/SkeletonListingCard";
 
+import { ReactComponent as MapIcon } from "../../assets/icons/search/map.svg";
 const sortOptions = [
   { value: "newest", label: "Newest" },
   { value: "oldest", label: "Oldest" },
@@ -55,7 +55,15 @@ export const Search = () => {
         </div>
 
         <div className="flex flex-col">
-          <InputSearch title={title} setTitle={setTitle} />
+          <div className="flex items-center justify-between gap-x-8">
+            <InputSearch title={title} setTitle={setTitle} />
+            <Link
+              className="flex items-center self-end  rounded-lg border-2 border-primary-background px-9 py-3"
+              to="/map"
+            >
+              <MapIcon />
+            </Link>
+          </div>
           <div
             className={`grid grid-cols-1  gap-y-3 pt-4 md:grid-cols-2 md:gap-x-3 xl:grid-cols-3 ${
               isFetching ? "pointer-events-none" : ""

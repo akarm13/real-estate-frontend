@@ -2,7 +2,7 @@ import { BenefitCard } from "./BenefitCard";
 
 export const BenefitsSection = () => {
   return (
-    <div className="md: mx-auto mt-24 w-5/6">
+    <div className="md: container mx-auto mt-24">
       <h1 className="primary-900 text-2xl font-semibold md:text-3xl">
         Why Choose Us
       </h1>

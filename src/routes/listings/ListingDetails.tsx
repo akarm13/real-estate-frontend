@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useGetListingByIdQuery } from "../../api/endpoints/listings";
 import { ReactComponent as BackIcon } from "../../assets/housedetail/back.svg";
 import { ReactComponent as FeaturedStarIcon } from "../../assets/icons/listing/star.svg";
-import { ReactComponent as LocationIcon } from "../../assets/icons/search/location.svg";
+import { ReactComponent as MapIcon } from "../../assets/icons/search/map.svg";
 import { Button } from "../../components/Button";
 import { Skeleton } from "../../components/skeleton/Skeleton";
 import { AmenitiesSection } from "./AmenitiesSection";
@@ -17,7 +17,7 @@ export const ListingDetails = () => {
 
   return (
     <div className="w-full pt-24">
-      <div className="container mx-auto flex w-full flex-col md:px-0">
+      <div className="container mx-auto flex w-full flex-col">
         <div>
           <Link className="flex items-center" to="/search">
             <BackIcon />
@@ -48,7 +48,7 @@ export const ListingDetails = () => {
               onClick={() => console.log("hello")}
               className="flex items-center"
             >
-              <LocationIcon width={16} />
+              <MapIcon width={16} />
               <span className="ml-2 font-medium md:mx-2 lg:text-base">
                 Share
               </span>

@@ -16,6 +16,7 @@ import { NoListingsFound } from "../NoListingsFound";
 import { useClickAway } from "react-use";
 import { MarkerIcon } from "./MarkerIcon";
 import { CompactListingCard } from "./CompactListingCard";
+import { ReactComponent as ListIcon } from "../../../assets/icons/search/list.svg";
 
 const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
@@ -81,7 +82,7 @@ export const Map = () => {
   });
   return (
     <div className="w-full pt-24">
-      <div className="container mx-auto flex w-full flex-col md:px-0">
+      <div className="container mx-auto flex w-full flex-col">
         <div className="grid grid-cols-2 gap-x-8">
           <div className="flex flex-col gap-y-8">
             <InputSearch title={title} setTitle={setTitle} />
@@ -104,53 +105,65 @@ export const Map = () => {
               )}
             </div>
           </div>
-          <div className="sticky top-0 mt-auto h-[80vh]">
-            <div className="relative">
-              <div className="absolute top-6 left-6 z-10 flex">
-                <ClipLoader
-                  color="#5B4DFF"
-                  loading={isLoading || isFetching}
-                  size={48}
-                  cssOverride={{
-                    borderWidth: 5,
-                  }}
-                />
-              </div>
-            </div>
-            <MapGl
-              ref={mapRef}
-              mapboxAccessToken={accessToken}
-              mapStyle="mapbox://styles/mapbox/streets-v9"
-              onMove={({ viewState }) => {
-                setViewport({
-                  ...viewState,
-                });
-              }}
-              onMoveEnd={updateBoundingBox}
-              {...viewport}
+          <div className="sticky top-0 flex flex-col gap-y-8">
+            <Link
+              className="flex items-center self-end rounded-lg border-2 border-primary-background px-9 py-3"
+              to="/search"
             >
-              {listing?.data.map((listing) => (
-                <Marker
-                  key={listing._id}
-                  latitude={listing.geometry.coordinates[0]}
-                  longitude={listing.geometry.coordinates[1]}
-                  onClick={() => {
-                    setSelectedListing(listing);
-                  }}
-                  style={{
-                    cursor: "pointer",
-                    zIndex: selectedListing?._id === listing._id ? 10 : 1,
-                  }}
-                >
-                  {selectedListing?._id === listing._id && (
-                    <div ref={compactRef} className="">
-                      <CompactListingCard listing={{ ...selectedListing }} />
-                    </div>
-                  )}
-                  <MarkerIcon />
-                </Marker>
-              ))}
-            </MapGl>
+              <ListIcon />
+            </Link>
+
+            <div className="h-[80vh]">
+              <div className="relative">
+                <div className="absolute top-6 left-6 z-10 flex">
+                  <ClipLoader
+                    color="#5B4DFF"
+                    loading={isLoading || isFetching}
+                    size={48}
+                    cssOverride={{
+                      borderWidth: 5,
+                    }}
+                  />
+                </div>
+              </div>
+              <MapGl
+                ref={mapRef}
+                mapboxAccessToken={accessToken}
+                mapStyle="mapbox://styles/mapbox/streets-v9"
+                onMove={({ viewState }) => {
+                  setViewport({
+                    ...viewState,
+                  });
+                }}
+                onMoveEnd={updateBoundingBox}
+                style={{
+                  borderRadius: "0.5rem",
+                }}
+                {...viewport}
+              >
+                {listing?.data.map((listing) => (
+                  <Marker
+                    key={listing._id}
+                    latitude={listing.geometry.coordinates[0]}
+                    longitude={listing.geometry.coordinates[1]}
+                    onClick={() => {
+                      setSelectedListing(listing);
+                    }}
+                    style={{
+                      cursor: "pointer",
+                      zIndex: selectedListing?._id === listing._id ? 10 : 1,
+                    }}
+                  >
+                    {selectedListing?._id === listing._id && (
+                      <div ref={compactRef} className="">
+                        <CompactListingCard listing={{ ...selectedListing }} />
+                      </div>
+                    )}
+                    <MarkerIcon />
+                  </Marker>
+                ))}
+              </MapGl>
+            </div>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ export const ListingsSection = () => {
   });
 
   return (
-    <div className="md: mx-auto mt-24 w-5/6">
+    <div className="md: container mx-auto mt-24">
       <h1 className="text-2xl font-semibold text-primary-900 md:text-3xl">
         Featured Listings
       </h1>

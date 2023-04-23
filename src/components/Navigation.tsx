@@ -29,7 +29,7 @@ export const Navigation = () => {
   return (
     <>
       <nav className="fixed z-20 w-full border border-b-primary-background bg-white pt-4 pb-4 lg:mx-auto">
-        <div className="mx-auto flex items-center justify-between px-4 md:container md:flex md:items-center md:justify-between md:px-0">
+        <div className="mx-auto flex items-center justify-between px-4 md:container md:flex md:items-center md:justify-between">
           <div className="flex w-full items-center justify-between md:w-auto">
             <Button
               variant="none"
