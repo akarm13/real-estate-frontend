@@ -1,6 +1,6 @@
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useEffect, useRef, useState } from "react";
-import Map, { MapRef, Marker } from "react-map-gl";
+import Map, { MapRef, Marker, ViewStateChangeEvent } from "react-map-gl";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetAllListingsQuery } from "../../api/endpoints/listings";
 import { ListingCard } from "../../components/ListingCard";
@@ -11,6 +11,7 @@ import queryString from "query-string";
 import { removeUnusedQueryParams } from "../../utils/url";
 import { useDebounce } from "use-debounce";
 import SkeletonListingCard from "../../components/skeleton/SkeletonListingCard";
+import { ClipLoader } from "react-spinners";
 
 const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
@@ -27,20 +28,14 @@ export const MapView = () => {
   const mapRef = useRef<MapRef>(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const updateBoundingBox = () => {
-      const bounds = mapRef.current?.getBounds();
-      const sw = bounds?.getSouthWest();
-      const ne = bounds?.getNorthEast();
-      setBoundingBox([sw?.lng!, sw?.lat!, ne?.lng!, ne?.lat!]);
-    };
+  const updateBoundingBox = (e: ViewStateChangeEvent) => {
+    const bounds = e?.target.getBounds();
+    const sw = bounds?.getSouthWest();
+    const ne = bounds?.getNorthEast();
+    setBoundingBox([sw?.lng!, sw?.lat!, ne?.lng!, ne?.lat!]);
+  };
 
-    if (mapRef.current) {
-      updateBoundingBox();
-    }
-  }, [viewport]);
-
-  const [boundingBoxDebounced] = useDebounce(boundingBox, 500);
+  const [boundingBoxDebounced] = useDebounce(boundingBox, 750);
 
   useEffect(() => {
     const updateUrl = () => {
@@ -99,6 +94,18 @@ export const MapView = () => {
             </div>
           </div>
           <div className="sticky top-0">
+            <div className="relative">
+              <div className="absolute top-6 left-6 z-10 flex">
+                <ClipLoader
+                  color="#5B4DFF"
+                  loading={isLoading || isFetching}
+                  size={48}
+                  cssOverride={{
+                    borderWidth: 5,
+                  }}
+                />
+              </div>
+            </div>
             <Map
               ref={mapRef}
               mapboxAccessToken={accessToken}
@@ -108,6 +115,7 @@ export const MapView = () => {
                   ...viewState,
                 });
               }}
+              onMoveEnd={updateBoundingBox}
               {...viewport}
             >
               {listing?.data.map((listing) => (
