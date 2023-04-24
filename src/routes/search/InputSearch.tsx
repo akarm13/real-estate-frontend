@@ -8,10 +8,10 @@ export const InputSearch = ({ title, setTitle }: any) => {
   });
 
   return (
-    <div className="mx-auto flex w-full justify-between rounded-lg bg-searchBackground py-1 px-4 md:mx-0 md:py-2">
+    <div className="mx-auto flex w-full justify-between rounded-lg bg-searchBackground py-1 px-4 md:mx-0 md:py-2 ">
       {isSmall ? (
         <>
-          <select className="flex w-32 gap-x-4 rounded-lg border-none bg-white px-4 py-1 text-lg text-black outline-none focus:ring-0 focus:ring-offset-0">
+          <select className="flex w-32 gap-x-4 rounded-lg border-none bg-white px-4 py-1 text-lg text-black outline-none focus:ring-0 focus:ring-offset-0 shadow-dropdown">
             <option className="capitalize" value="rent">
               Rent
             </option>
