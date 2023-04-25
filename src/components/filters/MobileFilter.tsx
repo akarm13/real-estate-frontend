@@ -13,28 +13,33 @@ import "react-spring-bottom-sheet/dist/style.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
 import { removeUnusedQueryParams } from "../../utils/url";
-type ListingType = "sale" | "rent";
-type ListingCategory = "houses" | "apartments" | "villa" | "land" | "all";
+export type ListingType = "sale" | "rent";
+export type ListingCategory =
+  | "houses"
+  | "apartments"
+  | "villa"
+  | "land"
+  | "all";
 
-const categories = [
+export const categories = [
   { value: "houses", label: "Houses" },
   { value: "apartments", label: "Apartments" },
   { value: "villa", label: "Villa" },
   { value: "land", label: "Land" },
 ] as const;
 
-const types = [
+export const types = [
   { value: "sale", label: "Sale" },
   { value: "rent", label: "Rent" },
 ] as const;
 
-const sortOptions = [
+export const sortOptions = [
   { value: "newest", label: "Newest" },
   { value: "oldest", label: "Oldest" },
   { value: "price", label: "Price" },
 ];
 
-const bedrooms = [
+export const bedrooms = [
   { value: 1, label: "1" },
   { value: 2, label: "2" },
   { value: 3, label: "3" },
@@ -43,7 +48,7 @@ const bedrooms = [
   { value: 100, label: "5+" },
 ];
 
-const bathrooms = [
+export const bathrooms = [
   { value: 1, label: "1" },
   { value: 2, label: "2" },
   { value: 3, label: "3" },
@@ -52,7 +57,7 @@ const bathrooms = [
   { value: 100, label: "5+" },
 ];
 
-const homeSizes = [
+export const homeSizes = [
   { value: 100, label: "100" },
   { value: 200, label: "200" },
   { value: 300, label: "300" },
