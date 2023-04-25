@@ -3,7 +3,7 @@ import { ClipLoader } from "react-spinners";
 type Props = {
   children: React.ReactNode;
   variant: "primary" | "secondary" | "none";
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
   isLoading?: boolean;
 };
