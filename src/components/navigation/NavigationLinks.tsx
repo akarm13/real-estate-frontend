@@ -28,7 +28,16 @@ export const NavigationLinks = () => {
           Search
         </NavLink>
       </li>
-
+      <li>
+        <NavLink
+          to="/map"
+          className={({ isActive }) => {
+            return isActive ? activeClasses : inactiveClasses;
+          }}
+        >
+          Map
+        </NavLink>
+      </li>
       <li>
         <NavLink
           to="/agents"
