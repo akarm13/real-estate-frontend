@@ -16,6 +16,8 @@ module.exports = {
       },
       boxShadow: {
         footer: "0px -2px 64px 22px rgba(0, 0, 0, 0.02)",
+        pin: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+        dropdown: "1px 2px 4px #DCDCEA",
       },
       keyframes: {
         "accordion-down": {

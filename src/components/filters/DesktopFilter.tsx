@@ -16,10 +16,6 @@ type Props = {
   isLoading: boolean;
 };
 
-interface Option {
-  label: string;
-  value: string;
-}
 export const DesktopFilter = ({ isLoading }: Props) => {
   const [minPrice, setMinPrice] = useState<number>();
   const [maxPrice, setMaxPrice] = useState<number>();
@@ -130,7 +126,7 @@ export const DesktopFilter = ({ isLoading }: Props) => {
   };
   return (
     <div
-      className={`flex flex-col gap-y-6 rounded-lg border-2 border-primary-background py-6 px-5 ${
+      className={`flex flex-col gap-y-6 rounded-lg border-2 border-primary-background py-6 px-5 bg-white ${
         isLoading ? "pointer-events-none opacity-60" : ""
       }`}
     >
@@ -142,10 +138,10 @@ export const DesktopFilter = ({ isLoading }: Props) => {
       <PriceInput
         name="Price"
         containerClassName="mt-4"
-        firstInputPlaceholder="Min Price"
-        secondInputPlaceholder="Max Price"
-        onFirstInputChange={(value) => setMinPrice(+value)}
-        onSecondInputChange={(value) => setMaxPrice(+value)}
+        minPricePlaceholder="Min Price"
+        maxPricePlaceholder="Max Price"
+        onMinPriceChange={(value) => setMinPrice(+value)}
+        onMaxPriceChange={(value) => setMaxPrice(+value)}
       />
       <hr />
       <NumOfRoom

@@ -1,5 +1,3 @@
-import { ListingCard } from "../../components/ListingCard";
-
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { DesktopFilter } from "../../components/filters/DesktopFilter";
@@ -9,12 +7,15 @@ import { InputSearch } from "./InputSearch";
 import { useGetAllListingsQuery } from "../../api/endpoints/listings";
 import queryString from "query-string";
 import { useGetListingByTitleQuery } from "../../api/endpoints/listings";
+import { ListingCard } from "../../components/ListingCard";
 
 import { SearchPayload } from "../../types/listing";
 import { removeUnusedQueryParams } from "../../utils/url";
 import { Skeleton } from "../../components/skeleton/Skeleton";
 import SkeletonListingCard from "../../components/skeleton/SkeletonListingCard";
 
+import { ReactComponent as MapIcon } from "../../assets/icons/search/map.svg";
+import { LinkButton } from "../../components/LinkButton";
 const sortOptions = [
   { value: "newest", label: "Newest" },
   { value: "oldest", label: "Oldest" },
@@ -51,11 +52,28 @@ export const Search = () => {
           <DesktopFilter isLoading={isFetching || isLoading} />
         </div>
         <div className="lg:hidden">
-          <MobileFilter title={title} setTitle={setTitle} isLoading={isFetching || isLoading} />
+          <MobileFilter
+            title={title}
+            setTitle={setTitle}
+            isLoading={isFetching || isLoading}
+          />
         </div>
 
         <div className="flex flex-col">
-          <InputSearch title={title} setTitle={setTitle}   />
+          <div className="flex items-center justify-between gap-x-8">
+            <InputSearch
+              value={title}
+              onValueChange={setTitle}
+              placeholder="Search by title"
+            />
+            <LinkButton
+              variant="secondary"
+              to="/map"
+              className="hidden lg:flex"
+            >
+              <MapIcon />
+            </LinkButton>
+          </div>
           <div
             className={`grid grid-cols-1  gap-y-3 pt-4 md:grid-cols-2 md:gap-x-3 xl:grid-cols-3 ${
               isFetching ? "pointer-events-none" : ""

@@ -12,7 +12,7 @@ export const HomeSize = ({
 
   return (
     <div className="">
-      <h1 className="text-primary mb-4 break-words text-lg font-semibold">
+      <h1 className="text-primary mb-4 break-words  font-medium">
         <span>Home Size</span>
         <span className="text-secondary ml-1 text-base font-normal">
           (m<sup>2</sup>)

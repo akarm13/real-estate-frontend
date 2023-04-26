@@ -9,7 +9,7 @@ export const HeroSection = () => {
     query: queries.sm,
   });
   return (
-    <div className="lg: mx-auto grid w-5/6 grid-cols-1 items-center space-y-8 lg:grid-cols-2">
+    <div className="lg: container mx-auto grid grid-cols-1 items-center space-y-8 lg:grid-cols-2">
       <div className="order-1 flex flex-col gap-y-8 lg:order-first">
         <div className="mt-24 flex flex-col">
           <h1 className="text-3xl  font-semibold leading-tight text-[#120F33] md:text-6xl">
