@@ -119,13 +119,16 @@ export const Map = () => {
   useClickAway(compactRef, () => {
     setSelectedListing(null);
   });
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   return (
     <div className="w-full pt-24">
       <div className="container mx-auto flex w-full flex-col">
         <div className="grid grid-cols-3 gap-x-4">
-          <InputSearch title={title} setTitle={setTitle} />
+          <InputSearch
+            onValueChange={setTitle}
+            value={title}
+            placeholder="Search by title"
+          />
 
           {/* Filters section */}
           <div className="flex gap-x-4">

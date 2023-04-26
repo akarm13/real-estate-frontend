@@ -138,10 +138,10 @@ export const DesktopFilter = ({ isLoading }: Props) => {
       <PriceInput
         name="Price"
         containerClassName="mt-4"
-        firstInputPlaceholder="Min Price"
-        secondInputPlaceholder="Max Price"
-        onFirstInputChange={(value) => setMinPrice(+value)}
-        onSecondInputChange={(value) => setMaxPrice(+value)}
+        minPricePlaceholder="Min Price"
+        maxPricePlaceholder="Max Price"
+        onMinPriceChange={(value) => setMinPrice(+value)}
+        onMaxPriceChange={(value) => setMaxPrice(+value)}
       />
       <hr />
       <NumOfRoom
