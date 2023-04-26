@@ -140,7 +140,9 @@ export const Map = () => {
                     variant="secondary"
                     className="flex items-center gap-x-2"
                   >
-                    <span>{filterItem.label}</span>
+                    <span className="font-medium text-primaryText">
+                      {filterItem.label}
+                    </span>
                     <span className="text-gray-500">All</span>
                   </Button>
                 </PopoverTrigger>

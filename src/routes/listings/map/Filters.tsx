@@ -90,7 +90,7 @@ export const Filters = ({ type }: FiltersProps) => {
       return (
         <div className="">
           <div className="flex flex-col">
-            <h1 className="text-base font-semibold text-primaryText ">Type</h1>
+            <h1 className="font-semibold text-primaryText">Type</h1>
             <span className="mt-1 font-normal text-gray-500">
               (multiple selection)
             </span>
@@ -112,7 +112,7 @@ export const Filters = ({ type }: FiltersProps) => {
       return (
         <div className="">
           <div className="flex flex-col">
-            <h1 className="flex flex-col text-base font-semibold text-primaryText">
+            <h1 className="flex flex-col font-semibold text-primaryText">
               Category
             </h1>
             <span className="mt-1 font-normal text-gray-500">
@@ -137,7 +137,7 @@ export const Filters = ({ type }: FiltersProps) => {
         <div className="">
           <div className="flex items-center">
             <label
-              className="text-base font-semibold text-primaryText"
+              className="font-semibold text-primaryText"
               htmlFor="minimumPrice"
             >
               Price
@@ -157,7 +157,7 @@ export const Filters = ({ type }: FiltersProps) => {
         <div className="">
           <div className="flex items-center">
             <h1
-              className="text-base font-semibold text-primaryText
+              className="font-semibold text-primaryText
 "
             >
               Bedrooms
@@ -181,9 +181,7 @@ export const Filters = ({ type }: FiltersProps) => {
       return (
         <div className="">
           <div className="flex items-center">
-            <h1 className="text-base font-semibold text-primaryText">
-              Bathrooms
-            </h1>
+            <h1 className="font-semibold text-primaryText">Bathrooms</h1>
           </div>
           <div className="mt-4 grid grid-cols-6 flex-wrap items-center gap-y-3">
             {bathrooms.map((bathroom, i) => (
@@ -203,7 +201,7 @@ export const Filters = ({ type }: FiltersProps) => {
       return (
         <div className="">
           <div className="flex items-center">
-            <h1 className="text-base font-semibold text-primaryText">
+            <h1 className="font-semibold text-primaryText">
               <span>Home Size</span>
               <span className="text-secondary ml-1 text-base font-normal">
                 (m<sup>2</sup>)
