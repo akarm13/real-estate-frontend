@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Map, { MapRef, Marker } from "react-map-gl";
 import { Skeleton } from "../../components/skeleton/Skeleton";
 import { Listing } from "../../types/listing";
+import { MarkerIcon } from "./map/MarkerIcon";
 const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
 type Props = {
@@ -63,7 +64,9 @@ export const MapSection = ({ geometry, isLoading }: Props) => {
               longitude={geometry?.coordinates[1]}
               latitude={geometry?.coordinates[0]}
               anchor="bottom"
-            ></Marker>
+            >
+              <MarkerIcon />
+            </Marker>
           </Map>
         )}
       </div>
