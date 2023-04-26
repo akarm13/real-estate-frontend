@@ -260,15 +260,9 @@ export const Map = () => {
   return (
     <div className="w-full pt-24">
       <div className="container mx-auto flex w-full flex-col">
-        <div className="grid grid-cols-3 gap-x-4">
-          <InputSearch
-            onValueChange={setTitle}
-            value={title}
-            placeholder="Search by title"
-          />
-
+        <div className="grid grid-cols-1 gap-y-4 gap-x-4">
           {/* Filters section */}
-          <div className="flex gap-x-4">
+          <div className="flex gap-x-4 overflow-x-auto pb-4 lg:py-0">
             {filterItems.map((filterItem, index) => (
               <Popover>
                 <PopoverTrigger>
@@ -306,6 +300,12 @@ export const Map = () => {
               </Popover>
             ))}
           </div>
+          <InputSearch
+            onValueChange={setTitle}
+            value={title}
+            placeholder="Search by title"
+            className="flex"
+          />
         </div>
         <div className="grid grid-cols-2 gap-x-8 mt-8">
           <div className="flex flex-col gap-y-8">
