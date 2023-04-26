@@ -24,16 +24,18 @@ export const PriceFilter = ({
           Price
         </label>
 
-        <button
-          className="ml-auto flex items-center gap-x-1 text-gray-500 hover:text-primaryText transition-colors"
-          onClick={() => {
-            onMinPriceChange("");
-            onMaxPriceChange("");
-          }}
-        >
-          <span className="text-sm font-semibold">Clear</span>
-          <X size={16} className="stroke-gray-500" />
-        </button>
+        {maxPriceValue || minPriceValue ? (
+          <button
+            className="ml-auto flex items-center gap-x-1 text-gray-500 hover:text-primaryText transition-colors"
+            onClick={() => {
+              onMinPriceChange("");
+              onMaxPriceChange("");
+            }}
+          >
+            <span className="text-sm font-semibold">Clear</span>
+            <X size={16} className="stroke-gray-500" />
+          </button>
+        ) : null}
       </div>
 
       <PriceInput

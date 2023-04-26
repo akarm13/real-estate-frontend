@@ -22,13 +22,16 @@ export const SelectFilter: React.FC<Props> = ({
     <div className="">
       <div className="flex items-center">
         <h1 className="font-semibold text-primaryText">{title}</h1>
-        <button
-          className="ml-auto flex items-center gap-x-1 text-gray-500 hover:text-primaryText transition-colors"
-          onClick={() => onClear && onClear(title.toLowerCase())}
-        >
-          <span className="text-sm font-semibold">Clear</span>
-          <X size={16} className="stroke-gray-500" />
-        </button>
+
+        {selectedItems.length > 0 ? (
+          <button
+            className="ml-auto flex items-center gap-x-1 text-gray-500 hover:text-primaryText transition-colors"
+            onClick={() => onClear && onClear(title.toLowerCase())}
+          >
+            <span className="text-sm font-semibold">Clear</span>
+            <X size={16} className="stroke-gray-500" />
+          </button>
+        ) : null}
       </div>
       <div className="mt-4 grid grid-cols-2 flex-wrap items-center gap-y-3 gap-x-3">
         {items.map((item, i) => (
