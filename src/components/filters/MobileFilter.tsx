@@ -13,6 +13,12 @@ import "react-spring-bottom-sheet/dist/style.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
 import { removeUnusedQueryParams } from "../../utils/url";
+
+export type FilterItem = {
+  label: string;
+  value: string | number;
+};
+
 export type ListingType = "sale" | "rent";
 export type ListingCategory =
   | "houses"
@@ -21,25 +27,25 @@ export type ListingCategory =
   | "land"
   | "all";
 
-export const categories = [
+export const categories: FilterItem[] = [
   { value: "houses", label: "Houses" },
   { value: "apartments", label: "Apartments" },
   { value: "villa", label: "Villa" },
   { value: "land", label: "Land" },
-] as const;
+];
 
-export const types = [
+export const types: FilterItem[] = [
   { value: "sale", label: "Sale" },
   { value: "rent", label: "Rent" },
-] as const;
+];
 
-export const sortOptions = [
+export const sortOptions: FilterItem[] = [
   { value: "newest", label: "Newest" },
   { value: "oldest", label: "Oldest" },
   { value: "price", label: "Price" },
 ];
 
-export const bedrooms = [
+export const bedrooms: FilterItem[] = [
   { value: 1, label: "1" },
   { value: 2, label: "2" },
   { value: 3, label: "3" },
@@ -48,7 +54,7 @@ export const bedrooms = [
   { value: 100, label: "5+" },
 ];
 
-export const bathrooms = [
+export const bathrooms: FilterItem[] = [
   { value: 1, label: "1" },
   { value: 2, label: "2" },
   { value: 3, label: "3" },
@@ -57,7 +63,7 @@ export const bathrooms = [
   { value: 100, label: "5+" },
 ];
 
-export const homeSizes = [
+export const areas: FilterItem[] = [
   { value: 100, label: "100" },
   { value: 200, label: "200" },
   { value: 300, label: "300" },
@@ -300,8 +306,8 @@ export const MobileFilter = ({ isLoading }: Props) => {
           <div className="mt-4 grid grid-cols-2 items-center gap-x-2 gap-y-3">
             {types.map((type) => (
               <SelectButton
-                isSelected={selectedTypes.includes(type.value)}
-                onClick={() => handleTypeClick(type.value)}
+                isSelected={selectedTypes.includes(type.value as ListingType)}
+                onClick={() => handleTypeClick(type.value as ListingType)}
                 key={type.value}
               >
                 {type.label}
@@ -322,8 +328,12 @@ export const MobileFilter = ({ isLoading }: Props) => {
           <div className="mt-4 grid grid-cols-2 flex-wrap items-center gap-x-2 gap-y-3">
             {categories.map((category) => (
               <SelectButton
-                isSelected={selectedCategories.includes(category.value)}
-                onClick={() => handleCategoryClick(category.value)}
+                isSelected={selectedCategories.includes(
+                  category.value as ListingCategory
+                )}
+                onClick={() =>
+                  handleCategoryClick(category.value as ListingCategory)
+                }
                 key={category.value}
               >
                 {category.label}
@@ -343,10 +353,10 @@ export const MobileFilter = ({ isLoading }: Props) => {
           </div>
           <PriceInput
             containerClassName="mt-4"
-            firstInputPlaceholder="Min Price"
-            secondInputPlaceholder="Max Price"
-            onFirstInputChange={(value) => setMinPrice(+value)}
-            onSecondInputChange={(value) => setMaxPrice(+value)}
+            minPricePlaceholder="Min Price"
+            maxPricePlaceholder="Max Price"
+            onMinPriceChange={(value) => setMinPrice(+value)}
+            onMaxPriceChange={(value) => setMaxPrice(+value)}
           />
         </div>
 
@@ -359,8 +369,8 @@ export const MobileFilter = ({ isLoading }: Props) => {
           <div className="mt-4 grid grid-cols-6 flex-wrap items-center gap-y-3">
             {bedrooms.map((bedroom, i) => (
               <SelectButton
-                isSelected={selectedBedrooms.includes(bedroom.value)}
-                onClick={() => handleBedroomClick(bedroom.value)}
+                isSelected={selectedBedrooms.includes(bedroom.value as number)}
+                onClick={() => handleBedroomClick(bedroom.value as number)}
                 key={bedroom.value}
                 className={getJoinedButtonClassName(i, bedrooms.length)}
               >
@@ -379,8 +389,10 @@ export const MobileFilter = ({ isLoading }: Props) => {
           <div className="mt-4 grid grid-cols-6 flex-wrap items-center gap-y-3">
             {bathrooms.map((bathroom, i) => (
               <SelectButton
-                isSelected={selectedBathrooms.includes(bathroom.value)}
-                onClick={() => handleBathroomClick(bathroom.value)}
+                isSelected={selectedBathrooms.includes(
+                  bathroom.value as number
+                )}
+                onClick={() => handleBathroomClick(bathroom.value as number)}
                 key={bathroom.value}
                 className={getJoinedButtonClassName(i, bathrooms.length)}
               >
@@ -400,12 +412,14 @@ export const MobileFilter = ({ isLoading }: Props) => {
             </h1>
           </div>
           <div className="mt-4 grid grid-cols-4 flex-wrap items-center gap-y-3">
-            {homeSizes.map((homeSize, i) => (
+            {areas.map((homeSize, i) => (
               <SelectButton
-                isSelected={selectedHomeSizes.includes(homeSize.value)}
-                onClick={() => handleHomeSizeClick(homeSize.value)}
+                isSelected={selectedHomeSizes.includes(
+                  homeSize.value as number
+                )}
+                onClick={() => handleHomeSizeClick(homeSize.value as number)}
                 key={homeSize.value}
-                className={getJoinedButtonClassName(i, homeSizes.length)}
+                className={getJoinedButtonClassName(i, areas.length)}
               >
                 {homeSize.label}
               </SelectButton>

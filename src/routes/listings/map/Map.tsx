@@ -15,7 +15,7 @@ import {
   PopoverTrigger,
 } from "../../../components/Popover";
 import SkeletonListingCard from "../../../components/skeleton/SkeletonListingCard";
-import { Listing, SearchPayload } from "../../../types/listing";
+import { Listing, ListingType, SearchPayload } from "../../../types/listing";
 import { removeUnusedQueryParams } from "../../../utils/url";
 import { InputSearch } from "../../search/InputSearch";
 import { MapViewport } from "../MapSection";
@@ -23,6 +23,8 @@ import { NoListingsFound } from "../NoListingsFound";
 import { CompactListingCard } from "./CompactListingCard";
 import { Filters } from "./Filters";
 import { MarkerIcon } from "./MarkerIcon";
+import { ChevronDown } from "lucide-react";
+import { ListingCategory } from "../../../components/filters/MobileFilter";
 
 const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
@@ -120,6 +122,48 @@ export const Map = () => {
     setSelectedListing(null);
   });
 
+  const [selectedCategories, setSelectedCategories] = useState<
+    ListingCategory[]
+  >([]);
+  const [selectedTypes, setSelectedTypes] = useState<ListingType[]>([]);
+  const [selectedBedrooms, setSelectedBedrooms] = useState<string[]>([]);
+  const [selectedBathrooms, setSelectedBathrooms] = useState<string[]>([]);
+  const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
+  const [minPrice, setMinPrice] = useState<string | undefined>(undefined);
+  const [maxPrice, setMaxPrice] = useState<string | undefined>(undefined);
+
+  const handleCategoryClick = (category: ListingCategory) => {
+    if (selectedCategories.includes(category)) {
+      setSelectedCategories((prevSelectedCategories) =>
+        prevSelectedCategories.filter((t) => t !== category)
+      );
+    } else {
+      setSelectedCategories([...selectedCategories, category]);
+    }
+  };
+
+  const handleTypeClick = (type: ListingType) => {
+    if (selectedTypes.includes(type)) {
+      setSelectedTypes((prevSelectedTypes) =>
+        prevSelectedTypes.filter((t) => t !== type)
+      );
+    } else {
+      setSelectedTypes([...selectedTypes, type]);
+    }
+  };
+
+  const handleBedroomClick = (bedroom: string) => {
+    setSelectedBedrooms([bedroom]);
+  };
+
+  const handleBathroomClick = (bathroom: string) => {
+    setSelectedBathrooms([bathroom]);
+  };
+
+  const handleAreaClick = (area: string) => {
+    setSelectedAreas([area]);
+  };
+
   return (
     <div className="w-full pt-24">
       <div className="container mx-auto flex w-full flex-col">
@@ -143,11 +187,27 @@ export const Map = () => {
                     <span className="font-medium text-primaryText">
                       {filterItem.label}
                     </span>
-                    <span className="text-gray-500">All</span>
+                    <ChevronDown className="stroke-gray-500" />
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="bg-white w-80 border-2 border-primary-background">
-                  <Filters type={filterItem} />
+                  <Filters
+                    type={filterItem}
+                    selectedBedrooms={selectedBedrooms}
+                    selectedBathrooms={selectedBathrooms}
+                    selectedAreas={selectedAreas}
+                    selectedCategories={selectedCategories}
+                    selectedTypes={selectedTypes}
+                    onCategoryClick={handleCategoryClick}
+                    onTypeClick={handleTypeClick}
+                    onBedroomClick={handleBedroomClick}
+                    onBathroomClick={handleBathroomClick}
+                    onAreaClick={handleAreaClick}
+                    maxPrice={maxPrice}
+                    minPrice={minPrice}
+                    onMaxPriceChange={setMaxPrice}
+                    onMinPriceChange={setMinPrice}
+                  />
                 </PopoverContent>
               </Popover>
             ))}
