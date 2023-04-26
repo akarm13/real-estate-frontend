@@ -15,7 +15,12 @@ import {
   PopoverTrigger,
 } from "../../../components/Popover";
 import SkeletonListingCard from "../../../components/skeleton/SkeletonListingCard";
-import { Listing, ListingType, SearchPayload } from "../../../types/listing";
+import {
+  BuildingType,
+  Listing,
+  ListingType,
+  SearchPayload,
+} from "../../../types/listing";
 import { removeUnusedQueryParams } from "../../../utils/url";
 import { InputSearch } from "../../search/InputSearch";
 import { MapViewport } from "../MapSection";
@@ -68,7 +73,6 @@ export const Map = () => {
     width: "100%",
     height: "100%",
   });
-  const [title, setTitle] = useState<string>("");
   const [boundingBox, setBoundingBox] = useState<number[] | undefined>([]);
   const mapRef = useRef<MapRef>(null);
 
@@ -121,14 +125,35 @@ export const Map = () => {
   useClickAway(compactRef, () => {
     setSelectedListing(null);
   });
+  const queryParams = queryString.parse(
+    removeUnusedQueryParams(location.search)
+  );
 
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
-  const [selectedBedrooms, setSelectedBedrooms] = useState<string[]>([]);
-  const [selectedBathrooms, setSelectedBathrooms] = useState<string[]>([]);
-  const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
-  const [minPrice, setMinPrice] = useState<string | undefined>(undefined);
-  const [maxPrice, setMaxPrice] = useState<string | undefined>(undefined);
+  const [title, setTitle] = useState<string>(
+    (queryParams.keyword as string) || ""
+  );
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(
+    (queryParams.buildingType as string)?.split(",") || []
+  );
+  const [selectedTypes, setSelectedTypes] = useState<string[]>(
+    (queryParams.type as string)?.split(",") || []
+  );
+
+  const [selectedBedrooms, setSelectedBedrooms] = useState<string[]>(
+    queryParams.minBedrooms ? [queryParams.minBedrooms.toString()] : []
+  );
+  const [selectedBathrooms, setSelectedBathrooms] = useState<string[]>(
+    queryParams.minBathrooms ? [queryParams.minBathrooms.toString()] : []
+  );
+  const [selectedAreas, setSelectedAreas] = useState<string[]>(
+    queryParams.minHomeSize ? [queryParams.minHomeSize.toString()] : []
+  );
+  const [minPrice, setMinPrice] = useState<string | undefined>(
+    queryParams.minPrice ? queryParams.minPrice.toString() : undefined
+  );
+  const [maxPrice, setMaxPrice] = useState<string | undefined>(
+    queryParams.maxPrice ? queryParams.maxPrice.toString() : undefined
+  );
 
   const handleCategoryClick = (category: string) => {
     if (selectedCategories.includes(category)) {
@@ -162,26 +187,6 @@ export const Map = () => {
     setSelectedAreas([area]);
   };
 
-  useEffect(() => {
-    console.log({
-      selectedCategories,
-      selectedTypes,
-      selectedBedrooms,
-      selectedBathrooms,
-      selectedAreas,
-      minPrice,
-      maxPrice,
-    });
-  }, [
-    selectedCategories,
-    selectedTypes,
-    selectedBedrooms,
-    selectedBathrooms,
-    selectedAreas,
-    minPrice,
-    maxPrice,
-  ]);
-
   const handleClear = (key: string) => {
     switch (key) {
       case "categories":
@@ -207,6 +212,50 @@ export const Map = () => {
         break;
     }
   };
+
+  const updateURL = () => {
+    const queryParams = {
+      keyword: title,
+      buildingType: selectedCategories.join(","),
+      type: selectedTypes.join(","),
+      minPrice: minPrice ? Number(minPrice) : undefined,
+      maxPrice: maxPrice ? Number(maxPrice) : undefined,
+      minBedrooms:
+        selectedBedrooms.length > 0 ? Number(selectedBedrooms[0]) : undefined,
+      maxBedrooms: undefined,
+      minBathrooms:
+        selectedBathrooms.length > 0 ? Number(selectedBathrooms[0]) : undefined,
+      maxBathrooms: undefined,
+      minHomeSize:
+        selectedAreas.length > 0 ? Number(selectedAreas[0]) : undefined,
+      maxHomeSize: undefined,
+      pageNumber: 1,
+      pageSize: 10,
+      boundingBox: query.boundingBox,
+    };
+
+    const fullUrl = queryString.stringifyUrl({
+      url: "/map",
+      query: queryParams,
+    });
+
+    const cleanUrl = removeUnusedQueryParams(fullUrl);
+
+    navigate(cleanUrl);
+  };
+
+  useEffect(() => {
+    updateURL();
+  }, [
+    title,
+    selectedCategories,
+    selectedTypes,
+    minPrice,
+    maxPrice,
+    selectedBedrooms,
+    selectedBathrooms,
+    selectedAreas,
+  ]);
 
   return (
     <div className="w-full pt-24">

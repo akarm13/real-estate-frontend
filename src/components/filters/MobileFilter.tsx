@@ -28,8 +28,8 @@ export type ListingCategory =
   | "all";
 
 export const categories: FilterItem[] = [
-  { value: "houses", label: "Houses" },
-  { value: "apartments", label: "Apartments" },
+  { value: "house", label: "Houses" },
+  { value: "apartment", label: "Apartments" },
   { value: "villa", label: "Villa" },
   { value: "land", label: "Land" },
 ];
