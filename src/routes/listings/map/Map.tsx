@@ -122,17 +122,15 @@ export const Map = () => {
     setSelectedListing(null);
   });
 
-  const [selectedCategories, setSelectedCategories] = useState<
-    ListingCategory[]
-  >([]);
-  const [selectedTypes, setSelectedTypes] = useState<ListingType[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [selectedBedrooms, setSelectedBedrooms] = useState<string[]>([]);
   const [selectedBathrooms, setSelectedBathrooms] = useState<string[]>([]);
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
   const [minPrice, setMinPrice] = useState<string | undefined>(undefined);
   const [maxPrice, setMaxPrice] = useState<string | undefined>(undefined);
 
-  const handleCategoryClick = (category: ListingCategory) => {
+  const handleCategoryClick = (category: string) => {
     if (selectedCategories.includes(category)) {
       setSelectedCategories((prevSelectedCategories) =>
         prevSelectedCategories.filter((t) => t !== category)
@@ -142,7 +140,7 @@ export const Map = () => {
     }
   };
 
-  const handleTypeClick = (type: ListingType) => {
+  const handleTypeClick = (type: string) => {
     if (selectedTypes.includes(type)) {
       setSelectedTypes((prevSelectedTypes) =>
         prevSelectedTypes.filter((t) => t !== type)
@@ -163,6 +161,26 @@ export const Map = () => {
   const handleAreaClick = (area: string) => {
     setSelectedAreas([area]);
   };
+
+  useEffect(() => {
+    console.log({
+      selectedCategories,
+      selectedTypes,
+      selectedBedrooms,
+      selectedBathrooms,
+      selectedAreas,
+      minPrice,
+      maxPrice,
+    });
+  }, [
+    selectedCategories,
+    selectedTypes,
+    selectedBedrooms,
+    selectedBathrooms,
+    selectedAreas,
+    minPrice,
+    maxPrice,
+  ]);
 
   return (
     <div className="w-full pt-24">

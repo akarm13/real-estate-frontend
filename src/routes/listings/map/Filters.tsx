@@ -15,15 +15,15 @@ import { SelectFilter } from "../filters/SelectFilter";
 
 type FiltersProps = {
   type: FilterItem;
-  selectedCategories: ListingCategory[];
-  selectedTypes: ListingType[];
+  selectedCategories: string[];
+  selectedTypes: string[];
   selectedBedrooms: string[];
   selectedBathrooms: string[];
   selectedAreas: string[];
   minPrice: string | undefined;
   maxPrice: string | undefined;
-  onCategoryClick: (category: ListingCategory) => void;
-  onTypeClick: (type: ListingType) => void;
+  onCategoryClick: (category: string) => void;
+  onTypeClick: (type: string) => void;
   onBedroomClick: (bedroom: string) => void;
   onBathroomClick: (bathroom: string) => void;
   onAreaClick: (area: string) => void;

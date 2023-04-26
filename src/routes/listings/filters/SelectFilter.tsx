@@ -5,8 +5,8 @@ import { SelectButton } from "../../../components/filters/SelectButton";
 type Props = {
   title: string;
   items: FilterItem[];
-  selectedItems: any[];
-  onItemSelected: (itemValue: any) => void;
+  selectedItems: string[];
+  onItemSelected: (itemValue: string) => void;
 };
 
 export const SelectFilter: React.FC<Props> = ({
@@ -23,8 +23,8 @@ export const SelectFilter: React.FC<Props> = ({
       <div className="mt-4 grid grid-cols-2 flex-wrap items-center gap-y-3">
         {items.map((item, i) => (
           <SelectButton
-            isSelected={selectedItems.includes(item.value)}
-            onClick={() => onItemSelected(item.value)}
+            isSelected={selectedItems.includes(item.value.toString())}
+            onClick={() => onItemSelected(item.value.toString())}
             key={item.value}
             className={getJoinedButtonClassName(i, items.length)}
           >
