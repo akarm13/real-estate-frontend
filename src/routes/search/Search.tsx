@@ -52,7 +52,11 @@ export const Search = () => {
           <DesktopFilter isLoading={isFetching || isLoading} />
         </div>
         <div className="lg:hidden">
-          <MobileFilter isLoading={isFetching || isLoading} />
+          <MobileFilter
+            title={title}
+            setTitle={setTitle}
+            isLoading={isFetching || isLoading}
+          />
         </div>
 
         <div className="flex flex-col">

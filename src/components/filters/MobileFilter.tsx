@@ -114,7 +114,7 @@ type Props = {
   isLoading: boolean;
 };
 
-export const MobileFilter = ({ isLoading }: Props) => {
+export const MobileFilter = ({title,setTitle}:any,{ isLoading }: Props) => {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState<ListingType[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<
@@ -235,6 +235,8 @@ export const MobileFilter = ({ isLoading }: Props) => {
           type="text"
           placeholder="Search"
           className="flex h-10 w-full rounded-lg border border-primary-100 bg-transparent py-2 px-3 text-sm transition placeholder:text-slate-400 focus:border-primary-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <SearchIcon
           className="absolute top-3 right-3 text-gray-500"
