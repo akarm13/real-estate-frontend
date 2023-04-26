@@ -52,7 +52,7 @@ export const Button = ({
   return (
     <button
       onClick={onClick}
-      className={`rounded-lg  border-2  border-primary-background bg-white py-2 px-4 text-black md:py-2 md:px-4 md:hover:bg-gray-100 ${className}`}
+      className={`rounded-lg  border  border-primary-background bg-white py-2 px-4 text-black md:py-2 md:px-4 md:hover:bg-gray-100 ${className}`}
     >
       {isLoading ? loader : children}
     </button>

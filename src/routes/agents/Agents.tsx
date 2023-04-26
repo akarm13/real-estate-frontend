@@ -6,6 +6,7 @@ import { useDebounce } from "use-debounce";
 import { Skeleton } from "../../components/skeleton/Skeleton";
 import { AgentList } from "./AgentList";
 import { LoadingSkeleton } from "./LoadingSkeleton";
+import { InputSearch } from "../search/InputSearch";
 
 export const Agents = () => {
   const [search, setSearch] = useState("");
@@ -17,8 +18,8 @@ export const Agents = () => {
     { refetchOnMountOrArgChange: true }
   );
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
   };
 
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -43,7 +44,7 @@ export const Agents = () => {
         </p>
         <div className="flex-2 flex flex-col items-center gap-x-4 gap-y-4 md:flex-row">
           <select
-            className={`h-10 w-full min-w-[120px] rounded-lg border border-primary-100 bg-transparent px-3  focus:outline-none disabled:cursor-not-allowed disabled:opacity-50`}
+            className={`h-10 w-full min-w-[120px] rounded-lg border border-primary-100 bg-transparent px-3 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 focus:ring-primary-500`}
             value={status}
             onChange={handleStatusChange}
             disabled={isLoading || isFetching}
@@ -55,16 +56,13 @@ export const Agents = () => {
             <option value="verified">Verified</option>
             <option value="unverified">Unverified</option>
           </select>
-          <div className="relative flex w-full items-center gap-x-2">
-            <SearchIcon size={20} className="absolute left-3 stroke-gray-600" />
-            <input
-              className="flex h-10  w-full rounded-lg border border-primary-100 bg-transparent py-2 px-3 pl-10 placeholder:text-slate-400 focus:outline-none  disabled:cursor-not-allowed disabled:opacity-50 md:min-w-[350px]"
-              placeholder="Search by name, email, phone"
-              value={search}
-              onChange={handleSearchChange}
-              disabled={isLoading || isFetching}
-            />
-          </div>
+          <InputSearch
+            onValueChange={handleSearchChange}
+            value={search}
+            disabled={isLoading || isFetching}
+            placeholder="Search by name, email, phone"
+            className="md:min-w-[350px]"
+          />
         </div>
       </div>
 

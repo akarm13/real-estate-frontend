@@ -2,23 +2,23 @@ import { DollarSign } from "lucide-react";
 
 type Props = {
   containerClassName?: string;
-  firstInputPlaceholder?: string;
-  secondInputPlaceholder?: string;
-  firstInputValue?: string;
-  secondInputValue?: string;
+  minPricePlaceholder?: string;
+  maxPricePlaceholder?: string;
+  minPriceValue?: string;
+  maxPriceValue?: string;
   name?: string;
-  onFirstInputChange?: (value: string) => void;
-  onSecondInputChange?: (value: string) => void;
+  onMinPriceChange?: (value: string) => void;
+  onMaxPriceChange?: (value: string) => void;
 };
 
 export const PriceInput = ({
   containerClassName,
-  firstInputPlaceholder,
-  firstInputValue,
-  onFirstInputChange,
-  onSecondInputChange,
-  secondInputPlaceholder,
-  secondInputValue,
+  minPricePlaceholder,
+  minPriceValue,
+  onMinPriceChange,
+  onMaxPriceChange,
+  maxPricePlaceholder,
+  maxPriceValue,
   name,
 }: Props) => {
   return (
@@ -34,9 +34,9 @@ export const PriceInput = ({
           <input
             type="number"
             min={0}
-            placeholder={firstInputPlaceholder}
-            value={firstInputValue}
-            onChange={(e) => onFirstInputChange?.(e.target.value)}
+            placeholder={minPricePlaceholder}
+            value={minPriceValue}
+            onChange={(e) => onMinPriceChange?.(e.target.value)}
             className="flex h-10 w-full rounded-lg border border-primary-100 bg-transparent py-2 px-3 pl-8 text-sm placeholder:text-slate-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>
@@ -47,9 +47,9 @@ export const PriceInput = ({
           <input
             type="number"
             min={0}
-            placeholder={secondInputPlaceholder}
-            value={secondInputValue}
-            onChange={(e) => onSecondInputChange?.(e.target.value)}
+            placeholder={maxPricePlaceholder}
+            value={maxPriceValue}
+            onChange={(e) => onMaxPriceChange?.(e.target.value)}
             className="focus:priamry-500 flex h-10 w-full rounded-lg border border-primary-100 bg-transparent py-2 px-3 pl-8 text-sm placeholder:text-slate-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>

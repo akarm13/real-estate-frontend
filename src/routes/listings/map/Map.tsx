@@ -14,9 +14,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "../../../components/Popover";
-import { ListingCategory } from "../../../components/filters/MobileFilter";
 import SkeletonListingCard from "../../../components/skeleton/SkeletonListingCard";
-import { Listing, ListingType, SearchPayload } from "../../../types/listing";
+import { Listing, SearchPayload } from "../../../types/listing";
 import { removeUnusedQueryParams } from "../../../utils/url";
 import { InputSearch } from "../../search/InputSearch";
 import { MapViewport } from "../MapSection";

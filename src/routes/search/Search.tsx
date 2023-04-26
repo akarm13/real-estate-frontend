@@ -57,8 +57,16 @@ export const Search = () => {
 
         <div className="flex flex-col">
           <div className="flex items-center justify-between gap-x-8">
-            <InputSearch title={title} setTitle={setTitle} />
-            <LinkButton variant="secondary" to="/map">
+            <InputSearch
+              value={title}
+              onValueChange={setTitle}
+              placeholder="Search by title"
+            />
+            <LinkButton
+              variant="secondary"
+              to="/map"
+              className="hidden lg:flex"
+            >
               <MapIcon />
             </LinkButton>
           </div>
