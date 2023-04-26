@@ -29,6 +29,7 @@ type FiltersProps = {
   onAreaClick: (area: string) => void;
   onMinPriceChange: (minPrice: string) => void;
   onMaxPriceChange: (maxPrice: string) => void;
+  onClear: (key: string) => void;
 };
 
 export const Filters = ({
@@ -47,6 +48,7 @@ export const Filters = ({
   minPrice,
   onMaxPriceChange,
   onMinPriceChange,
+  onClear,
 }: FiltersProps) => {
   switch (type.value) {
     case "type":
@@ -56,6 +58,7 @@ export const Filters = ({
           items={types}
           selectedItems={selectedTypes}
           onItemSelected={onTypeClick}
+          onClear={onClear}
         />
       );
     case "category":
@@ -65,6 +68,7 @@ export const Filters = ({
           items={categories}
           selectedItems={selectedCategories}
           onItemSelected={onCategoryClick}
+          onClear={onClear}
         />
       );
     case "price":
@@ -83,6 +87,7 @@ export const Filters = ({
           items={bedrooms}
           selectedItems={selectedBedrooms}
           onItemSelected={onBedroomClick}
+          onClear={onClear}
         />
       );
     case "bathrooms":
@@ -92,15 +97,17 @@ export const Filters = ({
           items={bathrooms}
           selectedItems={selectedBathrooms}
           onItemSelected={onBathroomClick}
+          onClear={onClear}
         />
       );
     case "area":
       return (
         <SelectFilter
-          title="Home Sizes"
+          title="Area"
           items={areas}
           selectedItems={selectedAreas}
           onItemSelected={onAreaClick}
+          onClear={onClear}
         />
       );
 

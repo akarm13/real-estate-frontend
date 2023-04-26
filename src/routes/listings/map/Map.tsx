@@ -23,7 +23,7 @@ import { NoListingsFound } from "../NoListingsFound";
 import { CompactListingCard } from "./CompactListingCard";
 import { Filters } from "./Filters";
 import { MarkerIcon } from "./MarkerIcon";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
 import { ListingCategory } from "../../../components/filters/MobileFilter";
 
 const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
@@ -182,6 +182,32 @@ export const Map = () => {
     maxPrice,
   ]);
 
+  const handleClear = (key: string) => {
+    switch (key) {
+      case "categories":
+        setSelectedCategories([]);
+        break;
+      case "type":
+        setSelectedTypes([]);
+        break;
+      case "bedrooms":
+        setSelectedBedrooms([]);
+        break;
+      case "bathrooms":
+        setSelectedBathrooms([]);
+        break;
+      case "area":
+        setSelectedAreas([]);
+        break;
+      case "price":
+        setMaxPrice(undefined);
+        setMinPrice(undefined);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="w-full pt-24">
       <div className="container mx-auto flex w-full flex-col">
@@ -225,6 +251,7 @@ export const Map = () => {
                     minPrice={minPrice}
                     onMaxPriceChange={setMaxPrice}
                     onMinPriceChange={setMinPrice}
+                    onClear={(key) => handleClear(key)}
                   />
                 </PopoverContent>
               </Popover>
