@@ -1,8 +1,7 @@
 import { Check } from "lucide-react";
-import { useMemo, useState } from "react";
-import { Button } from "../../../components/Button";
+import { useMemo } from "react";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 type StepperProps = {
   activeStep: number;
@@ -10,24 +9,20 @@ type StepperProps = {
     title: string;
   }[];
 };
-
 export const Stepper = ({ activeStep, steps }: StepperProps) => {
   return (
-    <div className="flex flex-col items-center gap-y-8">
-      <div className="flex items-center gap-x-4">
+    <div className="flex flex-col gap-y-8 relative">
+      <div className="flex justify-between">
+        <div className="absolute h-2 bg-primary-50 top-1/4 rounded-lg left-1/2 -translate-x-1/2 w-[calc(100%-4rem)]"></div>
         {steps.map((step, index) => (
-          <Step
-            key={index}
-            title={step.title}
-            step={index}
-            activeStep={activeStep}
-          />
+          <div key={index} className="z-10">
+            <Step title={step.title} step={index} activeStep={activeStep} />
+          </div>
         ))}
       </div>
     </div>
   );
 };
-
 type StepProps = {
   title: string;
   step: number;
@@ -52,12 +47,12 @@ export const Step = ({ activeStep, step, title }: StepProps) => {
       animate={stepStatus}
     >
       <div
-        className={`flex items-center justify-center w-10 h-10 rounded-full ${
+        className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full ${
           stepStatus === "completed" ? "bg-[#EEEDFE]" : "bg-primary-100"
         }`}
       >
         <div
-          className={`w-6 h-6 rounded-full ${
+          className={`w-4 h-4 sm:w-6 sm:h-6 rounded-full ${
             stepStatus === "completed" ? "bg-primary-500" : "bg-white"
           } flex items-center justify-center`}
         >
@@ -73,14 +68,14 @@ export const Step = ({ activeStep, step, title }: StepProps) => {
             />
           </motion.div>
           {stepStatus !== "completed" && (
-            <div className="w-3 h-3 rounded-full bg-primary-500"></div>
+            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary-500"></div>
           )}
         </div>
       </div>
 
       <div className="ml-4">
         <h3
-          className={`${
+          className={`text-xs md:text-base ${
             activeStep === step
               ? "text-primaryText font-semibold "
               : "text-gray-600 font-medium"

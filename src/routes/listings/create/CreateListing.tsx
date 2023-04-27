@@ -43,37 +43,38 @@ export const CreateListing = () => {
 
   return (
     <div className="container pt-24">
-      <Stepper steps={steps} activeStep={activeStep} />
-      <div className="mt-8 relative min-h-[500px]">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeStep}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 50 }}
-            transition={formTransition}
-            className="absolute w-full"
+      <div className="w-full lg:w-3/4 xl:w-1/2 mx-auto">
+        <Stepper steps={steps} activeStep={activeStep} />
+        <div className="mt-8 relative min-h-[500px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeStep}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 50 }}
+              transition={formTransition}
+              className="absolute w-full"
+            >
+              {renderForm}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+        <div className="flex justify-between mt-8">
+          <Button
+            variant="secondary"
+            onClick={() => setActiveStep((prev) => prev - 1)}
+            disabled={activeStep === 0}
           >
-            {renderForm}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      <div className="flex justify-between mt-8">
-        <Button
-          variant="secondary"
-          onClick={() => setActiveStep((prev) => prev - 1)}
-          disabled={activeStep === 0}
-        >
-          Back
-        </Button>
-        <Button
-          variant="primary"
-          onClick={() => setActiveStep((prev) => prev + 1)}
-          disabled={activeStep === steps.length - 1}
-        >
-          Next
-        </Button>
+            Back
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => setActiveStep((prev) => prev + 1)}
+            disabled={activeStep === steps.length - 1}
+          >
+            Next
+          </Button>
+        </div>
       </div>
     </div>
   );
