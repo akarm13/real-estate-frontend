@@ -114,7 +114,10 @@ type Props = {
   isLoading: boolean;
 };
 
-export const MobileFilter = ({title,setTitle}:any,{ isLoading }: Props) => {
+export const MobileFilter = (
+  { title, setTitle }: any,
+  { isLoading }: Props
+) => {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState<ListingType[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<
@@ -288,6 +291,7 @@ export const MobileFilter = ({title,setTitle}:any,{ isLoading }: Props) => {
       <BottomSheet
         open={isFiltersOpen}
         onDismiss={() => setIsFiltersOpen(false)}
+        maxHeight={650}
         footer={
           <Button
             onClick={onDismiss}
@@ -298,7 +302,7 @@ export const MobileFilter = ({title,setTitle}:any,{ isLoading }: Props) => {
           </Button>
         }
       >
-        <div className="p-4">
+        <div className="p-4 ">
           <div className="flex flex-col">
             <h1 className="text-base font-semibold text-primaryText ">Type</h1>
             <span className="mt-1 font-normal text-gray-500">

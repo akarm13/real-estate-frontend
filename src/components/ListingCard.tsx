@@ -17,7 +17,7 @@ export const ListingCard = ({
   images,
 }: Listing) => {
   return (
-    <div className="listing-card relative z-10 my-4 flex snap-center flex-col rounded-lg transition duration-200 lg:my-0">
+    <div className="listing-card relative my-4 flex snap-center flex-col rounded-lg transition duration-200 lg:my-0">
       <div className="overflow-hidden rounded-lg">
         <img
           src={images[0]}
