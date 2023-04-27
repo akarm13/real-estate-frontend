@@ -15,6 +15,7 @@ import { Toaster } from "react-hot-toast";
 import { GuestRoute } from "../components/GuestRoute";
 import { useSetUserFromLocalStorage } from "../hooks/useSetUserFromLocalStorage";
 import { Map } from "../routes/listings/map/Map";
+import { CreateListing } from "../routes/listings/create/CreateListing";
 
 function App() {
   const routes = useRoutes([
@@ -31,7 +32,7 @@ function App() {
     },
     { path: "/search", element: <Search /> },
     { path: "/map", element: <Map /> },
-
+    { path: "/listings/create", element: <CreateListing /> },
     { path: "/listings/:id", element: <ListingDetails /> },
     { path: "/agents", element: <Agents /> },
   ]);
