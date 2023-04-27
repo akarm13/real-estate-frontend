@@ -43,7 +43,7 @@ export const CreateListing = () => {
 
   return (
     <div className="container pt-24">
-      <div className="w-full lg:w-3/4 xl:w-1/2 mx-auto">
+      <div className="w-full lg:w-3/4 xl:w-4/6 mx-auto mt-8">
         <Stepper steps={steps} activeStep={activeStep} />
         <div className="mt-8 relative min-h-[500px]">
           <AnimatePresence mode="wait">

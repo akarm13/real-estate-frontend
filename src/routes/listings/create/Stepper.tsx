@@ -43,7 +43,7 @@ export const Step = ({ activeStep, step, title }: StepProps) => {
 
   return (
     <motion.div
-      className={`flex items-center flex-col gap-y-2 ${stepStatus}`}
+      className={`flex flex-col gap-y-4 ${stepStatus}`}
       animate={stepStatus}
     >
       <div
@@ -73,17 +73,15 @@ export const Step = ({ activeStep, step, title }: StepProps) => {
         </div>
       </div>
 
-      <div className="ml-4">
-        <h3
-          className={`text-xs md:text-base ${
-            activeStep === step
-              ? "text-primaryText font-semibold "
-              : "text-gray-600 font-medium"
-          }`}
-        >
-          {title}
-        </h3>
-      </div>
+      <h3
+        className={`text-xs md:text-base ${
+          activeStep === step
+            ? "text-primaryText font-semibold "
+            : "text-gray-600 font-medium"
+        }`}
+      >
+        {title}
+      </h3>
     </motion.div>
   );
 };
