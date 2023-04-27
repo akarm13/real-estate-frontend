@@ -24,7 +24,7 @@ export const Stepper = ({ activeStep, steps }: StepperProps) => {
   }, [activeStep]);
 
   return (
-    <div className="flex flex-col gap-y-8 relative">
+    <div className="flex flex-col gap-y-8 relative px-1">
       <div className="flex justify-between">
         {steps.map((step, index) => (
           <div key={index} className="z-10">

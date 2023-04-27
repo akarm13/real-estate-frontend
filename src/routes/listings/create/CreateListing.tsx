@@ -2,6 +2,17 @@ import { useMemo, useState } from "react";
 import { Stepper } from "./Stepper";
 import { Button } from "../../../components/Button";
 import { AnimatePresence, motion } from "framer-motion";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../../components/Select";
+import { categories } from "../../../components/filters/MobileFilter";
+import { Input } from "../../../components/Input";
+import { Textarea } from "../../../components/Textarea";
+import { BasicInfoForm } from "./BasicInfoForm";
 
 const steps = [
   {
@@ -24,13 +35,13 @@ export const CreateListing = () => {
   const renderForm = useMemo(() => {
     switch (activeStep) {
       case 0:
-        return <FormStepOne />;
+        return <BasicInfoForm />;
       case 1:
-        return <FormStepTwo />;
+        return <LocationForm />;
       case 2:
-        return <FormStepThree />;
+        return <AmenitiesForm />;
       case 3:
-        return <FormStepFour />;
+        return <GalleryForm />;
       default:
         return null;
     }
@@ -45,7 +56,7 @@ export const CreateListing = () => {
     <div className="container pt-24">
       <div className="w-full lg:w-3/4 xl:w-4/6 mx-auto mt-8 relative overflow-hidden">
         <Stepper steps={steps} activeStep={activeStep} />
-        <div className="mt-8 ">
+        <div className="mt-16 px-2">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
@@ -53,7 +64,7 @@ export const CreateListing = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}
               transition={formTransition}
-              className="w-full h-[500px] overflow-y-auto"
+              className="w-full h-[600px] "
             >
               {renderForm}
             </motion.div>
@@ -82,112 +93,13 @@ export const CreateListing = () => {
   );
 };
 
-const FormStepOne = () => {
-  return (
-    <div>
-      <h1>Form 1</h1>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum impedit
-      labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-      impedit labore quos possimus hic, quo laudantium eligendi, ipsam voluptas
-      aspernatur nesciunt? Accusamus quos et esse delectus ad doloremque eos
-      atque!
-    </div>
-  );
-};
-
-const FormStepTwo = () => {
+const LocationForm = () => {
   return <div>Form 2</div>;
 };
 
-const FormStepThree = () => {
+const AmenitiesForm = () => {
   return <div>Form 3</div>;
 };
-const FormStepFour = () => {
+const GalleryForm = () => {
   return <div>Form 4</div>;
 };
