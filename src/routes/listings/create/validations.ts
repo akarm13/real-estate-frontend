@@ -2,27 +2,32 @@ import * as yup from "yup";
 
 const basicInfoSchema = yup.object().shape({
   category: yup.string().required("Category is required"),
+  type: yup.string().required("Type is required"),
+
   title: yup.string().required("Title is required"),
+  description: yup.string().required("Description is required"),
   area: yup
     .number()
-    .typeError("Area must be a number")
-    .positive("Area must be a positive number")
-    .required("Area is required"),
+    .required("Area is required")
+    .typeError("Area is required")
+    .positive("Area must be a positive number"),
+
   bedrooms: yup
     .number()
-    .typeError("Bedrooms must be a number")
+    .required("Bedrooms is required")
+    .typeError("Bedrooms is required")
     .integer("Bedrooms must be a whole number")
-    .positive("Bedrooms must be a positive number")
-    .required("Bedrooms is required"),
+    .positive("Bedrooms must be a positive number"),
   bathrooms: yup
     .number()
-    .typeError("Bathrooms must be a number")
+    .required("Bathrooms is required")
+    .typeError("Bathrooms is required")
     .integer("Bathrooms must be a whole number")
-    .positive("Bathrooms must be a positive number")
-    .required("Bathrooms is required"),
+    .positive("Bathrooms must be a positive number"),
+
   other: yup
     .number()
-    .typeError("Other must be a number")
+    .typeError("Other is required")
     .integer("Other must be a whole number")
     .positive("Other must be a positive number"),
 });

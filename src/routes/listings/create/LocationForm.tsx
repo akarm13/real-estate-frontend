@@ -20,13 +20,18 @@ const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 import mapboxgl from "mapbox-gl";
 import { ReactComponent as MarkerIcon } from "../../../assets/icons/marker-icon.svg";
 import { Controller, useFormContext } from "react-hook-form";
+import { ErrorMessage } from "../../../components/ErrorMessage";
 
 type Props = {
   onSubmit: (data: any) => void;
 };
 
 export const LocationForm = ({ onSubmit }: Props) => {
-  const { control, setValue } = useFormContext();
+  const {
+    control,
+    setValue,
+    formState: { errors },
+  } = useFormContext();
 
   const [viewport, setViewport] = useState<MapViewport>({
     width: "100%",
@@ -91,23 +96,30 @@ export const LocationForm = ({ onSubmit }: Props) => {
             control={control}
             name="city"
             render={({ field }) => (
-              <Select>
+              <Select
+                value={field.value}
+                onValueChange={(e) => field.onChange(e)}
+              >
                 <SelectTrigger id="city">
-                  <SelectValue {...field} placeholder="Eg. Slemani" />
+                  <SelectValue placeholder="Eg. Slemani" />
                 </SelectTrigger>
                 <SelectContent>
-                  {cities.map((category) => (
-                    <SelectItem
-                      key={category.value}
-                      value={category.value as string}
-                    >
-                      {category.label}
+                  {cities.map((city) => (
+                    <SelectItem key={city.value} value={city.value as string}>
+                      {city.label}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             )}
           />
+          <div className="min-h-[24px]">
+            {errors.city && (
+              <ErrorMessage>
+                {(errors.city.message as string) || "City is required"}
+              </ErrorMessage>
+            )}
+          </div>
         </div>
         <div className="flex flex-col gap-y-2 mt-4">
           <label htmlFor="address" className="font-semibold text-primaryText">
@@ -124,6 +136,14 @@ export const LocationForm = ({ onSubmit }: Props) => {
               />
             )}
           />
+
+          <div className="min-h-[24px]">
+            {errors.address && (
+              <ErrorMessage>
+                {(errors.address.message as string) || "Address is required"}
+              </ErrorMessage>
+            )}
+          </div>
         </div>
 
         <div className="mt-8 h-[350px] flex flex-col gap-y-4">
@@ -172,6 +192,14 @@ export const LocationForm = ({ onSubmit }: Props) => {
               />
             </Marker>
           </MapGL>
+
+          <div className="min-h-[24px]">
+            {errors.category && (
+              <ErrorMessage>
+                {(errors.category.message as string) || "Category is required"}
+              </ErrorMessage>
+            )}
+          </div>
         </div>
       </div>
     </div>

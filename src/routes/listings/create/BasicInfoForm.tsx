@@ -9,11 +9,9 @@ import {
 import { Textarea } from "../../../components/Textarea";
 import { categories } from "../../../components/filters/MobileFilter";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useState } from "react";
-import { Controller } from "react-hook-form";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
+import { ErrorMessage } from "../../../components/ErrorMessage";
 
 type Props = {
   onSubmit: (data: any) => void;
@@ -40,7 +38,7 @@ export const BasicInfoForm = ({ onSubmit }: Props) => {
         </h4>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 mt-8 gap-x-8 gap-y-4 items-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 gap-x-8 gap-y-4 items-center">
         <div className="flex flex-col gap-y-2">
           <label htmlFor="category" className="font-semibold text-primaryText">
             Category
@@ -72,6 +70,13 @@ export const BasicInfoForm = ({ onSubmit }: Props) => {
               </Select>
             )}
           />
+          <div className="min-h-[24px]">
+            {errors.category && (
+              <ErrorMessage>
+                {(errors.category.message as string) || "Category is required"}
+              </ErrorMessage>
+            )}
+          </div>
         </div>
         <div className="flex flex-col gap-y-2">
           {/* Label */}
@@ -105,6 +110,13 @@ export const BasicInfoForm = ({ onSubmit }: Props) => {
               </Select>
             )}
           />
+          <div className="min-h-[24px]">
+            {errors.type && (
+              <ErrorMessage>
+                {(errors.type.message as string) || "Type is required"}
+              </ErrorMessage>
+            )}
+          </div>
         </div>
         <div className="flex flex-col gap-y-2">
           {/* Label */}
@@ -117,9 +129,16 @@ export const BasicInfoForm = ({ onSubmit }: Props) => {
             type="number"
             id="area"
           />
+          <div className="min-h-[24px]">
+            {errors.area && (
+              <ErrorMessage>
+                {(errors.area.message as string) || "Area is required"}
+              </ErrorMessage>
+            )}
+          </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 mt-8 gap-x-8 gap-y-4 items-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 gap-x-8  items-center">
         <div className="flex flex-col gap-y-2">
           {/* Label */}
           <label htmlFor="bedrooms" className="font-semibold text-primaryText">
@@ -131,6 +150,14 @@ export const BasicInfoForm = ({ onSubmit }: Props) => {
             type="number"
             id="bedrooms"
           />
+
+          <div className="min-h-[24px]">
+            {errors.bedrooms && (
+              <ErrorMessage>
+                {(errors.bedrooms.message as string) || "Bedrooms is required"}
+              </ErrorMessage>
+            )}
+          </div>
         </div>
         <div className="flex flex-col gap-y-2">
           {/* Label */}
@@ -143,6 +170,14 @@ export const BasicInfoForm = ({ onSubmit }: Props) => {
             type="number"
             id="bathrooms"
           />
+          <div className="min-h-[24px]">
+            {errors.bathrooms && (
+              <ErrorMessage>
+                {(errors.bathrooms.message as string) ||
+                  "Bathrooms is required"}
+              </ErrorMessage>
+            )}
+          </div>
         </div>
         <div className="flex flex-col gap-y-2">
           {/* Label */}
@@ -155,11 +190,18 @@ export const BasicInfoForm = ({ onSubmit }: Props) => {
             type="number"
             id="other"
           />
+          <div className="min-h-[24px]">
+            {errors.other && (
+              <ErrorMessage>
+                {(errors.other.message as string) || "Other rooms is required"}
+              </ErrorMessage>
+            )}
+          </div>
         </div>
       </div>
 
       {/* Title and description */}
-      <div className="mt-8">
+      <div className="mt-4">
         <div className="flex flex-col gap-y-2">
           <label htmlFor="title" className="font-semibold text-primaryText">
             Title
@@ -169,6 +211,13 @@ export const BasicInfoForm = ({ onSubmit }: Props) => {
             placeholder="Eg. 2 Bedroom Apartment"
             id="title"
           />
+          <div className="min-h-[24px]">
+            {errors.title && (
+              <ErrorMessage>
+                {(errors.title.message as string) || "Title is required"}
+              </ErrorMessage>
+            )}
+          </div>
         </div>
         <div className="flex flex-col gap-y-2 mt-4">
           <label
@@ -183,6 +232,15 @@ export const BasicInfoForm = ({ onSubmit }: Props) => {
             rows={25}
             id="description"
           />
+
+          <div className="min-h-[24px]">
+            {errors.description && (
+              <ErrorMessage>
+                {(errors.description.message as string) ||
+                  "Description is required"}
+              </ErrorMessage>
+            )}
+          </div>
         </div>
       </div>
     </form>
