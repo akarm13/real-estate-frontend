@@ -20,7 +20,11 @@ const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 import mapboxgl from "mapbox-gl";
 import { ReactComponent as MarkerIcon } from "../../../assets/icons/marker-icon.svg";
 
-export const LocationForm = () => {
+type Props = {
+  onSubmit: (data: any) => void;
+};
+
+export const LocationForm = ({ onSubmit }: Props) => {
   const [viewport, setViewport] = useState<MapViewport>({
     width: "100%",
     height: "100%",

@@ -35,8 +35,10 @@ const amenities = [
     __v: 0,
   },
 ];
-
-export const AmenitiesForm = () => {
+type Props = {
+  onSubmit: (data: any) => void;
+};
+export const AmenitiesForm = ({ onSubmit }: Props) => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col gap-y-2">

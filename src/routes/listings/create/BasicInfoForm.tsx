@@ -11,53 +11,21 @@ import { categories } from "../../../components/filters/MobileFilter";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Controller } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
-const schema = yup.object().shape({
-  category: yup.string().required("Category is required"),
-  title: yup.string().required("Title is required"),
-  area: yup
-    .number()
-    .typeError("Area must be a number")
-    .positive("Area must be a positive number")
-    .required("Area is required"),
-  bedrooms: yup
-    .number()
-    .typeError("Bedrooms must be a number")
-    .integer("Bedrooms must be a whole number")
-    .positive("Bedrooms must be a positive number")
-    .required("Bedrooms is required"),
-  bathrooms: yup
-    .number()
-    .typeError("Bathrooms must be a number")
-    .integer("Bathrooms must be a whole number")
-    .positive("Bathrooms must be a positive number")
-    .required("Bathrooms is required"),
-  other: yup
-    .number()
-    .typeError("Other must be a number")
-    .integer("Other must be a whole number")
-    .positive("Other must be a positive number"),
-});
-
-export const BasicInfoForm = () => {
+type Props = {
+  onSubmit: (data: any) => void;
+};
+export const BasicInfoForm = ({ onSubmit }: Props) => {
   const [submitting, setSubmitting] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  const onSubmit = (data: any) => {
-    console.log("aakar");
-    setSubmitting(true);
-    console.log(data);
-  };
+  } = useFormContext();
 
   console.log(errors);
   return (
@@ -216,16 +184,6 @@ export const BasicInfoForm = () => {
             id="description"
           />
         </div>
-      </div>
-
-      <div className="mt-8">
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="submit"
-          disabled={submitting}
-        >
-          Submit
-        </button>
       </div>
     </form>
   );

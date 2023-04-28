@@ -1,12 +1,15 @@
 import { Image, X } from "lucide-react";
-import React, { useState, ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import "./style.css";
 
 interface FileWithPreview extends File {
   preview?: string;
 }
 
-export const PhotosForm: React.FC = () => {
+type Props = {
+  onSubmit: (data: any) => void;
+};
+export const PhotosForm = ({ onSubmit }: Props) => {
   const [files, setFiles] = useState<FileWithPreview[]>([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
