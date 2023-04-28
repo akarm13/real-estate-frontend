@@ -40,7 +40,7 @@ export const PhotosForm: React.FC = () => {
     return (
       <label
         key={key}
-        className="placeholder relative w-52 h-52 border border-gray-100 rounded-lg m-1 flex justify-center items-center cursor-pointer hover:border-primary-500 transition"
+        className="placeholder relative w-32 h-32 md:w-52 md:h-52 border border-gray-100 rounded-lg m-1 flex justify-center items-center cursor-pointer hover:border-primary-500 transition"
       >
         <input
           type="file"
