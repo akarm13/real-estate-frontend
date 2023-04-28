@@ -1,12 +1,16 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { Amenity } from "../../../types/listing";
+import { ErrorMessage } from "../../../components/ErrorMessage";
 
 type Props = {
   onSubmit: (data: any) => void;
   amenities: Amenity[];
 };
 export const AmenitiesForm = ({ onSubmit, amenities }: Props) => {
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div className="flex flex-col">
@@ -43,6 +47,13 @@ export const AmenitiesForm = ({ onSubmit, amenities }: Props) => {
               </div>
             ))
           : null}
+      </div>
+      <div className="min-h-[24px] mt-8">
+        {errors.amenities && (
+          <ErrorMessage>
+            {(errors.amenities.message as string) || "Amenities is required"}
+          </ErrorMessage>
+        )}
       </div>
     </div>
   );
