@@ -1,5 +1,3 @@
-import { Checkbox } from "../../../components/Checkbox";
-
 const amenities = [
   {
     _id: "63fa197bde46d05a3ccaefc9",
