@@ -23,10 +23,10 @@ const steps = [
     title: "Location",
   },
   {
-    title: "Photos",
+    title: "Amenities",
   },
   {
-    title: "Details",
+    title: "Photos",
   },
 ];
 
