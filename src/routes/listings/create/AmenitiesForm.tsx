@@ -1,3 +1,4 @@
+import { Controller, useFormContext } from "react-hook-form";
 import { Amenity } from "../../../types/listing";
 
 type Props = {
@@ -5,6 +6,8 @@ type Props = {
   amenities: Amenity[];
 };
 export const AmenitiesForm = ({ onSubmit, amenities }: Props) => {
+  const { control } = useFormContext();
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-col gap-y-2">
@@ -18,12 +21,18 @@ export const AmenitiesForm = ({ onSubmit, amenities }: Props) => {
       <div className="grid grid-cols-2 sm:grid-cols-3 mt-8 gap-x-8 gap-y-4 items-center">
         {amenities
           ? amenities.map((amenity) => (
-              <div className="flex gap-x-2 items-center ">
-                <input
-                  id={amenity._id}
-                  type="checkbox"
-                  value={amenity._id}
-                  className="h-5 w-5 rounded border-0  bg-gray-100  text-primary-500 focus:ring-0 focus:ring-offset-0"
+              <div className="flex gap-x-2 items-center" key={amenity._id}>
+                <Controller
+                  control={control}
+                  name={`amenities.${amenity._id}`}
+                  render={({ field }) => (
+                    <input
+                      {...field}
+                      id={amenity._id}
+                      type="checkbox"
+                      className="h-5 w-5 rounded border-0 bg-gray-100 text-primary-500 focus:ring-0 focus:ring-offset-0"
+                    />
+                  )}
                 />
                 <label
                   htmlFor={amenity._id}

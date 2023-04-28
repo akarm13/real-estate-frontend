@@ -1,6 +1,7 @@
 import { Image, X } from "lucide-react";
 import { ChangeEvent, useState } from "react";
 import "./style.css";
+import { Controller, useFormContext } from "react-hook-form";
 
 interface FileWithPreview extends File {
   preview?: string;
@@ -11,6 +12,7 @@ type Props = {
 };
 export const PhotosForm = ({ onSubmit }: Props) => {
   const [files, setFiles] = useState<FileWithPreview[]>([]);
+  const { control } = useFormContext();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
@@ -41,42 +43,54 @@ export const PhotosForm = ({ onSubmit }: Props) => {
     const key = `placeholder-${index}`;
 
     return (
-      <label
-        key={key}
-        className="placeholder relative w-32 h-32 md:w-52 md:h-52 border border-gray-100 rounded-lg m-1 flex justify-center items-center cursor-pointer hover:border-primary-500 transition"
-      >
-        <input
-          type="file"
-          className="hidden"
-          accept="image/*"
-          multiple
-          onChange={(e) => handleChange(e)}
-        />
-        {file ? (
-          <>
-            <img
-              src={file.preview}
-              className="img w-full h-full object-cover rounded-lg"
-              alt={file.name}
-            />
-            <button
-              className="remove-button absolute top-0 right-0 bg-white rounded-full p-1 m-1 shadow hover:bg-red-500 transition"
-              onClick={(e) => {
-                e.preventDefault();
-                handleRemove(index);
+      <Controller
+        key={`controller-${index}`}
+        control={control}
+        name={`files.${index}`}
+        defaultValue={null}
+        render={({ field }) => (
+          <label
+            key={key}
+            className="placeholder relative w-32 h-32 md:w-52 md:h-52 border border-gray-100 rounded-lg m-1 flex justify-center items-center cursor-pointer hover:border-primary-500 transition"
+          >
+            <input
+              {...field}
+              type="file"
+              className="hidden"
+              accept="image/*"
+              multiple
+              onChange={(e) => {
+                handleChange(e);
+                field.onChange(e.target.files ? e.target.files[0] : null);
               }}
-            >
-              <X width={16} height={16} className="close-icon" />
-            </button>
-          </>
-        ) : (
-          <Image
-            width={48}
-            height={48}
-            className="text-gray-300 transition image-icon"
-          />
+            />
+            {file ? (
+              <>
+                <img
+                  src={file.preview}
+                  className="img w-full h-full object-cover rounded-lg"
+                  alt={file.name}
+                />
+                <button
+                  className="remove-button absolute top-0 right-0 bg-white rounded-full p-1 m-1 shadow hover:bg-red-500 transition"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleRemove(index);
+                  }}
+                >
+                  <X width={16} height={16} className="close-icon" />
+                </button>
+              </>
+            ) : (
+              <Image
+                width={48}
+                height={48}
+                className="text-gray-300 transition image-icon"
+              />
+            )}
+          </label>
         )}
-      </label>
+      />
     );
   });
 

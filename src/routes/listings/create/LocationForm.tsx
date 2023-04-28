@@ -19,12 +19,15 @@ const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
 import mapboxgl from "mapbox-gl";
 import { ReactComponent as MarkerIcon } from "../../../assets/icons/marker-icon.svg";
+import { Controller, useFormContext } from "react-hook-form";
 
 type Props = {
   onSubmit: (data: any) => void;
 };
 
 export const LocationForm = ({ onSubmit }: Props) => {
+  const { control, setValue } = useFormContext();
+
   const [viewport, setViewport] = useState<MapViewport>({
     width: "100%",
     height: "100%",
@@ -84,32 +87,48 @@ export const LocationForm = ({ onSubmit }: Props) => {
           <label htmlFor="city" className="font-semibold text-primaryText">
             City
           </label>
-          <Select>
-            <SelectTrigger id="city">
-              <SelectValue placeholder="Eg. Slemani" />
-            </SelectTrigger>
-            <SelectContent>
-              {cities.map((category) => (
-                <SelectItem
-                  key={category.value}
-                  value={category.value as string}
-                >
-                  {category.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <Controller
+            control={control}
+            name="city"
+            render={({ field }) => (
+              <Select>
+                <SelectTrigger id="city">
+                  <SelectValue {...field} placeholder="Eg. Slemani" />
+                </SelectTrigger>
+                <SelectContent>
+                  {cities.map((category) => (
+                    <SelectItem
+                      key={category.value}
+                      value={category.value as string}
+                    >
+                      {category.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          />
         </div>
         <div className="flex flex-col gap-y-2 mt-4">
           <label htmlFor="address" className="font-semibold text-primaryText">
             Address
           </label>
-          <Input placeholder="Eg. Aqary Street, Behind City Star" id="title" />
+          <Controller
+            control={control}
+            name="address"
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Eg. Aqary Street, Behind City Star"
+                id="address"
+              />
+            )}
+          />
         </div>
 
         <div className="mt-8 h-[350px] flex flex-col gap-y-4">
           <label htmlFor="map" className="font-semibold text-primaryText">
-            Map{" "}
+            Map
             <span className="font-normal text-gray-600 ml-1">
               (Drag the pin around and pick)
             </span>
@@ -133,7 +152,13 @@ export const LocationForm = ({ onSubmit }: Props) => {
               longitude={marker.longitude}
               latitude={marker.latitude}
               draggable
-              onDragEnd={onMarkerDragEnd}
+              onDragEnd={(event) => {
+                onMarkerDragEnd(event);
+                setValue("marker", {
+                  latitude: event.lngLat.lat,
+                  longitude: event.lngLat.lng,
+                });
+              }}
               style={{
                 cursor: "pointer",
                 zIndex: 10,
