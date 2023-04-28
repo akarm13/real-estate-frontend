@@ -14,6 +14,8 @@ import { Input } from "../../../components/Input";
 import { Textarea } from "../../../components/Textarea";
 import { BasicInfoForm } from "./BasicInfoForm";
 import { LocationForm } from "./LocationForm";
+import { AmenitiesForm } from "./AmenitiesForm";
+import { PhotosForm } from "./PhotosForm";
 
 const steps = [
   {
@@ -42,7 +44,7 @@ export const CreateListing = () => {
       case 2:
         return <AmenitiesForm />;
       case 3:
-        return <GalleryForm />;
+        return <PhotosForm />;
       default:
         return null;
     }
@@ -92,11 +94,4 @@ export const CreateListing = () => {
       </div>
     </div>
   );
-};
-
-const AmenitiesForm = () => {
-  return <div>Form 3</div>;
-};
-const GalleryForm = () => {
-  return <div>Form 4</div>;
 };
