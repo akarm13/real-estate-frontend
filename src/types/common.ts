@@ -6,3 +6,7 @@ export type PaginatedResponse<T> = {
     current: number;
   };
 };
+
+export type UploadResponse = {
+  urls: string[];
+};

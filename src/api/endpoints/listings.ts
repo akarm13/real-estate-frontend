@@ -12,6 +12,7 @@ export const listingsApi = api.injectEndpoints({
         url: "/listings",
         method: "POST",
         body,
+      
       }),
     }),
     getAllListings: builder.query<PaginatedResponse<Listing>, SearchPayload>({
