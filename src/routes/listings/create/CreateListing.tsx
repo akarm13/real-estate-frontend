@@ -13,6 +13,7 @@ import { categories } from "../../../components/filters/MobileFilter";
 import { Input } from "../../../components/Input";
 import { Textarea } from "../../../components/Textarea";
 import { BasicInfoForm } from "./BasicInfoForm";
+import { LocationForm } from "./LocationForm";
 
 const steps = [
   {
@@ -91,10 +92,6 @@ export const CreateListing = () => {
       </div>
     </div>
   );
-};
-
-const LocationForm = () => {
-  return <div>Form 2</div>;
 };
 
 const AmenitiesForm = () => {

@@ -34,6 +34,12 @@ export const categories: FilterItem[] = [
   { value: "land", label: "Land" },
 ];
 
+export type City = "Erbil" | "Slemani";
+
+export const cities: FilterItem[] = [
+  { value: "erbil", label: "Erbil" },
+  { value: "slemani", label: "Slemani" },
+];
 export const types: FilterItem[] = [
   { value: "sale", label: "Sale" },
   { value: "rent", label: "Rent" },
