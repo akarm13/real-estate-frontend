@@ -81,7 +81,7 @@ export const CreateListing = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}
               transition={formTransition}
-              className="w-full h-[600px] overflow-auto"
+              className="w-full h-[600px] overflow-auto px-2"
             >
               <FormProvider {...formMethods}>{renderForm}</FormProvider>
             </motion.div>
