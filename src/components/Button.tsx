@@ -6,6 +6,7 @@ type Props = {
   onClick?: () => void;
   className?: string;
   isLoading?: boolean;
+  disabled?: boolean;
 };
 export const Button = ({
   onClick,
@@ -13,6 +14,7 @@ export const Button = ({
   variant,
   className,
   isLoading,
+  disabled,
 }: Props) => {
   const loader = (
     <div className="flex items-center justify-center">
@@ -30,9 +32,10 @@ export const Button = ({
     return (
       <button
         onClick={onClick}
-        className={`rounded-lg bg-primary-500 py-2 px-4 font-semibold text-white transition hover:bg-primary-600 md:py-2 md:px-4 ${className} ${
+        className={`rounded-lg bg-primary-500 py-2 px-4 font-semibold text-white transition hover:bg-primary-600 md:py-2 md:px-4 disabled:pointer-events-none disabled:opacity-80 ${className} ${
           isLoading ? "pointer-events-none opacity-80" : ""
-        }`}
+        } `}
+        disabled={disabled}
       >
         {isLoading ? loader : children}
       </button>
@@ -42,7 +45,8 @@ export const Button = ({
     return (
       <button
         onClick={onClick}
-        className={`rounded-lg  bg-white py-2 px-4 text-secondaryText md:py-2 md:px-4 ${className}`}
+        className={`rounded-lg  bg-white py-2 px-4 text-secondaryText md:py-2 md:px-4 disabled:pointer-events-none disabled:opacity-80 ${className}`}
+        disabled={disabled}
       >
         {isLoading ? loader : children}
       </button>
@@ -52,7 +56,8 @@ export const Button = ({
   return (
     <button
       onClick={onClick}
-      className={`rounded-lg  border  border-primary-background bg-white py-2 px-4 text-black md:py-2 md:px-4 md:hover:bg-gray-100 ${className}`}
+      className={`rounded-lg  border  border-primary-background bg-white py-2 px-4 text-black md:py-2 md:px-4 md:hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-80 ${className}`}
+      disabled={disabled}
     >
       {isLoading ? loader : children}
     </button>
