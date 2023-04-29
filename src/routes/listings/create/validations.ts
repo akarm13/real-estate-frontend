@@ -69,12 +69,20 @@ const photosSchema = yup.object().shape({
     .of(
       yup
         .mixed()
-        .test("type", "Only images are allowed", (value) =>
-          value.type.startsWith("image/")
+        .test(
+          "is-file-or-null",
+          "Each element must be a File or null",
+          (value) => value instanceof File || value === null
         )
     )
-    .min(3, "At least three image are required"),
+    .test(
+      "at-least-three-images",
+      "At least three images are required",
+      (arr) =>
+        arr ? arr.filter((item) => item instanceof File).length >= 3 : false
+    ),
 });
+
 export const createListingSchemas = [
   basicInfoSchema,
   locationSchema,

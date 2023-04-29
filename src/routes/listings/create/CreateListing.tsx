@@ -33,6 +33,12 @@ export const CreateListing = () => {
     useGetAllAmenitiesQuery();
 
   const handleFormSubmit = async (data: any) => {
+    // If it's the last step, submit the form
+    if (activeStep === steps.length - 1) {
+      console.log(data);
+      return;
+    }
+
     const isValid = await formMethods.trigger();
 
     if (isValid && activeStep < steps.length - 1) {
@@ -69,6 +75,7 @@ export const CreateListing = () => {
     damping: 30,
   };
 
+  console.log(formMethods.formState.errors);
   return (
     <div className="container pt-24">
       <div className="w-full lg:w-3/4 xl:w-4/6 mx-auto mt-8 relative overflow-hidden">
@@ -101,7 +108,6 @@ export const CreateListing = () => {
               onClick={() => {
                 formMethods.handleSubmit(handleFormSubmit)();
               }}
-              disabled={activeStep === steps.length - 1}
             >
               Next
             </Button>
