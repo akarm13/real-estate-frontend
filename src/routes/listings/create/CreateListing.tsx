@@ -10,6 +10,14 @@ import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createListingSchemas } from "./validations";
 import { useGetAllAmenitiesQuery } from "../../../api/endpoints/amenities";
+import { AddListingFormdata, AddListingPayload } from "../../../types/listing";
+import { useSelector } from "react-redux";
+import { selectAuth } from "../../../store/slices/auth";
+import { useUploadMutation } from "../../../api/rtk-api";
+import { useAddListingMutation } from "../../../api/endpoints/listings";
+import { toast } from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 
 const steps = [
   {
@@ -29,13 +37,71 @@ const steps = [
 export const CreateListing = () => {
   const [activeStep, setActiveStep] = useState(0);
 
+  const { user } = useSelector(selectAuth);
+
   const { data: amenities, isLoading: isAmenitiesLoading } =
     useGetAllAmenitiesQuery();
 
-  const handleFormSubmit = async (data: any) => {
+  const [upload, { isLoading: isUploading, data: imageUrls }] =
+    useUploadMutation();
+
+  const [addListing, { isLoading: isAddingListing }] = useAddListingMutation();
+
+  const navigate = useNavigate();
+
+  const handleFormSubmit = async (data: AddListingFormdata) => {
     // If it's the last step, submit the form
-    if (activeStep === steps.length - 1) {
-      console.log(data);
+    if (activeStep === steps.length - 1 && user) {
+      const amenities = Object.keys(data.amenities).filter(
+        (key) => data.amenities[key] === true
+      );
+
+      const formData = new FormData();
+
+      if (data.files.length > 0) {
+        data.files.forEach((file) => {
+          formData.append("images", file as Blob);
+        });
+      }
+
+      const uploadResponse = await upload(formData).unwrap();
+
+      if (uploadResponse) {
+        const imageUrls = uploadResponse.urls;
+        const payload: AddListingPayload = {
+          area: parseInt(data.area),
+          title: data.title,
+          description: data.description,
+          buildingType: data.category,
+          type: data.type,
+          location: {
+            address: data.address,
+            city: data.city,
+          },
+          geometry: {
+            type: "Point",
+            coordinates: [data.marker.latitude, data.marker.longitude],
+          },
+          rooms: {
+            bedrooms: parseInt(data.bedrooms, 10),
+            bathrooms: parseInt(data.bathrooms, 10),
+            other: parseInt(data.other, 10),
+          },
+          amenities,
+          status: "normal",
+          price: parseInt(data.price, 10),
+          owner: user?._id,
+          images: imageUrls,
+        };
+        const response = await addListing(payload).unwrap();
+
+        if (response) {
+          toast.success("Listing added successfully");
+
+          navigate(`/listings/${response._id}`);
+        }
+      }
+
       return;
     }
 
@@ -46,7 +112,7 @@ export const CreateListing = () => {
     }
   };
 
-  const formMethods = useForm({
+  const formMethods = useForm<AddListingFormdata>({
     resolver: yupResolver(createListingSchemas[activeStep]),
   });
 
@@ -80,7 +146,20 @@ export const CreateListing = () => {
     <div className="container pt-24">
       <div className="w-full lg:w-3/4 xl:w-4/6 mx-auto mt-8 relative overflow-hidden">
         <Stepper steps={steps} activeStep={activeStep} />
-        <div className="mt-16 px-2">
+        {isAddingListing || isUploading ? (
+          <ClipLoader
+            color={"#5B4DFF"}
+            size={40}
+            className="absolute top-1/2 left-1/2"
+          />
+        ) : null}
+        <div
+          className={`mt-16 px-2 ${
+            isAddingListing || isUploading
+              ? "opacity-30 pointer-events-none"
+              : ""
+          }  relative`}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}

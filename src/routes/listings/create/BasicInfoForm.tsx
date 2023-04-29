@@ -7,7 +7,7 @@ import {
   SelectValue,
 } from "../../../components/Select";
 import { Textarea } from "../../../components/Textarea";
-import { categories } from "../../../components/filters/MobileFilter";
+import { categories, types } from "../../../components/filters/MobileFilter";
 
 import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
@@ -98,12 +98,9 @@ export const BasicInfoForm = ({ onSubmit }: Props) => {
                   <SelectValue placeholder="Eg. Apartment" />
                 </SelectTrigger>
                 <SelectContent>
-                  {categories.map((category) => (
-                    <SelectItem
-                      key={category.value}
-                      value={category.value as string}
-                    >
-                      {category.label}
+                  {types.map((type) => (
+                    <SelectItem key={type.value} value={type.value as string}>
+                      {type.label}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -202,6 +199,24 @@ export const BasicInfoForm = ({ onSubmit }: Props) => {
 
       {/* Title and description */}
       <div className="mt-4">
+        <div className="flex flex-col gap-y-2">
+          <label htmlFor="title" className="font-semibold text-primaryText">
+            Price
+          </label>
+          <Input
+            {...register("price")}
+            placeholder="Price in USD"
+            id="price"
+            type="number"
+          />
+          <div className="min-h-[24px]">
+            {errors.price && (
+              <ErrorMessage>
+                {(errors.price.message as string) || "Price is required"}
+              </ErrorMessage>
+            )}
+          </div>
+        </div>
         <div className="flex flex-col gap-y-2">
           <label htmlFor="title" className="font-semibold text-primaryText">
             Title

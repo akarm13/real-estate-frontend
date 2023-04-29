@@ -3,7 +3,6 @@ import * as yup from "yup";
 const basicInfoSchema = yup.object().shape({
   category: yup.string().required("Category is required"),
   type: yup.string().required("Type is required"),
-
   title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
   area: yup
@@ -11,25 +10,33 @@ const basicInfoSchema = yup.object().shape({
     .required("Area is required")
     .typeError("Area is required")
     .positive("Area must be a positive number"),
-
   bedrooms: yup
     .number()
     .required("Bedrooms is required")
     .typeError("Bedrooms is required")
     .integer("Bedrooms must be a whole number")
+    .min(1, "Bedrooms must be at least 1")
+    .max(10, "Bed rooms must be at most 10")
     .positive("Bedrooms must be a positive number"),
   bathrooms: yup
     .number()
     .required("Bathrooms is required")
     .typeError("Bathrooms is required")
     .integer("Bathrooms must be a whole number")
+    .min(1, "Bathrooms must be at least 1")
+    .max(10, "Bathrooms must be at most 10")
     .positive("Bathrooms must be a positive number"),
-
   other: yup
     .number()
     .typeError("Other is required")
     .integer("Other must be a whole number")
+    .max(10, "Other must be at most 10")
     .positive("Other must be a positive number"),
+  price: yup
+    .number()
+    .required("Price is required")
+    .typeError("Price is required")
+    .positive("Price must be a positive number"),
 });
 
 const amenitiesSchema = yup.object().shape({

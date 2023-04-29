@@ -67,21 +67,6 @@ export type Amenity = {
   __v: number;
 };
 
-export type Geometry = {
-  coordinates: number[];
-};
-
-export type Location = {
-  address: string;
-  city: string;
-};
-
-export type Rooms = {
-  bedrooms: number;
-  bathrooms: number;
-  other: number;
-};
-
 export type SearchPayload = {
   keyword?: string;
   buildingType?: BuildingType[];
@@ -153,4 +138,46 @@ export type AddListingPayload = {
   location: Location;
   amenities: string[];
   owner: string;
+};
+
+export type AddListingFormdata = {
+  area: string;
+  bedrooms: string;
+  bathrooms: string;
+  other: string;
+  title: string;
+  description: string;
+  category: string;
+  type: string;
+  city: string;
+  address: string;
+  marker: Marker;
+  amenities: { [key: string]: boolean };
+  files: File[];
+  price: string;
+};
+
+export type Geometry = {
+  type: string;
+  coordinates: number[];
+};
+
+export type Location = {
+  address: string;
+  city: string;
+};
+
+export type Rooms = {
+  bedrooms: number;
+  bathrooms: number;
+  other: number;
+};
+
+export type File = {
+  preview?: string;
+};
+
+export type Marker = {
+  latitude: number;
+  longitude: number;
 };
