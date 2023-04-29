@@ -9,6 +9,7 @@ import { MobileNavigation } from "./navigation/MobileNavigation";
 import { NavigationLinks } from "./navigation/NavigationLinks";
 import { UserActionsMenu } from "./navigation/UserActionsMenu";
 import { selectIsGetMeLoading } from "../api/endpoints/user";
+import { LinkButton } from "./LinkButton";
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -44,13 +45,13 @@ export const Navigation = () => {
               </NavLink>
             </div>
             {user ? (
-              <Button
+              <LinkButton
                 variant="primary"
                 className="mr-4 items-center py-[6px] px-2 md:hidden"
-                onClick={handleAddClick}
+                to="/listings/create"
               >
                 <Plus className="text-white" />
-              </Button>
+              </LinkButton>
             ) : (
               <Link
                 to="/login"

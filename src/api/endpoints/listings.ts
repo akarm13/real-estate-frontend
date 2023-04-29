@@ -3,9 +3,18 @@ import { api } from "../rtk-api";
 
 import { PaginatedResponse } from "../../types/common";
 import queryString from "query-string";
+import { AddListingPayload } from "../../types/listing";
 
 export const listingsApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    addListing: builder.mutation<Listing, AddListingPayload>({
+      query: (body) => ({
+        url: "/listings",
+        method: "POST",
+        body,
+      
+      }),
+    }),
     getAllListings: builder.query<PaginatedResponse<Listing>, SearchPayload>({
       query: (body) => {
         // Go through each key in the body object and remove the null values
@@ -35,4 +44,5 @@ export const {
   useGetAllListingsQuery,
   useGetListingByIdQuery,
   useGetListingByTitleQuery,
+  useAddListingMutation,
 } = listingsApi;

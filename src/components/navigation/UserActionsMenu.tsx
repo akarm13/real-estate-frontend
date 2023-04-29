@@ -25,6 +25,7 @@ import { Button } from "../Button";
 import { selectIsGetMeLoading } from "../../api/endpoints/user";
 import { Skeleton } from "../skeleton/Skeleton";
 import { User } from "../../types/auth";
+import { LinkButton } from "../LinkButton";
 
 type Props = {
   user: User | null;
@@ -69,13 +70,13 @@ export const UserActionsMenu = ({ user }: Props) => {
     <div className="relative hidden min-w-[176px] gap-x-2 md:flex" ref={ref}>
       {user ? (
         <div className="flex items-center gap-x-8">
-          <Button
+          <LinkButton
             variant="primary"
             className="flex items-center gap-x-2"
-            onClick={() => console.log("TODO: Add listing")}
+            to="/listings/create"
           >
             <Plus className="h-6 w-6" />
-          </Button>
+          </LinkButton>
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center outline-none">
               <img
