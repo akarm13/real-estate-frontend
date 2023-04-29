@@ -31,7 +31,6 @@ export const categories: FilterItem[] = [
   { value: "house", label: "Houses" },
   { value: "apartment", label: "Apartments" },
   { value: "villa", label: "Villa" },
-  { value: "land", label: "Land" },
 ];
 
 export type City = "Erbil" | "Slemani";

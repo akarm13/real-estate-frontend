@@ -27,7 +27,9 @@ export const ListingCard = ({
       </div>
       <TypeBadge type={type} className="absolute top-2 left-4" />
       <div className="relative flex flex-col items-baseline gap-y-2 rounded-lg border border-primary-background bg-white px-5 py-6 ">
-        <span className="text-lg font-bold text-primary-500">${price}</span>
+        <span className="text-lg font-bold text-primary-500">
+          {type === "sale" ? `$${price}` : `$${price}/mo`}
+        </span>
         <h3 className="text-md h-[60px] font-semibold text-primary-900 lg:text-lg">
           {title}
         </h3>

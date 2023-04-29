@@ -90,25 +90,6 @@ export const Category = ({ onInputHandle }: Props) => {
                 </label>
               </div>
             </li>
-
-            <li className="w-full  ">
-              <div className="flex items-center ">
-                <input
-                  id="land-checkbox"
-                  type="checkbox"
-                  value="land"
-                  name="land"
-                  className="h-5 w-5 rounded border-0  bg-gray-100  text-primary-500 focus:ring-0 focus:ring-offset-0"
-                  onChange={(e) => onInputChange?.(e)}
-                />
-                <label
-                  htmlFor="land-checkbox"
-                  className="ml-2  w-full text-base  font-normal text-primary-900"
-                >
-                  Land
-                </label>
-              </div>
-            </li>
           </ul>
         </>
       ) : (

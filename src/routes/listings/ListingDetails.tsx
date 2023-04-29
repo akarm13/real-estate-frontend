@@ -19,7 +19,7 @@ export const ListingDetails = () => {
     <div className="w-full pt-24">
       <div className="container mx-auto flex w-full flex-col">
         <div>
-          <Link className="flex items-center" to="/search">
+          <Link className="flex items-center" to="/map">
             <BackIcon />
             <p className="ml-2 font-sans text-sm font-semibold text-primary-400 lg:text-base">
               Back to map
@@ -43,16 +43,6 @@ export const ListingDetails = () => {
             )}
           </p>
           <div className="mt-4 flex gap-x-4 md:self-auto lg:mt-0">
-            <Button
-              variant="secondary"
-              onClick={() => console.log("hello")}
-              className="flex items-center"
-            >
-              <MapIcon width={16} />
-              <span className="ml-2 font-medium md:mx-2 lg:text-base">
-                Share
-              </span>
-            </Button>
             <Button
               variant="secondary"
               onClick={() => console.log("hello")}

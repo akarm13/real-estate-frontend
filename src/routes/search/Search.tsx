@@ -87,7 +87,13 @@ export const Search = () => {
               </>
             ) : listing?.data !== undefined && listing.data?.length > 0 ? (
               listing?.data.map((property: any) => (
-                <Link key={property?._id} to={`/listings/${property?._id}`}>
+                <Link
+                  key={property?._id}
+                  to={`/listings/${property?._id}`}
+                  state={{
+                    from: location.pathname,
+                  }}
+                >
                   <ListingCard {...property} />
                 </Link>
               ))
