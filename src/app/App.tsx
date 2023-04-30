@@ -45,6 +45,7 @@ function App() {
     {
       path: "/profile",
       element: <Profile />,
+
       children: [
         { path: "edit", element: <EditProfile /> },
         { path: "listings", element: <MyListings /> },
