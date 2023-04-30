@@ -26,6 +26,7 @@ import { selectIsGetMeLoading } from "../../api/endpoints/user";
 import { Skeleton } from "../skeleton/Skeleton";
 import { User } from "../../types/auth";
 import { LinkButton } from "../LinkButton";
+import { Notifications } from "../notifications/Notifications";
 
 type Props = {
   user: User | null;
@@ -70,6 +71,7 @@ export const UserActionsMenu = ({ user }: Props) => {
     <div className="relative hidden min-w-[176px] gap-x-2 md:flex" ref={ref}>
       {user ? (
         <div className="flex items-center gap-x-8">
+          <Notifications />
           <LinkButton
             variant="primary"
             className="flex items-center gap-x-2"

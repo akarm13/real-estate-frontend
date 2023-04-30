@@ -1,25 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-hot-toast";
 import { io, Socket } from "socket.io-client";
+import { Listing } from "../types/listing";
+import { User } from "../types/auth";
+import { NotificationCard } from "../components/notifications/NotificationCard";
 
-type Notification = {
+export type Notification = {
   _id: string;
-  user: string;
+  user: User;
   title: string;
   message: string;
   type: NotificationType;
   read: boolean;
-  listing?: string;
+  listing?: Listing;
   createdAt: Date;
   updatedAt: Date;
 };
 
-enum NotificationType {
-  SYSTEM_WIDE_ANNOUCEMENT = "systemWideAnnouncement",
-  LISTING_PRICE_CHANGE = "listingPriceChange",
-  LISTING_STATUS_CHANGE = "listingStatusChange",
-  LISTING_NEW_FAVORITE = "listingNewFavorite",
-}
+type NotificationType =
+  | "systemWideAnnouncement"
+  | "listingPriceChange"
+  | "listingStatusChange"
+  | "listingNewFavorite";
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export const useNotifications = (authToken: string | null) => {
@@ -27,7 +30,7 @@ export const useNotifications = (authToken: string | null) => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
   useEffect(() => {
-    if (authToken === null) {
+    if (authToken === null && authToken === undefined) {
       return;
     }
 
@@ -42,7 +45,9 @@ export const useNotifications = (authToken: string | null) => {
     });
 
     newSocket.on("notification", (newNotification: Notification) => {
-      toast.success(newNotification.message);
+      toast((t) => <NotificationCard {...newNotification} />, {
+        position: "bottom-right",
+      });
       setNotifications((prevNotifications) => [
         ...prevNotifications,
         newNotification,
@@ -54,5 +59,7 @@ export const useNotifications = (authToken: string | null) => {
     };
   }, [authToken]);
 
-  return notifications;
+  return {
+    notifications,
+  };
 };

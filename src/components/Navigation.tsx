@@ -24,9 +24,6 @@ export const Navigation = () => {
     }
   }, [isGetMeLoading, isLoading]);
 
-  const handleAddClick = () => {
-    console.log("Add");
-  };
   return (
     <>
       <nav className="fixed z-20 w-full border border-b-primary-background bg-white pt-4 pb-4 lg:mx-auto">
@@ -45,13 +42,15 @@ export const Navigation = () => {
               </NavLink>
             </div>
             {user ? (
-              <LinkButton
-                variant="primary"
-                className="mr-4 items-center py-[6px] px-2 md:hidden"
-                to="/listings/create"
-              >
-                <Plus className="text-white" />
-              </LinkButton>
+              <div className="flex items-center">
+                <LinkButton
+                  variant="primary"
+                  className="mr-4 items-center py-[6px] px-2 md:hidden"
+                  to="/listings/create"
+                >
+                  <Plus className="text-white" />
+                </LinkButton>
+              </div>
             ) : (
               <Link
                 to="/login"
