@@ -4,6 +4,8 @@ import { io, Socket } from "socket.io-client";
 import { Listing } from "../types/listing";
 import { User } from "../types/auth";
 import { NotificationCard } from "../components/notifications/NotificationCard";
+import { X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export type Notification = {
   _id: string;
@@ -45,14 +47,33 @@ export const useNotifications = (authToken: string | null) => {
     });
 
     newSocket.on("notification", (newNotification: Notification) => {
-      toast(
+      toast.custom(
         (t) => (
-          <div className="w-96">
-            <NotificationCard {...newNotification} />
-          </div>
+          <Link
+            to={
+              newNotification.listing
+                ? `/listings/${newNotification.listing?._id}`
+                : ""
+            }
+            className={`${
+              t.visible
+                ? "animate-in duration-250 fade-in"
+                : "animate-out duration-250 fade-out"
+            } min-w-[280px] max-w-[500px] flex items-center bg-white rounded-lg shadow-sm hover:bg-primary-50 border border-primary-background`}
+          >
+            <NotificationCard {...newNotification} className="flex-1 p-4" />
+
+            <button
+              className="text-center text-sm text-gray-600 hover:text-gray-800 ml-4 pr-4"
+              onClick={() => toast.remove(t.id)}
+            >
+              <X size={20} />
+            </button>
+          </Link>
         ),
         {
           position: "top-right",
+          duration: 10000,
         }
       );
       setNotifications((prevNotifications) => [

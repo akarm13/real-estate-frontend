@@ -4,40 +4,28 @@ import { Link } from "react-router-dom";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import React from "react";
 dayjs.extend(relativeTime);
 
 type Props = Notification & {
   className?: string;
 };
-
 export const NotificationCard = ({
-  title,
   message,
   type,
-  listing,
+  user,
   createdAt,
-  className,
+  listing,
 }: Props) => {
-  const notificationContent = (
-    <>
-      <p className="text-sm font-medium text-gray-900">{title}</p>
-      <p className="mt-1 text-sm text-gray-500">{message}</p>
-    </>
-  );
+  const notificationContent = <>{extractAndStyleMessageParts(message)}</>;
 
-  const listingImage = listing && (
+  const userAvatar = user && (
     <img
-      src={listing.images[0]}
-      alt={listing.title}
-      className="w-16 h-16 object-cover mr-4 rounded"
+      src={user.avatar}
+      alt={user.fullName}
+      className="w-8 h-8 object-cover mr-4 rounded-full"
     />
   );
-
-  const listingType =
-    listing &&
-    (type === "listingNewFavorite" ||
-      type === "listingPriceChange" ||
-      type === "listingStatusChange");
 
   const systemType = type === "systemWideAnnouncement";
 
@@ -45,39 +33,48 @@ export const NotificationCard = ({
     <div className="text-sm text-gray-500">{dayjs(createdAt).fromNow()}</div>
   );
 
-  if (listingType) {
+  if (systemType) {
     return (
-      <Link
-        to={`/listings/${listing._id}`}
-        className={`hover:bg-primary-50 rounded-md ${className} flex flex-col gap-y-2`}
-      >
-        <div className="flex items-start">
-          {listingImage}
-          <div className="flex-1">{notificationContent}</div>
+      <div className="flex items-center p-4 hover:bg-gray-50 rounded-lg">
+        <div className="flex items-center justify-center w-8 h-8 mr-4">
+          <AlertCircle className="w-8 h-8 text-blue-400" />
         </div>
-        {timestamp}
-      </Link>
-    );
-  } else if (systemType) {
-    return (
-      <div
-        className={`hover:bg-primary-50 rounded-md cursor-pointer ${className} flex flex-col gap-y-2`}
-      >
-        <div className="flex items-center">
-          <div className="flex items-center justify-center w-16 h-16 bg-transparent mr-4">
-            <AlertCircle className="w-8 h-8 text-blue-400" />
-          </div>
+        <div className="flex flex-col gap-y-2">
           <div className="flex-1">{notificationContent}</div>
+          {timestamp}
         </div>
-        {timestamp}
       </div>
     );
   } else {
     return (
-      <div>
-        {notificationContent}
-        {timestamp}
-      </div>
+      <Link
+        to={`/listings/${listing?._id}`}
+        className="flex items-center p-4 hover:bg-gray-50 rounded-lg"
+      >
+        {userAvatar}
+        <div className="flex flex-col gap-y-2">
+          <div className="flex-1">{notificationContent}</div>
+          {timestamp}
+        </div>
+      </Link>
     );
   }
+};
+
+const extractAndStyleMessageParts = (message: string) => {
+  const parts = message.split(/\{\{|\}\}/).filter((part) => part);
+
+  return (
+    <span>
+      {parts.map((part, index) => (
+        <React.Fragment key={index}>
+          {index % 2 === 0 ? (
+            <span className="font-semibold text-gray-900">{part}</span>
+          ) : (
+            part
+          )}
+        </React.Fragment>
+      ))}
+    </span>
+  );
 };

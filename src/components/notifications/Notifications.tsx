@@ -1,5 +1,5 @@
-import { Bell } from "lucide-react";
-import { useMemo, useState } from "react";
+import { Bell, X } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   useLazyGetNotificationsQuery,
@@ -10,6 +10,7 @@ import { selectAuth } from "../../store/slices/auth";
 import { Popover, PopoverContent, PopoverTrigger } from "../Popover";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../Tabs";
 import { NotificationCard } from "./NotificationCard";
+import { toast } from "react-hot-toast";
 
 export const Notifications = () => {
   const auth = useSelector(selectAuth);
@@ -39,20 +40,34 @@ export const Notifications = () => {
     return notifications.filter((notification) => !notification.read);
   }, [notifications]);
 
-  const readNotifications = useMemo(() => {
-    return notifications.filter((notification) => notification.read);
-  }, [notifications]);
-
   const renderNotifications = useMemo(() => {
     return (
-      <Tabs defaultValue="unread">
+      <Tabs defaultValue="all">
         <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="all">All</TabsTrigger>
           <TabsTrigger value="unread">Unread</TabsTrigger>
-          <TabsTrigger value="read">Read</TabsTrigger>
         </TabsList>
         <TabsContent
-          value="unread"
+          value="all"
           className="gap-y-4 mt-4 max-h-[350px] overflow-y-scroll"
+        >
+          {notifications.length > 0 ? (
+            notifications.map((notification) => (
+              <NotificationCard
+                key={notification._id}
+                {...notification}
+                className="p-4"
+              />
+            ))
+          ) : (
+            <div className="text-center text-gray-600 mt-8">
+              You have no notifications
+            </div>
+          )}
+        </TabsContent>
+        <TabsContent
+          value="unread"
+          className="flex flex-col gap-y-4 mt-4 max-h-[350px] overflow-y-scroll"
         >
           {unreadNotifications.length > 0 ? (
             unreadNotifications.map((notification) => (
@@ -64,25 +79,7 @@ export const Notifications = () => {
             ))
           ) : (
             <div className="text-center text-gray-600 mt-8">
-              You have no unread notifications.
-            </div>
-          )}
-        </TabsContent>
-        <TabsContent
-          value="read"
-          className="flex flex-col gap-y-4 mt-4 max-h-[350px] overflow-y-scroll"
-        >
-          {readNotifications.length > 0 ? (
-            readNotifications.map((notification) => (
-              <NotificationCard
-                key={notification._id}
-                {...notification}
-                className="p-4"
-              />
-            ))
-          ) : (
-            <div className="text-center text-gray-600 mt-8">
-              You have no notifications
+              You have no unread notifications
             </div>
           )}
         </TabsContent>
