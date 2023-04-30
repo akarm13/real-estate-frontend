@@ -17,23 +17,23 @@ export const Profile = () => {
   }, [navigate, location.pathname]);
   return (
     <div className="w-full pt-32">
-      <div className="container mx-auto flex w-full flex-col">
-        <nav className="flex items-center gap-x-8 mx-auto border-b border-gray-100">
+      <div className="container mx-auto flex flex-col">
+        <nav className="flex items-center gap-x-8 mx-auto border-b border-gray-100 overflow-x-scroll w-full lg:w-auto flex-nowrap">
           <NavLink to="edit" className={getActiveClassName}>
             <UserCog className="h-6 w-6" />
-            <span>Edit Profile</span>
+            <span className="whitespace-nowrap">Edit Profile</span>
           </NavLink>
           <NavLink to="listings" className={getActiveClassName}>
             <ListMinus className="h-6 w-6" />
-            <span>My Listings</span>
+            <span className="whitespace-nowrap">My Listings</span>
           </NavLink>
           <NavLink to="favorites" className={getActiveClassName}>
             <Star className="h-6 w-6" />
-            <span>My Favorites</span>
+            <span className="whitespace-nowrap">My Favorites</span>
           </NavLink>
           <NavLink to="settings" className={getActiveClassName}>
             <Settings className="h-6 w-6" />
-            <span>Account Settings</span>
+            <span className="whitespace-nowrap">Account Settings</span>
           </NavLink>
         </nav>
 
