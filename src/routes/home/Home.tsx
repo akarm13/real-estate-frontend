@@ -4,10 +4,12 @@ import { BenefitsSection } from "./BenefitsSection";
 import { Footer } from "../../components/Footer";
 import { ListingsSection } from "./ListingsSection";
 import { Link } from "react-router-dom";
+import NotificationComponent from "../../components/notification/Notification";
 
 export const Home = () => {
   return (
     <div className="pt-16 xl:pt-0">
+      <NotificationComponent />
       <HeroSection />
       <BenefitsSection />
       <ListingsSection />
