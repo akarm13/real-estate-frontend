@@ -1,6 +1,6 @@
 import { ListMinus, Settings, Star, UserCog, UserIcon } from "lucide-react";
 import { useEffect } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 export const Profile = () => {
   const getActiveClassName = ({ isActive }: any) =>
@@ -10,10 +10,11 @@ export const Profile = () => {
 
   const navigate = useNavigate();
 
+  const location = useLocation();
   // Automatically redirect to the edit profile page
   useEffect(() => {
-    navigate("/profile/edit");
-  }, [navigate]);
+    if (location.pathname === "/profile") navigate("/profile/edit");
+  }, [navigate, location.pathname]);
   return (
     <div className="w-full pt-32">
       <div className="container mx-auto flex w-full flex-col">
