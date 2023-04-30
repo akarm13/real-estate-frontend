@@ -50,7 +50,10 @@ export const Notifications = () => {
           <TabsTrigger value="unread">Unread</TabsTrigger>
           <TabsTrigger value="read">Read</TabsTrigger>
         </TabsList>
-        <TabsContent value="unread" className="gap-y-4 mt-4">
+        <TabsContent
+          value="unread"
+          className="gap-y-4 mt-4 h-[350px] overflow-y-scroll"
+        >
           {unreadNotifications.length > 0 ? (
             unreadNotifications.map((notification) => (
               <NotificationCard
@@ -65,7 +68,10 @@ export const Notifications = () => {
             </div>
           )}
         </TabsContent>
-        <TabsContent value="read" className="flex flex-col gap-y-4 mt-4">
+        <TabsContent
+          value="read"
+          className="flex flex-col gap-y-4 mt-4 h-[350px] overflow-y-scroll"
+        >
           {readNotifications.length > 0 ? (
             readNotifications.map((notification) => (
               <NotificationCard

@@ -45,9 +45,16 @@ export const useNotifications = (authToken: string | null) => {
     });
 
     newSocket.on("notification", (newNotification: Notification) => {
-      toast((t) => <NotificationCard {...newNotification} />, {
-        position: "bottom-right",
-      });
+      toast(
+        (t) => (
+          <div className="w-96">
+            <NotificationCard {...newNotification} />
+          </div>
+        ),
+        {
+          position: "top-right",
+        }
+      );
       setNotifications((prevNotifications) => [
         ...prevNotifications,
         newNotification,
