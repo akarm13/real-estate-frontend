@@ -52,7 +52,7 @@ export const Notifications = () => {
         </TabsList>
         <TabsContent
           value="unread"
-          className="gap-y-4 mt-4 h-[350px] overflow-y-scroll"
+          className="gap-y-4 mt-4 max-h-[350px] overflow-y-scroll"
         >
           {unreadNotifications.length > 0 ? (
             unreadNotifications.map((notification) => (
@@ -70,7 +70,7 @@ export const Notifications = () => {
         </TabsContent>
         <TabsContent
           value="read"
-          className="flex flex-col gap-y-4 mt-4 h-[350px] overflow-y-scroll"
+          className="flex flex-col gap-y-4 mt-4 max-h-[350px] overflow-y-scroll"
         >
           {readNotifications.length > 0 ? (
             readNotifications.map((notification) => (
