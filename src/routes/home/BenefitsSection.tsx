@@ -18,12 +18,12 @@ export const BenefitsSection = () => {
       <div className="mt-16 grid grid-cols-benefits items-center gap-y-4 gap-x-4">
         <BenefitCard
           title="Powerful Search"
-          description="Find the perfect property with our advanced search filters."
+          description="Find the perfect listing with our advanced search filters."
           icon={<SearchIcon />}
         />
         <BenefitCard
-          title="Unbeatable value"
-          description="Get the best deal with Hêlane's extensive listings and competitive pricing and commissions."
+          title="Map Visualization"
+          description="Explore listings in your desired location with our interactive map view."
           icon={<MapIcon />}
         />
         <BenefitCard
