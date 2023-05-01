@@ -37,13 +37,13 @@ export const listingsApi = api.injectEndpoints({
       }),
     }),
 
-    getListingsByAgentId: builder.query<
+    getListingsByAgent: builder.query<
       PaginatedResponse<Listing>,
       {
         id: string;
         pageSize: number;
         pageNumber: number;
-        sortBy: string;
+        orderBy: string;
       }
     >({
       query: (payload) => ({
@@ -57,7 +57,7 @@ export const listingsApi = api.injectEndpoints({
       {
         pageSize: number;
         pageNumber: number;
-        sortBy: string;
+        orderBy: string;
       }
     >({
       query: (payload) => ({
@@ -73,4 +73,6 @@ export const {
   useGetListingByIdQuery,
   useGetListingByTitleQuery,
   useAddListingMutation,
+  useLazyGetListingsByAgentQuery,
+  useLazyGetFavoritedListingsQuery,
 } = listingsApi;
