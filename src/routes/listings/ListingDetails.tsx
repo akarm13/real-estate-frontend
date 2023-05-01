@@ -77,7 +77,7 @@ export const ListingDetails = () => {
                 <StarFilled
                   width={20}
                   height={20}
-                  className="fill-current text-yellow-500"
+                  className="fill-current text-yellow-400"
                 />
               ) : (
                 <StarOutline
