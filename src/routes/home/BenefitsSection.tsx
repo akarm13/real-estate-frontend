@@ -1,5 +1,10 @@
 import { BenefitCard } from "./BenefitCard";
 
+import { ReactComponent as SearchIcon } from "../../assets/icons/home/search.svg";
+import { ReactComponent as MapIcon } from "../../assets/icons/home/map.svg";
+import { ReactComponent as SimpleIcon } from "../../assets/icons/home/simple.svg";
+import { ReactComponent as VerifiedIcon } from "../../assets/icons/home/verified.svg";
+
 export const BenefitsSection = () => {
   return (
     <div className="md: container mx-auto mt-24">
@@ -14,18 +19,22 @@ export const BenefitsSection = () => {
         <BenefitCard
           title="Powerful Search"
           description="Find the perfect property with our advanced search filters."
+          icon={<SearchIcon />}
         />
         <BenefitCard
           title="Unbeatable value"
           description="Get the best deal with Hêlane's extensive listings and competitive pricing and commissions."
+          icon={<MapIcon />}
         />
         <BenefitCard
           title="Simple and convenient"
           description="Find and purchase your dream home with ease on Hêlane."
+          icon={<SimpleIcon />}
         />
         <BenefitCard
           title="Verified Agents"
           description="Work with top-rated, verified agents who are dedicated to your success."
+          icon={<VerifiedIcon />}
         />
       </div>
     </div>
