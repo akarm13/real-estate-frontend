@@ -18,23 +18,10 @@ export const Profile = () => {
     if (location.pathname === "/profile") navigate("/profile/edit");
   }, [navigate, location.pathname]);
 
-  const { user } = useSelector(selectAuth);
-
   return (
     <div className="w-full pt-32">
       <div className="container mx-auto flex flex-col">
-        <div className="flex items-center gap-x-4 mb-8 lg:w-3/4 xl:w-4/6 mx-auto mt-8">
-          <img
-            src={user?.avatar || "/path/to/default/avatar.png"}
-            alt="User Avatar"
-            className="h-16 w-16 rounded-full object-cover"
-          />
-          <div className="text-lg">
-            <h1 className="font-semibold">{user?.fullName}</h1>
-            <p className="text-gray-500 capitalize">{user?.role}</p>
-          </div>
-        </div>
-        <nav className="flex items-center gap-x-8 mb-8 lg:w-3/4 xl:w-4/6 mx-auto mt-8 border-gray-100 overflow-x-scroll">
+        <nav className="flex items-center gap-x-8 mb-8 lg:w-3/4 xl:w-4/6 mx-auto mt-8 border-gray-100 overflow-x-scroll justify-center">
           <NavLink to="edit" className={getActiveClassName}>
             <UserCog className="h-6 w-6" />
             <span className="whitespace-nowrap">Edit Profile</span>
@@ -53,7 +40,7 @@ export const Profile = () => {
           </NavLink>
         </nav>
 
-        <div className="w-full lg:w-3/4 xl:w-4/6 mx-auto mt-8">
+        <div className="w-full lg:w-3/4 xl:w-4/6 mx-auto mt-8 flex justify-between">
           <Outlet />
         </div>
       </div>
