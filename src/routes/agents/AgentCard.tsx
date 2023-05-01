@@ -54,7 +54,7 @@ export const AgentCard = ({
 
         {/* View agent */}
         <Link
-          to={`agents/${id}`}
+          to={`/agents/${id}`}
           className="tranisition mt-8 flex items-center gap-x-2 hover:underline"
         >
           <ViewIcon className="h-5 w-5" />

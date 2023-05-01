@@ -192,18 +192,8 @@ export const SummarySection = ({
             [1, 2, 3].map((_, index) => <AgentInfoSkeleton key={index} />)
           ) : (
             <>
-              <div className="flex flex-col items-center gap-2">
-                <h4 className="font-semibold lg:text-base">Rating</h4>
-                <p className="font-medium text-primaryText">5/5</p>
-              </div>
-
               <div className="flex flex-col  items-center gap-2">
                 <h4 className="font-semibold lg:text-base">Listed</h4>
-                <p className="font-medium text-primaryText">2</p>
-              </div>
-
-              <div className="flex flex-col items-center gap-2">
-                <h4 className="font-semibold lg:text-base">Sold</h4>
                 <p className="font-medium text-primaryText">2</p>
               </div>
             </>

@@ -25,6 +25,13 @@ export const userApi = api.injectEndpoints({
       }),
     }),
 
+    getUserById: builder.query<User, string>({
+      query: (id) => ({
+        url: `/users/${id}`,
+        method: "GET",
+      }),
+    }),
+
     changePassword: builder.mutation<User, ChangePasswordFormData>({
       query: (body) => ({
         url: `/users/me/change-password`,
@@ -69,4 +76,5 @@ export const {
   useGetAgentsQuery,
   useEditMeMutation,
   useChangePasswordMutation,
+  useLazyGetUserByIdQuery,
 } = userApi;

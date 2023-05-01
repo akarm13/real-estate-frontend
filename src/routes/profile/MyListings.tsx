@@ -9,6 +9,7 @@ import { selectAuth } from "../../store/slices/auth";
 import { useEffect, useState } from "react";
 import SkeletonListingCard from "../../components/skeleton/SkeletonListingCard";
 import { Link } from "react-router-dom";
+import { Listing } from "../../types/listing";
 
 export const MyListings = () => {
   const auth = useSelector(selectAuth);
@@ -74,15 +75,15 @@ export const MyListings = () => {
               ))}
             </>
           ) : listing?.data !== undefined && listing.data?.length > 0 ? (
-            listing?.data.map((property: any) => (
+            listing?.data.map((listing: Listing) => (
               <Link
-                key={property?._id}
-                to={`/listings/${property?._id}`}
+                key={listing?._id}
+                to={`/listings/${listing?._id}`}
                 state={{
                   from: location.pathname,
                 }}
               >
-                <ListingCard {...property} />
+                <ListingCard {...listing} />
               </Link>
             ))
           ) : (

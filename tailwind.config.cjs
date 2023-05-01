@@ -18,6 +18,7 @@ module.exports = {
         footer: "0px -2px 64px 22px rgba(0, 0, 0, 0.02)",
         pin: "0px 2px 4px rgba(0, 0, 0, 0.25)",
         dropdown: "1px 2px 4px #DCDCEA",
+        card: "1px 2px 3px 0 rgba(91 77 255 / 8%)",
       },
       keyframes: {
         "accordion-down": {
