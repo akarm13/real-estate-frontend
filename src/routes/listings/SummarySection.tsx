@@ -5,11 +5,12 @@ import { ReactComponent as BathroomIcon } from "../../assets/icons/listing/bathr
 import { ReactComponent as BedroomIcon } from "../../assets/icons/listing/bedroom.svg";
 import { Button } from "../../components/Button";
 
-import { CopyIcon, LucidePhone, PhoneIcon } from "lucide-react";
+import { CopyIcon, LucidePhone, PhoneIcon, ViewIcon } from "lucide-react";
 import { Skeleton } from "../../components/skeleton/Skeleton";
 import { Listing } from "../../types/listing";
 import { useCopyToClipboard } from "react-use";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 type Props = {
   rooms: Listing["rooms"] | undefined;
@@ -189,13 +190,23 @@ export const SummarySection = ({
 
         <div className="flex  w-full items-center justify-between md:flex-row  ">
           {isLoading ? (
-            [1, 2, 3].map((_, index) => <AgentInfoSkeleton key={index} />)
+            [1, 2].map((_, index) => <AgentInfoSkeleton key={index} />)
           ) : (
             <>
-              <div className="flex flex-col  items-center gap-2">
-                <h4 className="font-semibold lg:text-base">Listed</h4>
-                <p className="font-medium text-primaryText">2</p>
+              <div className="flex flex-row items-center gap-1">
+                <p className="font-semibold lg:text-base text-primaryText">2</p>
+                <h4 className="lg:text-base">Items listed</h4>
               </div>
+              {/* View agent */}
+              <Link
+                to={`/agents/${owner?._id}`}
+                className="tranisition flex items-center gap-x-2 hover:underline"
+              >
+                <ViewIcon className="h-5 w-5 stroke-primary-500" />
+                <span className="font-semibold text-primary-500">
+                  View agent
+                </span>
+              </Link>
             </>
           )}
         </div>
