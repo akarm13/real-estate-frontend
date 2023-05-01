@@ -16,7 +16,13 @@ import { GuestRoute } from "../components/GuestRoute";
 import { useSetUserFromLocalStorage } from "../hooks/useSetUserFromLocalStorage";
 import { Map } from "../routes/listings/map/Map";
 import { CreateListing } from "../routes/listings/create/CreateListing";
+import { Profile } from "../routes/profile/Profile";
+import { EditProfile } from "../routes/profile/EditProfile";
+import { MyListings } from "../routes/profile/MyListings";
+import { MyFavorites } from "../routes/profile/MyFavorites";
+import { AccountSettings } from "../routes/profile/AccountSettings";
 
+import { AnimatePresence } from "framer-motion";
 function App() {
   const routes = useRoutes([
     { path: "/", element: <Home /> },
@@ -35,6 +41,18 @@ function App() {
     { path: "/listings/create", element: <CreateListing /> },
     { path: "/listings/:id", element: <ListingDetails /> },
     { path: "/agents", element: <Agents /> },
+
+    {
+      path: "/profile",
+      element: <Profile />,
+
+      children: [
+        { path: "edit", element: <EditProfile /> },
+        { path: "listings", element: <MyListings /> },
+        { path: "favorites", element: <MyFavorites /> },
+        { path: "settings", element: <AccountSettings /> },
+      ],
+    },
   ]);
 
   const location = useLocation();
@@ -53,14 +71,15 @@ function App() {
     }
   }, [trigger, isAuthPage]);
 
+  const isProfilePage = location.pathname.includes("profile");
   return (
     <main className="bg-[#FEFEFF] font-sans">
       {!isAuthPage && <Navigation />}
 
       <ScrollToTop />
       <Toaster />
-      {routes}
-      {!isAuthPage && <Footer />}
+      <AnimatePresence>{routes}</AnimatePresence>
+      {!isAuthPage && !isProfilePage && <Footer />}
     </main>
   );
 }

@@ -2,6 +2,7 @@ import { RootState } from "../../store/store";
 import { AgentSearchParams } from "../../types/agent";
 import { User } from "../../types/auth";
 import { PaginatedResponse } from "../../types/common";
+import { ChangePasswordFormData, EditUserFormData } from "../../types/users";
 import { api } from "../rtk-api";
 
 export const userApi = api.injectEndpoints({
@@ -13,6 +14,22 @@ export const userApi = api.injectEndpoints({
           Authorization: `Bearer ${token}`,
         },
         method: "GET",
+      }),
+    }),
+
+    editMe: builder.mutation<User, EditUserFormData>({
+      query: (body) => ({
+        url: `/users/me`,
+        method: "PATCH",
+        body,
+      }),
+    }),
+
+    changePassword: builder.mutation<User, ChangePasswordFormData>({
+      query: (body) => ({
+        url: `/users/me/change-password`,
+        method: "PATCH",
+        body,
       }),
     }),
     getAgents: builder.query<PaginatedResponse<User>, AgentSearchParams>({
@@ -46,4 +63,10 @@ export const selectIsGetMeLoading = (state: RootState) => {
   }
 };
 
-export const { useLazyGetMeQuery, useGetMeQuery, useGetAgentsQuery } = userApi;
+export const {
+  useLazyGetMeQuery,
+  useGetMeQuery,
+  useGetAgentsQuery,
+  useEditMeMutation,
+  useChangePasswordMutation,
+} = userApi;

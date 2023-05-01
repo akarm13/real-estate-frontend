@@ -96,7 +96,7 @@ export const UserActionsMenu = ({ user }: Props) => {
               sideOffset={8}
             >
               <DropdownMenuItem
-                onSelect={() => console.log("Profile")}
+                onSelect={() => navigate("/profile")}
                 className="cursor-pointer px-4 py-2 text-base text-gray-800 hover:text-primaryText focus:bg-primary-50"
               >
                 <UserIcon className="mr-2 h-4 w-4" />
@@ -104,7 +104,7 @@ export const UserActionsMenu = ({ user }: Props) => {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                onSelect={() => console.log("Edit profile")}
+                onSelect={() => navigate("/profile/edit")}
                 className="cursor-pointer px-4 py-2 text-base text-gray-800 hover:text-primaryText focus:bg-primary-50"
               >
                 <UserCog className="mr-2 h-4 w-4" />
@@ -112,14 +112,14 @@ export const UserActionsMenu = ({ user }: Props) => {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                onSelect={() => console.log("My listings")}
+                onSelect={() => navigate("/profile/listings")}
                 className="cursor-pointer px-4 py-2 text-base text-gray-800 hover:text-primaryText focus:bg-primary-50"
               >
                 <ListMinus className="mr-2 h-4 w-4" />
                 <span>My listings</span>
               </DropdownMenuItem>
               <DropdownMenuItem
-                onSelect={() => console.log("My favorites")}
+                onSelect={() => navigate("/profile/favorites")}
                 className="cursor-pointer px-4 py-2 text-base text-gray-800 hover:text-primaryText focus:bg-primary-50"
               >
                 <Star className="mr-2 h-4 w-4" />
@@ -127,7 +127,7 @@ export const UserActionsMenu = ({ user }: Props) => {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                onSelect={() => console.log("Account Settings")}
+                onSelect={() => navigate("/profile/settings")}
                 className="cursor-pointer px-4 py-2 text-base text-gray-800 hover:text-primaryText focus:bg-primary-50"
               >
                 <Settings className="mr-2 h-4 w-4" />
