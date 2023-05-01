@@ -8,7 +8,7 @@ export const EditProfile = () => {
       exit={{ opacity: 0, x: 50 }}
       className="flex flex-col"
     >
-      Edit profile
+      <h1 className="text-2xl font-semibold text-primaryText">Edit Profile</h1>
     </motion.div>
   );
 };

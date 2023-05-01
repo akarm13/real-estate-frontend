@@ -7,7 +7,9 @@ export const AccountSettings = () => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 50 }}
     >
-      <h1>Account Settings Page</h1>
+      <h1 className="text-2xl font-semibold text-primaryText">
+        Account settings
+      </h1>
     </motion.div>
   );
 };

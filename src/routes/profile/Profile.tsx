@@ -23,7 +23,7 @@ export const Profile = () => {
     <div className="w-full pt-20 relative">
       <div className="container mx-auto flex border-r-primary-background bg-white">
         <nav className="hidden fixed md:flex flex-col gap-y-4 w-72 border-r border-primary-background h-full overflow-y-auto pt-12">
-          <div className="flex items-center gap-x-4 flex-col">
+          <div className="flex items-center gap-x-4 flex-col mb-8">
             <img
               src={user?.avatar || "https://i.pravatar.cc/150?img=68"}
               alt="User Avatar"
