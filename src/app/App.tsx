@@ -71,6 +71,7 @@ function App() {
     }
   }, [trigger, isAuthPage]);
 
+  const isProfilePage = location.pathname.includes("profile");
   return (
     <main className="bg-[#FEFEFF] font-sans">
       {!isAuthPage && <Navigation />}
@@ -78,7 +79,7 @@ function App() {
       <ScrollToTop />
       <Toaster />
       <AnimatePresence>{routes}</AnimatePresence>
-      {!isAuthPage && <Footer />}
+      {!isAuthPage && !isProfilePage && <Footer />}
     </main>
   );
 }
