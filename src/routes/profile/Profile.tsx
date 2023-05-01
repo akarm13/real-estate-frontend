@@ -17,11 +17,23 @@ export const Profile = () => {
   useEffect(() => {
     if (location.pathname === "/profile") navigate("/profile/edit");
   }, [navigate, location.pathname]);
+  const { user } = useSelector(selectAuth);
 
   return (
-    <div className="w-full pt-32">
-      <div className="container mx-auto flex flex-col">
-        <nav className="flex items-center gap-x-8 mb-8 lg:w-3/4 xl:w-4/6 mx-auto mt-8 border-gray-100 overflow-x-scroll justify-center">
+    <div className="w-full pt-32 relative">
+      <div className="container mx-auto flex border-r-primary-background bg-white">
+        <nav className="hidden md:flex flex-col gap-y-4 w-72 border-r border-primary-background">
+          <div className="flex items-center gap-x-4 flex-col">
+            <img
+              src={user?.avatar || "https://i.pravatar.cc/150?img=68"}
+              alt="User Avatar"
+              className="h-12 w-12 rounded-full object-cover"
+            />
+            <div className="text-center mt-4">
+              <h1 className="font-semibold text-lg">{user?.fullName}</h1>
+              <p className="text-gray-500 capitalize">{user?.role}</p>
+            </div>
+          </div>
           <NavLink to="edit" className={getActiveClassName}>
             <UserCog className="h-6 w-6" />
             <span className="whitespace-nowrap">Edit Profile</span>
