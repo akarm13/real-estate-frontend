@@ -55,7 +55,7 @@ export const Profile = () => {
           </NavLink>
         </nav>
 
-        <div className="w-full container md:pl-96 h-screen overflow-y-auto pt-12">
+        <div className="w-full container md:pl-96 pt-12">
           <Outlet />
         </div>
       </div>

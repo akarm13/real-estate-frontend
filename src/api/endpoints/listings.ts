@@ -47,7 +47,7 @@ export const listingsApi = api.injectEndpoints({
       }
     >({
       query: (payload) => ({
-        url: `/listings/agents/${payload.id}?pageSize=${payload.pageSize}&pageNumber=${payload.pageNumber}`,
+        url: `/listings/agents/${payload.id}?pageSize=${payload.pageSize}&pageNumber=${payload.pageNumber}&orderBy=${payload.orderBy}`,
         method: "GET",
       }),
     }),
