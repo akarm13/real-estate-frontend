@@ -20,9 +20,9 @@ export const Profile = () => {
   const { user } = useSelector(selectAuth);
 
   return (
-    <div className="w-full pt-32 relative">
+    <div className="w-full pt-20 relative">
       <div className="container mx-auto flex border-r-primary-background bg-white">
-        <nav className="hidden fixed md:flex flex-col gap-y-4 w-72 border-r border-primary-background h-full overflow-y-auto">
+        <nav className="hidden fixed md:flex flex-col gap-y-4 w-72 border-r border-primary-background h-full overflow-y-auto pt-12">
           <div className="flex items-center gap-x-4 flex-col">
             <img
               src={user?.avatar || "https://i.pravatar.cc/150?img=68"}
@@ -52,7 +52,7 @@ export const Profile = () => {
           </NavLink>
         </nav>
 
-        <div className="w-full pl-0 md:pl-96 h-screen overflow-y-auto">
+        <div className="w-full container md:pl-96 h-screen overflow-y-auto pt-12">
           <Outlet />
         </div>
       </div>

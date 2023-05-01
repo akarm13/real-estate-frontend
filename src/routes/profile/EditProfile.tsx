@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
-import { selectAuth } from "../../store/slices/auth";
 
 export const EditProfile = () => {
   return (
