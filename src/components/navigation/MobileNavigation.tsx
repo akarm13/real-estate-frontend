@@ -80,7 +80,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
             <span>Profile</span>
           </Link>
           <Link
-            to="/profile"
+            to="/profile/edit"
             className="flex items-center gap-x-2 font-medium text-gray-600"
             onClick={closeMenu}
           >
@@ -88,7 +88,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
             <span>Edit Profile</span>
           </Link>
           <Link
-            to="/profile"
+            to="/profile/listings"
             className="flex items-center gap-x-2 font-medium text-gray-600"
             onClick={closeMenu}
           >
@@ -96,7 +96,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
             <span>My Listings</span>
           </Link>
           <Link
-            to="/profile"
+            to="/profile/favorites"
             className="flex items-center gap-x-2 font-medium text-gray-600"
             onClick={closeMenu}
           >
@@ -104,7 +104,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
             <span>My favorites</span>
           </Link>
           <Link
-            to="/profile"
+            to="/profile/settings"
             className="flex items-center gap-x-2 font-medium text-gray-600"
             onClick={closeMenu}
           >
@@ -114,7 +114,7 @@ export const MobileNavigation = ({ isMenuOpen, setIsMenuOpen }: Props) => {
 
           <hr className="w-full border-gray-100" />
           <Link
-            to="/profile"
+            to="/logout"
             className="flex items-center gap-x-2 font-medium text-gray-600"
             onClick={handleLogout}
           >
