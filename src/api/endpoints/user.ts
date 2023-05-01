@@ -27,7 +27,7 @@ export const userApi = api.injectEndpoints({
 
     changePassword: builder.mutation<User, ChangePasswordFormData>({
       query: (body) => ({
-        url: `/users/me/change-pasword`,
+        url: `/users/me/change-password`,
         method: "PATCH",
         body,
       }),

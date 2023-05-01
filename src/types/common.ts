@@ -10,3 +10,12 @@ export type PaginatedResponse<T> = {
 export type UploadResponse = {
   urls: string[];
 };
+
+export type ErrorResponse = {
+  status: number;
+  data: {
+    statusCode: number;
+    message: string;
+    error: string;
+  };
+};
