@@ -37,17 +37,17 @@ export const ListingCard = ({
       </div>
 
       {isFavorited !== undefined ? (
-        <div className="absolute top-2 right-2 p-2 rounded-lg bg-primary-500">
+        <div className="absolute top-2 right-2 p-1 bg-primary-500 rounded-lg">
           {isFavorited ? (
             <StarFilled
-              width={20}
-              height={20}
+              width={18}
+              height={18}
               className="fill-current text-yellow-400"
             />
           ) : (
             <StarOutline
-              width={20}
-              height={20}
+              width={18}
+              height={18}
               className="fill-current text-primary text-yellow-200"
             />
           )}
@@ -109,7 +109,7 @@ export const ListingCard = ({
             <FeaturedStarIcon width={16} height={16} fill="#FFF" />
           ) : null}
           <span
-            className={`text-sm font-semibold uppercase ${
+            className={`text-sm font-medium capitalize ${
               status === "featured" ? "text-white" : "text-gray-800"
             }`}
           >
@@ -143,16 +143,18 @@ export type TypeBadgeProps = {
   className?: string;
 };
 export const TypeBadge = ({ type, className }: TypeBadgeProps) => {
-  const typeColor =
-    type === "sale"
-      ? "bg-primary-800 text-primary-100"
-      : "bg-primary-50 text-primary-800";
-
   return (
-    <span
-      className={`absolute left-2 my-2 rounded-lg px-4 py-2 font-medium uppercase ${typeColor} text-sm ${className}`}
-    >
-      {type}
+    <span className="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-sm font-medium text-gray-900 ring-1 ring-inset ring-gray-200 absolute left-2 bg-white top-2">
+      <svg
+        className={`h-1.5 w-1.5  ${
+          type === "sale" ? "fill-green-500" : "fill-yellow-500"
+        }`}
+        viewBox="0 0 6 6"
+        aria-hidden="true"
+      >
+        <circle cx={3} cy={3} r={3} />
+      </svg>
+      <span className="capitalize">{type}</span>
     </span>
   );
 };
