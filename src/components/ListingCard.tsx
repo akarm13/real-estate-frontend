@@ -42,13 +42,13 @@ export const ListingCard = ({
             <StarFilled
               width={18}
               height={18}
-              className="fill-current text-yellow-400"
+              className="fill-current text-primary-50"
             />
           ) : (
             <StarOutline
               width={18}
               height={18}
-              className="fill-current text-primary text-yellow-200"
+              className="fill-current text-primary text-primary-50"
             />
           )}
         </div>

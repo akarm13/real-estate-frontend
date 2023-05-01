@@ -8,6 +8,7 @@ type Props = {
   isLoading?: boolean;
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
+  loadingText?: string;
 };
 export const Button = ({
   onClick,
@@ -17,10 +18,11 @@ export const Button = ({
   isLoading,
   disabled,
   type = "button",
+  loadingText = "Please wait...",
 }: Props) => {
   const loader = (
     <div className="flex items-center justify-center">
-      <span className="pr-2">Please wait...</span>
+      <span className="pr-2">{loadingText}</span>
       <ClipLoader
         color={variant === "primary" ? "#FFF" : "#5B4DFF"}
         aria-label="Loading Spinner"
