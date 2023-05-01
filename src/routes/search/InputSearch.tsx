@@ -17,10 +17,9 @@ export const InputSearch = ({
 }: Props) => {
   return (
     <div
-      className={`mx-auto lg:flex w-full justify-between rounded-lg border border-primary-background bg-white px-4 md:mx-0 items-center focus-within:border-primary-color focus-within:ring-2 focus-within:ring-primary-500 ${className}`}
+      className={`mx-auto itesm-center flex lg:flex w-full justify-between rounded-lg border border-primary-background bg-white px-4 md:mx-0 items-center focus-within:border-primary-color focus-within:ring-2 focus-within:ring-primary-500 ${className}`}
     >
       <Search className="stroke-gray-600" />
-
       <input
         type="text"
         placeholder={placeholder}
