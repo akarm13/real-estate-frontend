@@ -2,7 +2,7 @@ import { RootState } from "../../store/store";
 import { AgentSearchParams } from "../../types/agent";
 import { User } from "../../types/auth";
 import { PaginatedResponse } from "../../types/common";
-import { EditUserFormData } from "../../types/users";
+import { ChangePasswordFormData, EditUserFormData } from "../../types/users";
 import { api } from "../rtk-api";
 
 export const userApi = api.injectEndpoints({
@@ -25,6 +25,13 @@ export const userApi = api.injectEndpoints({
       }),
     }),
 
+    changePassword: builder.mutation<User, ChangePasswordFormData>({
+      query: (body) => ({
+        url: `/users/me/change-pasword`,
+        method: "PATCH",
+        body,
+      }),
+    }),
     getAgents: builder.query<PaginatedResponse<User>, AgentSearchParams>({
       query: ({ search, verificationStatus }) => {
         const params: AgentSearchParams = {};
@@ -61,4 +68,5 @@ export const {
   useGetMeQuery,
   useGetAgentsQuery,
   useEditMeMutation,
+  useChangePasswordMutation,
 } = userApi;
