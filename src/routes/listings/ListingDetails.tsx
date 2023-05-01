@@ -1,19 +1,22 @@
 import { Link, useParams } from "react-router-dom";
 import { useGetListingByIdQuery } from "../../api/endpoints/listings";
 import { ReactComponent as BackIcon } from "../../assets/housedetail/back.svg";
-import { ReactComponent as FeaturedStarIcon } from "../../assets/icons/listing/star.svg";
-import { ReactComponent as MapIcon } from "../../assets/icons/search/map.svg";
+import { ReactComponent as StarFilled } from "../../assets/icons/listing/star-filled.svg";
+import { ReactComponent as StarOutline } from "../../assets/icons/listing/star-outline.svg";
 import { Button } from "../../components/Button";
 import { Skeleton } from "../../components/skeleton/Skeleton";
 import { AmenitiesSection } from "./AmenitiesSection";
 import { HouseGallery } from "./HouseGallery";
 import { MapSection } from "./MapSection";
 import { SummarySection } from "./SummarySection";
+import { useState } from "react";
 
 export const ListingDetails = () => {
   const { id } = useParams<{ id: string }>();
 
   const { data, isLoading } = useGetListingByIdQuery(id || "");
+
+  const [isFavorite, setIsFavorite] = useState(false);
 
   return (
     <div className="w-full pt-24">
@@ -45,12 +48,24 @@ export const ListingDetails = () => {
           <div className="mt-4 flex gap-x-4 md:self-auto lg:mt-0">
             <Button
               variant="secondary"
-              onClick={() => console.log("hello")}
+              onClick={() => setIsFavorite(!isFavorite)}
               className="flex items-center"
             >
-              <FeaturedStarIcon width={16} />
-              <span className="ml-2 font-medium md:mx-2 lg:text-base">
-                Favorite
+              {isFavorite ? (
+                <StarFilled
+                  width={20}
+                  height={20}
+                  className="fill-current text-primary-500"
+                />
+              ) : (
+                <StarOutline
+                  width={20}
+                  height={20}
+                  className="fill-current text-gray-600"
+                />
+              )}
+              <span className="ml-2 font-medium md:mx-2 lg:text-base text-">
+                {isFavorite ? "Remove from favorites" : "Add to favorites"}
               </span>
             </Button>
           </div>
