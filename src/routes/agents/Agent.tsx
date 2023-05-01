@@ -58,7 +58,7 @@ export const Agent = () => {
               ) : (
                 <>
                   <img
-                    src={"https://i.pravatar.cc/150?img=68"}
+                    src={agent?.avatar}
                     alt="User Avatar"
                     className="h-12 w-12 rounded-full object-cover"
                   />
