@@ -9,15 +9,36 @@ import { AmenitiesSection } from "./AmenitiesSection";
 import { HouseGallery } from "./HouseGallery";
 import { MapSection } from "./MapSection";
 import { SummarySection } from "./SummarySection";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useToggleFavoriteMutation } from "../../api/endpoints/favorites";
+import { toast } from "react-hot-toast";
 
 export const ListingDetails = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { data, isLoading } = useGetListingByIdQuery(id || "");
+  const { data, isLoading, isFetching, refetch } = useGetListingByIdQuery(
+    id || ""
+  );
 
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [toggleFavorite, { isLoading: isFavoriting }] =
+    useToggleFavoriteMutation();
+  const isFavorited = useMemo(() => {
+    return data?.isFavorited || false;
+  }, [data?.isFavorited]);
 
+  const handleToggleFavorite = async () => {
+    if (isFavoriting) return;
+
+    const response = await toggleFavorite(id || "").unwrap();
+
+    refetch().then(() => {
+      if (response.action === "favorited" && !isFetching) {
+        toast.success("Added to favorites");
+      } else if (response.action === "unfavorited" && !isFetching) {
+        toast.success("Removed from favorites");
+      }
+    });
+  };
   return (
     <div className="w-full pt-24">
       <div className="container mx-auto flex w-full flex-col">
@@ -48,10 +69,11 @@ export const ListingDetails = () => {
           <div className="mt-4 flex gap-x-4 md:self-auto lg:mt-0">
             <Button
               variant="secondary"
-              onClick={() => setIsFavorite(!isFavorite)}
+              onClick={handleToggleFavorite}
               className="flex items-center"
+              isLoading={isFavoriting || isLoading || isFetching}
             >
-              {isFavorite ? (
+              {isFavorited ? (
                 <StarFilled
                   width={20}
                   height={20}
@@ -65,7 +87,7 @@ export const ListingDetails = () => {
                 />
               )}
               <span className="ml-2 font-medium md:mx-2 lg:text-base text-">
-                {isFavorite ? "Remove from favorites" : "Add to favorites"}
+                {isFavorited ? "Remove from favorites" : "Add to favorites"}
               </span>
             </Button>
           </div>

@@ -22,7 +22,7 @@ export const Button = ({
     <div className="flex items-center justify-center">
       <span className="pr-2">Please wait...</span>
       <ClipLoader
-        color={variant === "primary" ? "#FFF" : "#36d7b7"}
+        color={variant === "primary" ? "#FFF" : "#5B4DFF"}
         aria-label="Loading Spinner"
         data-testid="loader"
         size={18}

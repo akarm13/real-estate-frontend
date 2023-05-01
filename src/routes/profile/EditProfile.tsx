@@ -26,7 +26,10 @@ const schema = yup.object().shape({
       "file-type",
       "Unsupported Format",
       (value) =>
-        !value || ["image/jpg", "image/jpeg", "image/png"].includes(value.type)
+        !value ||
+        ["image/jpg", "image/jpeg", "image/png", "image/webp"].includes(
+          value.type
+        )
     )
     .optional(),
 });

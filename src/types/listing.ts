@@ -58,6 +58,7 @@ export type Listing = {
   owner: User;
   createdAt: Date;
   updatedAt: Date;
+  isFavorited?: boolean;
   __v: number;
 };
 

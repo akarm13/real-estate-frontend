@@ -230,7 +230,7 @@ export const Map = () => {
         selectedAreas.length > 0 ? Number(selectedAreas[0]) : undefined,
       maxHomeSize: undefined,
       pageNumber: 1,
-      pageSize: 10,
+      pageSize: 100,
       boundingBox: query.boundingBox,
     };
 

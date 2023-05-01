@@ -85,7 +85,7 @@ export const UserActionsMenu = ({ user }: Props) => {
                 src={user?.avatar}
                 height={44}
                 width={44}
-                className="mr-2 rounded-full object-cover"
+                className="mr-2 rounded-full object-cover w-11 h-11"
               />
               <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
