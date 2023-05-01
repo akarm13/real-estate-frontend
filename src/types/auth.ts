@@ -14,6 +14,7 @@ export type User = {
   avatar: string;
   isVerified: boolean;
   role: Role;
+  bio?: string;
   createdAt: Date;
   updatedAt: Date;
   __v: number;

@@ -2,6 +2,7 @@ import { RootState } from "../../store/store";
 import { AgentSearchParams } from "../../types/agent";
 import { User } from "../../types/auth";
 import { PaginatedResponse } from "../../types/common";
+import { EditUserFormData } from "../../types/users";
 import { api } from "../rtk-api";
 
 export const userApi = api.injectEndpoints({
@@ -15,6 +16,15 @@ export const userApi = api.injectEndpoints({
         method: "GET",
       }),
     }),
+
+    editMe: builder.mutation<User, EditUserFormData>({
+      query: (body) => ({
+        url: `/users/me`,
+        method: "PATCH",
+        body,
+      }),
+    }),
+
     getAgents: builder.query<PaginatedResponse<User>, AgentSearchParams>({
       query: ({ search, verificationStatus }) => {
         const params: AgentSearchParams = {};
@@ -46,4 +56,9 @@ export const selectIsGetMeLoading = (state: RootState) => {
   }
 };
 
-export const { useLazyGetMeQuery, useGetMeQuery, useGetAgentsQuery } = userApi;
+export const {
+  useLazyGetMeQuery,
+  useGetMeQuery,
+  useGetAgentsQuery,
+  useEditMeMutation,
+} = userApi;
