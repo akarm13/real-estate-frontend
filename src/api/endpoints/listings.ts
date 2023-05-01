@@ -12,7 +12,6 @@ export const listingsApi = api.injectEndpoints({
         url: "/listings",
         method: "POST",
         body,
-      
       }),
     }),
     getAllListings: builder.query<PaginatedResponse<Listing>, SearchPayload>({
@@ -34,6 +33,35 @@ export const listingsApi = api.injectEndpoints({
     getListingByTitle: builder.query({
       query: (title) => ({
         url: `/listings?keyword=${title}`,
+        method: "GET",
+      }),
+    }),
+
+    getListingsByAgentId: builder.query<
+      PaginatedResponse<Listing>,
+      {
+        id: string;
+        pageSize: number;
+        pageNumber: number;
+        sortBy: string;
+      }
+    >({
+      query: (payload) => ({
+        url: `/listings/agents/${payload.id}?pageSize=${payload.pageSize}&pageNumber=${payload.pageNumber}`,
+        method: "GET",
+      }),
+    }),
+
+    getFavoritedListings: builder.query<
+      PaginatedResponse<Listing>,
+      {
+        pageSize: number;
+        pageNumber: number;
+        sortBy: string;
+      }
+    >({
+      query: (payload) => ({
+        url: `/favorites/?${queryString.stringify(payload)}`,
         method: "GET",
       }),
     }),
