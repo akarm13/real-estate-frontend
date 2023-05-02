@@ -2,6 +2,7 @@ import { ReactComponent as LocationIcon } from "../assets/icons/listing/location
 import { ReactComponent as EmailIcon } from "../assets/icons/listing/email.svg";
 import { ReactComponent as TelephoneIcon } from "../assets/icons/listing/telephone.svg";
 import { ReactComponent as LogoIcon } from "../assets/icons/listing/logo.svg";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
@@ -73,18 +74,36 @@ export const Footer = () => {
             <h3 className="m-1 font-sans text-lg font-bold text-primary-900">
               Explore
             </h3>
-            <h5 className="m-1 text-base text-secondaryText">Home</h5>
-            <h5 className="m-1 text-base text-secondaryText">Search</h5>
-            <h5 className="m-1 text-base text-secondaryText">Agents</h5>
+            <Link
+              to="/"
+              className="m-1 text-base text-secondaryText hover:text-primaryText hover:underline"
+            >
+              Home
+            </Link>
+            <Link
+              to="/search"
+              className="m-1 text-base text-secondaryText hover:text-primaryText hover:underline"
+            >
+              Search
+            </Link>
+            <Link
+              to="/agents"
+              className="m-1 text-base text-secondaryText hover:text-primaryText hover:underline"
+            >
+              Agents
+            </Link>
           </div>
 
           <div className="flex w-full  flex-col lg:w-auto ">
             <h3 className="m-1 font-sans text-lg font-bold text-primary-900">
               Listings
             </h3>
-            <h5 className="m-1 text-base text-secondaryText">
+            <Link
+              to="/listings/create"
+              className="m-1 text-base text-secondaryText hover:text-primaryText hover:underline"
+            >
               List your property
-            </h5>
+            </Link>
           </div>
 
           <div className="flex w-full  flex-col lg:w-auto">
@@ -100,7 +119,7 @@ export const Footer = () => {
       </div>
 
       <h5 className="mx-3 my-4 text-center text-base text-secondaryText">
-        © 2022, All Rights Reserved
+        © {new Date().getFullYear()} Hêlane. All rights reserved.
       </h5>
     </footer>
   );
