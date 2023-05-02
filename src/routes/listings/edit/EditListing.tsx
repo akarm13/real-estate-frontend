@@ -141,7 +141,7 @@ export const EditListing = () => {
   );
 
   return (
-    <div className="container pt-24">
+    <div className="container pt-28">
       <div className="flex flex-col gap-y-2 px-4">
         <h3 className="text-2xl font-semibold text-primaryText">
           Edit Listing
@@ -162,7 +162,10 @@ export const EditListing = () => {
             exit={{ opacity: 0, x: 50 }}
             className="w-full h-[600px] overflow-auto px-2 py-2"
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col gap-y-2"
+            >
               {/* Title */}
               <div className="flex flex-col gap-y-4">
                 <label
@@ -256,7 +259,7 @@ export const EditListing = () => {
                 </div>
               </div>
               {/* Amenities */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 mt-8 gap-x-8 gap-y-4 items-center">
+              <div className="grid grid-cols-2 sm:grid-cols-3 mt-8 gap-x-8 gap-y-4 items-center m,">
                 {amenities
                   ? amenities.map((amenity) => (
                       <div
@@ -293,7 +296,7 @@ export const EditListing = () => {
               <Button
                 variant="primary"
                 type="submit"
-                className="mt-4"
+                className="mt-8 self-start"
                 isLoading={isEditingListing}
               >
                 Update Listing

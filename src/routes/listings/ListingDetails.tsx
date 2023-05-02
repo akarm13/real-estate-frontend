@@ -92,6 +92,9 @@ export const ListingDetails = () => {
                   height={20}
                   className="-current text-gray-600"
                 />
+                <span className="ml-2 font-medium md:mx-2 lg:text-base text-">
+                  Edit
+                </span>
               </LinkButton>
             )}
 
