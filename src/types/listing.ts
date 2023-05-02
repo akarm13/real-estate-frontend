@@ -41,12 +41,22 @@ export type TokenResponse = {
   expiresInSeconds: number;
 };
 
+export type ListingStatus =
+  | "featured"
+  | "normal"
+  | "pending"
+  | "sold"
+  | "rented"
+  | "under_contract"
+  | "unavailable"
+  | "archived";
+
 export type Listing = {
   _id: string;
   title: string;
   description: string;
   price: number;
-  status: string;
+  status: ListingStatus;
   area: number;
   rooms: Rooms;
   images: string[];
@@ -84,8 +94,6 @@ export type SearchPayload = {
   pageSize?: number;
   boundingBox?: string;
 };
-
-export type ListingStatus = "featured" | "normal";
 
 export type ListingType = "sale" | "rent";
 
@@ -141,6 +149,10 @@ export type AddListingPayload = {
   owner: string;
 };
 
+export type EditListingPayload = Partial<AddListingPayload> & {
+  id: string;
+};
+
 export type AddListingFormdata = {
   area: string;
   bedrooms: string;
@@ -156,6 +168,11 @@ export type AddListingFormdata = {
   amenities: { [key: string]: boolean };
   files: File[];
   price: string;
+};
+
+export type EditListingFormData = Partial<AddListingFormdata> & {
+  id?: string;
+  status?: string;
 };
 
 export type Geometry = {
