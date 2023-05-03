@@ -36,21 +36,13 @@ export const ListingCard = ({
         />
       </div>
 
-      {isFavorited !== undefined ? (
+      {isFavorited !== undefined && isFavorited ? (
         <div className="absolute top-2 right-2 p-1 bg-primary-500 rounded-lg">
-          {isFavorited ? (
-            <StarFilled
-              width={18}
-              height={18}
-              className="fill-current text-primary-50"
-            />
-          ) : (
-            <StarOutline
-              width={18}
-              height={18}
-              className="fill-current text-primary text-primary-50"
-            />
-          )}
+          <StarFilled
+            width={18}
+            height={18}
+            className="fill-current text-primary-50"
+          />
         </div>
       ) : null}
 
