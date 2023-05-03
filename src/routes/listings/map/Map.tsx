@@ -28,8 +28,9 @@ import { NoListingsFound } from "../NoListingsFound";
 import { CompactListingCard } from "./CompactListingCard";
 import { Filters } from "./Filters";
 import { MarkerIcon } from "./MarkerIcon";
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { ListingCategory } from "../../../components/filters/MobileFilter";
+import ReactPaginate from "react-paginate";
 
 const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
@@ -155,6 +156,17 @@ export const Map = () => {
     queryParams.maxPrice ? queryParams.maxPrice.toString() : undefined
   );
 
+  const [pageNumber, setPageNumber] = useState<number>(
+    queryParams.pageNumber ? parseInt(queryParams.pageNumber as string) : 1
+  );
+  const [pageSize, setPageSize] = useState<number>(
+    queryParams.pageSize ? parseInt(queryParams.pageSize as string) : 10
+  );
+
+  const handlePageChange = (selectedItem: { selected: number }) => {
+    setPageNumber(selectedItem.selected + 1);
+  };
+
   const handleCategoryClick = (category: string) => {
     if (selectedCategories.includes(category)) {
       setSelectedCategories((prevSelectedCategories) =>
@@ -229,8 +241,8 @@ export const Map = () => {
       minHomeSize:
         selectedAreas.length > 0 ? Number(selectedAreas[0]) : undefined,
       maxHomeSize: undefined,
-      pageNumber: 1,
-      pageSize: 100,
+      pageNumber,
+      pageSize,
       boundingBox: query.boundingBox,
     };
 
@@ -255,6 +267,8 @@ export const Map = () => {
     selectedBedrooms,
     selectedBathrooms,
     selectedAreas,
+    pageNumber,
+    pageSize,
   ]);
 
   const [hoveredMarkerId, setHoveredMarkerId] = useState<string | null>(null);
@@ -333,6 +347,21 @@ export const Map = () => {
                 <NoListingsFound />
               )}
             </div>
+
+            {listing ? (
+              <ReactPaginate
+                previousLabel={<ChevronLeft className="stroke-gray-500" />}
+                nextLabel={<ChevronRight className="stroke-gray-500" />}
+                breakLabel={"..."}
+                breakClassName={"break-me"}
+                containerClassName="flex justify-center gap-x-4"
+                activeClassName="text-primaryText"
+                pageClassName="text-gray-600"
+                pageRangeDisplayed={10}
+                pageCount={Math.ceil(listing.page.total / listing.page.size)}
+                onPageChange={handlePageChange}
+              />
+            ) : null}
           </div>
           <div className="sticky top-0 flex flex-col gap-y-8">
             <div className="h-[80vh]">
