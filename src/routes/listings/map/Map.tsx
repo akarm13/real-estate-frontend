@@ -257,6 +257,8 @@ export const Map = () => {
     selectedAreas,
   ]);
 
+  const [hoveredMarkerId, setHoveredMarkerId] = useState<string | null>(null);
+  const [hoveredListing, setHoveredListing] = useState<Listing | null>(null);
   return (
     <div className="w-full pt-24">
       <div className="container mx-auto flex w-full flex-col">
@@ -318,7 +320,12 @@ export const Map = () => {
                 </>
               ) : listing?.data !== undefined && listing.data?.length > 0 ? (
                 listing?.data.map((listing: Listing) => (
-                  <Link key={listing?._id} to={`/listings/${listing?._id}`}>
+                  <Link
+                    key={listing?._id}
+                    to={`/listings/${listing?._id}`}
+                    onMouseEnter={() => setHoveredMarkerId(listing._id)}
+                    onMouseLeave={() => setHoveredMarkerId(null)}
+                  >
                     <ListingCard {...listing} />
                   </Link>
                 ))
@@ -366,7 +373,11 @@ export const Map = () => {
                     }}
                     style={{
                       cursor: "pointer",
-                      zIndex: selectedListing?._id === listing._id ? 10 : 1,
+                      zIndex:
+                        selectedListing?._id === listing._id ||
+                        hoveredMarkerId === listing._id
+                          ? 10
+                          : 1,
                     }}
                   >
                     {selectedListing?._id === listing._id && (
@@ -374,7 +385,16 @@ export const Map = () => {
                         <CompactListingCard listing={{ ...selectedListing }} />
                       </div>
                     )}
-                    <MarkerIcon />
+                    <div
+                      onMouseEnter={() => {
+                        setHoveredMarkerId(listing._id);
+                      }}
+                      onMouseLeave={() => {
+                        setHoveredMarkerId(null);
+                      }}
+                    >
+                      <MarkerIcon isHovered={hoveredMarkerId === listing._id} />
+                    </div>
                   </Marker>
                 ))}
               </MapGl>
