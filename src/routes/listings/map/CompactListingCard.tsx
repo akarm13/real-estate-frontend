@@ -68,9 +68,19 @@ export const CompactListingCard = ({ listing }: Props) => {
           />
           <PropertyDetail icon={<AreaIcon />} value={listing?.area} text={""} />
         </div>
-        <div className="absolute -top-7 -left-1 flex items-center gap-x-2 rounded-lg bg-primary-500 py-2 px-4">
-          <FeaturedStarIcon width={16} height={16} />
-          <span className="text-sm font-semibold uppercase text-white">
+        <div
+          className={`absolute -top-7 -left-1 flex items-center gap-x-2 rounded-lg ${
+            listing?.status === "featured" ? "bg-primary-500" : "bg-primary-50"
+          } py-2 px-4`}
+        >
+          {listing?.status === "featured" ? (
+            <FeaturedStarIcon width={16} height={16} fill="#FFF" />
+          ) : null}
+          <span
+            className={`text-sm font-medium capitalize ${
+              listing?.status === "featured" ? "text-white" : "text-gray-800"
+            }`}
+          >
             {listing?.status}
           </span>
         </div>
