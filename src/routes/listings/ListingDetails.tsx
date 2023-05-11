@@ -12,6 +12,16 @@ import { SummarySection } from "./SummarySection";
 import { useMemo, useState } from "react";
 import { useToggleFavoriteMutation } from "../../api/endpoints/favorites";
 import { toast } from "react-hot-toast";
+import { selectAuth } from "../../store/slices/auth";
+import { useSelector } from "react-redux";
+import { Edit } from "lucide-react";
+import { LinkButton } from "../../components/LinkButton";
+import {
+  allStatusOptions,
+  rentStatusOptions,
+  saleStatusOptions,
+} from "./edit/EditListing";
+import { ListingStatus } from "../../types/listing";
 
 export const ListingDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -19,6 +29,8 @@ export const ListingDetails = () => {
   const { data, isLoading, isFetching, refetch } = useGetListingByIdQuery(
     id || ""
   );
+
+  const { user } = useSelector(selectAuth);
 
   const [toggleFavorite, { isLoading: isFavoriting }] =
     useToggleFavoriteMutation();
@@ -39,6 +51,12 @@ export const ListingDetails = () => {
       }
     });
   };
+
+  const isOwnListing = useMemo(() => {
+    if (!user) return false;
+    return data?.owner._id === user?._id;
+  }, [data?.owner._id, user?._id]);
+
   return (
     <div className="w-full pt-24">
       <div className="container mx-auto flex w-full flex-col">
@@ -52,7 +70,7 @@ export const ListingDetails = () => {
         </div>
 
         <div className="flex flex-col justify-between pt-4 lg:w-full lg:flex-row lg:items-center">
-          {isLoading ? (
+          {isLoading || isFetching ? (
             <Skeleton className="h-8 w-1/2" />
           ) : (
             <h3 className="font-sans text-2xl font-semibold lg:text-3xl">
@@ -60,14 +78,27 @@ export const ListingDetails = () => {
             </h3>
           )}
           <p className="mt-2 font-sans font-medium text-secondaryText md:hidden md:text-base lg:text-xl">
-            {isLoading ? (
+            {isLoading || isFetching ? (
               <Skeleton className="h-8 w-52" />
             ) : (
               data?.location.address + " " + data?.location.city
             )}
           </p>
           <div className="mt-4 flex gap-x-4 md:self-auto lg:mt-0">
-            {isLoading ? (
+            {!isLoading && isOwnListing && (
+              <LinkButton to={`/listings/${id}/edit`} variant="secondary">
+                <Edit
+                  width={20}
+                  height={20}
+                  className="-current text-gray-600"
+                />
+                <span className="ml-2 font-medium md:mx-2 lg:text-base text-">
+                  Edit
+                </span>
+              </LinkButton>
+            )}
+
+            {isLoading || isFetching ? (
               <Skeleton className="h-8 w-52" />
             ) : (
               <Button
@@ -100,7 +131,7 @@ export const ListingDetails = () => {
 
         <div className="mt-4">
           <p className="hidden font-sans text-sm font-medium text-secondaryText md:flex md:text-base lg:text-xl">
-            {isLoading ? (
+            {isLoading || isFetching ? (
               <Skeleton className="h-8 w-52" />
             ) : (
               data?.location.address + " " + data?.location.city
@@ -111,22 +142,29 @@ export const ListingDetails = () => {
         <HouseGallery
           images={data?.images || []}
           type={data?.type}
-          isLoading={isLoading}
+          isLoading={isLoading || isFetching}
         />
         <SummarySection
           rooms={data?.rooms}
           area={data?.area}
           price={data?.price}
           owner={data?.owner}
-          status={data?.status}
+          status={
+            data?.status !== undefined
+              ? (allStatusOptions[data?.status] as ListingStatus)
+              : "normal"
+          }
           description={data?.description}
-          isLoading={isLoading}
+          isLoading={isLoading || isFetching}
         />
         <AmenitiesSection
           amenities={data?.amenities || []}
-          isLoading={isLoading}
+          isLoading={isLoading || isFetching}
         />
-        <MapSection isLoading={isLoading} geometry={data?.geometry} />
+        <MapSection
+          isLoading={isLoading || isFetching}
+          geometry={data?.geometry}
+        />
       </div>
     </div>
   );

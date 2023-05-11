@@ -1,4 +1,8 @@
-import { Listing, SearchPayload } from "../../types/listing";
+import {
+  EditListingPayload,
+  Listing,
+  SearchPayload,
+} from "../../types/listing";
 import { api } from "../rtk-api";
 
 import { PaginatedResponse } from "../../types/common";
@@ -13,7 +17,17 @@ export const listingsApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["Listings"],
     }),
+    updateListing: builder.mutation<Listing, EditListingPayload>({
+      query: ({ id, ...body }) => ({
+        url: `/listings/${id}`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: ["Listings"],
+    }),
+
     getAllListings: builder.query<PaginatedResponse<Listing>, SearchPayload>({
       query: (body) => {
         // Go through each key in the body object and remove the null values
@@ -22,6 +36,7 @@ export const listingsApi = api.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["Listings"],
     }),
     // getListingById using rtk query method
     getListingById: builder.query<Listing, string>({
@@ -29,12 +44,14 @@ export const listingsApi = api.injectEndpoints({
         url: `/listings/${id}`,
         method: "GET",
       }),
+      providesTags: ["Listings"],
     }),
     getListingByTitle: builder.query({
       query: (title) => ({
         url: `/listings?keyword=${title}`,
         method: "GET",
       }),
+      providesTags: ["Listings"],
     }),
 
     getListingsByAgent: builder.query<
@@ -50,6 +67,7 @@ export const listingsApi = api.injectEndpoints({
         url: `/listings/agents/${payload.id}?pageSize=${payload.pageSize}&pageNumber=${payload.pageNumber}&orderBy=${payload.orderBy}`,
         method: "GET",
       }),
+      providesTags: ["Listings"],
     }),
 
     getFavoritedListings: builder.query<
@@ -64,6 +82,7 @@ export const listingsApi = api.injectEndpoints({
         url: `/favorites/?${queryString.stringify(payload)}`,
         method: "GET",
       }),
+      providesTags: ["Listings"],
     }),
   }),
 });
@@ -75,4 +94,5 @@ export const {
   useAddListingMutation,
   useLazyGetListingsByAgentQuery,
   useLazyGetFavoritedListingsQuery,
+  useUpdateListingMutation,
 } = listingsApi;

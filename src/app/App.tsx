@@ -24,6 +24,7 @@ import { AccountSettings } from "../routes/profile/AccountSettings";
 
 import { AnimatePresence } from "framer-motion";
 import { Agent } from "../routes/agents/Agent";
+import { EditListing } from "../routes/listings/edit/EditListing";
 function App() {
   const routes = useRoutes([
     { path: "/", element: <Home /> },
@@ -40,10 +41,10 @@ function App() {
     { path: "/search", element: <Search /> },
     { path: "/map", element: <Map /> },
     { path: "/listings/create", element: <CreateListing /> },
+    { path: "/listings/:id/edit", element: <EditListing /> },
     { path: "/listings/:id", element: <ListingDetails /> },
     { path: "/agents", element: <Agents /> },
     { path: "/agents/:id", element: <Agent /> },
-
     {
       path: "/profile",
       element: <Profile />,
@@ -76,6 +77,7 @@ function App() {
   const isProfilePage = location.pathname.includes("profile");
 
   const isSpecificAgentPage = location.pathname.split("/")[1] === "agents";
+
   return (
     <main className="bg-[#FEFEFF] font-sans">
       {!isAuthPage && <Navigation />}

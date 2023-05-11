@@ -1,0 +1,7 @@
+.placeholder:hover svg.image-icon {
+  color: rgb(91 77 255 / 1);
+}
+
+.remove-button:hover svg.close-icon {
+  color: #FFF;
+}

@@ -151,6 +151,7 @@ export const Login = () => {
                 <div className="my-2 flex  flex-col ">
                   <Button
                     onClick={() => console.log("primary")}
+                    type="submit"
                     variant="primary"
                     isLoading={isLoginLoading || isGetMeLoading}
                   >

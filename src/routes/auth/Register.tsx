@@ -184,6 +184,7 @@ export const Register = () => {
                 <Button
                   onClick={() => console.log("primary")}
                   variant="primary"
+                  type="submit"
                 >
                   {isLoading ? (
                     <ClipLoader

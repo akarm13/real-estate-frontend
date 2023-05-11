@@ -119,7 +119,7 @@ export const SummarySection = ({
               </div>
             )}
           </div>
-          <div className="ml-2  flex flex-col">
+          <div className="ml-2  flex flex-col w-full">
             <p className="font-sm font-semibold md:ml-0 md:text-base lg:text-lg">
               Status
             </p>
@@ -130,7 +130,7 @@ export const SummarySection = ({
               <div className="mt-4 flex items-center gap-x-2">
                 <CheckMarkIcon />
 
-                <span className="w-16 font-medium capitalize text-primaryText md:mx-4">
+                <span className="font-medium capitalize text-primaryText md:mx-4">
                   {status}
                 </span>
               </div>
