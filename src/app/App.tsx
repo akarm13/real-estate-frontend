@@ -81,11 +81,13 @@ function App() {
 
   const isTokenValid = isValidToken(token);
 
-  if (!isTokenValid) {
-    localStorage.removeItem("token");
-    toast.error("Your session has expired. Please log in again.");
-    navigate("/login");
-  }
+  useEffect(() => {
+    if (!isTokenValid) {
+      localStorage.removeItem("token");
+      toast.error("Your session has expired. Please log in again.");
+      navigate("/login");
+    }
+  }, [isTokenValid, navigate]);
 
   return (
     <main className="bg-[#FEFEFF] font-sans">
