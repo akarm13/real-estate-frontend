@@ -28,11 +28,9 @@ export const DesktopFilter = ({ isLoading }: Props) => {
   const [category, setCategory] = useState<string[]>([]);
   const [type, setType] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
-  const [Keyword, setkeyword] = useState<string[]>([]);
+  const [keyword, setKeyword] = useState<string[]>([]);
 
   const location = useLocation();
-
-  const query = queryString.parse(location.search);
 
   const navigate = useNavigate();
   const colourStyles: StylesConfig = {
@@ -76,8 +74,6 @@ export const DesktopFilter = ({ isLoading }: Props) => {
   const animatedComponents = makeAnimated();
 
   const handleSearch = () => {
-    console.log(Keyword);
-
     const queryParams = {
       minPrice: minPrice?.toString(),
       maxPrice: maxPrice?.toString(),
@@ -89,7 +85,7 @@ export const DesktopFilter = ({ isLoading }: Props) => {
       maxArea: maxArea?.toString(),
       buildingType: category.join(","),
       type: type.join(","),
-      keyword: Keyword.join(","),
+      keyword: keyword.join(","),
     };
 
     // Construct the full URL with query parameters
@@ -101,10 +97,6 @@ export const DesktopFilter = ({ isLoading }: Props) => {
     // Remove unused query parameters
     const cleanUrl = removeUnusedQueryParams(fullUrl);
 
-    console.log({
-      cleanUrl,
-    });
-
     // Navigate to the cleaned URL
     navigate(cleanUrl);
   };
@@ -114,7 +106,7 @@ export const DesktopFilter = ({ isLoading }: Props) => {
     switch (event.key) {
       case "Enter":
       case "Tab":
-        setkeyword((prev) => [...prev, inputValue]);
+        setKeyword((prev) => [...prev, inputValue]);
         setInputValue("");
         event.preventDefault();
     }
@@ -122,8 +114,9 @@ export const DesktopFilter = ({ isLoading }: Props) => {
 
   const handleValue = (newValue: any) => {
     const value = newValue.map((value: any) => value.value);
-    setkeyword(value);
+    setKeyword(value);
   };
+
   return (
     <div
       className={`flex flex-col gap-y-6 rounded-lg border-2 border-primary-background py-6 px-5 bg-white ${

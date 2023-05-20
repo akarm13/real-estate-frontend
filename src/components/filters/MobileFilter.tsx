@@ -1,7 +1,7 @@
 import { ReactComponent as SearchIcon } from "../../assets/icons/listing/search.svg";
 import { ReactComponent as FilterIcon } from "../../assets/icons/search/filters.svg";
 import { Button } from "../../components/Button";
-import { KeyboardEventHandler, useRef, useState } from "react";
+import { KeyboardEventHandler, useEffect, useRef, useState } from "react";
 import { BottomSheet, BottomSheetRef } from "react-spring-bottom-sheet";
 import { PriceInput } from "./PriceInput";
 import { SelectButton } from "./SelectButton";
@@ -135,12 +135,14 @@ export const MobileFilter = (
   const [minPrice, setMinPrice] = useState<number>();
   const [maxPrice, setMaxPrice] = useState<number>();
   const [inputValue, setInputValue] = useState<string>("");
-  const [Keyword, setkeyword] = useState<string[]>([]);
+  const [keyword, setKeyword] = useState<string[]>([]);
   useState<ListingCategory>("all");
   const sheetRef = useRef<BottomSheetRef>();
-  const location = useLocation();
 
   const navigate = useNavigate();
+
+  const queryParams = queryString.parse(window.location.search);
+
   const onDismiss = () => {
     setIsFiltersOpen(false);
     if (sheetRef.current) {
@@ -154,7 +156,7 @@ export const MobileFilter = (
       minHomeSize: selectedHomeSizes.join(","),
       category: selectedCategories.join(","),
       type: selectedTypes.join(","),
-      keyword: Keyword.join(","),
+      keyword: keyword.join(","),
     };
 
     // Construct the full URL with query parameters
@@ -166,9 +168,40 @@ export const MobileFilter = (
     // Remove unused query parameters
     const cleanUrl = removeUnusedQueryParams(fullUrl);
 
-    console.log({
-      cleanUrl,
+    // Navigate to the cleaned URL
+    navigate(cleanUrl);
+  };
+
+  const resetFilters = () => {
+    setSelectedTypes([]);
+    setSelectedCategories([]);
+    setSelectedBedrooms([]);
+    setSelectedBathrooms([]);
+    setSelectedHomeSizes([]);
+    setMinPrice(undefined);
+    setMaxPrice(undefined);
+    setInputValue("");
+    setKeyword([]);
+
+    const queryParams = {
+      minPrice: undefined,
+      maxPrice: undefined,
+      minBedrooms: undefined,
+      minBathrooms: undefined,
+      minHomeSize: undefined,
+      category: undefined,
+      type: undefined,
+      keyword: undefined,
+    };
+
+    // Construct the full URL with query parameters
+    const fullUrl = queryString.stringifyUrl({
+      url: "/search",
+      query: queryParams,
     });
+
+    // Remove unused query parameters
+    const cleanUrl = removeUnusedQueryParams(fullUrl);
 
     // Navigate to the cleaned URL
     navigate(cleanUrl);
@@ -226,16 +259,61 @@ export const MobileFilter = (
     switch (event.key) {
       case "Enter":
       case "Tab":
-        setkeyword((prev) => [...prev, inputValue]);
+        setKeyword((prev) => [...prev, inputValue]);
         setInputValue("");
         event.preventDefault();
     }
   };
 
-  const hanldeValue = (newValue: any) => {
+  const handleValue = (newValue: any) => {
     const value = newValue.map((value: any) => value.value);
-    setkeyword(value);
+    setKeyword(value);
   };
+
+  useEffect(() => {
+    if (queryParams.minPrice) {
+      setMinPrice(+queryParams.minPrice);
+    }
+    if (queryParams.maxPrice) {
+      setMaxPrice(+queryParams.maxPrice);
+    }
+    if (queryParams.minBedrooms) {
+      setSelectedBedrooms(
+        queryParams.minBedrooms
+          .toString()
+          .split(",")
+          .map((bedroom) => +bedroom)
+      );
+    }
+    if (queryParams.minBathrooms) {
+      setSelectedBathrooms(
+        queryParams.minBathrooms
+          .toString()
+          .split(",")
+          .map((bathroom) => +bathroom)
+      );
+    }
+    if (queryParams.minHomeSize) {
+      setSelectedHomeSizes(
+        queryParams.minHomeSize
+          .toString()
+          .split(",")
+          .map((homeSize) => +homeSize)
+      );
+    }
+    if (queryParams.category) {
+      setSelectedCategories(
+        queryParams.category.toString().split(",") as ListingCategory[]
+      );
+    }
+    if (queryParams.type) {
+      setSelectedTypes(queryParams.type.toString().split(",") as ListingType[]);
+    }
+    if (queryParams.keyword) {
+      setKeyword(queryParams.keyword.toString().split(","));
+    }
+  }, [queryParams]);
+
   return (
     <div className="flex flex-col">
       <div className="relative">
@@ -298,13 +376,28 @@ export const MobileFilter = (
         onDismiss={() => setIsFiltersOpen(false)}
         maxHeight={650}
         footer={
-          <Button
-            onClick={onDismiss}
-            variant="primary"
-            className="h-12 w-full rounded-lg"
-          >
-            Search 891 results
-          </Button>
+          <div className="flex flex-col gap-y-4">
+            <Button
+              onClick={onDismiss}
+              variant="primary"
+              className="h-12 w-full rounded-lg"
+            >
+              Apply filters
+            </Button>
+            <Button
+              onClick={() => {
+                setIsFiltersOpen(false);
+                resetFilters();
+                if (sheetRef.current) {
+                  sheetRef.current.snapTo(0);
+                }
+              }}
+              variant="secondary"
+              className="h-12 w-full rounded-lg"
+            >
+              Reset filters
+            </Button>
+          </div>
         }
       >
         <div className="p-4 ">
@@ -454,7 +547,7 @@ export const MobileFilter = (
               isMulti
               placeholder="Eg. Balcony, Swimming pool, etc."
               styles={colourStyles}
-              onChange={(newValue) => hanldeValue(newValue)}
+              onChange={(newValue) => handleValue(newValue)}
               onInputChange={(newValue) => setInputValue(newValue)}
               onKeyDown={handleKeyDown}
               components={{
