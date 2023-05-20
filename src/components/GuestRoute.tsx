@@ -1,7 +1,4 @@
-import { Navigate, Outlet, Route, RouteProps } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectAuth } from "../store/slices/auth";
-import { isValidToken } from "../utils/auth";
+import { Navigate, Outlet, RouteProps } from "react-router-dom";
 
 type GuestRouteProps = RouteProps;
 
