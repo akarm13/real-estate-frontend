@@ -141,8 +141,6 @@ export const MobileFilter = (
 
   const navigate = useNavigate();
 
-  const queryParams = queryString.parse(window.location.search);
-
   const onDismiss = () => {
     setIsFiltersOpen(false);
     if (sheetRef.current) {
@@ -271,6 +269,8 @@ export const MobileFilter = (
   };
 
   useEffect(() => {
+    const queryParams = queryString.parse(window.location.search);
+
     if (queryParams.minPrice) {
       setMinPrice(+queryParams.minPrice);
     }
@@ -312,7 +312,7 @@ export const MobileFilter = (
     if (queryParams.keyword) {
       setKeyword(queryParams.keyword.toString().split(","));
     }
-  }, [queryParams]);
+  }, [window.location.search]);
 
   return (
     <div className="flex flex-col">
