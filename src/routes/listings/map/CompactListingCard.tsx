@@ -10,6 +10,7 @@ import { ReactComponent as FeaturedStarIcon } from "../../../assets/icons/listin
 import { ReactComponent as LocationIcon } from "../../../assets/icons/listing/location.svg";
 import { ReactComponent as ViewIcon } from "../../../assets/icons/right-caret.svg";
 import { Link } from "react-router-dom";
+import { capitalize } from "../../../utils/common";
 type Props = {
   listing: Listing;
 };
@@ -81,7 +82,7 @@ export const CompactListingCard = ({ listing }: Props) => {
               listing?.status === "featured" ? "text-white" : "text-gray-800"
             }`}
           >
-            {listing?.status}
+            {capitalize(listing?.status)}
           </span>
         </div>
         <Link

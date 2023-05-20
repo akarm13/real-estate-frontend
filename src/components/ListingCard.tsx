@@ -1,11 +1,11 @@
-import { Listing } from "../types/listing";
-import { ReactComponent as StarFilled } from "../assets/icons/listing/star-filled.svg";
-import { ReactComponent as StarOutline } from "../assets/icons/listing/star-outline.svg";
 import { ReactComponent as AreaIcon } from "../assets/icons/listing/area.svg";
 import { ReactComponent as BathroomIcon } from "../assets/icons/listing/bathroom.svg";
 import { ReactComponent as BedroomIcon } from "../assets/icons/listing/bedroom.svg";
 import { ReactComponent as FeaturedStarIcon } from "../assets/icons/listing/featured-star.svg";
 import { ReactComponent as LocationIcon } from "../assets/icons/listing/location.svg";
+import { ReactComponent as StarFilled } from "../assets/icons/listing/star-filled.svg";
+import { Listing } from "../types/listing";
+import { capitalize } from "../utils/common";
 import {
   Tooltip,
   TooltipContent,
@@ -105,7 +105,7 @@ export const ListingCard = ({
               status === "featured" ? "text-white" : "text-gray-800"
             }`}
           >
-            {status}
+            {capitalize(status)}
           </span>
         </div>
       </div>

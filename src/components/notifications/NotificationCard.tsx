@@ -1,10 +1,11 @@
-import { AlertCircle, CheckCircle, Star, XCircle } from "lucide-react";
-import { Notification } from "../../hooks/useNotifications";
+import { AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Notification } from "../../hooks/useNotifications";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import React from "react";
+import { capitalize } from "../../utils/common";
 dayjs.extend(relativeTime);
 
 type Props = Notification & {
@@ -69,7 +70,9 @@ const extractAndStyleMessageParts = (message: string) => {
       {parts.map((part, index) => (
         <React.Fragment key={index}>
           {index % 2 === 0 ? (
-            <span className="font-semibold text-gray-900">{part}</span>
+            <span className="font-semibold text-gray-900">
+              {capitalize(part)}
+            </span>
           ) : (
             part
           )}
