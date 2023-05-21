@@ -82,6 +82,7 @@ export type SearchPayload = {
   keyword?: string;
   buildingType?: BuildingType[];
   type?: ListingType[];
+  status?: ListingStatus[];
   minPrice?: number;
   maxPrice?: number;
   minBedrooms?: number;

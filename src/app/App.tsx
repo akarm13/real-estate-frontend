@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation, useRoutes } from "react-router-dom";
+import { useLocation, useNavigate, useRoutes } from "react-router-dom";
 
 import { Footer } from "../components/Footer";
 import { Navigation } from "../components/Navigation";
@@ -11,7 +11,7 @@ import { Home } from "../routes/home/Home";
 import { ListingDetails } from "../routes/listings/ListingDetails";
 import { Search } from "../routes/search/Search";
 
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { GuestRoute } from "../components/GuestRoute";
 import { useSetUserFromLocalStorage } from "../hooks/useSetUserFromLocalStorage";
 import { Map } from "../routes/listings/map/Map";
@@ -25,7 +25,9 @@ import { AccountSettings } from "../routes/profile/AccountSettings";
 import { AnimatePresence } from "framer-motion";
 import { Agent } from "../routes/agents/Agent";
 import { EditListing } from "../routes/listings/edit/EditListing";
+import { isValidToken } from "../utils/auth";
 function App() {
+  const navigate = useNavigate();
   const routes = useRoutes([
     { path: "/", element: <Home /> },
     {
@@ -67,7 +69,6 @@ function App() {
   const { trigger, isLoading } = useSetUserFromLocalStorage();
 
   // Don't trigger the hook if we're on the auth page
-
   useEffect(() => {
     if (!isAuthPage) {
       trigger();
@@ -76,7 +77,16 @@ function App() {
 
   const isProfilePage = location.pathname.includes("profile");
 
-  const isSpecificAgentPage = location.pathname.split("/")[1] === "agents";
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const isTokenValid = isValidToken(token);
+
+    if (!isTokenValid) {
+      localStorage.removeItem("token");
+      navigate("/login");
+    }
+  }, [navigate]);
 
   return (
     <main className="bg-[#FEFEFF] font-sans">

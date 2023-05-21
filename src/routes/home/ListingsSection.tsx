@@ -7,6 +7,7 @@ export const ListingsSection = () => {
   const { data, isLoading, isError } = useGetAllListingsQuery({
     pageNumber: 1,
     pageSize: 10,
+    status: ["featured"],
   });
 
   return (

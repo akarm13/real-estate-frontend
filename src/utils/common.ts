@@ -11,3 +11,12 @@ export const toggleBodyOverflow = (isMenuOpen: boolean) => {
     document.body.style.overflow = "";
   }
 };
+
+// If the status has underscore, you replace it with a space and capitalize
+// the first letter of each word
+export const capitalize = (str: string) => {
+  return str
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};

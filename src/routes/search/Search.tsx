@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { DesktopFilter } from "../../components/filters/DesktopFilter";
 import { MobileFilter } from "../../components/filters/MobileFilter";
 
@@ -16,6 +16,8 @@ import SkeletonListingCard from "../../components/skeleton/SkeletonListingCard";
 
 import { ReactComponent as MapIcon } from "../../assets/icons/search/map.svg";
 import { LinkButton } from "../../components/LinkButton";
+import ReactPaginate from "react-paginate";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 const sortOptions = [
   { value: "newest", label: "Newest" },
   { value: "oldest", label: "Oldest" },
@@ -23,11 +25,9 @@ const sortOptions = [
 ];
 
 export const Search = () => {
-  const [value, setValue] = useState(sortOptions[0].value);
   const [title, setTitle] = useState("");
 
   // change searchParams from string to number
-
   const query: SearchPayload = queryString.parse(
     removeUnusedQueryParams(location.search)
   );
@@ -42,11 +42,46 @@ export const Search = () => {
   if (title) {
     listing = SearchByTitle;
   }
+  const queryParams = queryString.parse(
+    removeUnusedQueryParams(location.search)
+  );
+
+  const [pageNumber, setPageNumber] = useState<number>(
+    queryParams.pageNumber ? parseInt(queryParams.pageNumber as string) : 1
+  );
+
+  const navigate = useNavigate();
+
+  const handlePageChange = (selectedItem: { selected: number }) => {
+    setPageNumber(selectedItem.selected + 1);
+    queryParams.pageNumber = (selectedItem.selected + 1).toString();
+    const fullUrl = queryString.stringifyUrl({
+      url: "/search",
+      query: queryParams,
+    });
+
+    const cleanUrl = removeUnusedQueryParams(fullUrl);
+
+    navigate(cleanUrl);
+  };
 
   return (
     <div className="container pt-24">
       <h1 className="my-8 text-3xl font-semibold text-primaryText">Listings</h1>
-
+      {listing ? (
+        <ReactPaginate
+          previousLabel={<ChevronLeft className="stroke-gray-500" />}
+          nextLabel={<ChevronRight className="stroke-gray-500" />}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          containerClassName="flex justify-center gap-x-4"
+          activeClassName="text-primaryText"
+          pageClassName="text-gray-600"
+          pageRangeDisplayed={10}
+          pageCount={Math.ceil(listing.page.total / listing.page.size)}
+          onPageChange={handlePageChange}
+        />
+      ) : null}
       <div className="grid grid-cols-1 gap-x-8 lg:grid-cols-search">
         <div className="hidden lg:block">
           <DesktopFilter isLoading={isFetching || isLoading} />
