@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { DesktopFilter } from "../../components/filters/DesktopFilter";
 import { MobileFilter } from "../../components/filters/MobileFilter";
 
@@ -25,7 +25,6 @@ const sortOptions = [
 ];
 
 export const Search = () => {
-  const [value, setValue] = useState(sortOptions[0].value);
   const [title, setTitle] = useState("");
 
   // change searchParams from string to number
@@ -43,11 +42,27 @@ export const Search = () => {
   if (title) {
     listing = SearchByTitle;
   }
+  const queryParams = queryString.parse(
+    removeUnusedQueryParams(location.search)
+  );
 
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState<number>(
+    queryParams.pageNumber ? parseInt(queryParams.pageNumber as string) : 1
+  );
+
+  const navigate = useNavigate();
 
   const handlePageChange = (selectedItem: { selected: number }) => {
     setPageNumber(selectedItem.selected + 1);
+    queryParams.pageNumber = (selectedItem.selected + 1).toString();
+    const fullUrl = queryString.stringifyUrl({
+      url: "/search",
+      query: queryParams,
+    });
+
+    const cleanUrl = removeUnusedQueryParams(fullUrl);
+
+    navigate(cleanUrl);
   };
 
   return (
