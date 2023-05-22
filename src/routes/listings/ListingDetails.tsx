@@ -1,27 +1,26 @@
-import { Link, useParams } from "react-router-dom";
-import { useGetListingByIdQuery } from "../../api/endpoints/listings";
+import { Delete, DeleteIcon, Edit, Trash2 } from "lucide-react";
+import { useMemo } from "react";
+import { toast } from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useToggleFavoriteMutation } from "../../api/endpoints/favorites";
+import {
+  useDeleteListingMutation,
+  useGetListingByIdQuery,
+} from "../../api/endpoints/listings";
 import { ReactComponent as BackIcon } from "../../assets/housedetail/back.svg";
 import { ReactComponent as StarFilled } from "../../assets/icons/listing/star-filled.svg";
 import { ReactComponent as StarOutline } from "../../assets/icons/listing/star-outline.svg";
 import { Button } from "../../components/Button";
+import { LinkButton } from "../../components/LinkButton";
 import { Skeleton } from "../../components/skeleton/Skeleton";
+import { selectAuth } from "../../store/slices/auth";
+import { ListingStatus } from "../../types/listing";
 import { AmenitiesSection } from "./AmenitiesSection";
 import { HouseGallery } from "./HouseGallery";
 import { MapSection } from "./MapSection";
 import { SummarySection } from "./SummarySection";
-import { useMemo, useState } from "react";
-import { useToggleFavoriteMutation } from "../../api/endpoints/favorites";
-import { toast } from "react-hot-toast";
-import { selectAuth } from "../../store/slices/auth";
-import { useSelector } from "react-redux";
-import { Edit } from "lucide-react";
-import { LinkButton } from "../../components/LinkButton";
-import {
-  allStatusOptions,
-  rentStatusOptions,
-  saleStatusOptions,
-} from "./edit/EditListing";
-import { ListingStatus } from "../../types/listing";
+import { allStatusOptions } from "./edit/EditListing";
 
 export const ListingDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -34,6 +33,7 @@ export const ListingDetails = () => {
 
   const [toggleFavorite, { isLoading: isFavoriting }] =
     useToggleFavoriteMutation();
+  const [deleteListing, { isLoading: isDeleting }] = useDeleteListingMutation();
   const isFavorited = useMemo(() => {
     return data?.isFavorited || false;
   }, [data?.isFavorited]);
@@ -52,11 +52,25 @@ export const ListingDetails = () => {
     });
   };
 
+  const navigate = useNavigate();
+
   const isOwnListing = useMemo(() => {
     if (!user) return false;
     return data?.owner._id === user?._id;
   }, [data?.owner._id, user?._id]);
 
+  const handleDelete = async () => {
+    if (isDeleting) return;
+
+    const response = await deleteListing(id || "");
+
+    if (response) {
+      toast.success("Listing deleted");
+      navigate("/profile");
+    } else {
+      toast.error("Error deleting listing");
+    }
+  };
   return (
     <div className="w-full pt-24">
       <div className="container mx-auto flex w-full flex-col">
@@ -127,6 +141,23 @@ export const ListingDetails = () => {
                   </span>
                 </Button>
               ))}
+            {!isLoading && isOwnListing && (
+              <Button
+                variant="secondary"
+                className="flex items-center"
+                onClick={handleDelete}
+                isLoading={isDeleting}
+              >
+                <Trash2
+                  width={20}
+                  height={20}
+                  className="-current text-red-600"
+                />
+                <span className="ml-2 font-medium md:mx-2 lg:text-base text-red-600">
+                  Delete
+                </span>
+              </Button>
+            )}
           </div>
         </div>
 

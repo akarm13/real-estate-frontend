@@ -28,6 +28,14 @@ export const listingsApi = api.injectEndpoints({
       invalidatesTags: ["Listings"],
     }),
 
+    deleteListing: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `/listings/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Listings"],
+    }),
+
     getAllListings: builder.query<PaginatedResponse<Listing>, SearchPayload>({
       query: (body) => {
         // Go through each key in the body object and remove the null values
@@ -95,4 +103,5 @@ export const {
   useLazyGetListingsByAgentQuery,
   useLazyGetFavoritedListingsQuery,
   useUpdateListingMutation,
+  useDeleteListingMutation,
 } = listingsApi;
