@@ -104,4 +104,5 @@ export const {
   useLazyGetFavoritedListingsQuery,
   useUpdateListingMutation,
   useDeleteListingMutation,
+  useGetListingsByAgentQuery,
 } = listingsApi;

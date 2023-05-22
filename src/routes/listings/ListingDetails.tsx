@@ -7,6 +7,7 @@ import { useToggleFavoriteMutation } from "../../api/endpoints/favorites";
 import {
   useDeleteListingMutation,
   useGetListingByIdQuery,
+  useGetListingsByAgentQuery,
 } from "../../api/endpoints/listings";
 import { ReactComponent as BackIcon } from "../../assets/housedetail/back.svg";
 import { ReactComponent as StarFilled } from "../../assets/icons/listing/star-filled.svg";
@@ -37,6 +38,14 @@ export const ListingDetails = () => {
   const isFavorited = useMemo(() => {
     return data?.isFavorited || false;
   }, [data?.isFavorited]);
+
+  const { data: listings, isLoading: isAgentListingsLoading } =
+    useGetListingsByAgentQuery({
+      id: data?.owner._id || "",
+      pageSize: 1,
+      pageNumber: 1,
+      orderBy: "",
+    });
 
   const handleToggleFavorite = async () => {
     if (isFavoriting) return;
@@ -71,6 +80,8 @@ export const ListingDetails = () => {
       toast.error("Error deleting listing");
     }
   };
+
+  console.log(listings?.page);
   return (
     <div className="w-full pt-24">
       <div className="container mx-auto flex w-full flex-col">
@@ -179,6 +190,7 @@ export const ListingDetails = () => {
         <SummarySection
           rooms={data?.rooms}
           area={data?.area}
+          itemsListed={listings?.page.total || 0}
           price={data?.price}
           owner={data?.owner}
           status={

@@ -19,6 +19,7 @@ type Props = {
   price: Listing["price"] | undefined;
   owner: Listing["owner"] | undefined;
   status: Listing["status"] | undefined;
+  itemsListed: number;
   isLoading: boolean;
 };
 
@@ -54,6 +55,7 @@ export const SummarySection = ({
   owner,
   status,
   description,
+  itemsListed,
   isLoading,
 }: Props) => {
   const [isPhoneVisible, setIsPhoneVisible] = useState(false);
@@ -194,7 +196,9 @@ export const SummarySection = ({
           ) : (
             <>
               <div className="flex flex-row items-center gap-1">
-                <p className="font-semibold lg:text-base text-primaryText">2</p>
+                <p className="font-semibold lg:text-base text-primaryText">
+                  {itemsListed}
+                </p>
                 <h4 className="lg:text-base">Items listed</h4>
               </div>
               {/* View agent */}
