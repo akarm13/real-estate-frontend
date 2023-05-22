@@ -323,8 +323,8 @@ export const Map = () => {
             className="flex"
           />
         </div>
-        <div className="grid grid-cols-2 gap-x-8 mt-8">
-          <div className="flex flex-col gap-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 mt-8">
+          <div className="flex flex-col gap-y-8 order-2 lg:order-1">
             <div className="grid h-[80vh] grid-cols-1 gap-x-4 gap-y-8 overflow-y-auto md:grid-cols-2">
               {isLoading || isFetching ? (
                 <>
@@ -363,7 +363,7 @@ export const Map = () => {
               />
             ) : null}
           </div>
-          <div className="sticky top-0 flex flex-col gap-y-8">
+          <div className="lg:sticky top-0 flex flex-col gap-y-8 order-1 lg:order-2">
             <div className="h-[80vh]">
               <div className="relative">
                 <div className="absolute top-6 left-6 z-10 flex">

@@ -20,7 +20,7 @@ export const HeroSection = () => {
           </p>
         </div>
         <div className="flex gap-x-6">
-          <LinkButton to="/listings" variant="primary">
+          <LinkButton to="/search" variant="primary">
             {isSmall ? "Browse Listings" : "Listings"}
           </LinkButton>
           <LinkButton to="/agents" variant="secondary">
