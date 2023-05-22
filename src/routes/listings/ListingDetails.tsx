@@ -98,34 +98,35 @@ export const ListingDetails = () => {
               </LinkButton>
             )}
 
-            {isLoading || isFetching ? (
-              <Skeleton className="h-8 w-52" />
-            ) : (
-              <Button
-                variant="secondary"
-                onClick={handleToggleFavorite}
-                className="flex items-center"
-                isLoading={isFavoriting || isLoading || isFetching}
-                loadingText=""
-              >
-                {isFavorited ? (
-                  <StarFilled
-                    width={20}
-                    height={20}
-                    className="fill-current text-primary-500"
-                  />
-                ) : (
-                  <StarOutline
-                    width={20}
-                    height={20}
-                    className="fill-current text-gray-600"
-                  />
-                )}
-                <span className="ml-2 font-medium md:mx-2 lg:text-base text-">
-                  {isFavorited ? "Remove from favorites" : "Add to favorites"}
-                </span>
-              </Button>
-            )}
+            {isOwnListing &&
+              (isLoading || isFetching ? (
+                <Skeleton className="h-8 w-52" />
+              ) : (
+                <Button
+                  variant="secondary"
+                  onClick={handleToggleFavorite}
+                  className="flex items-center"
+                  isLoading={isFavoriting || isLoading || isFetching}
+                  loadingText=""
+                >
+                  {isFavorited ? (
+                    <StarFilled
+                      width={20}
+                      height={20}
+                      className="fill-current text-primary-500"
+                    />
+                  ) : (
+                    <StarOutline
+                      width={20}
+                      height={20}
+                      className="fill-current text-gray-600"
+                    />
+                  )}
+                  <span className="ml-2 font-medium md:mx-2 lg:text-base text-">
+                    {isFavorited ? "Remove from favorites" : "Add to favorites"}
+                  </span>
+                </Button>
+              ))}
           </div>
         </div>
 

@@ -68,20 +68,7 @@ export const Search = () => {
   return (
     <div className="container pt-24">
       <h1 className="my-8 text-3xl font-semibold text-primaryText">Listings</h1>
-      {listing ? (
-        <ReactPaginate
-          previousLabel={<ChevronLeft className="stroke-gray-500" />}
-          nextLabel={<ChevronRight className="stroke-gray-500" />}
-          breakLabel={"..."}
-          breakClassName={"break-me"}
-          containerClassName="flex justify-center gap-x-4"
-          activeClassName="text-primaryText"
-          pageClassName="text-gray-600"
-          pageRangeDisplayed={10}
-          pageCount={Math.ceil(listing.page.total / listing.page.size)}
-          onPageChange={handlePageChange}
-        />
-      ) : null}
+
       <div className="grid grid-cols-1 gap-x-8 lg:grid-cols-search">
         <div className="hidden lg:block">
           <DesktopFilter isLoading={isFetching || isLoading} />
@@ -138,6 +125,20 @@ export const Search = () => {
           </div>
         </div>
       </div>
+      {listing ? (
+        <ReactPaginate
+          previousLabel={<ChevronLeft className="stroke-gray-500" />}
+          nextLabel={<ChevronRight className="stroke-gray-500" />}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          containerClassName="flex justify-center gap-x-4 mt-8"
+          activeClassName="text-primaryText"
+          pageClassName="text-gray-600"
+          pageRangeDisplayed={10}
+          pageCount={Math.ceil(listing.page.total / listing.page.size)}
+          onPageChange={handlePageChange}
+        />
+      ) : null}
     </div>
   );
 };
