@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../store/slices/auth";
+import { logout, selectAuth, selectIsAgent } from "../../store/slices/auth";
 
 import {
   DropdownMenu,
@@ -35,6 +35,8 @@ type Props = {
 export const UserActionsMenu = ({ user }: Props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const isAgent = useSelector(selectIsAgent);
 
   const routeHandler = (change: String) => {
     if (change === "primary") {
@@ -72,13 +74,17 @@ export const UserActionsMenu = ({ user }: Props) => {
       {user ? (
         <div className="flex items-center gap-x-8">
           <Notifications />
-          <LinkButton
-            variant="primary"
-            className="flex items-center gap-x-2"
-            to="/listings/create"
-          >
-            <Plus className="h-6 w-6" />
-          </LinkButton>
+
+          {isAgent && (
+            <LinkButton
+              variant="primary"
+              className="flex items-center gap-x-2"
+              to="/listings/create"
+            >
+              <Plus className="h-6 w-6" />
+            </LinkButton>
+          )}
+
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center outline-none">
               <img

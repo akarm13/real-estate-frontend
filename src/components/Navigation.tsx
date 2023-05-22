@@ -1,5 +1,5 @@
 import { Menu, Plus, XIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { ReactComponent as LogoWithText } from "../assets/logo-with-text.svg";

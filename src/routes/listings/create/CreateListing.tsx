@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "../../../components/Button";
 import { AmenitiesForm } from "./AmenitiesForm";
 import { BasicInfoForm } from "./BasicInfoForm";
@@ -12,7 +12,7 @@ import { createListingSchemas } from "./validations";
 import { useGetAllAmenitiesQuery } from "../../../api/endpoints/amenities";
 import { AddListingFormdata, AddListingPayload } from "../../../types/listing";
 import { useSelector } from "react-redux";
-import { selectAuth } from "../../../store/slices/auth";
+import { selectAuth, selectIsAgent } from "../../../store/slices/auth";
 import { useUploadMutation } from "../../../api/rtk-api";
 import { useAddListingMutation } from "../../../api/endpoints/listings";
 import { toast } from "react-hot-toast";
@@ -48,6 +48,14 @@ export const CreateListing = () => {
   const [addListing, { isLoading: isAddingListing }] = useAddListingMutation();
 
   const navigate = useNavigate();
+
+  const isAgent = useSelector(selectIsAgent);
+
+  useEffect(() => {
+    if (!isAgent) {
+      navigate("/");
+    }
+  }, [isAgent]);
 
   const handleFormSubmit = async (data: AddListingFormdata) => {
     // If it's the last step, submit the form

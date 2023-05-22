@@ -10,7 +10,7 @@ import {
   ListingType,
 } from "../../../types/listing";
 import { useSelector } from "react-redux";
-import { selectAuth } from "../../../store/slices/auth";
+import { selectAuth, selectIsAgent } from "../../../store/slices/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   useGetListingByIdQuery,
@@ -62,6 +62,19 @@ export const EditListing = () => {
   const { data: amenities } = useGetAllAmenitiesQuery();
   const navigate = useNavigate();
   const { user } = useSelector(selectAuth);
+
+  const isAgent = useSelector(selectIsAgent);
+
+  const isOwnListing = useMemo(() => {
+    if (!user) return false;
+    return listing?.owner._id === user?._id;
+  }, [listing?.owner._id, user?._id]);
+
+  useEffect(() => {
+    if (!isAgent || !isOwnListing) {
+      navigate("/");
+    }
+  }, [isAgent, isOwnListing]);
 
   const defaultValues = useMemo(() => {
     if (listing && amenities) {
