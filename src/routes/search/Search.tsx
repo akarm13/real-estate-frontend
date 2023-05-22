@@ -18,6 +18,7 @@ import { ReactComponent as MapIcon } from "../../assets/icons/search/map.svg";
 import { LinkButton } from "../../components/LinkButton";
 import ReactPaginate from "react-paginate";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { NoListingsFound } from "../listings/NoListingsFound";
 const sortOptions = [
   { value: "newest", label: "Newest" },
   { value: "oldest", label: "Oldest" },
@@ -120,7 +121,7 @@ export const Search = () => {
                 </Link>
               ))
             ) : (
-              <h1>No listings found</h1>
+              <NoListingsFound className="lg:col-span-8" />
             )}
           </div>
         </div>
